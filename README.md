@@ -1,5 +1,7 @@
 # Food Delivery (Android + FastAPI Backend)
 
+**Note:** This is a **native Android app** (Android Studio / Gradle project) — **not** Expo / React Native.
+
 An end-to-end **Food Delivery** demo project that includes:
 
 - **Android client app** (Gradle Kotlin DSL) inside `app/`
