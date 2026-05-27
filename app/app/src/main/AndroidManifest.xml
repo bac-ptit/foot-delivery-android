@@ -13,15 +13,10 @@
         android:label="Nhom7-DatMon"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:networkSecurityConfig="@xml/network_security_config">
-        <activity android:name=".screens.signin"/>
-        <activity android:name=".screens.signup"/>
+        <!-- Màn hình chính -->
         <activity android:name=".screens.home"/>
         <activity android:name=".screens.profile"/>
         <activity android:name=".screens.list_restaurant"/>
-        <activity android:name=".screens.notification"/>
-        <activity android:name=".screens.customer_support"/>
-        <activity android:name=".screens.detail_support"/>
-        <activity android:name=".screens.chatbot"/>
         <activity android:name=".screens.restaurant_profile" android:exported="true">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -30,14 +25,6 @@
                 <data android:scheme="https" android:host="yourapp.com" android:pathPrefix="/restaurant" />
             </intent-filter>
         </activity>
-        <activity android:name=".screens.savedeliveryaddress"/>
-        <activity android:name=".screens.order_history"/>
-        <activity android:name=".screens.delivered_order_details"/>
-        <activity android:name=".screens.payment_successful"/>
-        <activity android:name=".screens.edit_shipping_address"/>
-        <activity android:name=".screens.add_shipping_address"/>
-        <activity android:name=".screens.shipping_address_added_successfully"/>
-        <activity android:name=".screens.shipping_address_fixed_successfully"/>
         <activity android:name=".screens.food_detail" android:exported="true">
             <intent-filter android:autoVerify="true">
                 <action android:name="android.intent.action.VIEW" />
@@ -46,36 +33,35 @@
                 <data android:scheme="https" android:host="yourapp.com" android:pathPrefix="/food" />
             </intent-filter>
         </activity>
+
+        <!-- Đặt món -->
         <activity android:name=".screens.cart"/>
-        <activity android:name=".screens.share"/>
-        <activity android:name=".screens.share_restaurant"/>
         <activity android:name=".screens.pre_order"/>
         <activity android:name=".screens.pre_order_cart"/>
         <activity android:name=".screens.order"/>
-        <activity android:name=".screens.activity_cart"/>
         <activity android:name=".screens.discouts"/>
         <activity android:name=".screens.payment_methods"/>
         <activity android:name=".screens.VNPayActivity"/>
+        <activity android:name=".screens.payment_successful"/>
+
+        <!-- Theo dõi đơn hàng -->
         <activity android:name=".screens.OrderTracking"/>
         <activity android:name=".screens.OrderTrackingDetail"/>
+        <activity android:name=".screens.order_history"/>
+        <activity android:name=".screens.delivered_order_details"/>
+
+        <!-- Tích điểm -->
         <activity android:name=".screens.PointsDetail"/>
+
+        <!-- Launcher -->
         <activity
-			android:name=".screens.start"
+			android:name=".screens.home"
 			android:exported="true">
 			<intent-filter>
 				<action android:name="android.intent.action.MAIN" />
 				<category android:name="android.intent.category.LAUNCHER" />
 			</intent-filter>
 		</activity>
-
-
-        <service
-            android:name=".screens.MyFirebaseMessagingService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
