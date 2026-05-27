@@ -1,3 +1,22 @@
+"""
+Module chính của API Đặt Món Food Delivery.
+
+Chứa tất cả các endpoint REST API cho ứng dụng đặt đồ ăn giao hàng.
+Sử dụng FastAPI framework với SQLAlchemy ORM và PostgreSQL database.
+
+Các nhóm endpoint chính:
+- Auth: Xác thực JWT
+- User: Quản lý người dùng
+- Address: Quản lý địa chỉ giao hàng
+- Restaurant: Quản lý nhà hàng
+- MenuItem: Quản lý món ăn
+- Order: Đặt hàng và theo dõi đơn
+- Review: Đánh giá và phản hồi
+- Payment: Thanh toán VNPay
+- Notification: Thông báo push
+- Promotion: Mã giảm giá
+"""
+
 from fastapi import FastAPI, Depends, HTTPException, Form, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,13 +31,11 @@ from notification_service import notify_user
 from payment_service import generate_vnpay_url
 from fastapi import Request
 
-
-# Create tables in the database (optional if using migrations like Alembic)
+# Tạo bảng trong database (nếu chưa có)
 models.Base.metadata.create_all(bind=engine)
 
-
+# Khởi tạo FastAPI app
 app = FastAPI(title="Đặt Món Food Delivery API")
-
 
 # CORS middleware - Cho phép Android app kết nối
 app.add_middleware(
@@ -32,14 +49,36 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    """Endpoint gốc - kiểm tra API có hoạt động không."""
     return {"message": "Welcome to Đặt Món Food Delivery API"}
 
 
-# --- AUTH ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# AUTH ENDPOINTS - Xác thực
+# ══════════════════════════════════════════════════════════════
 
 
 @app.post("/token", response_model=schemas.Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+async def login_for_access_token(
+    form_data: OAuth2PasswordRequestForm = Depends(),
+    db: Session = Depends(get_db)
+):
+    """
+    Đăng nhập và lấy JWT access token.
+
+    Xác thực người dùng bằng username và password.
+    Trả về access_token nếu thành công, raise 401 nếu thất bại.
+
+    Args:
+        form_data: Form chứa username và password.
+        db: Database session.
+
+    Returns:
+        dict: Chứa access_token và token_type.
+
+    Raises:
+        HTTPException: 401 nếu username hoặc password sai.
+    """
     user = db.query(models.User).filter(models.User.username == form_data.username).first()
     if not user or not auth.verify_password(form_data.password, user.password):
         raise HTTPException(
@@ -54,11 +93,22 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
     return {"access_token": access_token, "token_type": "bearer"}
 
 
-# --- USER ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# USER ENDPOINTS - Người dùng
+# ══════════════════════════════════════════════════════════════
 
 
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(auth.get_current_user)):
+    """
+    Lấy thông tin người dùng hiện tại (dựa vào JWT token).
+
+    Args:
+        current_user: Người dùng hiện tại (từ JWT token).
+
+    Returns:
+        schemas.User: Thông tin người dùng.
+    """
     return current_user
 
 
@@ -69,7 +119,21 @@ async def update_device_token(
     current_user: models.User = Depends(auth.get_current_user),
     db: Session = Depends(get_db)
 ):
-    """Android App gọi API này để gửi FCM Token lên Server."""
+    """
+    Cập nhật FCM token cho thiết bị của người dùng.
+
+    Android App gọi API này để gửi FCM Token lên Server.
+    Nếu token đã tồn tại, cập nhật userid. Nếu chưa, tạo mới.
+
+    Args:
+        token: FCM token từ Firebase.
+        device_type: Loại thiết bị (mặc định "android").
+        current_user: Người dùng hiện tại.
+        db: Database session.
+
+    Returns:
+        dict: Thông báo cập nhật thành công.
+    """
     db_device = db.query(models.UserDevice).filter(models.UserDevice.device_token == token).first()
     if not db_device:
         db_device = models.UserDevice(device_token=token, device_type=device_type, userid=current_user.id)
@@ -81,11 +145,23 @@ async def update_device_token(
     return {"message": "Device token updated successfully"}
 
 
-# --- ADDRESS ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# ADDRESS ENDPOINTS - Địa chỉ giao hàng
+# ══════════════════════════════════════════════════════════════
 
 
 @app.post("/addresses/", response_model=schemas.Address)
 def create_address(address: schemas.AddressCreate, db: Session = Depends(get_db)):
+    """
+    Tạo địa chỉ giao hàng mới.
+
+    Args:
+        address: Thông tin địa chỉ (detail, phone, userid).
+        db: Database session.
+
+    Returns:
+        schemas.Address: Địa chỉ đã tạo.
+    """
     db_address = models.Address(detail=address.detail, phone=address.phone, userid=address.userid)
     db.add(db_address)
     db.commit()
@@ -95,50 +171,115 @@ def create_address(address: schemas.AddressCreate, db: Session = Depends(get_db)
 
 @app.get("/users/{user_id}/addresses/", response_model=List[schemas.Address])
 def read_user_addresses(user_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy danh sách địa chỉ của người dùng.
+
+    Args:
+        user_id: ID người dùng.
+        db: Database session.
+
+    Returns:
+        List[schemas.Address]: Danh sách địa chỉ.
+    """
     return db.query(models.Address).filter(models.Address.userid == user_id).all()
 
 
 @app.put("/addresses/{address_id}/", response_model=schemas.Address)
 def update_address(address_id: int, address: schemas.AddressUpdate, db: Session = Depends(get_db)):
-    """Cập nhật địa chỉ giao hàng."""
+    """
+    Cập nhật địa chỉ giao hàng.
+
+    Chỉ cập nhật các trường không null.
+
+    Args:
+        address_id: ID địa chỉ cần cập nhật.
+        address: Thông tin mới (detail, phone - có thể null).
+        db: Database session.
+
+    Returns:
+        schemas.Address: Địa chỉ đã cập nhật.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy địa chỉ.
+    """
     db_address = db.query(models.Address).filter(models.Address.id == address_id).first()
     if not db_address:
         raise HTTPException(status_code=404, detail="Address not found")
-   
-    # Cập nhật các trường
+
     if address.detail is not None:
         db_address.detail = address.detail
     if address.phone is not None:
         db_address.phone = address.phone
-   
+
     db.commit()
     db.refresh(db_address)
     return db_address
 
 
-# --- PROMOTIONS ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# PROMOTIONS ENDPOINTS - Mã giảm giá
+# ══════════════════════════════════════════════════════════════
 
 
 @app.get("/promotions/", response_model=List[schemas.Promotion])
 def read_promotions(active_only: bool = True, db: Session = Depends(get_db)):
+    """
+    Lấy danh sách mã giảm giá.
+
+    Args:
+        active_only: True (mặc định) chỉ lấy mã đang hoạt động.
+        db: Database session.
+
+    Returns:
+        List[schemas.Promotion]: Danh sách mã giảm giá.
+    """
     query = db.query(models.Promotion)
     if active_only:
         query = query.filter(models.Promotion.status.ilike("active"))
     return query.all()
 
 
-# --- RESTAURANT ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# RESTAURANT ENDPOINTS - Nhà hàng
+# ══════════════════════════════════════════════════════════════
 
 
 @app.get("/restaurants/", response_model=List[schemas.Restaurant])
 def read_restaurants(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """
+    Lấy danh sách tất cả nhà hàng.
+
+    Args:
+        skip: Số bản ghi bỏ qua (phân trang).
+        limit: Số bản ghi tối đa (mặc định 100).
+        db: Database session.
+
+    Returns:
+        List[schemas.Restaurant]: Danh sách nhà hàng.
+    """
     restaurants = db.query(models.Restaurant).offset(skip).limit(limit).all()
     return restaurants
 
 
 @app.get("/restaurants/search/", response_model=List[schemas.Restaurant])
-def search_restaurants_by_name(name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    """Tìm kiếm nhà hàng theo tên (không phân biệt hoa thường)."""
+def search_restaurants_by_name(
+    name: str,
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db)
+):
+    """
+    Tìm kiếm nhà hàng theo tên (không phân biệt hoa thường).
+
+    Args:
+        name: Từ khóa tìm kiếm.
+        skip: Số bản ghi bỏ qua.
+        limit: Số bản ghi tối đa.
+        db: Database session.
+
+    Returns:
+        List[schemas.Restaurant]: Danh sách nhà hàng khớp với từ khóa.
+    """
     restaurants = db.query(models.Restaurant).filter(
         models.Restaurant.name.ilike(f"%{name}%")
     ).offset(skip).limit(limit).all()
@@ -147,25 +288,51 @@ def search_restaurants_by_name(name: str, skip: int = 0, limit: int = 100, db: S
 
 @app.get("/restaurants/{restaurant_id}/", response_model=schemas.Restaurant)
 def read_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy chi tiết nhà hàng theo ID.
+
+    Args:
+        restaurant_id: ID nhà hàng.
+        db: Database session.
+
+    Returns:
+        schemas.Restaurant: Thông tin nhà hàng.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy nhà hàng.
+    """
     restaurant = db.query(models.Restaurant).filter(models.Restaurant.id == restaurant_id).first()
     if not restaurant:
         raise HTTPException(status_code=404, detail="Restaurant not found")
     return restaurant
 
 
-# --- MENU ITEM ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# MENU ITEM ENDPOINTS - Món ăn
+# ══════════════════════════════════════════════════════════════
 
 
-def build_menuitem_with_reviews(item: models.MenuItem, db: Session):
-    """Helper function to build MenuItem with reviews and avg_rating."""
+def build_menuitem_with_reviews(item: models.MenuItem, db: Session) -> dict:
+    """
+    Helper function: Xây dựng MenuItem kèm reviews và avg_rating.
+
+    Lấy tất cả đánh giá cho món ăn, tính điểm trung bình,
+    và trả về dict đầy đủ thông tin.
+
+    Args:
+        item: MenuItem model object.
+        db: Database session.
+
+    Returns:
+        dict: MenuItem với reviews, avg_rating, restaurant_name.
+    """
     restaurant = db.query(models.Restaurant).filter(models.Restaurant.id == item.restaurantid).first()
     restaurant_name = restaurant.name if restaurant else ""
-    
-    # Fetch reviews for this menu item
+
     reviews = db.query(models.Review).filter(models.Review.menuitemid == item.id).all()
     reviews_data = []
     total_rating = 0
-    
+
     for review in reviews:
         user = db.query(models.User).filter(models.User.id == review.userid).first()
         user_name = user.name if user else "Unknown"
@@ -177,9 +344,9 @@ def build_menuitem_with_reviews(item: models.MenuItem, db: Session):
             "user_name": user_name
         })
         total_rating += review.rating
-    
+
     avg_rating = total_rating / len(reviews) if reviews else 0.0
-    
+
     return {
         "id": item.id,
         "name": item.name,
@@ -197,9 +364,19 @@ def build_menuitem_with_reviews(item: models.MenuItem, db: Session):
 
 @app.get("/menu-items/", response_model=List[schemas.MenuItemWithReviews])
 def read_all_menu_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    """Lấy danh sách tất cả món ăn từ tất cả nhà hàng, bao gồm reviews."""
+    """
+    Lấy danh sách tất cả món ăn từ tất cả nhà hàng (kèm reviews).
+
+    Args:
+        skip: Số bản ghi bỏ qua.
+        limit: Số bản ghi tối đa.
+        db: Database session.
+
+    Returns:
+        List[schemas.MenuItemWithReviews]: Danh sách món ăn với reviews.
+    """
     menu_items = db.query(models.MenuItem).offset(skip).limit(limit).all()
-   
+
     result = []
     for item in menu_items:
         item_dict = build_menuitem_with_reviews(item, db)
@@ -208,12 +385,28 @@ def read_all_menu_items(skip: int = 0, limit: int = 100, db: Session = Depends(g
 
 
 @app.get("/menu-items/search/", response_model=List[schemas.MenuItemWithReviews])
-def search_menu_items_by_name(name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    """Tìm kiếm món ăn theo tên (không phân biệt hoa thường)."""
+def search_menu_items_by_name(
+    name: str,
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db)
+):
+    """
+    Tìm kiếm món ăn theo tên (không phân biệt hoa thường).
+
+    Args:
+        name: Từ khóa tìm kiếm.
+        skip: Số bản ghi bỏ qua.
+        limit: Số bản ghi tối đa.
+        db: Database session.
+
+    Returns:
+        List[schemas.MenuItemWithReviews]: Danh sách món ăn khớp.
+    """
     menu_items = db.query(models.MenuItem).filter(
         models.MenuItem.name.ilike(f"%{name}%")
     ).offset(skip).limit(limit).all()
-   
+
     result = []
     for item in menu_items:
         item_dict = build_menuitem_with_reviews(item, db)
@@ -222,21 +415,36 @@ def search_menu_items_by_name(name: str, skip: int = 0, limit: int = 100, db: Se
 
 
 @app.get("/menu-items/category/search/", response_model=List[schemas.MenuItemWithReviews])
-def search_menu_items_by_category_name(category_name: str, skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    """Tìm kiếm món ăn theo tên danh mục (không phân biệt hoa thường)."""
-    # Tìm category theo tên
+def search_menu_items_by_category_name(
+    category_name: str,
+    skip: int = 0,
+    limit: int = 100,
+    db: Session = Depends(get_db)
+):
+    """
+    Tìm kiếm món ăn theo tên danh mục (không phân biệt hoa thường).
+
+    Args:
+        category_name: Tên danh mục cần tìm.
+        skip: Số bản ghi bỏ qua.
+        limit: Số bản ghi tối đa.
+        db: Database session.
+
+    Returns:
+        List[schemas.MenuItemWithReviews]: Danh sách món ăn thuộc danh mục.
+    """
     categories = db.query(models.Category).filter(
         models.Category.name.ilike(f"%{category_name}%")
     ).all()
     category_ids = [cat.id for cat in categories]
-   
+
     if not category_ids:
         return []
-   
+
     menu_items = db.query(models.MenuItem).filter(
         models.MenuItem.categoryid.in_(category_ids)
     ).offset(skip).limit(limit).all()
-   
+
     result = []
     for item in menu_items:
         item_dict = build_menuitem_with_reviews(item, db)
@@ -246,42 +454,68 @@ def search_menu_items_by_category_name(category_name: str, skip: int = 0, limit:
 
 @app.get("/menu-items/{menu_item_id}/", response_model=schemas.MenuItemWithReviews)
 def read_menu_item_detail(menu_item_id: int, db: Session = Depends(get_db)):
-    """Lấy chi tiết món ăn bao gồm reviews."""
+    """
+    Lấy chi tiết một món ăn (kèm reviews).
+
+    Args:
+        menu_item_id: ID món ăn.
+        db: Database session.
+
+    Returns:
+        schemas.MenuItemWithReviews: Chi tiết món ăn với reviews.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy món ăn.
+    """
     item = db.query(models.MenuItem).filter(models.MenuItem.id == menu_item_id).first()
     if not item:
         raise HTTPException(status_code=404, detail="Menu item not found")
-    
+
     return build_menuitem_with_reviews(item, db)
-# --- VNPAY RETURN ---
+
+
+# ══════════════════════════════════════════════════════════════
+# VNPAY RETURN - Callback từ VNPay
+# ══════════════════════════════════════════════════════════════
+
+
 @app.get("/vnpay_return")
 async def vnpay_return(request: Request, db: Session = Depends(get_db)):
+    """
+    Callback từ VNPay sau khi thanh toán.
 
+    Xử lý kết quả thanh toán từ VNPay:
+    - vnp_ResponseCode="00": Thành công → cập nhật trạng thái "paid"
+    - Khác: Thanh toán thất bại
 
+    Args:
+        request: HTTP request chứa query params từ VNPay.
+        db: Database session.
+
+    Returns:
+        dict: Trạng thái thanh toán (success/failed).
+    """
     params = dict(request.query_params)
-
 
     response_code = params.get("vnp_ResponseCode")
     order_ref = params.get("vnp_TxnRef")  # Format: DH{order_id}
-    
+
     # Trích xuất order_id từ reference (VD: "DH123" -> 123)
     try:
-        # Nếu là định dạng "DH{id}"
         if order_ref and order_ref.startswith("DH"):
             order_id = int(order_ref[2:])
         else:
             order_id = int(order_ref) if order_ref else 0
     except (ValueError, AttributeError):
         order_id = 0
-    
 
     if response_code == "00":
-        # Thanh toán thành công - cập nhật đơn hàng trong DB
+        # Thanh toán thành công
         if order_id > 0:
             order = db.query(models.Orders).filter(models.Orders.id == order_id).first()
             if order:
                 order.status = "paid"
-                
-                # Tạo Payment record
+
                 payment_record = models.Payment(
                     status="success",
                     method="vnpay",
@@ -290,8 +524,7 @@ async def vnpay_return(request: Request, db: Session = Depends(get_db)):
                 db.add(payment_record)
                 db.commit()
                 db.refresh(order)
-                
-                # Gửi notification
+
                 total_formatted = f"{order.totalprice:,.0f}".replace(",", ".")
                 notify_user(
                     db=db,
@@ -300,13 +533,13 @@ async def vnpay_return(request: Request, db: Session = Depends(get_db)):
                     body=f"Đơn hàng #{order.id} đã được đặt thành công. Tổng tiền: {total_formatted}đ. Đang chờ quán xác nhận.",
                     order_id=order.id
                 )
-        
+
         return {
             "status": "success",
             "message": f"Thanh toán thành công cho đơn {order_ref}"
         }
     else:
-        # Thanh toán thất bại - cập nhật Payment record
+        # Thanh toán thất bại
         if order_id > 0:
             payment_record = models.Payment(
                 status="failed",
@@ -315,14 +548,16 @@ async def vnpay_return(request: Request, db: Session = Depends(get_db)):
             )
             db.add(payment_record)
             db.commit()
-        
+
         return {
             "status": "failed",
             "message": "Thanh toán thất bại"
         }
 
 
-    # --- PAYMENT ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# PAYMENT ENDPOINTS - Thanh toán
+# ══════════════════════════════════════════════════════════════
 
 
 @app.get("/create-payment")
@@ -331,8 +566,18 @@ async def create_payment(
     amount: int,
     request: Request
 ):
-    ip_address = request.client.host
+    """
+    Tạo URL thanh toán VNPay.
 
+    Args:
+        order_id: ID đơn hàng.
+        amount: Số tiền (VNĐ).
+        request: HTTP request để lấy IP address.
+
+    Returns:
+        dict: Chứa payment_url để mở trong WebView.
+    """
+    ip_address = request.client.host
 
     payment_url = generate_vnpay_url(
         order_id=str(order_id),
@@ -340,17 +585,31 @@ async def create_payment(
         ip_address=ip_address
     )
 
-
     return {
         "payment_url": payment_url
     }
 
 
-# --- ORDER ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# ORDER ENDPOINTS - Đơn hàng
+# ══════════════════════════════════════════════════════════════
 
 
 @app.post("/orders/", response_model=schemas.Order)
 def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
+    """
+    Tạo đơn hàng mới.
+
+    Tạo đơn hàng và danh sách OrderItem.
+    Nếu là COD (status="confirmed"), gửi thông báo ngay.
+
+    Args:
+        order: Thông tin đơn hàng (status, totalprice, restaurantid, addressid, userid, order_items).
+        db: Database session.
+
+    Returns:
+        schemas.Order: Đơn hàng đã tạo.
+    """
     db_order = models.Orders(
         status=order.status,
         preorderdate=order.preorderdate,
@@ -363,7 +622,7 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
     db.add(db_order)
     db.commit()
     db.refresh(db_order)
-   
+
     for item in order.order_items:
         db_order_item = models.OrderItem(
             quantity=item.quantity,
@@ -372,11 +631,11 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
             orderid=db_order.id
         )
         db.add(db_order_item)
-   
+
     db.commit()
     db.refresh(db_order)
-    
-    # Nếu là COD (status="confirmed"), gửi thông báo ngay lúc tạo đơn hàng
+
+    # Nếu là COD, gửi thông báo ngay
     if db_order.status == "confirmed":
         try:
             total_formatted = f"{db_order.totalprice:,.0f}".replace(",", ".")
@@ -389,17 +648,40 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
             )
         except Exception as e:
             print(f"Error sending notification: {e}")
-   
+
     return db_order
 
 
 @app.get("/users/{user_id}/orders/", response_model=List[schemas.Order])
 def read_user_orders(user_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy danh sách đơn hàng của người dùng.
+
+    Args:
+        user_id: ID người dùng.
+        db: Database session.
+
+    Returns:
+        List[schemas.Order]: Danh sách đơn hàng.
+    """
     return db.query(models.Orders).filter(models.Orders.userid == user_id).all()
 
 
 @app.get("/orders/{order_id}/detail", response_model=schemas.OrderDetail)
 def read_order_detail(order_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy chi tiết đơn hàng (kèm nhà hàng, địa chỉ, danh sách món).
+
+    Args:
+        order_id: ID đơn hàng.
+        db: Database session.
+
+    Returns:
+        schemas.OrderDetail: Chi tiết đơn hàng đầy đủ.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy đơn hàng.
+    """
     order = db.query(models.Orders).filter(models.Orders.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -435,7 +717,31 @@ def read_order_detail(order_id: int, db: Session = Depends(get_db)):
 
 
 @app.put("/orders/{order_id}/status", response_model=schemas.Order)
-def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: Session = Depends(get_db)):
+def update_order_status(
+    order_id: int,
+    payload: schemas.OrderStatusUpdate,
+    db: Session = Depends(get_db)
+):
+    """
+    Cập nhật trạng thái đơn hàng.
+
+    Tự động gửi push notification khi trạng thái thay đổi:
+    - paid/confirmed: "Đơn hàng được đặt thành công!"
+    - delivering: "Đơn hàng đang giao"
+    - completed: "Đơn hàng đã giao"
+    - cancelled: "Đơn hàng bị hủy"
+
+    Args:
+        order_id: ID đơn hàng.
+        payload: Trạng thái mới.
+        db: Database session.
+
+    Returns:
+        schemas.Order: Đơn hàng đã cập nhật.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy đơn hàng.
+    """
     order = db.query(models.Orders).filter(models.Orders.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -444,19 +750,16 @@ def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: S
     order.status = payload.status
     db.commit()
     db.refresh(order)
-    
-    print(f"DEBUG: Update order {order_id}: {old_status} -> {payload.status}")
-    
-    # Tạo thông báo khi trạng thái đơn hàng thay đổi
+
+    # Tạo thông báo khi trạng thái thay đổi
     try:
         notification_title = ""
         notification_body = ""
-        
+
         if payload.status in ["paid", "confirmed"] and old_status not in ["paid", "confirmed"]:
             notification_title = "Đơn hàng được đặt thành công! ✅"
             total_formatted = f"{order.totalprice:,.0f}".replace(",", ".")
             notification_body = f"Đơn hàng #{order.id} đã được đặt thành công. Tổng tiền: {total_formatted}đ. Đang chờ quán xác nhận."
-            print(f"DEBUG: Sending notification for order {order_id}")
         elif payload.status == "delivering":
             notification_title = "Đơn hàng đang giao 🚚"
             notification_body = f"Đơn hàng #{order.id} đang trên đường giao đến bạn"
@@ -466,10 +769,8 @@ def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: S
         elif payload.status == "cancelled":
             notification_title = "Đơn hàng bị hủy ❌"
             notification_body = f"Đơn hàng #{order.id} đã bị hủy"
-        
-        # Nếu có thay đổi trạng thái, tạo thông báo
+
         if notification_title:
-            print(f"DEBUG: Sending '{notification_title}' to user {order.userid}")
             notify_user(
                 db=db,
                 user_id=order.userid,
@@ -477,15 +778,41 @@ def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: S
                 body=notification_body,
                 order_id=order.id
             )
-            print(f"DEBUG: Notification sent successfully")
     except Exception as e:
         print(f"Lỗi khi tạo thông báo trạng thái: {str(e)}")
-    
+
     return order
+
+
+# ══════════════════════════════════════════════════════════════
+# REVIEW ENDPOINTS - Đánh giá
+# ══════════════════════════════════════════════════════════════
 
 
 @app.post("/reviews/", response_model=schemas.Review)
 def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db)):
+    """
+    Tạo đánh giá cho đơn hàng已完成.
+
+    Validation:
+    - Đơn hàng phải tồn tại
+    - Đơn hàng phải thuộc về người đánh giá
+    - Đơn hàng phải có ít nhất 1 món
+
+    Sau khi tạo, tính lại avg_rating cho nhà hàng.
+
+    Args:
+        review: Thông tin đánh giá (rating, comment, orderid, userid).
+        db: Database session.
+
+    Returns:
+        schemas.Review: Đánh giá đã tạo.
+
+    Raises:
+        HTTPException: 404 nếu đơn hàng không tồn tại.
+        HTTPException: 403 nếu đơn hàng không thuộc về user.
+        HTTPException: 400 nếu đơn hàng không có món.
+    """
     order = db.query(models.Orders).filter(models.Orders.id == review.orderid).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -525,8 +852,31 @@ def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db)):
     return db_review
 
 
+# ══════════════════════════════════════════════════════════════
+# PROFILE ENDPOINTS - Hồ sơ & Tích điểm
+# ══════════════════════════════════════════════════════════════
+
+
 @app.get("/users/{user_id}/profile-summary", response_model=schemas.UserProfileSummary)
 def read_user_profile_summary(user_id: int, db: Session = Depends(get_db)):
+    """
+    Lấy tổng quan hồ sơ người dùng (điểm tích lũy).
+
+    Cách tính điểm:
+    - points = total_spent // 10000
+    - delivered_orders = số đơn có status "delivered", "completed", "done"
+    - total_spent = tổng tất cả orders.totalprice
+
+    Args:
+        user_id: ID người dùng.
+        db: Database session.
+
+    Returns:
+        schemas.UserProfileSummary: user_id, user_name, points, delivered_orders, total_spent.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy người dùng.
+    """
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")
@@ -535,7 +885,6 @@ def read_user_profile_summary(user_id: int, db: Session = Depends(get_db)):
     delivered_orders = [o for o in orders if (o.status or "").lower() in {"delivered", "completed", "done"}]
     total_spent = sum(o.totalprice or 0 for o in orders)
 
-    # Quy ước điểm đơn giản để Android hiển thị động thay cho số cứng.
     points = total_spent // 10000
 
     return {
@@ -547,19 +896,42 @@ def read_user_profile_summary(user_id: int, db: Session = Depends(get_db)):
     }
 
 
-# --- NOTIFICATION ENDPOINTS ---
+# ══════════════════════════════════════════════════════════════
+# NOTIFICATION ENDPOINTS - Thông báo
+# ══════════════════════════════════════════════════════════════
 
 
 @app.get("/users/{user_id}/notifications/", response_model=List[schemas.Notification])
 def read_user_notifications(user_id: int, db: Session = Depends(get_db)):
-    """Lấy danh sách thông báo của người dùng."""
-    return db.query(models.Notification).filter(models.Notification.userid == user_id).order_by(models.Notification.createdat.desc()).all()
+    """
+    Lấy danh sách thông báo của người dùng (sắp xếp mới nhất trước).
+
+    Args:
+        user_id: ID người dùng.
+        db: Database session.
+
+    Returns:
+        List[schemas.Notification]: Danh sách thông báo.
+    """
+    return db.query(models.Notification).filter(
+        models.Notification.userid == user_id
+    ).order_by(models.Notification.createdat.desc()).all()
 
 
 @app.post("/notifications/", response_model=schemas.Notification)
 def create_notification(notification: schemas.NotificationCreate, db: Session = Depends(get_db)):
-    """Tạo thông báo mới và gửi push notification."""
-    # Sử dụng notify_user để tạo thông báo - nó sẽ vừa lưu vào DB vừa gửi push
+    """
+    Tạo thông báo mới và gửi push notification.
+
+    Sử dụng notify_user() để vừa lưu vào DB vừa gửi FCM push.
+
+    Args:
+        notification: Thông tin thông báo (title, type, content, userid, orderid).
+        db: Database session.
+
+    Returns:
+        schemas.Notification: Thông báo đã tạo.
+    """
     notify_user(
         db=db,
         user_id=notification.userid,
@@ -567,13 +939,12 @@ def create_notification(notification: schemas.NotificationCreate, db: Session = 
         body=notification.content,
         order_id=notification.orderid
     )
-    
-    # Lấy thông báo vừa tạo để trả về
+
     db_notification = db.query(models.Notification).filter(
         models.Notification.userid == notification.userid,
         models.Notification.title == notification.title
     ).order_by(models.Notification.id.desc()).first()
-    
+
     return db_notification if db_notification else {
         "id": 0,
         "title": notification.title,
@@ -589,15 +960,33 @@ def create_notification(notification: schemas.NotificationCreate, db: Session = 
 
 @app.put("/notifications/{notification_id}/read")
 def mark_notification_as_read(notification_id: int, db: Session = Depends(get_db)):
-    """Đánh dấu thông báo đã đọc."""
-    db_notification = db.query(models.Notification).filter(models.Notification.id == notification_id).first()
+    """
+    Đánh dấu thông báo đã đọc.
+
+    Args:
+        notification_id: ID thông báo.
+        db: Database session.
+
+    Returns:
+        dict: Thông báo đánh dấu thành công.
+
+    Raises:
+        HTTPException: 404 nếu không tìm thấy thông báo.
+    """
+    db_notification = db.query(models.Notification).filter(
+        models.Notification.id == notification_id
+    ).first()
     if not db_notification:
         raise HTTPException(status_code=404, detail="Notification not found")
-   
+
     db_notification.isread = True
     db.commit()
     return {"message": "Notification marked as read"}
 
+
+# ══════════════════════════════════════════════════════════════
+# Khởi chạy server
+# ══════════════════════════════════════════════════════════════
 
 if __name__ == "__main__":
     import uvicorn
