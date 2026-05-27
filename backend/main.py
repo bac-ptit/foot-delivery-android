@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends, HTTPException, File, UploadFile, Form, status
+from fastapi import FastAPI, Depends, HTTPException, Form, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -6,14 +6,9 @@ from typing import List, Optional
 from decimal import Decimal
 from datetime import timedelta, datetime
 
-
-import models, schemas, auth, os
+import models, schemas, auth
 from database import engine, get_db
-from firebase_utils import upload_image
-from chatbot_service import ChatBotService
 from notification_service import notify_user
-
-
 from payment_service import generate_vnpay_url
 from fastapi import Request
 
@@ -62,28 +57,6 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 # --- USER ENDPOINTS ---
 
 
-@app.post("/users/", response_model=schemas.User)
-def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
-    # Check if user exists
-    db_user = db.query(models.User).filter(models.User.email == user.email).first()
-    if db_user:
-        raise HTTPException(status_code=400, detail="Email already registered")
-       
-    hashed_password = auth.get_password_hash(user.password)
-    db_user = models.User(
-        name=user.name,
-        username=user.username,
-        email=user.email,
-        password=hashed_password,
-        phone=user.phone,
-        role=user.role
-    )
-    db.add(db_user)
-    db.commit()
-    db.refresh(db_user)
-    return db_user
-
-
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(auth.get_current_user)):
     return current_user
@@ -97,23 +70,15 @@ async def update_device_token(
     db: Session = Depends(get_db)
 ):
     """Android App gọi API này để gửi FCM Token lên Server."""
-    # Kiểm tra xem token này đã có chưa
     db_device = db.query(models.UserDevice).filter(models.UserDevice.device_token == token).first()
     if not db_device:
         db_device = models.UserDevice(device_token=token, device_type=device_type, userid=current_user.id)
         db.add(db_device)
     else:
         db_device.userid = current_user.id
-        # Cập nhật thời gian hoạt động
-   
+
     db.commit()
     return {"message": "Device token updated successfully"}
-
-
-@app.get("/users/", response_model=List[schemas.User])
-def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    users = db.query(models.User).offset(skip).limit(limit).all()
-    return users
 
 
 # --- ADDRESS ENDPOINTS ---
@@ -151,12 +116,7 @@ def update_address(address_id: int, address: schemas.AddressUpdate, db: Session 
     return db_address
 
 
-# --- CATEGORY ENDPOINTS ---
-
-
-@app.get("/categories/", response_model=List[schemas.Category])
-def read_categories(db: Session = Depends(get_db)):
-    return db.query(models.Category).all()
+# --- PROMOTIONS ENDPOINTS ---
 
 
 @app.get("/promotions/", response_model=List[schemas.Promotion])
@@ -167,77 +127,7 @@ def read_promotions(active_only: bool = True, db: Session = Depends(get_db)):
     return query.all()
 
 
-# --- CHAT ENDPOINTS ---
-
-
-@app.post("/chat/", response_model=schemas.ChatMessage)
-async def chat_with_bot(
-    chat_input: schemas.ChatMessageCreate,
-    session_id: Optional[int] = None,
-    current_user: models.User = Depends(auth.get_current_user),
-    db: Session = Depends(get_db)
-):
-    # 1. Tìm hoặc tạo ChatSession
-    if session_id:
-        session = db.query(models.ChatSession).filter(models.ChatSession.id == session_id).first()
-        if not session:
-            raise HTTPException(status_code=404, detail="Chat Session not found")
-    else:
-        session = models.ChatSession(status="active", userid=current_user.id)
-        db.add(session)
-        db.commit()
-        db.refresh(session)
-
-
-    # 2. Lưu tin nhắn người dùng
-    user_msg = models.ChatMessage(senderrole="user", message=chat_input.message, sessionid=session.id)
-    db.add(user_msg)
-    db.commit() # Lưu trước để AI có thể đọc lịch sử nếu cần (trong tương lai)
-   
-    # 3. Gọi AI xử lý
-    bot_service = ChatBotService(db, user_id=current_user.id)
-    bot_response_text = await bot_service.get_response(chat_input.message)
-   
-    # 4. Lưu phản hồi của AI
-    bot_msg = models.ChatMessage(senderrole="bot", message=bot_response_text, sessionid=session.id)
-    db.add(bot_msg)
-   
-    db.commit()
-    db.refresh(bot_msg)
-   
-    return bot_msg
-
-
 # --- RESTAURANT ENDPOINTS ---
-
-
-@app.post("/restaurants/", response_model=schemas.Restaurant)
-async def create_restaurant(
-    name: str = Form(...),
-    address: Optional[str] = Form(None),
-    phone_number: str = Form(...),
-    status: str = Form(...),
-    description: Optional[str] = Form(None),
-    image: Optional[UploadFile] = File(None),
-    db: Session = Depends(get_db)
-):
-    image_url = None
-    if image:
-        content = await image.read()
-        image_url = await upload_image(content, image.filename)
-   
-    db_restaurant = models.Restaurant(
-        name=name,
-        address=address,
-        phone_number=phone_number,
-        status=status,
-        description=description,
-        image_url=image_url
-    )
-    db.add(db_restaurant)
-    db.commit()
-    db.refresh(db_restaurant)
-    return db_restaurant
 
 
 @app.get("/restaurants/", response_model=List[schemas.Restaurant])
@@ -264,35 +154,6 @@ def read_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
 
 
 # --- MENU ITEM ENDPOINTS ---
-
-
-@app.post("/menu-items/", response_model=schemas.MenuItem)
-async def create_menu_item(
-    name: str = Form(...),
-    price: Decimal = Form(...),
-    description: Optional[str] = Form(None),
-    restaurantid: int = Form(...),
-    categoryid: int = Form(...),
-    image: Optional[UploadFile] = File(None),
-    db: Session = Depends(get_db)
-):
-    image_url = None
-    if image:
-        content = await image.read()
-        image_url = await upload_image(content, image.filename)
-       
-    db_item = models.MenuItem(
-        name=name,
-        price=price,
-        description=description,
-        restaurantid=restaurantid,
-        categoryid=categoryid,
-        image_url=image_url
-    )
-    db.add(db_item)
-    db.commit()
-    db.refresh(db_item)
-    return db_item
 
 
 def build_menuitem_with_reviews(item: models.MenuItem, db: Session):
@@ -344,11 +205,6 @@ def read_all_menu_items(skip: int = 0, limit: int = 100, db: Session = Depends(g
         item_dict = build_menuitem_with_reviews(item, db)
         result.append(item_dict)
     return result
-
-
-@app.get("/restaurants/{restaurant_id}/menu/", response_model=List[schemas.MenuItem])
-def read_restaurant_menu(restaurant_id: int, db: Session = Depends(get_db)):
-    return db.query(models.MenuItem).filter(models.MenuItem.restaurantid == restaurant_id).all()
 
 
 @app.get("/menu-items/search/", response_model=List[schemas.MenuItemWithReviews])
@@ -689,15 +545,6 @@ def read_user_profile_summary(user_id: int, db: Session = Depends(get_db)):
         "delivered_orders": len(delivered_orders),
         "total_spent": total_spent
     }
-
-
-# --- FAQ ENDPOINTS ---
-
-
-@app.get("/faqs/", response_model=List[schemas.FAQ])
-def read_faqs(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
-    """Lấy danh sách các câu hỏi thường gặp (FAQ)."""
-    return db.query(models.FAQ).filter(models.FAQ.isactive == True).offset(skip).limit(limit).all()
 
 
 # --- NOTIFICATION ENDPOINTS ---
