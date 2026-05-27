@@ -13,6 +13,17 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapp.R
+
+/**
+ * Giỏ hàng đặt trước (pre-order cart).
+ *
+ * Hiển thị danh sách món đã chọn để đặt trước.
+ * Chuyển đổi PreOrderItem → CartItem và gửi đến [order] qua Intent.
+ *
+ * @see PreOrderItem
+ * @see pre_order
+ * @see order
+ */
 import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale

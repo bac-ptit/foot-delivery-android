@@ -14,6 +14,18 @@ import com.example.myapp.screens.api.MenuItem
 import com.example.myapp.screens.food_detail
 import com.squareup.picasso.Picasso
 
+/**
+ * Adapter hiển thị danh sách món ăn trên màn hình chính.
+ *
+ * Mỗi item bao gồm: hình ảnh, tên món, giá, tên nhà hàng,
+ * RatingBar, điểm đánh giá, mô tả ngắn.
+ * Nhấn vào item → mở [food_detail].
+ *
+ * @param context Context hiện tại.
+ * @param menuItems Danh sách món ăn cần hiển thị.
+ * @see MenuItem
+ * @see food_detail
+ */
 class MenuItemAdapter(
     private val context: Context,
     private val menuItems: List<MenuItem>

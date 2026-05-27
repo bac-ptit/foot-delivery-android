@@ -24,6 +24,28 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Màn hình xác nhận và đặt hàng.
+ *
+ * Hiển thị danh sách món đã chọn, địa chỉ giao hàng, mã giảm giá,
+ * phương thức thanh toán và tổng tiền. Gọi API tạo đơn hàng.
+ *
+ * Luồng hoạt động:
+ * 1. Nhận danh sách CartItem từ [cart] qua Intent
+ * 2. Hiển thị preview giỏ hàng
+ * 3. Người dùng chọn/chỉnh sửa địa chỉ
+ * 4. Người dùng chọn mã giảm giá (từ [discouts])
+ * 5. Người dùng chọn phương thức thanh toán (COD/VNPay)
+ * 6. Nhấn "Đặt hàng" → gọi API POST /orders/
+ * 7. Chuyển đến [payment_methods] hoặc [VNPayActivity]
+ *
+ * Hỗ trợ đặt lại đơn hàng cũ qua Intent extra "reorder_order_id".
+ *
+ * @see cart
+ * @see discouts
+ * @see payment_methods
+ * @see VNPayActivity
+ */
 class order : AppCompatActivity() {
     private var currentAddress: Address? = null
     private var restaurantId: Int = 1

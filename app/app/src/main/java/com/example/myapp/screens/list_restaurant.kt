@@ -23,6 +23,17 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình danh sách nhà hàng.
+ *
+ * Hiển thị tất cả nhà hàng trong RecyclerView ngang.
+ * Hỗ trợ tìm kiếm theo tên nhà hàng với debounce 500ms.
+ *
+ * Nhấn vào nhà hàng → mở [restaurant_profile].
+ *
+ * @see RestaurantAdapter
+ * @see restaurant_profile
+ */
 class list_restaurant: AppCompatActivity() {
     private var restaurants: List<Restaurant> = emptyList()
     private lateinit var rvRestaurants: RecyclerView

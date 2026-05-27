@@ -13,6 +13,19 @@ import com.example.myapp.screens.api.OrderDetailResponse
 import com.example.myapp.screens.api.OrderCreateRequest
 import com.example.myapp.screens.api.OrderItemRequest
 import com.example.myapp.screens.api.OrderResponse
+
+/**
+ * Màn hình chi tiết đơn hàng đã giao.
+ *
+ * Hiển thị thông tin chi tiết đơn hàng đã hoàn thành:
+ * tên món, số lượng, địa chỉ, phương thức thanh toán, tổng tiền.
+ *
+ * Có nút "Đặt lại" (reorder) → chuyển đến [order] với
+ * Intent extra "reorder_order_id" để tạo đơn mới từ đơn cũ.
+ *
+ * @see order_history
+ * @see order
+ */
 import com.example.myapp.screens.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback

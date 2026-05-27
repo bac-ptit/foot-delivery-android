@@ -14,6 +14,22 @@ import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
 
+/**
+ * Màn hình đặt trước (pre-order).
+ *
+ * Cho phép người dùng chọn ngày và giờ giao hàng trong tương lai.
+ * Thời gian giao phải cách hiện tại ít nhất 30 phút.
+ *
+ * Luồng:
+ * 1. Nhận MenuItem từ Intent
+ * 2. Chọn ngày (DatePicker) và giờ (TimePicker)
+ * 3. Điều chỉnh số lượng
+ * 4. Nhấn "Thêm vào giỏ đặt trước" → chuyển đến [pre_order_cart]
+ *
+ * @see pre_order_cart
+ * @see PreOrderItem
+ */
+
 class pre_order : AppCompatActivity() {
     private var qty = 1
     private var price = 0

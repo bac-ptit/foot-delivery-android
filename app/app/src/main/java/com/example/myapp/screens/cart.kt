@@ -20,6 +20,16 @@ import java.util.Locale
 
 import java.io.Serializable
 
+/**
+ * Sản phẩm trong giỏ hàng.
+ *
+ * @property id ID món ăn.
+ * @property name Tên món.
+ * @property price Đơn giá (VNĐ).
+ * @property qty Số lượng.
+ * @property imageUrl URL hình ảnh, có thể null.
+ * @property isSelected Đã chọn để thanh toán hay chưa.
+ */
 data class CartItem(
     val id: Int,
     val name: String,

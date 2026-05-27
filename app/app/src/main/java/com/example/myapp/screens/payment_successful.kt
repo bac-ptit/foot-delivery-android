@@ -13,6 +13,17 @@ import com.example.myapp.screens.api.RetrofitClient
 import com.example.myapp.screens.home
 import retrofit2.Call
 import retrofit2.Callback
+
+/**
+ * Màn hình thanh toán thành công.
+ *
+ * Hiển thị xác nhận thanh toán và nút "Về trang chủ".
+ * Với COD: Cập nhật trạng thái đơn → "confirmed" (kích hoạt push notification từ backend).
+ *
+ * @see payment_methods
+ * @see VNPayActivity
+ * @see home
+ */
 import retrofit2.Response
 
 class payment_successful : AppCompatActivity() {

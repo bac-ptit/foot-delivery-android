@@ -18,6 +18,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import java.text.NumberFormat
+
+/**
+ * Màn hình chi tiết món ăn.
+ *
+ * Hiển thị hình ảnh, tên, giá, mô tả, đánh giá trung bình (RatingBar),
+ * và tối đa 10 đánh giá từ người dùng.
+ *
+ * Chức năng:
+ * - Xem chi tiết món ăn từ API GET /menu-items/{id}/
+ * - Chọn số lượng (+/-)
+ * - Thêm vào giỏ hàng (cart.cartList)
+ * - Đặt trước (pre_order) với ngày/giao hẹn
+ * - Chia sẻ món ăn qua Intent
+ * - Hỗ trợ deep link: yourapp.com/food?id={id}
+ *
+ * @see MenuItem
+ * @see ReviewDetail
+ * @see cart
+ * @see pre_order
+ */
 import java.util.Locale
 
 class food_detail : AppCompatActivity() {

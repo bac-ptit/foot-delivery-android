@@ -13,6 +13,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chọn mã giảm giá (voucher).
+ *
+ * Hiển thị danh sách mã giảm giá đang hoạt động từ API.
+ * Người dùng chọn một mã → trả kết quả về [order] qua setResult().
+ *
+ * Dữ liệu trả về:
+ * - promotion_code: Mã giảm giá
+ * - discount_type: Loại giảm ("percentage" hoặc "fixed")
+ * - discount_value: Giá trị giảm
+ *
+ * @see PromotionResponse
+ * @see order
+ */
+
 class discouts : AppCompatActivity() {
     private var selectedPromotion: PromotionResponse? = null
 

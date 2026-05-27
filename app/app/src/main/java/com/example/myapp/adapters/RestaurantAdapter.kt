@@ -13,6 +13,17 @@ import com.example.myapp.screens.api.Restaurant
 import com.example.myapp.screens.restaurant_profile
 import com.squareup.picasso.Picasso
 
+/**
+ * Adapter hiển thị danh sách nhà hàng.
+ *
+ * Mỗi item bao gồm: hình ảnh, tên nhà hàng, đánh giá, giờ mở cửa.
+ * Nhấn vào item → mở [restaurant_profile].
+ *
+ * @param context Context hiện tại.
+ * @param restaurants Danh sách nhà hàng cần hiển thị.
+ * @see Restaurant
+ * @see restaurant_profile
+ */
 class RestaurantAdapter(
     private val context: Context,
     private val restaurants: List<Restaurant>

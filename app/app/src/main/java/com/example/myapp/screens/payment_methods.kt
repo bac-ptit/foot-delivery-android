@@ -13,6 +13,21 @@ import com.example.myapp.screens.api.OrderStatusUpdateRequest
 import com.example.myapp.screens.api.RetrofitClient
 import com.example.myapp.screens.api.VNPayResponse
 import retrofit2.Call
+
+/**
+ * Màn hình chọn phương thức thanh toán.
+ *
+ * Hỗ trợ 2 chế độ:
+ * - Chọn (select): Trả phương thức đã chọn về [order]
+ * - Thử (action): Thực hiện thanh toán ngay
+ *
+ * COD: Cập nhật trạng thái đơn → "confirmed" → [payment_successful]
+ * VNPay: Tạo URL thanh toán → mở [VNPayActivity]
+ *
+ * @see order
+ * @see VNPayActivity
+ * @see payment_successful
+ */
 import retrofit2.Callback
 import retrofit2.Response
 

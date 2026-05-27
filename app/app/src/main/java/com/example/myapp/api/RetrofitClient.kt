@@ -7,6 +7,24 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
+/**
+ * Singleton Retrofit client với xác thực tự động.
+ *
+ * Đọc JWT token từ SharedPreferences ("user_prefs") và đính kèm
+ * vào mọi request qua header "Authorization: Bearer {token}".
+ *
+ * Sử dụng:
+ * - Khởi tạo: `RetrofitClient.init(context)` trong Application.onCreate()
+ * - Gọi API: `RetrofitClient.apiService.someMethod()`
+ *
+ * Cấu hình timeout:
+ * - Connect: 30 giây
+ * - Read: 60 giây
+ * - Write: 30 giây
+ *
+ * @see ApiService
+ * @see NetworkConfig
+ */
 object RetrofitClient {
     // Sử dụng NetworkConfig để lấy BASE_URL
     // Thay đổi USE_EMULATOR trong NetworkConfig.kt tùy theo môi trường

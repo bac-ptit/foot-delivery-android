@@ -13,6 +13,17 @@ import com.example.myapp.screens.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+
+/**
+ * Màn hình lịch sử đơn hàng.
+ *
+ * Hiển thị 2 đơn hàng已完成 gần nhất.
+ * Mỗi đơn hiển thị ngày đặt, mã đơn, trạng thái.
+ * Nhấn vào đơn → mở [delivered_order_details].
+ *
+ * @see delivered_order_details
+ * @see OrderResponse
+ */
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

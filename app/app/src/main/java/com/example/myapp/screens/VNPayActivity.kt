@@ -13,6 +13,20 @@ import com.example.myapp.screens.api.OrderStatusUpdateRequest
 import com.example.myapp.screens.api.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
+
+/**
+ * Màn hình thanh toán VNPay qua WebView.
+ *
+ * Tải URL thanh toán VNPay trong WebView.
+ * Intercept URL callback để kiểm tra kết quả:
+ * - vnp_ResponseCode=00 → Thanh toán thành công
+ * - Khác → Thanh toán thất bại
+ *
+ * Khi thành công: Cập nhật trạng thái đơn → "paid" → [payment_successful]
+ *
+ * @see payment_methods
+ * @see payment_successful
+ */
 import retrofit2.Response
 
 

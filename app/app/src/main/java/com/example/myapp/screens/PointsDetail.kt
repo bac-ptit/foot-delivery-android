@@ -15,6 +15,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chi tiết tích điểm khách hàng.
+ *
+ * Hiển thị tối đa 4 đơn hàng đã hoàn thành gần nhất.
+ * Mỗi đơn hiển thị mã đơn và điểm tích lũy (totalprice / 1000).
+ * Nhấn vào đơn → chuyển đến [OrderTrackingDetail].
+ *
+ * Cách tính điểm:
+ * - Điểm mỗi đơn = totalprice / 1000 (hiển thị trên client)
+ * - Tổng điểm = total_spent / 10000 (tính từ backend)
+ *
+ * @see OrderTrackingDetail
+ * @see OrderTracking
+ */
 class PointsDetail : AppCompatActivity() {
     private var firstOrderId: Int? = null
     private var secondOrderId: Int? = null

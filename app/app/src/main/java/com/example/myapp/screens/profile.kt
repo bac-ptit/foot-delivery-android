@@ -16,6 +16,20 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình hồ sơ người dùng.
+ *
+ * Hiển thị tên người dùng và điểm tích lũy.
+ * Nhấn vào điểm hoặc icon đồng xu → chuyển đến [OrderTracking].
+ *
+ * Chức năng:
+ * - Tải thông tin hồ sơ từ API GET /users/{id}/profile-summary
+ * - Hiển thị tên và điểm tích lũy
+ * - Đăng xuất (xóa SharedPreferences, chuyển về signin)
+ *
+ * @see UserProfileSummary
+ * @see OrderTracking
+ */
 class profile : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,5 @@
 package com.example.myapp.screens
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -25,6 +24,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chính của ứng dụng.
+ *
+ * Hiển thị tất cả món ăn từ mọi nhà hàng trong RecyclerView ngang.
+ * Hỗ trợ tìm kiếm theo tên món và danh mục với debounce 500ms.
+ *
+ * Luồng hoạt động:
+ * - Tải tất cả món ăn từ API khi mở màn hình
+ * - Người dùng nhập từ khóa → debounce 500ms → tìm theo tên món
+ * - Nếu không kết quả → tìm theo danh mục
+ * - Nhấn vào món → chuyển đến [food_detail]
+ * - Nhấn icon giỏ hàng → chuyển đến [cart]
+ * - Nhấn icon nhà hàng → chuyển đến [list_restaurant]
+ *
+ * @see MenuItemAdapter
+ * @see food_detail
+ * @see cart
+ */
 class home : AppCompatActivity() {
     private var menuItems: List<MenuItem> = emptyList()
     private lateinit var rvMenuItems: RecyclerView

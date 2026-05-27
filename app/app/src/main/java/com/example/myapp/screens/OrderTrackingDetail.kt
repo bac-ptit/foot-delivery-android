@@ -19,6 +19,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chi tiết đơn hàng và đánh giá.
+ *
+ * Hiển thị thông tin chi tiết đơn hàng: trạng thái, danh sách món,
+ * địa chỉ giao hàng, ngày đặt, tổng tiền.
+ *
+ * Nếu đơn hàng đã hoàn thành (completed/delivered/done):
+ * - Cho phép đánh giá 1-5 sao bằng cách nhấn vào ngôi sao
+ * - Nhập bình luận và gửi đánh giá
+ * - Gọi API POST /reviews/
+ *
+ * Nếu đơn hàng chưa hoàn thành:
+ * - Nút "Đánh giá" bị vô hiệu hóa (alpha 0.5)
+ * - Hiển thị text "Chờ giao hàng để đánh giá"
+ *
+ * Trạng thái đơn hàng được dịch sang tiếng Việt:
+ * - pending → "Chờ xác nhận"
+ * - confirmed → "Đã xác nhận"
+ * - paid → "Đã thanh toán"
+ * - delivering → "Đang giao"
+ * - completed → "Đã giao"
+ * - cancelled → "Đã hủy"
+ *
+ * @see OrderTracking
+ * @see ReviewCreateRequest
+ */
 class OrderTrackingDetail : AppCompatActivity() {
     private var selectedRating = 0
 

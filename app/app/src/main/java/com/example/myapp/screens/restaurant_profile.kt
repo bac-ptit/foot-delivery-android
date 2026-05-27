@@ -18,6 +18,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chi tiết nhà hàng.
+ *
+ * Hiển thị banner, tên, đánh giá, địa chỉ, giờ mở cửa, số điện thoại,
+ * mô tả và danh sách món ăn thuộc nhà hàng.
+ *
+ * Chức năng:
+ * - Tải chi tiết nhà hàng từ API GET /restaurants/{id}/
+ * - Hiển thị menu items trong RecyclerView ngang
+ * - Chia sẻ nhà hàng qua Intent
+ * - Nhấn vào món → mở [food_detail]
+ *
+ * @see MenuItemAdapterSmall
+ * @see food_detail
+ */
 class restaurant_profile: AppCompatActivity()  {
     private var restaurant: Restaurant? = null
     private lateinit var rvMenuItems: RecyclerView

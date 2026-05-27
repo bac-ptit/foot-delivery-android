@@ -19,6 +19,29 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Màn hình theo dõi đơn hàng.
+ *
+ * Hiển thị tất cả đơn hàng của người dùng, phân thành 2 phần:
+ * - "Chưa giao" (đỏ): trạng thái pending, paid, confirmed, delivering
+ * - "Đã giao" (xanh): trạng thái completed, delivered, done
+ *
+ * Hỗ trợ phân trang (5 đơn mỗi trang, tự động tải thêm khi cuộn đến cuối).
+ * Hiển thị tổng quan điểm tích lũy ở đầu trang.
+ *
+ * Luồng hoạt động:
+ * 1. Lấy userId từ SharedPreferences
+ * 2. Gọi API lấy tất cả đơn hàng
+ * 3. Tải chi tiết từng đơn (tên món, số lượng)
+ * 4. Phân loại pending/completed
+ * 5. Hiển thị 5 đơn đầu tiên mỗi phần
+ * 6. Cuộn đến cuối → tải thêm 5 đơn tiếp
+ *
+ * Nhấn vào đơn → chuyển đến [OrderTrackingDetail].
+ *
+ * @see OrderTrackingDetail
+ * @see PointsDetail
+ */
 class OrderTracking : AppCompatActivity() {
     private var allPendingOrders = listOf<OrderDetailResponse>()
     private var allCompletedOrders = listOf<OrderDetailResponse>()
