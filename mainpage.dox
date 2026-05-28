@@ -1,0 +1,57 @@
+/**
+@mainpage Dat Mon - He thong dat mon an truc tuyen
+@brief Ung dung dat do an truc tuyen gom Android App va backend FastAPI
+
+@section intro Gioi thieu
+Du an "Dat Mon" la he thong dat do an truc tuyen hoan chinh, bao gom:
+- **Ung dung Android** (Kotlin): Giao dien nguoi dung de duyet nha hang, dat hang, thanh toan
+- **Backend API** (FastAPI + Python): Xu ly logic nghiep vu, quan ly co so du lieu
+- **Co so du lieu** (PostgreSQL): Luu tru toan bo du lieu he thong
+
+@section arch Kien truc he thong
+@subsection backend_arch Backend API
+- **Framework**: FastAPI (Python)
+- **ORM**: SQLAlchemy
+- **Auth**: JWT (python-jose + bcrypt)
+- **Database**: PostgreSQL (Docker Compose)
+- **Services**: Firebase Cloud Messaging, Google Gemini AI, VNPay Payment
+
+@subsection android_arch Ung dung Android
+- **Framework**: Kotlin + Android SDK
+- **Networking**: Retrofit2 + OkHttp
+- **Push Notification**: Firebase Cloud Messaging
+- **UI**: RecyclerView, Material Design
+
+@section modules Cac module chinh
+
+@subsection backend_mod Backend API
+- @ref main.py "API Routes" - Tat ca REST endpoints (auth, user, restaurant, menu, order, payment, chatbot, notification)
+- @ref models.py "Database Models" - 19 SQLAlchemy ORM models
+- @ref schemas.py "Pydantic Schemas" - Request/Response validation schemas
+- @ref auth.py "Authentication" - JWT token va password hashing
+- @ref database.py "Database" - Cau hinh ket noi PostgreSQL
+- @ref chatbot_service.py "Chatbot" - Tich hop Google Gemini AI
+- @ref notification_service.py "Notifications" - Gui push notification qua FCM
+- @ref payment_service.py "Payment" - Tao URL thanh toan VNPay
+- @ref firebase_utils.py "Firebase" - Upload anh len Firebase Storage
+
+@subsection android_mod Ung dung Android
+- **API Layer** (@ref com.example.myapp.api): Retrofit client, data classes, FCM token management
+- **Adapters** (@ref com.example.myapp.adapters): RecyclerView adapters cho danh sach
+- **Screens** (@ref com.example.myapp.screens): Tat ca Activity/Screen classes
+
+@section features Tinh nang chinh
+- Dang nhap/dang ky tai khoan
+- Duyet nha hang va mon an
+- Tim kiem theo ten va danh muc
+- Dat hang voi gio hang
+- Thanh toan VNPay
+- Theo doi don hang
+- Chatbot AI tu van
+- Thong day real-time
+- Danh gia va phan hoi
+- Diem tich luy thanh vien
+
+@section setup Huong dan cai dat
+Xem README.md trong thu muc goc du an.
+*/
