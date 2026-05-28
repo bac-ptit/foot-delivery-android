@@ -1,5 +1,10 @@
 package com.example.myapp.screens
 
+/**
+ * @file MyFirebaseMessagingService.kt
+ * @brief Service nhận và xử lý push notification từ Firebase Cloud Messaging (FCM).
+ */
+
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
@@ -11,6 +16,10 @@ import com.example.myapp.screens.api.FcmTokenRegistrar
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
+/**
+ * Service xử lý push notification từ Firebase Cloud Messaging (FCM).
+ * Chịu trách nhiệm nhận thông báo, hiển thị lên thiết bị và quản lý FCM token.
+ */
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     // Hàm này chạy khi có thông báo bay tới
@@ -24,6 +33,14 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         showNotification(title, body)
     }
 
+    /**
+     * Hiển thị thông báo trên thiết bị.
+     * Tạo NotificationChannel cho Android 8.0+ và xây dựng notification
+     * với tiêu đề, nội dung và mức ưu tiên cao.
+     *
+     * @param title Tiêu đề của thông báo.
+     * @param body Nội dung của thông báo.
+     */
     private fun showNotification(title: String, body: String) {
         val channelId = "food_delivery_channel"
         val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager

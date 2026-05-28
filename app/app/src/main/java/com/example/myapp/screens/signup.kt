@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file signup.kt
+ * @brief Màn hình đăng ký tài khoản mới của ứng dụng giao đồ ăn.
+ *
+ * Cho phép người dùng tạo tài khoản mới bằng cách nhập tên đăng nhập,
+ * mật khẩu và xác nhận mật khẩu. Sau khi đăng ký thành công,
+ * tự động chuyển sang màn hình đăng nhập.
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -16,7 +25,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình đăng ký tài khoản.
+ *
+ * Chức năng chính:
+ * - Nhập tên đăng nhập, mật khẩu và xác nhận mật khẩu
+ * - Xác thực: kiểm tra trường trống và khớp mật khẩu
+ * - Gọi API đăng ký với RegisterRequest
+ * - Xử lý phản hồi thành công/thất bại từ server
+ * - Chuyển đến màn hình đăng nhập sau khi đăng ký thành công
+ */
 class signup : AppCompatActivity() {
+    /**
+     * Khởi tạo màn hình đăng ký.
+     *
+     * Thiết lập layout, gán sự kiện click cho nút quay lại, nút chuyển
+     * sang đăng nhập và nút đăng ký. Xác thực dữ liệu đầu vào trước
+     * khi gọi API đăng ký.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup)

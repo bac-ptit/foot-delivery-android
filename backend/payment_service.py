@@ -1,3 +1,10 @@
+"""
+Module: payment_service.py
+
+Service tạo URL thanh toán VNPay (sandbox).
+Xây dựng payment URL với chữ ký HMAC-SHA512 để xác thực giao dịch.
+"""
+
 import hashlib
 import hmac
 import urllib.parse
@@ -14,7 +21,7 @@ VNP_RETURN_URL = "http://localhost:8000/vnpay_return"
 
 
 def generate_vnpay_url(order_id: str, amount: int, ip_address: str):
-
+    """Tạo URL thanh toán VNPay với chữ ký HMAC-SHA512 cho đơn hàng."""
 
     params = {
         "vnp_Version": "2.1.0",

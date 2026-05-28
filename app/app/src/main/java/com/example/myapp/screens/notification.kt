@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file notification.kt
+ * @brief Màn hình thông báo của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị danh sách thông báo của người dùng dạng RecyclerView.
+ * Hỗ trợ đánh dấu thông báo đã đọc khi người dùng nhấn vào.
+ * Hiển thị trạng thái trống khi không có thông báo.
+ */
+
 import android.content.Context
 import android.os.Bundle
 import android.view.View
@@ -16,13 +25,34 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình thông báo.
+ *
+ * Chức năng chính:
+ * - Tải danh sách thông báo từ API theo userId
+ * - Hiển thị thông báo dạng RecyclerView
+ * - Đánh dấu thông báo đã đọc khi nhấn vào
+ * - Hiển thị trạng thái trống hoặc lỗi khi cần
+ */
 class notification : AppCompatActivity() {
 
+    /** RecyclerView hiển thị danh sách thông báo */
     private lateinit var rvNotifications: RecyclerView
+    /** TextView hiển thị khi danh sách thông báo trống */
     private lateinit var tvEmpty: TextView
+    /** Adapter cho RecyclerView thông báo */
     private lateinit var adapter: NotificationAdapter
+    /** Danh sách mutable chứa các thông báo hiện tại */
     private val notifications = mutableListOf<Notification>()
 
+    /**
+     * Khởi tạo màn hình thông báo.
+     *
+     * Thiết lập RecyclerView với NotificationAdapter, gán sự kiện click
+     * cho nút quay lại, và gọi API tải danh sách thông báo.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.notification)
@@ -49,6 +79,13 @@ class notification : AppCompatActivity() {
         loadNotifications()
     }
 
+    /**
+     * Tải danh sách thông báo từ API.
+     *
+     * Lấy userId từ SharedPreferences, gọi API getUserNotifications.
+     * Cập nhật danh sách và hiển thị trạng thái trống nếu không có thông báo.
+     * Hiển thị lỗi nếu kết nối thất bại.
+     */
     private fun loadNotifications() {
         // Lấy userId từ SharedPreferences
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
@@ -96,6 +133,15 @@ class notification : AppCompatActivity() {
         })
     }
 
+    /**
+     * Đánh dấu một thông báo là đã đọc.
+     *
+     * Chỉ gửi yêu cầu API nếu thông báo chưa được đọc (isread == false).
+     * Sau khi đánh dấu thành công, cập nhật trạng thái trong danh sách
+     * và thông báo cho adapter.
+     *
+     * @param notification Thông báo cần đánh dấu đã đọc
+     */
     private fun markAsRead(notification: Notification) {
         if (!notification.isread) {
             RetrofitClient.apiService.markNotificationAsRead(notification.id).enqueue(object : Callback<Void> {

@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file pre_order.kt
+ * @brief Màn hình đặt hàng trước cho món ăn.
+ *
+ * Cho phép người dùng chọn ngày giờ giao hàng trước, điều chỉnh số lượng,
+ * và thêm món ăn vào giỏ hàng đặt trước.
+ */
+
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
@@ -14,17 +21,42 @@ import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.*
 
+/**
+ * Màn hình đặt hàng trước cho một món ăn cụ thể.
+ *
+ * Cho phép người dùng:
+ * - Xem thông tin món ăn (tên, giá, hình ảnh).
+ * - Chọn ngày và giờ giao hàng (tối thiểu 30 phút sau thời điểm hiện tại).
+ * - Điều chỉnh số lượng đặt hàng.
+ * - Thêm món ăn vào giỏ hàng đặt trước.
+ */
 class pre_order : AppCompatActivity() {
+    /** Số lượng món ăn cần đặt, mặc định là 1 */
     private var qty = 1
+    /** Đơn giá của món ăn */
     private var price = 0
+    /** ID của món ăn */
     private var foodId = -1
+    /** Tên của món ăn */
     private var foodName = ""
+    /** URL hình ảnh của món ăn */
     private var foodImageUrl = ""
 
+    /** Lịch chứa ngày giờ giao hàng đã chọn */
     private var selectedCalendar: Calendar = Calendar.getInstance()
+    /** Trạng thái đã chọn ngày giao hàng */
     private var isDateSelected = false
+    /** Trạng thái đã chọn giờ giao hàng */
     private var isTimeSelected = false
 
+    /**
+     * Khởi tạo màn hình đặt hàng trước.
+     *
+     * Nhận thông tin món ăn từ Intent, thiết lập giao diện,
+     * và đăng ký các sự kiện chọn ngày, giờ, số lượng và thêm vào giỏ.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_pre_order)
@@ -137,6 +169,12 @@ class pre_order : AppCompatActivity() {
         updateUI()
     }
 
+    /**
+     * Thêm món ăn vào giỏ hàng đặt trước.
+     *
+     * Tạo đối tượng PreOrderItem với thông tin món ăn, số lượng và thời gian giao,
+     * sau đó chuyển sang màn hình giỏ hàng đặt trước.
+     */
     private fun addToPreOrderCart() {
         val day = selectedCalendar.get(Calendar.DAY_OF_MONTH)
         val month = selectedCalendar.get(Calendar.MONTH) + 1

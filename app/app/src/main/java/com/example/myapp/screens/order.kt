@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file order.kt
+ * @brief Màn hình đặt hàng (Checkout) của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị thông tin giỏ hàng, địa chỉ giao hàng, voucher giảm giá,
+ * phương thức thanh toán. Cho phép người dùng xác nhận đặt hàng.
+ * Hỗ trợ đặt lại đơn hàng (reorder) từ lịch sử.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -24,18 +33,40 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Activity màn hình đặt hàng (Checkout).
+ *
+ * Chức năng chính:
+ * - Hiển thị danh sách món ăn từ giỏ hàng hoặc từ đơn hàng cũ (reorder)
+ * - Hiển thị và chọn địa chỉ giao hàng
+ * - Chọn và áp dụng voucher/mã giảm giá
+ * - Chọn phương thức thanh toán (COD/Online)
+ * - Tạo đơn hàng mới qua API
+ * - Xử lý thanh toán online hoặc COD
+ */
 class order : AppCompatActivity() {
+    /** Địa chỉ giao hàng hiện tại của người dùng */
     private var currentAddress: Address? = null
+    /** ID nhà hàng của đơn hàng */
     private var restaurantId: Int = 1
+    /** Danh sách các món ăn đã chọn để đặt hàng */
     private val selectedItems = mutableListOf<CartItem>()
+    /** ID đơn hàng gốc khi thực hiện đặt lại (reorder), null nếu đặt mới */
     private var reorderSourceOrderId: Int? = null
+    /** Tổng tiền cơ bản (trước khi áp dụng giảm giá) */
     private var baseTotalPrice: Int = 0
+    /** Mã giảm giá đã chọn */
     private var selectedPromotionCode: String? = null
+    /** Loại giảm giá: "percent" (phần trăm) hoặc "fixed" (cố định) */
     private var selectedDiscountType: String? = null
+    /** Giá trị giảm giá */
     private var selectedDiscountValue: Int = 0
+    /** Phương thức thanh toán: "cod" hoặc "online" */
     private var selectedPaymentMethod: String = "cod"
+    /** Nhãn hiển thị của phương thức thanh toán */
     private var selectedPaymentMethodLabel: String = "Thanh toán khi nhận hàng"
 
+    /** Launcher nhận kết quả chọn voucher từ màn hình giảm giá */
     private val voucherPickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode != RESULT_OK || result.data == null) return@registerForActivityResult
 
@@ -45,6 +76,7 @@ class order : AppCompatActivity() {
         bindVoucherAndTotal()
     }
 
+    /** Launcher nhận kết quả chọn phương thức thanh toán */
     private val paymentMethodPickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode != RESULT_OK || result.data == null) return@registerForActivityResult
 
@@ -53,6 +85,15 @@ class order : AppCompatActivity() {
         bindPaymentMethod()
     }
 
+    /**
+     * Khởi tạo màn hình đặt hàng.
+     *
+     * Xử lý 2 trường hợp: đặt lại đơn hàng (reorder) hoặc đặt hàng mới từ giỏ.
+     * Thiết lập sự kiện click cho voucher, phương thức thanh toán, địa chỉ,
+     * nút đặt hàng và các nút điều hướng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.order)
@@ -132,6 +173,12 @@ class order : AppCompatActivity() {
 
     }
 
+    /**
+     * Hiển thị danh sách món ăn trong phần xem trước giỏ hàng.
+     *
+     * Tạo view động cho từng món ăn với hình ảnh, tên, số lượng,
+     * đơn giá và thành tiền. Tính tổng tiền cơ bản và cập nhật voucher.
+     */
     private fun bindCartPreview() {
         val tvTotal = findViewById<TextView>(R.id.valTotal)
         val tvRestaurantName = findViewById<TextView>(R.id.tvRestaurantName)
@@ -201,6 +248,12 @@ class order : AppCompatActivity() {
         bindVoucherAndTotal()
     }
 
+    /**
+     * Cập nhật hiển thị voucher và tổng tiền thanh toán.
+     *
+     * Tính toán số tiền giảm giá, hiển thị mã voucher và tổng tiền
+     * sau khi trừ giảm giá (không âm).
+     */
     private fun bindVoucherAndTotal() {
         val voucherValueText = findViewById<TextView>(R.id.tvVoucherValue)
         val tvTotal = findViewById<TextView>(R.id.valTotal)
@@ -217,10 +270,19 @@ class order : AppCompatActivity() {
         tvTotal.text = "${fmt.format(payableTotal)}đ"
     }
 
+    /**
+     * Cập nhật hiển thị phương thức thanh toán đã chọn.
+     */
     private fun bindPaymentMethod() {
         findViewById<TextView>(R.id.tvPaymentMethodValue).text = selectedPaymentMethodLabel
     }
 
+    /**
+     * Tính số tiền giảm giá dựa trên loại và giá trị giảm giá.
+     *
+     * @param total Tổng tiền gốc trước khi giảm
+     * @return Số tiền được giảm (VNĐ). Trả về 0 nếu không có giảm giá.
+     */
     private fun calculateDiscountAmount(total: Int): Int {
         if (selectedDiscountValue <= 0) return 0
         return if ((selectedDiscountType ?: "").equals("percent", ignoreCase = true)) {
@@ -230,6 +292,12 @@ class order : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải địa chỉ giao hàng của người dùng từ API.
+     *
+     * Lấy userId từ SharedPreferences, gọi API getUserAddresses.
+     * Hiển thị địa chỉ đầu tiên hoặc thông báo nếu chưa có địa chỉ.
+     */
     private fun loadUserAddress() {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", -1)
@@ -254,6 +322,12 @@ class order : AppCompatActivity() {
         })
     }
 
+    /**
+     * Xác định ID nhà hàng từ danh sách món ăn đã chọn.
+     *
+     * Gọi API getAllMenuItems, tìm món ăn đầu tiên khớp với selectedItems
+     * để lấy restaurantId và tên nhà hàng.
+     */
     private fun resolveRestaurantId() {
         if (reorderSourceOrderId != null) return
         val menuIds = selectedItems.map { it.id }.toSet()
@@ -274,6 +348,14 @@ class order : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tải thông tin đơn hàng gốc để đặt lại (reorder).
+     *
+     * Gọi API getOrderDetail, chuyển đổi OrderItem thành CartItem,
+     * cập nhật restaurantId và hiển thị lại giỏ hàng.
+     *
+     * @param orderId ID của đơn hàng cần đặt lại
+     */
     private fun loadReorderSourceOrder(orderId: Int) {
         RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object : Callback<com.example.myapp.screens.api.OrderDetailResponse> {
             override fun onResponse(call: Call<com.example.myapp.screens.api.OrderDetailResponse>, response: Response<com.example.myapp.screens.api.OrderDetailResponse>) {
@@ -306,6 +388,14 @@ class order : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tạo đơn hàng mới từ giỏ hàng hiện tại.
+     *
+     * Xác thực: kiểm tra đăng nhập, địa chỉ giao hàng, giỏ hàng không trống.
+     * Tạo OrderCreateRequest và gọi API createOrder.
+     * Sau khi thành công: xóa món đã đặt khỏi giỏ, chuyển sang thanh toán
+     * online hoặc trang thanh toán thành công (COD).
+     */
     private fun createOrderFromCart() {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", -1)

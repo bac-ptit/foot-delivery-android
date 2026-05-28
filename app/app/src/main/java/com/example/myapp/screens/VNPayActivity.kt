@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file VNPayActivity.kt
+ * @brief Activity xử lý thanh toán qua cổng VNPay.
+ *
+ * Hiển thị trang thanh toán VNPay trong WebView. Theo dõi URL callback
+ * `vnpay_return` để xác nhận kết quả thanh toán. Nếu thanh toán thành công
+ * (vnp_ResponseCode=00), cập nhật trạng thái đơn hàng thành "paid" và
+ * chuyển đến màn hình thanh toán thành công.
+ */
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -16,9 +25,27 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
+/**
+ * Activity xử lý thanh toán VNPay qua WebView.
+ *
+ * Nhận `URL` (link thanh toán VNPay) và `order_id` từ Intent.
+ * Tải trang thanh toán VNPay trong WebView và theo dõi URL callback.
+ * Khi phát hiện `vnpay_return` với ResponseCode=00, cập nhật trạng thái
+ * đơn hàng thành "paid" rồi chuyển đến payment_successful.
+ *
+ * @property isHandlingReturn Cờ ngăn chặn xử lý callback VNPay nhiều lần
+ */
 class VNPayActivity : AppCompatActivity() {
     private var isHandlingReturn = false
 
+    /**
+     * Khởi tạo Activity, thiết lập WebView và bắt đầu tải trang thanh toán VNPay.
+     *
+     * Cấu hình WebView với JavaScript enabled, thiết lập WebViewClient
+     * để theo dõi URL callback `vnpay_return`. Xử lý kết quả thanh toán:
+     * - Thành công (ResponseCode=00): cập nhật trạng thái đơn → chuyển màn thành công
+     * - Thất bại: đóng Activity
+     */
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,5 +1,15 @@
 package com.example.myapp.screens
 
+/**
+ * @file restaurant_profile.kt
+ * @brief Màn hình hồ sơ nhà hàng.
+ *
+ * Hiển thị thông tin chi tiết của một nhà hàng bao gồm hình ảnh banner,
+ * tên, đánh giá, địa chỉ, giờ mở cửa, số điện thoại và mô tả.
+ * Hiển thị danh sách các món ăn có sẵn dạng RecyclerView cuộn ngang.
+ * Hỗ trợ chia sẻ thông tin nhà hàng.
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
@@ -18,11 +28,29 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity hiển thị hồ sơ chi tiết của nhà hàng.
+ *
+ * Nhận `RESTAURANT_ID` từ Intent, tải thông tin nhà hàng từ API
+ * và hiển thị banner, tên, đánh giá, địa chỉ, giờ mở cửa, số điện thoại,
+ * mô tả và danh sách món ăn khả dụng.
+ *
+ * @property restaurant Đối tượng nhà hàng đã tải từ API
+ * @property rvMenuItems RecyclerView hiển thị danh sách món ăn
+ * @property menuItemAdapter Adapter cho danh sách món ăn
+ */
 class restaurant_profile: AppCompatActivity()  {
     private var restaurant: Restaurant? = null
     private lateinit var rvMenuItems: RecyclerView
     private lateinit var menuItemAdapter: MenuItemAdapterSmall
 
+    /**
+     * Khởi tạo Activity, thiết lập giao diện và các sự kiện click.
+     *
+     * Thiết lập các nút điều hướng (quay lại, profile, home, giỏ hàng, chia sẻ),
+     * RecyclerView cho danh sách món ăn và tải chi tiết nhà hàng từ API.
+     * Hiển thị Toast và đóng Activity nếu không tìm thấy ID nhà hàng.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.restaurant_profile)
@@ -82,6 +110,14 @@ class restaurant_profile: AppCompatActivity()  {
         }
     }
 
+    /**
+     * Tải chi tiết nhà hàng từ API theo ID.
+     *
+     * Gọi API getRestaurant và hiển thị thông tin lên giao diện.
+     * Hiển thị Toast nếu tải thất bại.
+     *
+     * @param restaurantId ID của nhà hàng cần tải
+     */
     private fun fetchRestaurantDetails(restaurantId: Int) {
         RetrofitClient.apiService.getRestaurant(restaurantId).enqueue(object : Callback<Restaurant> {
             override fun onResponse(call: Call<Restaurant>, response: Response<Restaurant>) {
@@ -99,6 +135,12 @@ class restaurant_profile: AppCompatActivity()  {
         })
     }
 
+    /**
+     * Hiển thị thông tin chi tiết nhà hàng lên giao diện.
+     *
+     * Hiển thị banner image (qua Picasso), tên, đánh giá, địa chỉ,
+     * giờ mở cửa, số điện thoại, mô tả và danh sách món ăn khả dụng.
+     */
     private fun displayRestaurantDetails() {
         restaurant?.let { restaurant ->
             // Display restaurant banner image
@@ -142,6 +184,14 @@ class restaurant_profile: AppCompatActivity()  {
         }
     }
 
+    /**
+     * Hiển thị danh sách món ăn khả dụng của nhà hàng.
+     *
+     * Lọc chỉ các món ăn có sẵn (is_available = true) và gán adapter
+     * cho RecyclerView.
+     *
+     * @param menuItems Danh sách tất cả món ăn của nhà hàng
+     */
     private fun displayMenuItems(menuItems: List<com.example.myapp.screens.api.MenuItem>) {
         val availableMenuItems = menuItems.filter { it.is_available }
         menuItemAdapter = MenuItemAdapterSmall(this, availableMenuItems)

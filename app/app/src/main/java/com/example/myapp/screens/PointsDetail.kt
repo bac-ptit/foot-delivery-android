@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file PointsDetail.kt
+ * @brief Màn hình chi tiết điểm tích lũy của người dùng.
+ *
+ * Hiển thị danh sách đơn hàng đã hoàn thành và cho phép người dùng
+ * nhấn vào từng đơn hàng để xem chi tiết đánh giá.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,12 +22,32 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Màn hình chi tiết điểm tích lũy.
+ *
+ * Hiển thị tối đa 4 đơn hàng đã hoàn thành dưới dạng thẻ (CardView).
+ * Mỗi thẻ hiển thị tên đơn hàng và điểm tích lũy tương ứng.
+ * Người dùng có thể nhấn vào thẻ để xem chi tiết đơn hàng.
+ * Thanh điều hướng dưới cùng cho phép chuyển đến Trang chủ, Yêu thích, Giỏ hàng và Cá nhân.
+ */
 class PointsDetail : AppCompatActivity() {
+    /** ID của đơn hàng thứ nhất */
     private var firstOrderId: Int? = null
+    /** ID của đơn hàng thứ hai */
     private var secondOrderId: Int? = null
+    /** ID của đơn hàng thứ ba */
     private var thirdOrderId: Int? = null
+    /** ID của đơn hàng thứ tư */
     private var fourthOrderId: Int? = null
 
+    /**
+     * Khởi tạo màn hình chi tiết điểm tích lũy.
+     *
+     * Tải danh sách đơn hàng, thiết lập sự kiện nhấn cho các thẻ điểm
+     * và thanh điều hướng dưới cùng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.points_detail)
@@ -86,6 +113,12 @@ class PointsDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải danh sách đơn hàng từ API.
+     *
+     * Gọi API lấy đơn hàng theo userId, lọc các đơn đã hoàn thành,
+     * sắp xếp theo thời gian tạo giảm dần, và hiển thị lên 4 thẻ.
+     */
     private fun loadOrders() {
         val userId = resolveUserIdForPoints()
         RetrofitClient.apiService.getUserOrders(userId).enqueue(object : Callback<List<OrderResponse>> {
@@ -116,6 +149,17 @@ class PointsDetail : AppCompatActivity() {
         })
     }
 
+    /**
+     * Gán dữ liệu đơn hàng vào thẻ giao diện.
+     *
+     * Hiển thị tên đơn hàng và điểm tích lũy (tổng giá / 1000).
+     * Nếu đơn hàng là null, hiển thị giá trị mặc định.
+     *
+     * @param titleId ID resource của TextView hiển thị tên đơn hàng.
+     * @param pointsId ID resource của TextView hiển thị điểm tích lũy.
+     * @param order Đối tượng đơn hàng cần hiển thị, có thể null.
+     * @param fallbackTitlePrefix Tiền tố tiêu đề khi đơn hàng hợp lệ.
+     */
     private fun bindOrderCard(titleId: Int, pointsId: Int, order: OrderResponse?, fallbackTitlePrefix: String) {
         val titleView: TextView = findViewById(titleId)
         val pointsView: TextView = findViewById(pointsId)
@@ -130,6 +174,13 @@ class PointsDetail : AppCompatActivity() {
         pointsView.text = (order.totalprice / 1000).toString()
     }
 
+    /**
+     * Xác định ID người dùng cho màn hình điểm tích lũy.
+     *
+     * Đọc user_id từ SharedPreferences. Nếu không hợp lệ, trả về 1 làm mặc định.
+     *
+     * @return ID của người dùng hiện tại.
+     */
     private fun resolveUserIdForPoints(): Int {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", -1)
@@ -142,6 +193,15 @@ class PointsDetail : AppCompatActivity() {
         return 1
     }
 
+    /**
+     * Chuyển đến màn hình chi tiết đơn hàng.
+     *
+     * Truyền tên đơn hàng và mã đơn hàng sang màn hình OrderTrackingDetail.
+     * Hiển thị Toast nếu thiếu mã đơn hàng.
+     *
+     * @param dishName Tên món ăn hoặc đơn hàng.
+     * @param orderId ID đơn hàng, có thể null.
+     */
     private fun navigateToOrderDetail(dishName: String, orderId: Int?) {
         if (orderId == null) {
             Toast.makeText(this, "Thiếu mã đơn hàng để đánh giá", Toast.LENGTH_SHORT).show()

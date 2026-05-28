@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file OrderTracking.kt
+ * @brief Màn hình theo dõi đơn hàng của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị tất cả đơn hàng của người dùng, phân loại thành 2 nhóm:
+ * "Chưa giao" và "Đã giao". Hỗ trợ phân trang (load more) khi cuộn
+ * xuống dưới. Hiển thị điểm tích lũy và cho phép mở chi tiết đơn hàng.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,18 +28,46 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Activity màn hình theo dõi đơn hàng.
+ *
+ * Chức năng chính:
+ * - Tải và hiển thị tất cả đơn hàng của người dùng
+ * - Phân loại thành "Chưa giao" và "Đã giao"
+ * - Phân trang: hiển thị 5 đơn mỗi lần, tự động load thêm khi cuộn
+ * - Hiển thị điểm tích lũy
+ * - Mở chi tiết đơn hàng khi nhấn vào thẻ đơn
+ * - Điều hướng: Trang chủ, Yêu thích, Giỏ hàng, Hồ sơ
+ */
 class OrderTracking : AppCompatActivity() {
+    /** Danh sách tất cả đơn hàng chưa giao */
     private var allPendingOrders = listOf<OrderDetailResponse>()
+    /** Danh sách tất cả đơn hàng đã giao */
     private var allCompletedOrders = listOf<OrderDetailResponse>()
+    /** Số đơn chưa giao đã hiển thị */
     private var displayedPendingCount = 0
+    /** Số đơn đã giao đã hiển thị */
     private var displayedCompletedCount = 0
+    /** Số đơn hiển thị mỗi lần load */
     private val itemsPerPage = 5
-    
+
+    /** Container chứa các thẻ đơn hàng */
     private lateinit var ordersContainer: android.widget.LinearLayout
+    /** Nút "Tải thêm" đơn hàng */
     private lateinit var btnLoadMore: android.widget.Button
+    /** ScrollView chứa danh sách đơn hàng */
     private lateinit var scrollViewOrders: android.widget.ScrollView
+    /** Cờ防止触发多次自动加载 */
     private var isAutoLoading = false
 
+    /**
+     * Khởi tạo màn hình theo dõi đơn hàng.
+     *
+     * Thiết lập layout, tải điểm tích lũy, tải tất cả đơn hàng,
+     * gán sự kiện cuộn để tự động load thêm, và các nút điều hướng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.order_tracking)
@@ -95,6 +132,12 @@ class OrderTracking : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải và hiển thị điểm tích lũy của người dùng.
+     *
+     * Gọi API getProfileSummary và cập nhật TextView tvPointsSummary.
+     * Hiển thị "Điểm tích lũy: 0" nếu tải thất bại.
+     */
     private fun loadPointsSummary() {
         val userId = resolveUserIdForTracking()
         val pointsView = findViewById<TextView>(R.id.tvPointsSummary)
@@ -111,6 +154,12 @@ class OrderTracking : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tải tất cả đơn hàng của người dùng từ API.
+     *
+     * Lấy userId, gọi API getUserOrders, sắp xếp theo ngày giảm dần,
+     * tách riêng đơn chưa giao và đã giao, rồi tải chi tiết từng đơn.
+     */
     private fun loadAllOrders() {
         val userId = resolveUserIdForTracking()
         RetrofitClient.apiService.getUserOrders(userId).enqueue(object : Callback<List<OrderResponse>> {
@@ -138,6 +187,15 @@ class OrderTracking : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tải chi tiết từng đơn hàng theo danh sách ID.
+     *
+     * Gọi API getOrderDetail cho mỗi đơn, phân loại vào pending/completed.
+     * Khi tất cả đã tải xong, gọi bindAllOrders để hiển thị.
+     *
+     * @param pendingOrderIds Danh sách ID đơn chưa giao
+     * @param completedOrderIds Danh sách ID đơn đã giao
+     */
     private fun loadOrdersDetail(pendingOrderIds: List<Int>, completedOrderIds: List<Int>) {
         val pending = mutableListOf<OrderDetailResponse>()
         val completed = mutableListOf<OrderDetailResponse>()
@@ -194,6 +252,12 @@ class OrderTracking : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gán danh sách đơn hàng đã tải và hiển thị trang đầu tiên.
+     *
+     * @param pending Danh sách đơn chưa giao
+     * @param completed Danh sách đơn đã giao
+     */
     private fun bindAllOrders(pending: List<OrderDetailResponse>, completed: List<OrderDetailResponse>) {
         allPendingOrders = pending
         allCompletedOrders = completed
@@ -206,6 +270,13 @@ class OrderTracking : AppCompatActivity() {
         displayNextOrders()
     }
 
+    /**
+     * Hiển thị trang tiếp theo của danh sách đơn hàng.
+     *
+     * Lấy tiếp itemsPerPage đơn từ pending trước, sau đó completed.
+     * Thêm nhãn "Chưa giao"/"Đã giao" khi hiển thị lần đầu.
+     * Cập nhật hiển thị nút "Tải thêm".
+     */
     private fun displayNextOrders() {
         val inflater = LayoutInflater.from(this)
 
@@ -252,10 +323,24 @@ class OrderTracking : AppCompatActivity() {
         btnLoadMore.visibility = if (hasMore) android.view.View.VISIBLE else android.view.View.GONE
     }
 
+    /**
+     * Tải thêm đơn hàng (trang tiếp theo).
+     */
     private fun loadMoreOrders() {
         displayNextOrders()
     }
 
+    /**
+     * Tạo và thêm thẻ (card) đơn hàng vào container.
+     *
+     * Tạo CardView động với thông tin: tên món, số lượng, nhà hàng,
+     * trạng thái (Đã giao/Chưa giao), tổng tiền, và nút "Chi tiết".
+     *
+     * @param container LinearLayout chứa các thẻ đơn hàng
+     * @param order Chi tiết đơn hàng
+     * @param status Trạng thái đơn hàng
+     * @param inflater LayoutInflater để tạo view
+     */
     private fun addOrderCard(container: android.widget.LinearLayout, order: OrderDetailResponse, status: String, inflater: LayoutInflater) {
         val isCompleted = isCompletedStatus(status)
         val statusColor = if (isCompleted) android.graphics.Color.parseColor("#34a853") else android.graphics.Color.parseColor("#d32f2f")
@@ -391,6 +476,14 @@ class OrderTracking : AppCompatActivity() {
         container.addView(cardView)
     }
 
+    /**
+     * Xác định userId cho việc theo dõi đơn hàng.
+     *
+     * Đọc user_id từ SharedPreferences. Nếu không hợp lệ,
+     * trả về 1 làm giá trị mặc định.
+     *
+     * @return ID người dùng
+     */
     private fun resolveUserIdForTracking(): Int {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", -1)
@@ -403,11 +496,26 @@ class OrderTracking : AppCompatActivity() {
         return 1
     }
 
+    /**
+     * Kiểm tra trạng thái đơn hàng có phải đã hoàn thành hay không.
+     *
+     * @param status Chuỗi trạng thái (không phân biệt hoa thường)
+     * @return true nếu trạng thái là "completed", "delivered" hoặc "done"
+     */
     private fun isCompletedStatus(status: String?): Boolean {
         val normalized = (status ?: "").lowercase(Locale.ROOT)
         return normalized == "completed" || normalized == "delivered" || normalized == "done"
     }
 
+    /**
+     * Mở màn hình chi tiết theo dõi đơn hàng.
+     *
+     * Truyền order_id, order_status, order_name qua Intent.
+     *
+     * @param orderId ID đơn hàng (null nếu không có)
+     * @param status Trạng thái đơn hàng
+     * @param restaurantName Tên nhà hàng (dùng làm tiêu đề)
+     */
     private fun openOrderDetail(orderId: Int?, status: String, restaurantName: String?) {
         if (orderId == null) {
             Toast.makeText(this, "Không có đơn để xem", Toast.LENGTH_SHORT).show()

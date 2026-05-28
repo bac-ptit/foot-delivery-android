@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file cart.kt
+ * @brief Màn hình giỏ hàng của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị danh sách các món ăn đã thêm vào giỏ hàng, cho phép tăng/giảm
+ * số lượng, chọn/bỏ chọn từng món hoặc chọn tất cả, xóa món, và
+ * chuyển sang màn hình đặt hàng. Bao gồm data class CartItem và CartAdapter.
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -20,6 +29,16 @@ import java.util.Locale
 
 import java.io.Serializable
 
+/**
+ * Data class đại diện cho một món ăn trong giỏ hàng.
+ *
+ * @property id ID duy nhất của món ăn
+ * @property name Tên món ăn
+ * @property price Đơn giá của món ăn (đơn vị: VNĐ)
+ * @property qty Số lượng đặt mua
+ * @property imageUrl URL hình ảnh món ăn (có thể null)
+ * @property isSelected Trạng thái chọn để thanh toán
+ */
 data class CartItem(
     val id: Int,
     val name: String,
@@ -29,18 +48,44 @@ data class CartItem(
     var isSelected: Boolean = false
 ) : Serializable
 
+/**
+ * Activity màn hình giỏ hàng.
+ *
+ * Chức năng chính:
+ * - Hiển thị danh sách món ăn trong giỏ hàng dạng RecyclerView
+ * - Chọn/bỏ chọn từng món hoặc chọn tất cả
+ * - Tăng/giảm số lượng, xóa món khỏi giỏ
+ * - Tính tổng tiền và tổng số lượng các món đã chọn
+ * - Chuyển sang màn hình đặt hàng khi nhấn Thanh toán
+ */
 class cart : AppCompatActivity() {
+    /** RecyclerView hiển thị danh sách giỏ hàng */
     private lateinit var rvCart: RecyclerView
+    /** TextView hiển thị tổng số lượng món đã chọn */
     private lateinit var tvTotalItems: TextView
+    /** TextView hiển thị tổng tiền các món đã chọn */
     private lateinit var tvTotalPrice: TextView
+    /** CheckBox chọn/bỏ chọn tất cả món */
     private lateinit var cbSelectAll: CheckBox
+    /** Nút thanh toán/chuyển sang đặt hàng */
     private lateinit var btnCheckout: AppCompatButton
+    /** Adapter cho RecyclerView giỏ hàng */
     private lateinit var adapter: CartAdapter
 
     companion object {
+        /** Danh sách toàn cục các món trong giỏ hàng (static) */
         val cartList = mutableListOf<CartItem>()
     }
 
+    /**
+     * Khởi tạo màn hình giỏ hàng.
+     *
+     * Thiết lập layout, ánh xạ view, gán sự kiện cho nút quay lại,
+     * nút thanh toán, CheckBox chọn tất cả, và thiết lập RecyclerView
+     * với CartAdapter. Cập nhật tổng tiền khi có thay đổi.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_cart)
@@ -78,6 +123,12 @@ class cart : AppCompatActivity() {
         updateSummary()
     }
 
+    /**
+     * Cập nhật tổng quan giỏ hàng (tổng số lượng, tổng tiền).
+     *
+     * Lọc các món đã chọn, tính tổng số lượng và tổng tiền,
+     * hiển thị theo định dạng tiền tệ Việt Nam, và bật/tắt nút thanh toán.
+     */
     private fun updateSummary() {
         val selectedItems = cartList.filter { it.isSelected }
         val totalQty = selectedItems.sumOf { it.qty }
@@ -90,11 +141,23 @@ class cart : AppCompatActivity() {
     }
 }
 
+/**
+ * Adapter cho RecyclerView hiển thị danh sách món ăn trong giỏ hàng.
+ *
+ * @property items Danh sách mutable các CartItem
+ * @property onUpdate Callback được gọi khi số lượng hoặc trạng thái chọn thay đổi
+ * @property onDelete Callback được gọi khi xóa một món, nhận vào vị trí (position)
+ */
 class CartAdapter(
     private val items: MutableList<CartItem>,
     private val onUpdate: () -> Unit,
     private val onDelete: (Int) -> Unit
 ) : RecyclerView.Adapter<CartAdapter.ViewHolder>() {
+    /**
+     * ViewHolder chứa các view cho mỗi item trong giỏ hàng.
+     *
+     * @param view View gốc của item
+     */
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imgFood: ImageView = view.findViewById(R.id.imgFood)
         val tvName: TextView = view.findViewById(R.id.tvName)
@@ -106,11 +169,27 @@ class CartAdapter(
         val btnDelete: ImageView = view.findViewById(R.id.btnDelete)
     }
 
+    /**
+     * Tạo ViewHolder mới khi RecyclerView cần.
+     *
+     * @param parent ViewGroup cha
+     * @param viewType Loại view (không sử dụng)
+     * @return ViewHolder mới được tạo từ layout item_cart
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_cart, parent, false)
         return ViewHolder(view)
     }
 
+    /**
+     * Gán dữ liệu cho ViewHolder tại vị trí cụ thể.
+     *
+     * Hiển thị tên, giá, số lượng, hình ảnh, trạng thái chọn.
+     * Gán sự kiện click cho nút tăng/giảm số lượng, checkbox chọn, và nút xóa.
+     *
+     * @param holder ViewHolder cần gán dữ liệu
+     * @param position Vị trí của item trong danh sách
+     */
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         val fmt = NumberFormat.getNumberInstance(Locale("vi", "VN"))
@@ -124,5 +203,10 @@ class CartAdapter(
         holder.cbSelect.setOnClickListener { item.isSelected = holder.cbSelect.isChecked; onUpdate() }
         holder.btnDelete.setOnClickListener { onDelete(holder.adapterPosition) }
     }
+    /**
+     * Trả về tổng số lượng item trong giỏ hàng.
+     *
+     * @return Số lượng CartItem trong danh sách
+     */
     override fun getItemCount() = items.size
 }

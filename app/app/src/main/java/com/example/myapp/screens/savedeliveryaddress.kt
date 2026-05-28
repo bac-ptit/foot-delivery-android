@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file savedeliveryaddress.kt
+ * @brief Màn hình danh sách địa chỉ giao hàng đã lưu.
+ *
+ * Hiển thị tất cả địa chỉ giao hàng của người dùng trong RecyclerView.
+ * Cho phép thêm địa chỉ mới hoặc chỉnh sửa địa chỉ hiện có.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,11 +26,29 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Màn hình quản lý địa chỉ giao hàng đã lưu.
+ *
+ * Tải danh sách địa chỉ từ API và hiển thị trong RecyclerView.
+ * Người dùng có thể nhấn vào địa chỉ để chỉnh sửa hoặc thêm địa chỉ mới.
+ * Thanh điều hướng dưới cùng cho phép chuyển đến Trang chủ, Giỏ hàng và Cá nhân.
+ */
 class savedeliveryaddress : AppCompatActivity() {
+    /** RecyclerView hiển thị danh sách địa chỉ */
     private lateinit var rvAddresses: RecyclerView
+    /** Adapter quản lý hiển thị danh sách địa chỉ */
     private lateinit var addressAdapter: AddressAdapter
+    /** Danh sách địa chỉ giao hàng của người dùng */
     private val addressList = mutableListOf<Address>()
 
+    /**
+     * Khởi tạo màn hình danh sách địa chỉ giao hàng.
+     *
+     * Thiết lập RecyclerView, đăng ký sự kiện cho các nút điều hướng
+     * và nút thêm địa chỉ, sau đó tải danh sách địa chỉ từ API.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.savedeliveryaddress)
@@ -78,6 +103,12 @@ class savedeliveryaddress : AppCompatActivity() {
         fetchUserAddresses()
     }
 
+    /**
+     * Tải danh sách địa chỉ giao hàng của người dùng từ API.
+     *
+     * Lấy userId từ SharedPreferences, gọi API getUserAddresses,
+     * cập nhật danh sách và thông báo cho adapter.
+     */
     private fun fetchUserAddresses() {
         // Lấy userId từ SharedPreferences
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)

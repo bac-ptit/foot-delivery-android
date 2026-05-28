@@ -1,3 +1,10 @@
+"""
+Module: chatbot_service.py
+
+Service chatbot sử dụng Google Gemini AI để trả lời câu hỏi của người dùng.
+Tự động lấy dữ liệu nhà hàng, món ăn và đơn hàng từ DB làm ngữ cảnh cho AI.
+"""
+
 import os
 import anyio
 from google import genai
@@ -11,6 +18,8 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 class ChatBotService:
+    """Service xử lý chatbot AI, kết nối Google Gemini và truy vấn database."""
+
     def __init__(self, db: Session, user_id: int = None):
         self.db = db
         self.user_id = user_id
@@ -83,6 +92,7 @@ class ChatBotService:
             raise e
 
     async def get_response(self, user_message: str):
+        """Nhận tin nhắn người dùng, xây dựng prompt và gọi Gemini AI trả lời."""
         if not self.client:
             return "Xin lỗi, ChatBot chưa được cấu hình API Key trong file .env."
 

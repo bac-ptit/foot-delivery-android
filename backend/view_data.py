@@ -74,6 +74,7 @@ def view_all_data():
         db.close()
 
 def view_specific_table(table_name: str, limit: int = 20):
+    """Xem dữ liệu của một bảng cụ thể theo tên."""
     db = SessionLocal()
     try:
         table_map = {

@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file order_history.kt
+ * @brief Màn hình lịch sử đơn hàng của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị 2 đơn hàng gần nhất đã hoàn thành (completed) của người dùng.
+ * Cho phép nhấn vào "Xem chi tiết" để mở trang chi tiết đơn hàng.
+ * Hỗ trợ điều hướng đến Giỏ hàng, Hồ sơ và Trang chủ.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,10 +26,29 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+/**
+ * Activity màn hình lịch sử đơn hàng.
+ *
+ * Chức năng chính:
+ * - Tải danh sách đơn hàng đã hoàn thành từ API
+ * - Hiển thị 2 đơn hàng gần nhất với ngày, mã đơn, trạng thái
+ * - Nhấn "Xem chi tiết" để mở chi tiết đơn hàng
+ * - Điều hướng đến Giỏ hàng, Hồ sơ, Trang chủ
+ */
 class order_history : AppCompatActivity() {
+    /** ID của đơn hàng đầu tiên (gần nhất) */
     private var firstOrderId: Int? = null
+    /** ID của đơn hàng thứ hai */
     private var secondOrderId: Int? = null
 
+    /**
+     * Khởi tạo màn hình lịch sử đơn hàng.
+     *
+     * Gọi API tải đơn hàng, thiết lập sự kiện click cho nút quay lại,
+     * giỏ hàng, hồ sơ, trang chủ, và nút xem chi tiết đơn hàng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.order_history)
@@ -61,6 +89,12 @@ class order_history : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải danh sách đơn hàng từ API.
+     *
+     * Lấy userId, gọi API getUserOrders, lọc các đơn có trạng thái
+     * "completed", sắp xếp theo ngày giảm dần, và hiển thị 2 đơn gần nhất.
+     */
     private fun loadOrders() {
         val userId = resolveUserIdForHistory()
 
@@ -82,6 +116,15 @@ class order_history : AppCompatActivity() {
         })
     }
 
+    /**
+     * Gán dữ liệu 2 đơn hàng gần nhất lên giao diện.
+     *
+     * Hiển thị ngày, mã đơn, trạng thái cho mỗi đơn.
+     * Lưu firstOrderId và secondOrderId để mở chi tiết.
+     * Làm mờ nút "Xem chi tiết" nếu không có đơn hàng.
+     *
+     * @param orders Danh sách đơn hàng đã sắp xếp
+     */
     private fun bindTopTwoOrders(orders: List<OrderResponse>) {
         val tvDate1: TextView = findViewById(R.id.tvDate1)
         val tvDate2: TextView = findViewById(R.id.tvDate2)
@@ -101,6 +144,11 @@ class order_history : AppCompatActivity() {
         tvViewDetails2.alpha = if (second != null) 1f else 0.4f
     }
 
+    /**
+     * Mở màn hình chi tiết đơn hàng.
+     *
+     * @param orderId ID đơn hàng cần xem chi tiết. Nếu null, hiển thị Toast lỗi.
+     */
     private fun openOrderDetail(orderId: Int?) {
         if (orderId == null) {
             Toast.makeText(this, "Không có đơn để xem", Toast.LENGTH_SHORT).show()
@@ -111,6 +159,14 @@ class order_history : AppCompatActivity() {
         startActivity(intent)
     }
 
+    /**
+     * Xác định userId cho việc tải lịch sử đơn hàng.
+     *
+     * Đọc user_id từ SharedPreferences. Nếu không hợp lệ,
+     * trả về 1 làm giá trị mặc định.
+     *
+     * @return ID người dùng
+     */
     private fun resolveUserIdForHistory(): Int {
         val sharedPref = getSharedPreferences("user_prefs", Context.MODE_PRIVATE)
         val userId = sharedPref.getInt("user_id", -1)
@@ -123,6 +179,12 @@ class order_history : AppCompatActivity() {
         return 1
     }
 
+    /**
+     * Định dạng chuỗi ngày từ ISO 8601 sang định dạng dd/MM/yyyy.
+     *
+     * @param raw Chuỗi ngày dạng "yyyy-MM-ddTHH:mm:ss"
+     * @return Chuỗi ngày đã định dạng hoặc 10 ký tự đầu nếu lỗi
+     */
     private fun formatDate(raw: String): String {
         return try {
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)

@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file share_restaurant.kt
+ * @brief Màn hình chia sẻ thông tin nhà hàng.
+ *
+ * Hiển thị chi tiết nhà hàng và cho phép người dùng chia sẻ
+ * lên các mạng xã hội (Facebook, Zalo, Twitter, Messenger).
+ */
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -10,11 +17,30 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.myapp.R
 import com.squareup.picasso.Picasso
 
+/**
+ * Màn hình chia sẻ thông tin nhà hàng lên mạng xã hội.
+ *
+ * Hiển thị tên, đánh giá, địa chỉ, giờ mở cửa và hình ảnh nhà hàng.
+ * Cung cấp nút chia sẻ nhanh lên Facebook, Zalo, Twitter và Messenger
+ * thông qua Intent.ACTION_SEND.
+ */
 class share_restaurant : AppCompatActivity() {
+    /** ID của nhà hàng cần chia sẻ */
     private var restaurantId: Int = -1
+    /** Tên của nhà hàng cần chia sẻ */
     private var restaurantName: String = ""
+    /** Địa chỉ của nhà hàng cần chia sẻ */
     private var restaurantAddress: String = ""
 
+    /**
+     * Khởi tạo màn hình chia sẻ nhà hàng.
+     *
+     * Nhận thông tin nhà hàng từ Intent (id, tên, địa chỉ, đánh giá,
+     * hình ảnh, giờ mở/đóng cửa), hiển thị lên giao diện và thiết lập
+     * các nút chia sẻ mạng xã hội.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share_restaurant)
@@ -54,6 +80,15 @@ class share_restaurant : AppCompatActivity() {
         findViewById<ImageView>(R.id.btnBack).setOnClickListener { finish() }
     }
 
+    /**
+     * Chia sẻ thông tin nhà hàng đến ứng dụng được chỉ định.
+     *
+     * Tạo nội dung chia sẻ bao gồm tên nhà hàng, địa chỉ và link chi tiết.
+     * Sử dụng Intent.ACTION_SEND với package chỉ định. Nếu ứng dụng không
+     * được cài đặt, hiển thị chooser mặc định làm fallback.
+     *
+     * @param packageName Tên package của ứng dụng nhận chia sẻ (ví dụ: com.facebook.katana).
+     */
     private fun shareToApp(packageName: String) {
         val shareLink = "https://yourapp.com/restaurant?id=$restaurantId"
         val shareText = "Khám phá ngay nhà hàng $restaurantName tại MyApp!\nĐịa chỉ: $restaurantAddress\nXem thêm tại: $shareLink"

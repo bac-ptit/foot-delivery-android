@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file profile.kt
+ * @brief Màn hình hồ sơ cá nhân của người dùng.
+ *
+ * Hiển thị tên người dùng và điểm tích lũy. Cung cấp các nút điều hướng
+ * đến Trang chủ, Giỏ hàng, Hỗ trợ khách hàng, Địa chỉ giao hàng,
+ * Lịch sử đơn hàng, và Theo dõi đơn hàng. Hỗ trợ đăng xuất.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -16,7 +25,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình hồ sơ cá nhân.
+ *
+ * Chức năng chính:
+ * - Hiển thị tên người dùng và điểm tích lũy từ API
+ * - Điều hướng đến: Trang chủ, Giỏ hàng, Hỗ trợ, Địa chỉ, Lịch sử
+ * - Nhấn vào điểm/xu để mở trang Theo dõi đơn hàng
+ * - Đăng xuất: xóa SharedPreferences và chuyển về màn hình đăng nhập
+ */
 class profile : AppCompatActivity() {
+    /**
+     * Khởi tạo màn hình hồ sơ.
+     *
+     * Đọc thông tin người dùng từ SharedPreferences, gọi API lấy điểm tích lũy,
+     * gán sự kiện click cho tất cả các nút điều hướng và chức năng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.profile)

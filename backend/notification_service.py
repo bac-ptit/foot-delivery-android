@@ -1,3 +1,10 @@
+"""
+Module: notification_service.py
+
+Service gửi thông báo đẩy qua Firebase Cloud Messaging (FCM).
+Lưu thông báo vào database và gửi push notification đến tất cả thiết bị của người dùng.
+"""
+
 from firebase_admin import messaging
 import firebase_admin
 from firebase_utils import init_firebase

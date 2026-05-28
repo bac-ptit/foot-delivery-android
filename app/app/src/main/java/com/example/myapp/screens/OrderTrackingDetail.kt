@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file OrderTrackingDetail.kt
+ * @brief Màn hình chi tiết theo dõi đơn hàng.
+ *
+ * Hiển thị thông tin chi tiết của một đơn hàng bao gồm: mã đơn, tổng tiền,
+ * nhà hàng, trạng thái, địa chỉ giao hàng, ngày đặt, danh sách món ăn.
+ * Cho phép đánh giá đơn hàng (1-5 sao và phản hồi) khi đơn đã hoàn thành.
+ */
+
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.PorterDuff
@@ -19,9 +28,29 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình chi tiết theo dõi đơn hàng.
+ *
+ * Chức năng chính:
+ * - Hiển thị chi tiết đơn hàng: mã đơn, tổng tiền, nhà hàng, trạng thái,
+ *   địa chỉ, ngày đặt, danh sách món ăn
+ * - Hiển thị timeline trạng thái đơn hàng
+ * - Đánh giá đơn hàng (1-5 sao + phản hồi) khi đã hoàn thành
+ * - Điều hướng: Trang chủ, Yêu thích, Giỏ hàng, Hồ sơ
+ */
 class OrderTrackingDetail : AppCompatActivity() {
+    /** Số sao đánh giá đã chọn (0-5) */
     private var selectedRating = 0
 
+    /**
+     * Khởi tạo màn hình chi tiết theo dõi đơn hàng.
+     *
+     * Nhận thông tin đơn hàng từ Intent, hiển thị timeline và đánh giá.
+     * Vô hiệu hóa nút đánh giá nếu đơn chưa hoàn thành.
+     * Tải chi tiết đơn hàng từ API và thiết lập các nút điều hướng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.order_tracking_detail)
@@ -190,6 +219,14 @@ class OrderTrackingDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải tóm tắt đơn hàng từ API.
+     *
+     * Gọi API getOrderDetail, hiển thị mã đơn và danh sách món ăn
+     * tóm tắt, sau đó gọi populateOrderDetails để điền chi tiết.
+     *
+     * @param orderId ID đơn hàng cần tải
+     */
     private fun loadOrderSummary(orderId: Int) {
         val summaryView: TextView = findViewById(R.id.tvOrderSummary)
         RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object : Callback<OrderDetailResponse> {
@@ -216,6 +253,15 @@ class OrderTrackingDetail : AppCompatActivity() {
         })
     }
 
+    /**
+     * Điền thông tin chi tiết đơn hàng vào các view.
+     *
+     * Cập nhật: mã đơn, tổng tiền (định dạng VNĐ), tên nhà hàng,
+     * trạng thái (dịch sang tiếng Việt), địa chỉ giao hàng, ngày đặt,
+     * và danh sách chi tiết các món ăn.
+     *
+     * @param order Đối tượng OrderDetailResponse chứa chi tiết đơn hàng
+     */
     private fun populateOrderDetails(order: OrderDetailResponse) {
         try {
             // Order ID
@@ -255,6 +301,14 @@ class OrderTrackingDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tạo và hiển thị danh sách chi tiết các món ăn trong đơn hàng.
+     *
+     * Tạo LinearLayout động cho mỗi item với tên món (x số lượng)
+     * và giá tiền (định dạng VNĐ, màu cam).
+     *
+     * @param items Danh sách chi tiết các món ăn trong đơn hàng
+     */
     private fun populateItemsList(items: List<com.example.myapp.screens.api.OrderItemDetailResponse>) {
         val itemsListContainer = findViewById<LinearLayout>(R.id.itemsListContainer)
         itemsListContainer.removeAllViews()
@@ -302,6 +356,12 @@ class OrderTrackingDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Định dạng chuỗi ngày đặt hàng từ ISO sang dd/MM/yyyy.
+     *
+     * @param dateString Chuỗi ngày dạng "yyyy-MM-ddTHH:mm:ss" hoặc null
+     * @return Chuỗi ngày đã định dạng hoặc "--" nếu rỗng
+     */
     private fun formatOrderDate(dateString: String?): String {
         if (dateString.isNullOrEmpty()) return "--"
         return try {
@@ -323,6 +383,13 @@ class OrderTrackingDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Cập nhật màu sắc cho các ngôi sao đánh giá.
+     *
+     * Sao được chọn có màu vàng (#FFC107), sao chưa chọn có màu xám (#CFCFCF).
+     *
+     * @param stars Danh sách 5 ImageView ngôi sao
+     */
     private fun updateStarColors(stars: List<ImageView>) {
         stars.forEachIndexed { index, star ->
             val color = if (index < selectedRating) "#FFC107" else "#CFCFCF"
@@ -330,6 +397,12 @@ class OrderTrackingDetail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Kiểm tra trạng thái đơn hàng có phải đã hoàn thành hay không.
+     *
+     * @param status Chuỗi trạng thái (không phân biệt hoa thường)
+     * @return true nếu trạng thái là "completed", "delivered" hoặc "done"
+     */
     private fun isCompletedStatus(status: String?): Boolean {
         val normalized = (status ?: "").lowercase(java.util.Locale.ROOT)
         return normalized == "completed" || normalized == "delivered" || normalized == "done"

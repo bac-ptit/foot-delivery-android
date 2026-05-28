@@ -1,3 +1,10 @@
+"""
+Module: firebase_utils.py
+
+Khởi tạo Firebase Admin SDK và upload ảnh lên Firebase Storage.
+Hỗ trợ upload bất đồng bộ qua anyio để không chặn event loop.
+"""
+
 import firebase_admin
 from firebase_admin import credentials, storage
 import os
@@ -7,14 +14,17 @@ import anyio
 
 load_dotenv()
 
+# Đường dẫn file credentials Firebase (JSON service account)
 FIREBASE_CREDENTIALS_PATH = os.getenv("FIREBASE_CREDENTIALS_PATH")
+# Tên bucket Firebase Storage để upload ảnh
 FIREBASE_STORAGE_BUCKET = os.getenv("FIREBASE_STORAGE_BUCKET")
 
 def init_firebase():
+    """Khởi tạo Firebase Admin SDK với credentials từ file service account."""
     if not FIREBASE_CREDENTIALS_PATH or not os.path.exists(FIREBASE_CREDENTIALS_PATH):
         print(f"Warning: Firebase credentials not found at {FIREBASE_CREDENTIALS_PATH}. Image upload will fail.")
         return False
-    
+
     try:
         cred = credentials.Certificate(FIREBASE_CREDENTIALS_PATH)
         firebase_admin.initialize_app(cred, {
@@ -26,10 +36,11 @@ def init_firebase():
         return False
 
 def _upload_image_sync(file_content, filename):
+    """Upload ảnh đồng bộ lên Firebase Storage, trả về URL công khai."""
     if not firebase_admin._apps:
         if not init_firebase():
             return None
-            
+
     try:
         bucket = storage.bucket()
         ext = filename.split('.')[-1]

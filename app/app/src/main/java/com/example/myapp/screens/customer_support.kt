@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file customer_support.kt
+ * @brief Màn hình hỗ trợ khách hàng.
+ *
+ * Hiển thị danh sách các câu hỏi thường gặp (FAQ) từ API backend
+ * dạng RecyclerView. Cung cấp nút truy cập nhanh đến chatbot AI
+ * để được hỗ trợ thêm.
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -16,10 +25,25 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity hiển thị trang hỗ trợ khách hàng.
+ *
+ * Tải danh sách FAQ từ API và hiển thị dạng RecyclerView.
+ * Cung cấp nút chuyển đến chatbot AI để được hỗ trợ trực tiếp.
+ *
+ * @property recyclerView RecyclerView hiển thị danh sách FAQ
+ * @property adapter Adapter quản lý danh sách FAQ
+ */
 class customer_support : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: FAQAdapter
 
+    /**
+     * Khởi tạo Activity, thiết lập giao diện và tải dữ liệu FAQ.
+     *
+     * Thiết lập nút quay lại, RecyclerView cho danh sách FAQ,
+     * nút chuyển đến chatbot và gọi API tải FAQ.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.customer_support)
@@ -45,6 +69,12 @@ class customer_support : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải danh sách câu hỏi thường gặp từ API.
+     *
+     * Gọi API getFAQs và tạo FAQAdapter với dữ liệu nhận được.
+     * Hiển thị Toast nếu tải thất bại.
+     */
     private fun loadFAQs() {
         RetrofitClient.apiService.getFAQs().enqueue(object : Callback<List<FAQ>> {
             override fun onResponse(call: Call<List<FAQ>>, response: Response<List<FAQ>>) {

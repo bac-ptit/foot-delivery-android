@@ -1,5 +1,15 @@
 package com.example.myapp.screens
 
+/**
+ * @file list_restaurant.kt
+ * @brief Màn hình danh sách nhà hàng.
+ *
+ * Hiển thị danh sách nhà hàng dạng cuộn ngang, hỗ trợ tìm kiếm
+ * nhà hàng theo tên với debounce 500ms. Người dùng có thể chọn
+ * nhà hàng để xem chi tiết hoặc điều hướng đến các màn hình khác
+ * (trang chủ, profile, giỏ hàng, thông báo).
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -23,6 +33,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity hiển thị danh sách nhà hàng.
+ *
+ * Tải danh sách nhà hàng từ API và hiển thị dạng RecyclerView cuộn ngang.
+ * Hỗ trợ tìm kiếm nhà hàng theo tên với cơ chế debounce để tránh gọi API quá nhiều.
+ *
+ * @property restaurants Danh sách nhà hàng hiện tại
+ * @property rvRestaurants RecyclerView hiển thị danh sách nhà hàng
+ * @property restaurantAdapter Adapter cho RecyclerView
+ * @property edtSearch Ô nhập liệu tìm kiếm
+ * @property searchJob Call API tìm kiếm hiện tại (để hủy khi cần)
+ * @property searchHandler Handler để trì hoãn tìm kiếm
+ * @property searchRunnable Runnable tìm kiếm hiện tại
+ * @property SEARCH_DELAY Thời gian trì hoãn tìm kiếm (500ms)
+ */
 class list_restaurant: AppCompatActivity() {
     private var restaurants: List<Restaurant> = emptyList()
     private lateinit var rvRestaurants: RecyclerView
@@ -33,6 +58,13 @@ class list_restaurant: AppCompatActivity() {
     private var searchRunnable: Runnable? = null
     private val SEARCH_DELAY = 500L // 500ms delay for debouncing
 
+    /**
+     * Khởi tạo Activity, thiết lập giao diện và các sự kiện.
+     *
+     * Thiết lập các nút điều hướng (profile, home, giỏ hàng, thông báo),
+     * RecyclerView hiển thị danh sách nhà hàng, ô tìm kiếm với debounce
+     * và tải danh sách nhà hàng từ API.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.list_restaurant)
@@ -103,6 +135,12 @@ class list_restaurant: AppCompatActivity() {
         fetchRestaurants()
     }
 
+    /**
+     * Tải toàn bộ danh sách nhà hàng từ API.
+     *
+     * Hủy bất kỳ tìm kiếm đang chạy trước khi gọi API getRestaurants().
+     * Cập nhật RecyclerView khi nhận dữ liệu thành công.
+     */
     private fun fetchRestaurants() {
         // Cancel any ongoing search
         searchJob?.cancel()
@@ -125,6 +163,14 @@ class list_restaurant: AppCompatActivity() {
         })
     }
 
+    /**
+     * Tìm kiếm nhà hàng theo tên từ API.
+     *
+     * Hủy tìm kiếm trước đó, gọi API searchRestaurantsByName với query.
+     * Hiển thị Toast nếu không tìm thấy kết quả.
+     *
+     * @param query Từ khóa tìm kiếm tên nhà hàng
+     */
     private fun searchRestaurants(query: String) {
         // Cancel any ongoing search
         searchJob?.cancel()
@@ -152,6 +198,11 @@ class list_restaurant: AppCompatActivity() {
         })
     }
 
+    /**
+     * Hiển thị danh sách nhà hàng lên RecyclerView.
+     *
+     * Tạo mới RestaurantAdapter với danh sách hiện tại và gán cho RecyclerView.
+     */
     private fun displayRestaurants() {
         restaurantAdapter = RestaurantAdapter(this, restaurants)
         rvRestaurants.adapter = restaurantAdapter

@@ -1,10 +1,19 @@
+"""
+Module: schemas.py
+
+Định nghĩa tất cả Pydantic v2 schemas cho request/response validation.
+Bao gồm schema cho Category, MenuItem, Restaurant, User, Order, Payment, Review, v.v.
+"""
+
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 from datetime import date, time, datetime
 from decimal import Decimal
 
-# Base Schemas
+# ─── Base Schemas ────────────────────────────────────────────────────────────
+
 class CategoryBase(BaseModel):
+    """Schema cơ sở cho danh mục món ăn."""
     name: str
     type: Optional[str] = None
     description: Optional[str] = None
@@ -17,6 +26,7 @@ class Category(CategoryBase):
     model_config = ConfigDict(from_attributes=True)
 
 class MenuItemBase(BaseModel):
+    """Schema cơ sở cho món ăn trong thực đơn."""
     name: str
     image_url: Optional[str] = None
     price: int
@@ -38,6 +48,7 @@ class MenuItemWithRestaurant(MenuItemBase):
     model_config = ConfigDict(from_attributes=True)
 
 class RestaurantBase(BaseModel):
+    """Schema cơ sở cho nhà hàng."""
     name: str
     image_url: Optional[str] = None
     address: Optional[str] = None
@@ -57,6 +68,7 @@ class Restaurant(RestaurantBase):
     model_config = ConfigDict(from_attributes=True)
 
 class UserBase(BaseModel):
+    """Schema cơ sở cho người dùng."""
     name: str
     username: str
     email: str
@@ -71,13 +83,16 @@ class User(UserBase):
     model_config = ConfigDict(from_attributes=True)
 
 class Token(BaseModel):
+    """Schema phản hồi JWT token khi đăng nhập thành công."""
     access_token: str
     token_type: str
 
 class TokenData(BaseModel):
+    """Schema dữ liệu giải mã từ JWT token."""
     email: Optional[str] = None
 
 class AddressBase(BaseModel):
+    """Schema cơ sở cho địa chỉ giao hàng."""
     detail: str
     phone: Optional[str] = None
     userid: int
@@ -94,6 +109,7 @@ class Address(AddressBase):
     model_config = ConfigDict(from_attributes=True)
 
 class OrderItemBase(BaseModel):
+    """Schema cơ sở cho chi tiết món trong đơn hàng."""
     quantity: int
     price: int
     menuitemid: int
@@ -106,6 +122,7 @@ class OrderItem(OrderItemBase):
     model_config = ConfigDict(from_attributes=True)
 
 class OrderBase(BaseModel):
+    """Schema cơ sở cho đơn hàng."""
     status: str
     preorderdate: Optional[date] = None
     preordertime: Optional[time] = None
@@ -124,6 +141,7 @@ class Order(OrderBase):
     model_config = ConfigDict(from_attributes=True)
 
 class OrderItemDetail(BaseModel):
+    """Schema chi tiết món ăn trong đơn hàng kèm tên và ảnh."""
     id: int
     quantity: int
     price: int
@@ -132,6 +150,7 @@ class OrderItemDetail(BaseModel):
     image_url: Optional[str] = None
 
 class OrderDetail(OrderBase):
+    """Schema chi tiết đơn hàng đầy đủ kèm tên nhà hàng và địa chỉ."""
     id: int
     createdat: datetime
     restaurant_name: Optional[str] = None
@@ -139,17 +158,21 @@ class OrderDetail(OrderBase):
     order_items: List[OrderItemDetail] = []
 
 class OrderStatusUpdate(BaseModel):
+    """Schema cập nhật trạng thái đơn hàng."""
     status: str
 
 class UserProfileSummary(BaseModel):
+    """Schema tóm tắt hồ sơ người dùng: điểm, đơn hàng, tổng chi tiêu."""
     user_id: int
     user_name: str
     points: int
     delivered_orders: int
     total_spent: int
 
-# Chat Schemas
+# ─── Chat Schemas ────────────────────────────────────────────────────────────
+
 class ChatMessageBase(BaseModel):
+    """Schema cơ sở cho tin nhắn chat."""
     message: str
 
 class ChatMessageCreate(ChatMessageBase):
@@ -163,6 +186,7 @@ class ChatMessage(ChatMessageBase):
     model_config = ConfigDict(from_attributes=True)
 
 class ChatSessionCreate(BaseModel):
+    """Schema tạo phiên trò chuyện chatbot mới."""
     userid: int
 
 class ChatSession(BaseModel):
@@ -172,8 +196,10 @@ class ChatSession(BaseModel):
     messages: List[ChatMessage] = []
     model_config = ConfigDict(from_attributes=True)
 
-# UserDevice Schemas
+# ─── UserDevice Schemas ──────────────────────────────────────────────────────
+
 class UserDeviceBase(BaseModel):
+    """Schema cơ sở cho thiết bị người dùng (FCM token)."""
     device_token: str
     device_type: Optional[str] = None
 
@@ -186,8 +212,10 @@ class UserDevice(UserDeviceBase):
     userid: int
     model_config = ConfigDict(from_attributes=True)
 
-# UserFAQ Schemas
+# ─── UserFAQ Schemas ─────────────────────────────────────────────────────────
+
 class UserFAQBase(BaseModel):
+    """Schema cơ sở cho lịch sử xem FAQ của người dùng."""
     userid: int
     faqid: int
 
@@ -199,8 +227,10 @@ class UserFAQ(UserFAQBase):
     viewedat: datetime
     model_config = ConfigDict(from_attributes=True)
 
-# FAQ Schemas
+# ─── FAQ Schemas ─────────────────────────────────────────────────────────────
+
 class FAQBase(BaseModel):
+    """Schema cơ sở cho câu hỏi thường gặp."""
     question: str
     answer: str
     isactive: bool = True
@@ -212,8 +242,10 @@ class FAQ(FAQBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# Shipper Schemas
+# ─── Shipper Schemas ─────────────────────────────────────────────────────────
+
 class ShipperBase(BaseModel):
+    """Schema cơ sở cho người giao hàng."""
     name: str
     phone: str
     rating: Optional[int] = None
@@ -227,8 +259,10 @@ class Shipper(ShipperBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# Promotion Schemas
+# ─── Promotion Schemas ───────────────────────────────────────────────────────
+
 class PromotionBase(BaseModel):
+    """Schema cơ sở cho mã khuyến mãi."""
     code: str
     discounttype: str
     discountvalue: int
@@ -243,8 +277,10 @@ class Promotion(PromotionBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# Payment Schemas
+# ─── Payment Schemas ─────────────────────────────────────────────────────────
+
 class PaymentBase(BaseModel):
+    """Schema cơ sở cho thông tin thanh toán."""
     status: str
     method: str
     orderid: int
@@ -256,8 +292,10 @@ class Payment(PaymentBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# Delivery Schemas
+# ─── Delivery Schemas ────────────────────────────────────────────────────────
+
 class DeliveryBase(BaseModel):
+    """Schema cơ sở cho thông tin giao hàng."""
     status: str
     deliverytime: Optional[time] = None
     orderid: int
@@ -270,8 +308,10 @@ class Delivery(DeliveryBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# Review Schemas
+# ─── Review Schemas ──────────────────────────────────────────────────────────
+
 class ReviewBase(BaseModel):
+    """Schema cơ sở cho đánh giá của người dùng."""
     rating: int
     comment: Optional[str] = None
     orderid: int
@@ -295,14 +335,17 @@ class ReviewResponse(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
 class MenuItemWithReviews(MenuItemBase):
+    """Schema món ăn kèm danh sách đánh giá và điểm trung bình."""
     id: int
     restaurant_name: Optional[str] = None
     reviews: List["ReviewResponse"] = []
     avg_rating: float = 0.0
     model_config = ConfigDict(from_attributes=True)
 
-# Notification Schemas
+# ─── Notification Schemas ────────────────────────────────────────────────────
+
 class NotificationBase(BaseModel):
+    """Schema cơ sở cho thông báo đẩy."""
     title: str
     type: str
     content: str
@@ -319,8 +362,10 @@ class Notification(NotificationBase):
     createdat: datetime
     model_config = ConfigDict(from_attributes=True)
 
-# UsedPromotion Schemas
+# ─── UsedPromotion Schemas ───────────────────────────────────────────────────
+
 class UsedPromotionBase(BaseModel):
+    """Schema cơ sở cho mã khuyến mãi đã sử dụng."""
     usedat: date
     promotionid: int
     orderid: int
@@ -332,8 +377,10 @@ class UsedPromotion(UsedPromotionBase):
     id: int
     model_config = ConfigDict(from_attributes=True)
 
-# LoyaltyPoint Schemas
+# ─── LoyaltyPoint Schemas ────────────────────────────────────────────────────
+
 class LoyaltyPointBase(BaseModel):
+    """Schema cơ sở cho điểm tích lũy thành viên."""
     points: int = 0
     userid: int
     menuitemid: int
@@ -346,8 +393,10 @@ class LoyaltyPoint(LoyaltyPointBase):
     updatedat: date
     model_config = ConfigDict(from_attributes=True)
 
-# SocialShare Schemas
+# ─── SocialShare Schemas ─────────────────────────────────────────────────────
+
 class SocialShareBase(BaseModel):
+    """Schema cơ sở cho lượt chia sẻ mạng xã hội."""
     sharetype: str
     platform: str
     context: Optional[str] = None

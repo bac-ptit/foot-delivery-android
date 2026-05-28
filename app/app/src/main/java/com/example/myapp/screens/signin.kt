@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file signin.kt
+ * @brief Màn hình đăng nhập của ứng dụng giao đồ ăn.
+ *
+ * Cho phép người dùng nhập tên đăng nhập và mật khẩu để đăng nhập.
+ * Sau khi đăng nhập thành công, lưu access token và thông tin người dùng
+ * vào SharedPreferences, đồng bộ FCM token, rồi chuyển đến màn hình chính.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -17,7 +26,26 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình đăng nhập.
+ *
+ * Chức năng chính:
+ * - Nhập tên đăng nhập và mật khẩu
+ * - Gọi API đăng nhập và xử lý phản hồi
+ * - Lưu access token, user_id, user_name vào SharedPreferences
+ * - Đồng bộ FCM token cho thông báo đẩy
+ * - Lấy thông tin người dùng hiện tại sau khi đăng nhập
+ * - Xử lý lỗi và hiển thị thông báo từ server
+ */
 class signin : AppCompatActivity() {
+    /**
+     * Khởi tạo màn hình đăng nhập.
+     *
+     * Thiết lập layout, gán sự kiện click cho nút quay lại và nút đăng nhập.
+     * Xác thực đầu vào, gọi API đăng nhập, lưu token và chuyển màn hình.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signin)

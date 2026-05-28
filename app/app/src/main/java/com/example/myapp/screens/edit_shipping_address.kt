@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file edit_shipping_address.kt
+ * @brief Màn hình chỉnh sửa địa chỉ giao hàng.
+ *
+ * Cho phép người dùng cập nhật số điện thoại và địa chỉ giao hàng hiện có.
+ * Tải thông tin địa chỉ từ API và gọi API cập nhật khi người dùng lưu thay đổi.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -18,12 +25,31 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Màn hình chỉnh sửa địa chỉ giao hàng.
+ *
+ * Nhận address_id từ Intent, tải thông tin địa chỉ hiện tại từ API,
+ * hiển thị lên form cho người dùng chỉnh sửa. Sau khi cập nhật thành công,
+ * chuyển sang màn hình thông báo sửa địa chỉ thành công.
+ */
 class edit_shipping_address : AppCompatActivity() {
+    /** EditText nhập số điện thoại liên hệ */
     private lateinit var edtPhone: EditText
+    /** EditText nhập địa chỉ giao hàng */
     private lateinit var edtAddress: EditText
+    /** Nút lưu chỉnh sửa địa chỉ */
     private lateinit var btnEdit: Button
+    /** ID của địa chỉ cần chỉnh sửa */
     private var addressId: Int = -1
 
+    /**
+     * Khởi tạo màn hình chỉnh sửa địa chỉ giao hàng.
+     *
+     * Lấy address_id từ Intent, tải dữ liệu địa chỉ hiện tại,
+     * thiết lập form chỉnh sửa và các sự kiện nhấn.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_shipping_address)
@@ -90,6 +116,12 @@ class edit_shipping_address : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải thông tin địa chỉ giao hàng hiện tại từ API.
+     *
+     * Lấy danh sách địa chỉ theo userId, tìm địa chỉ có ID trùng khớp
+     * và hiển thị số điện thoại, địa chỉ lên form. Đóng màn hình nếu không tìm thấy.
+     */
     private fun loadAddressData() {
         val retrofit = Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8000/") // Android emulator localhost
@@ -125,6 +157,15 @@ class edit_shipping_address : AppCompatActivity() {
         })
     }
 
+    /**
+     * Gọi API cập nhật địa chỉ giao hàng.
+     *
+     * Tạo Retrofit client, xây dựng request với số điện thoại và địa chỉ mới,
+     * gọi API updateAddress. Chuyển sang màn hình thành công nếu cập nhật thành công.
+     *
+     * @param phone Số điện thoại liên hệ mới.
+     * @param address Địa chỉ giao hàng mới.
+     */
     private fun updateAddress(phone: String, address: String) {
         val retrofit = Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8000/") // Android emulator localhost

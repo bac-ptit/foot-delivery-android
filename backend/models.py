@@ -1,8 +1,16 @@
+"""
+Module: models.py
+
+Định nghĩa tất cả SQLAlchemy ORM models cho cơ sở dữ liệu ứng dụng đặt món.
+Bao gồm 19 model: User, Restaurant, MenuItem, Orders, Payment, Delivery, Review, v.v.
+"""
+
 from sqlalchemy import Column, Integer, String, Boolean, Numeric, Text, Date, Time, ForeignKey, DateTime, func
 from sqlalchemy.orm import relationship
 from database import Base
 
 class Category(Base):
+    """ORM model cho bảng category, phân loại món ăn."""
     __tablename__ = "category"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
@@ -11,6 +19,7 @@ class Category(Base):
     menu_items = relationship("MenuItem", back_populates="category")
 
 class FAQ(Base):
+    """ORM model cho bảng faq, lưu trữ câu hỏi thường gặp."""
     __tablename__ = "faq"
     id = Column(Integer, primary_key=True, index=True)
     question = Column(String(255))
@@ -19,6 +28,7 @@ class FAQ(Base):
     user_faqs = relationship("UserFAQ", back_populates="faq")
 
 class User(Base):
+    """ORM model cho bảng User, lưu trữ thông tin tài khoản người dùng."""
     __tablename__ = "User"  # Quoted in SQL as "User"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
@@ -39,6 +49,7 @@ class User(Base):
     social_shares = relationship("SocialShare", back_populates="user")
 
 class Shipper(Base):
+    """ORM model cho bảng shipper, quản lý thông tin người giao hàng."""
     __tablename__ = "shipper"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
@@ -49,6 +60,7 @@ class Shipper(Base):
     deliveries = relationship("Delivery", back_populates="shipper")
 
 class Promotion(Base):
+    """ORM model cho bảng promotion, mã khuyến mãi và giảm giá."""
     __tablename__ = "promotion"
     id = Column(Integer, primary_key=True, index=True)
     code = Column(String(255))
@@ -60,6 +72,7 @@ class Promotion(Base):
     used_promotions = relationship("UsedPromotion", back_populates="promotion")
 
 class Restaurant(Base):
+    """ORM model cho bảng restaurant, thông tin nhà hàng."""
     __tablename__ = "restaurant"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
@@ -78,6 +91,7 @@ class Restaurant(Base):
     social_shares = relationship("SocialShare", back_populates="restaurant")
 
 class MenuItem(Base):
+    """ORM model cho bảng menuitem, món ăn thuộc nhà hàng."""
     __tablename__ = "menuitem"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(255), nullable=False)
@@ -95,6 +109,7 @@ class MenuItem(Base):
     social_shares = relationship("SocialShare", back_populates="menu_item")
 
 class Address(Base):
+    """ORM model cho bảng address, địa chỉ giao hàng của người dùng."""
     __tablename__ = "address"
     id = Column(Integer, primary_key=True, index=True)
     detail = Column(Text)
@@ -105,6 +120,7 @@ class Address(Base):
     orders = relationship("Orders", back_populates="address")
 
 class Orders(Base):
+    """ORM model cho bảng orders, đơn hàng đặt món."""
     __tablename__ = "orders"
     id = Column(Integer, primary_key=True, index=True)
     status = Column(String(255), nullable=False)
@@ -126,6 +142,7 @@ class Orders(Base):
     notifications = relationship("Notification", back_populates="order")
 
 class OrderItem(Base):
+    """ORM model cho bảng orderitem, chi tiết từng món trong đơn hàng."""
     __tablename__ = "orderitem"
     id = Column(Integer, primary_key=True, index=True)
     quantity = Column(Integer, nullable=False)
@@ -137,6 +154,7 @@ class OrderItem(Base):
     menu_item = relationship("MenuItem", back_populates="order_items")
 
 class Payment(Base):
+    """ORM model cho bảng payment, thông tin thanh toán đơn hàng."""
     __tablename__ = "payment"
     id = Column(Integer, primary_key=True, index=True)
     status = Column(String(255), nullable=False)
@@ -145,6 +163,7 @@ class Payment(Base):
     order = relationship("Orders", back_populates="payments")
 
 class Delivery(Base):
+    """ORM model cho bảng delivery, thông tin giao hàng."""
     __tablename__ = "delivery"
     id = Column(Integer, primary_key=True, index=True)
     status = Column(String(255), nullable=False)
@@ -156,6 +175,7 @@ class Delivery(Base):
     shipper = relationship("Shipper", back_populates="deliveries")
 
 class Review(Base):
+    """ORM model cho bảng review, đánh giá của người dùng về món ăn và nhà hàng."""
     __tablename__ = "review"
     id = Column(Integer, primary_key=True, index=True)
     rating = Column(Integer)
@@ -171,6 +191,7 @@ class Review(Base):
     order = relationship("Orders")
 
 class Notification(Base):
+    """ORM model cho bảng notification, thông báo đẩy đến người dùng."""
     __tablename__ = "notification"
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String(255))
@@ -187,6 +208,7 @@ class Notification(Base):
     session = relationship("ChatSession", back_populates="notifications")
 
 class ChatSession(Base):
+    """ORM model cho bảng chatsession, phiên trò chuyện với chatbot AI."""
     __tablename__ = "chatsession"
     id = Column(Integer, primary_key=True, index=True)
     createdat = Column(DateTime, server_default=func.now())
@@ -198,6 +220,7 @@ class ChatSession(Base):
     notifications = relationship("Notification", back_populates="session")
 
 class ChatMessage(Base):
+    """ORM model cho bảng chatmessage, tin nhắn trong phiên trò chuyện."""
     __tablename__ = "chatmessage"
     id = Column(Integer, primary_key=True, index=True)
     senderrole = Column(String(255))  # "user" hoặc "bot"
@@ -208,6 +231,7 @@ class ChatMessage(Base):
     session = relationship("ChatSession", back_populates="messages")
 
 class UserDevice(Base):
+    """ORM model cho bảng userdevice, FCM token thiết bị của người dùng."""
     __tablename__ = "userdevice"
     id = Column(Integer, primary_key=True, index=True)
     device_token = Column(String(255), nullable=False)
@@ -218,6 +242,7 @@ class UserDevice(Base):
     user = relationship("User", back_populates="user_devices")
 
 class UserFAQ(Base):
+    """ORM model cho bảng userfaq, lịch sử xem FAQ của người dùng."""
     __tablename__ = "userfaq"
     id = Column(Integer, primary_key=True, index=True)
     viewedat = Column(DateTime, server_default=func.now())
@@ -228,6 +253,7 @@ class UserFAQ(Base):
     faq = relationship("FAQ", back_populates="user_faqs")
 
 class UsedPromotion(Base):
+    """ORM model cho bảng usedpromotion, mã khuyến mãi đã sử dụng."""
     __tablename__ = "usedpromotion"
     id = Column(Integer, primary_key=True, index=True)
     usedat = Column(Date)
@@ -238,6 +264,7 @@ class UsedPromotion(Base):
     order = relationship("Orders", back_populates="used_promotions")
 
 class LoyaltyPoint(Base):
+    """ORM model cho bảng loaltypoint, điểm tích lũy thành viên."""
     __tablename__ = "loyaltypoint"
     id = Column(Integer, primary_key=True, index=True)
     points = Column(Integer, default=0)
@@ -249,6 +276,7 @@ class LoyaltyPoint(Base):
     menu_item = relationship("MenuItem")
 
 class SocialShare(Base):
+    """ORM model cho bảng socialshare, lượt chia sẻ mạng xã hội."""
     __tablename__ = "socialshare"
     id = Column(Integer, primary_key=True, index=True)
     sharetype = Column(String(255))

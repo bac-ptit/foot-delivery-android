@@ -1,5 +1,14 @@
 package com.example.myapp.screens
 
+/**
+ * @file payment_successful.kt
+ * @brief Màn hình thanh toán thành công.
+ *
+ * Hiển thị thông báo thanh toán thành công sau khi hoàn tất đơn hàng.
+ * Nếu là thanh toán COD, tự động cập nhật trạng thái đơn hàng thành "confirmed"
+ * để backend gửi thông báo. Cung cấp nút trở về trang chủ.
+ */
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -15,7 +24,21 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity hiển thị màn hình thanh toán thành công.
+ *
+ * Nhận `order_id` từ Intent. Nếu là đơn COD, cập nhật trạng thái
+ * đơn hàng thành "confirmed" để kích hoạt gửi thông báo từ backend.
+ * Cung cấp nút "Trở về trang chủ" xóa toàn bộ Activity stack.
+ */
 class payment_successful : AppCompatActivity() {
+    /**
+     * Khởi tạo Activity, cập nhật trạng thái đơn COD và thiết lập giao diện.
+     *
+     * Nếu order_id hợp lệ, gọi API cập nhật trạng thái thành "confirmed".
+     * Thiết lập nút trở về trang chủ với FLAG_ACTIVITY_CLEAR_TASK,
+     * các nút điều hướng (profile, home, giỏ hàng).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.payment_successful)
@@ -59,6 +82,15 @@ class payment_successful : AppCompatActivity() {
         }
     }
 
+    /**
+     * Cập nhật trạng thái đơn hàng COD thành "confirmed".
+     *
+     * Gọi API updateOrderStatus để xác nhận đơn hàng COD,
+     * từ đó backend sẽ gửi thông báo đến khách hàng.
+     * Hiển thị Toast nếu cập nhật thất bại.
+     *
+     * @param orderId ID đơn hàng cần cập nhật trạng thái
+     */
     private fun updateOrderStatusToCODConfirmed(orderId: Int) {
         RetrofitClient.apiService.updateOrderStatus(orderId, OrderStatusUpdateRequest("confirmed"))
             .enqueue(object : Callback<OrderResponse> {

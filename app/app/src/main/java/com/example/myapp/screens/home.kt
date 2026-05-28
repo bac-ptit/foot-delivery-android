@@ -1,5 +1,13 @@
 package com.example.myapp.screens
 
+/**
+ * @file home.kt
+ * @brief Màn hình chính (Home) của ứng dụng giao đồ ăn.
+ *
+ * Hiển thị danh sách món ăn dạng cuộn ngang (horizontal RecyclerView),
+ * thanh tìm kiếm với debounce, và các nút điều hướng đến
+ * Hồ sơ, Thông báo, Giỏ hàng, và Danh sách nhà hàng.
+ */
 
 import android.content.Intent
 import android.os.Bundle
@@ -25,16 +33,41 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+/**
+ * Activity màn hình chính hiển thị danh sách món ăn.
+ *
+ * Chức năng chính:
+ * - Hiển thị danh sách món ăn dạng RecyclerView cuộn ngang
+ * - Tìm kiếm món ăn theo tên hoặc danh mục với debounce 500ms
+ * - Điều hướng đến Hồ sơ, Thông báo, Giỏ hàng, Danh sách nhà hàng
+ */
 class home : AppCompatActivity() {
+    /** Danh sách tất cả món ăn lấy từ API */
     private var menuItems: List<MenuItem> = emptyList()
+    /** RecyclerView hiển thị danh sách món ăn */
     private lateinit var rvMenuItems: RecyclerView
+    /** Adapter cho RecyclerView danh sách món ăn */
     private lateinit var menuItemAdapter: MenuItemAdapter
+    /** EditText thanh tìm kiếm */
     private lateinit var edtSearch: EditText
+    /** Call API tìm kiếm hiện tại (dùng để hủy khi có tìm kiếm mới) */
     private var searchJob: Call<List<MenuItem>>? = null
+    /** Handler chạy trên main thread cho debounce tìm kiếm */
     private val searchHandler = Handler(Looper.getMainLooper())
+    /** Runnable tìm kiếm hiện tại (dùng để hủy khi có tìm kiếm mới) */
     private var searchRunnable: Runnable? = null
+    /** Thời gian chờ debounce tìm kiếm (500ms) */
     private val SEARCH_DELAY = 500L // 500ms delay for debouncing
 
+    /**
+     * Khởi tạo màn hình chính.
+     *
+     * Thiết lập layout, gán sự kiện click cho các nút điều hướng,
+     * thiết lập RecyclerView, TextWatcher cho thanh tìm kiếm với debounce,
+     * và gọi API lấy danh sách món ăn.
+     *
+     * @param savedInstanceState Trạng thái đã lưu của Activity (nếu có)
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home)
@@ -100,6 +133,13 @@ class home : AppCompatActivity() {
         fetchMenuItems()
     }
 
+    /**
+     * Gọi API lấy tất cả món ăn từ server.
+     *
+     * Hủy yêu cầu tìm kiếm đang chạy trước khi gửi yêu cầu mới.
+     * Cập nhật danh sách menuItems và hiển thị lên RecyclerView.
+     * Hiển thị Toast lỗi nếu kết nối thất bại.
+     */
     private fun fetchMenuItems() {
         // Cancel any ongoing search
         searchJob?.cancel()
@@ -122,6 +162,14 @@ class home : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tìm kiếm món ăn theo tên.
+     *
+     * Hủy yêu cầu tìm kiếm cũ, gửi yêu cầu mới với từ khóa.
+     * Nếu không tìm thấy theo tên, tự động chuyển sang tìm theo danh mục.
+     *
+     * @param query Từ khóa tìm kiếm
+     */
     private fun searchMenuItems(query: String) {
         // Cancel any ongoing search
         searchJob?.cancel()
@@ -152,6 +200,14 @@ class home : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tìm kiếm món ăn theo danh mục.
+     *
+     * Được gọi khi tìm kiếm theo tên không có kết quả.
+     * Hiển thị Toast nếu không tìm thấy kết quả nào.
+     *
+     * @param query Từ khóa tìm kiếm danh mục
+     */
     private fun searchByCategory(query: String) {
         searchJob = RetrofitClient.apiService.searchMenuItemsByCategory(query)
         searchJob?.enqueue(object : Callback<List<MenuItem>> {
@@ -176,6 +232,12 @@ class home : AppCompatActivity() {
         })
     }
 
+    /**
+     * Hiển thị danh sách món ăn lên RecyclerView.
+     *
+     * Tạo MenuItemAdapter mới với dữ liệu menuItems hiện tại
+     * và gán cho RecyclerView.
+     */
     private fun displayMenuItems() {
         menuItemAdapter = MenuItemAdapter(this, menuItems)
         rvMenuItems.adapter = menuItemAdapter

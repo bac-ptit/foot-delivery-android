@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file add_shipping_address.kt
+ * @brief Màn hình thêm địa chỉ giao hàng mới.
+ *
+ * Cho phép người dùng nhập số điện thoại và địa chỉ giao hàng,
+ * sau đó gọi API để tạo địa chỉ mới.
+ */
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -18,11 +25,29 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * Màn hình thêm địa chỉ giao hàng mới.
+ *
+ * Cung cấp form nhập số điện thoại và địa chỉ. Kiểm tra dữ liệu đầu vào
+ * trước khi gọi API tạo địa chỉ. Sau khi thành công, chuyển sang màn hình
+ * thông báo thêm địa chỉ thành công.
+ */
 class add_shipping_address : AppCompatActivity() {
+    /** EditText nhập số điện thoại liên hệ */
     private lateinit var edtPhone: EditText
+    /** EditText nhập địa chỉ giao hàng */
     private lateinit var edtAddress: EditText
+    /** Nút thêm địa chỉ mới */
     private lateinit var btnAdd: Button
 
+    /**
+     * Khởi tạo màn hình thêm địa chỉ giao hàng.
+     *
+     * Thiết lập form nhập liệu, đăng ký sự kiện cho nút thêm,
+     * nút quay lại và thanh điều hướng dưới cùng.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.add_shipping_address)
@@ -83,6 +108,16 @@ class add_shipping_address : AppCompatActivity() {
         }
     }
 
+    /**
+     * Gọi API tạo địa chỉ giao hàng mới.
+     *
+     * Tạo Retrofit client, xây dựng request với số điện thoại, địa chỉ và userId,
+     * sau đó gọi API createAddress. Chuyển sang màn hình thành công nếu thành công.
+     *
+     * @param phone Số điện thoại liên hệ.
+     * @param address Địa chỉ giao hàng chi tiết.
+     * @param userId ID của người dùng hiện tại.
+     */
     private fun createAddress(phone: String, address: String, userId: Int) {
         val retrofit = Retrofit.Builder()
             .baseUrl("http://10.0.2.2:8000/") // Android emulator localhost

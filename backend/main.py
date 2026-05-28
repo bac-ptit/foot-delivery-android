@@ -1,3 +1,10 @@
+"""
+Module: main.py
+
+FastAPI application chính của hệ thống Đặt Món.
+Định nghĩa tất cả REST API endpoints: auth, user, restaurant, menu, order, payment, chatbot, notification.
+"""
+
 from fastapi import FastAPI, Depends, HTTPException, File, UploadFile, Form, status
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.middleware.cors import CORSMiddleware
@@ -37,6 +44,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
+    """Endpoint gốc, trả lời chào mừng API."""
     return {"message": "Welcome to Đặt Món Food Delivery API"}
 
 
@@ -45,6 +53,7 @@ def read_root():
 
 @app.post("/token", response_model=schemas.Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+    """Đăng nhập bằng username/password, trả về JWT access token."""
     user = db.query(models.User).filter(models.User.username == form_data.username).first()
     if not user or not auth.verify_password(form_data.password, user.password):
         raise HTTPException(
@@ -64,6 +73,7 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.post("/users/", response_model=schemas.User)
 def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
+    """Đăng ký tài khoản người dùng mới."""
     # Check if user exists
     db_user = db.query(models.User).filter(models.User.email == user.email).first()
     if db_user:
@@ -86,6 +96,7 @@ def create_user(user: schemas.UserCreate, db: Session = Depends(get_db)):
 
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(auth.get_current_user)):
+    """Lấy thông tin người dùng hiện tại từ JWT token."""
     return current_user
 
 
@@ -112,6 +123,7 @@ async def update_device_token(
 
 @app.get("/users/", response_model=List[schemas.User])
 def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Lấy danh sách tất cả người dùng (phân trang)."""
     users = db.query(models.User).offset(skip).limit(limit).all()
     return users
 
@@ -121,6 +133,7 @@ def read_users(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
 
 @app.post("/addresses/", response_model=schemas.Address)
 def create_address(address: schemas.AddressCreate, db: Session = Depends(get_db)):
+    """Tạo địa chỉ giao hàng mới cho người dùng."""
     db_address = models.Address(detail=address.detail, phone=address.phone, userid=address.userid)
     db.add(db_address)
     db.commit()
@@ -130,6 +143,7 @@ def create_address(address: schemas.AddressCreate, db: Session = Depends(get_db)
 
 @app.get("/users/{user_id}/addresses/", response_model=List[schemas.Address])
 def read_user_addresses(user_id: int, db: Session = Depends(get_db)):
+    """Lấy danh sách địa chỉ giao hàng của người dùng."""
     return db.query(models.Address).filter(models.Address.userid == user_id).all()
 
 
@@ -156,11 +170,13 @@ def update_address(address_id: int, address: schemas.AddressUpdate, db: Session 
 
 @app.get("/categories/", response_model=List[schemas.Category])
 def read_categories(db: Session = Depends(get_db)):
+    """Lấy danh sách tất cả danh mục món ăn."""
     return db.query(models.Category).all()
 
 
 @app.get("/promotions/", response_model=List[schemas.Promotion])
 def read_promotions(active_only: bool = True, db: Session = Depends(get_db)):
+    """Lấy danh sách mã khuyến mãi, mặc định chỉ lấy mã đang active."""
     query = db.query(models.Promotion)
     if active_only:
         query = query.filter(models.Promotion.status.ilike("active"))
@@ -172,6 +188,7 @@ def read_promotions(active_only: bool = True, db: Session = Depends(get_db)):
 
 @app.post("/chat/", response_model=schemas.ChatMessage)
 async def chat_with_bot(
+    """Gửi tin nhắn đến chatbot AI và nhận phản hồi."""
     chat_input: schemas.ChatMessageCreate,
     session_id: Optional[int] = None,
     current_user: models.User = Depends(auth.get_current_user),
@@ -213,6 +230,7 @@ async def chat_with_bot(
 
 @app.post("/restaurants/", response_model=schemas.Restaurant)
 async def create_restaurant(
+    """Tạo nhà hàng mới với ảnh upload lên Firebase Storage."""
     name: str = Form(...),
     address: Optional[str] = Form(None),
     phone_number: str = Form(...),
@@ -242,6 +260,7 @@ async def create_restaurant(
 
 @app.get("/restaurants/", response_model=List[schemas.Restaurant])
 def read_restaurants(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
+    """Lấy danh sách tất cả nhà hàng (phân trang)."""
     restaurants = db.query(models.Restaurant).offset(skip).limit(limit).all()
     return restaurants
 
@@ -257,6 +276,7 @@ def search_restaurants_by_name(name: str, skip: int = 0, limit: int = 100, db: S
 
 @app.get("/restaurants/{restaurant_id}/", response_model=schemas.Restaurant)
 def read_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
+    """Lấy chi tiết nhà hàng theo ID."""
     restaurant = db.query(models.Restaurant).filter(models.Restaurant.id == restaurant_id).first()
     if not restaurant:
         raise HTTPException(status_code=404, detail="Restaurant not found")
@@ -268,6 +288,7 @@ def read_restaurant(restaurant_id: int, db: Session = Depends(get_db)):
 
 @app.post("/menu-items/", response_model=schemas.MenuItem)
 async def create_menu_item(
+    """Tạo món ăn mới với ảnh upload lên Firebase Storage."""
     name: str = Form(...),
     price: Decimal = Form(...),
     description: Optional[str] = Form(None),
@@ -348,6 +369,7 @@ def read_all_menu_items(skip: int = 0, limit: int = 100, db: Session = Depends(g
 
 @app.get("/restaurants/{restaurant_id}/menu/", response_model=List[schemas.MenuItem])
 def read_restaurant_menu(restaurant_id: int, db: Session = Depends(get_db)):
+    """Lấy danh sách món ăn của một nhà hàng."""
     return db.query(models.MenuItem).filter(models.MenuItem.restaurantid == restaurant_id).all()
 
 
@@ -399,6 +421,7 @@ def read_menu_item_detail(menu_item_id: int, db: Session = Depends(get_db)):
 # --- VNPAY RETURN ---
 @app.get("/vnpay_return")
 async def vnpay_return(request: Request, db: Session = Depends(get_db)):
+    """Callback từ VNPay sau khi thanh toán, cập nhật trạng thái đơn hàng."""
 
 
     params = dict(request.query_params)
@@ -471,6 +494,7 @@ async def vnpay_return(request: Request, db: Session = Depends(get_db)):
 
 @app.get("/create-payment")
 async def create_payment(
+    """Tạo URL thanh toán VNPay cho đơn hàng."""
     order_id: str,
     amount: int,
     request: Request
@@ -495,6 +519,7 @@ async def create_payment(
 
 @app.post("/orders/", response_model=schemas.Order)
 def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
+    """Tạo đơn hàng mới kèm danh sách món ăn và gửi thông báo."""
     db_order = models.Orders(
         status=order.status,
         preorderdate=order.preorderdate,
@@ -539,11 +564,13 @@ def create_order(order: schemas.OrderCreate, db: Session = Depends(get_db)):
 
 @app.get("/users/{user_id}/orders/", response_model=List[schemas.Order])
 def read_user_orders(user_id: int, db: Session = Depends(get_db)):
+    """Lấy danh sách đơn hàng của người dùng."""
     return db.query(models.Orders).filter(models.Orders.userid == user_id).all()
 
 
 @app.get("/orders/{order_id}/detail", response_model=schemas.OrderDetail)
 def read_order_detail(order_id: int, db: Session = Depends(get_db)):
+    """Lấy chi tiết đơn hàng kèm tên nhà hàng, địa chỉ và danh sách món."""
     order = db.query(models.Orders).filter(models.Orders.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -580,6 +607,7 @@ def read_order_detail(order_id: int, db: Session = Depends(get_db)):
 
 @app.put("/orders/{order_id}/status", response_model=schemas.Order)
 def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: Session = Depends(get_db)):
+    """Cập nhật trạng thái đơn hàng và gửi thông báo tương ứng."""
     order = db.query(models.Orders).filter(models.Orders.id == order_id).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -630,6 +658,7 @@ def update_order_status(order_id: int, payload: schemas.OrderStatusUpdate, db: S
 
 @app.post("/reviews/", response_model=schemas.Review)
 def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db)):
+    """Tạo đánh giá cho đơn hàng và cập nhật điểm trung bình nhà hàng."""
     order = db.query(models.Orders).filter(models.Orders.id == review.orderid).first()
     if not order:
         raise HTTPException(status_code=404, detail="Order not found")
@@ -671,6 +700,7 @@ def create_review(review: schemas.ReviewCreate, db: Session = Depends(get_db)):
 
 @app.get("/users/{user_id}/profile-summary", response_model=schemas.UserProfileSummary)
 def read_user_profile_summary(user_id: int, db: Session = Depends(get_db)):
+    """Lấy tóm tắt hồ sơ người dùng: điểm, đơn hàng đã giao, tổng chi tiêu."""
     user = db.query(models.User).filter(models.User.id == user_id).first()
     if not user:
         raise HTTPException(status_code=404, detail="User not found")

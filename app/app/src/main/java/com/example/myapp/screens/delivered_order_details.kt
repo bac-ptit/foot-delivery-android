@@ -1,5 +1,13 @@
 package com.example.myapp.screens
 
+/**
+ * @file delivered_order_details.kt
+ * @brief Màn hình chi tiết đơn hàng đã giao thành công.
+ *
+ * Cho phép người dùng xem thông tin chi tiết của một đơn hàng đã hoàn thành,
+ * bao gồm danh sách món ăn, tổng số lượng, địa chỉ giao hàng và thành tiền.
+ * Người dùng có thể đặt lại đơn hàng cũ từ màn hình này.
+ */
 
 import android.content.Intent
 import android.os.Bundle
@@ -23,10 +31,26 @@ import java.util.Date
 import java.util.Locale
 
 
+/**
+ * Activity hiển thị chi tiết đơn hàng đã giao.
+ *
+ * Nhận `order_id` từ Intent, tải chi tiết đơn hàng từ API và hiển thị
+ * danh sách món ăn, tổng tiền, địa chỉ giao hàng. Hỗ trợ chức năng
+ * "Đặt lại" để chuyển sang màn hình đặt hàng với các món từ đơn cũ.
+ *
+ * @property orderId ID của đơn hàng cần hiển thị, mặc định -1 nếu không hợp lệ
+ * @property loadedOrderDetail Chi tiết đơn hàng đã tải từ API, dùng cho chức năng đặt lại
+ */
 class delivered_order_details : AppCompatActivity() {
     private var orderId: Int = -1
     private var loadedOrderDetail: OrderDetailResponse? = null
 
+    /**
+     * Khởi tạo Activity, thiết lập giao diện và các sự kiện click.
+     *
+     * Tải chi tiết đơn hàng từ API nếu order_id hợp lệ.
+     * Thiết lập các nút điều hướng: quay lại, đặt lại, profile, home, giỏ hàng.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.delivered_order_details)
@@ -69,6 +93,14 @@ class delivered_order_details : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải chi tiết đơn hàng từ API theo ID.
+     *
+     * Gọi API getOrderDetail và hiển thị dữ liệu lên giao diện.
+     * Hiển thị Toast lỗi nếu tải thất bại.
+     *
+     * @param orderId ID của đơn hàng cần tải
+     */
     private fun loadOrderDetail(orderId: Int) {
         RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object : Callback<OrderDetailResponse> {
             override fun onResponse(call: Call<OrderDetailResponse>, response: Response<OrderDetailResponse>) {
@@ -85,6 +117,14 @@ class delivered_order_details : AppCompatActivity() {
         })
     }
 
+    /**
+     * Liên kết dữ liệu đơn hàng lên giao diện.
+     *
+     * Hiển thị tiêu đề với mã đơn hàng và ngày tạo, danh sách món ăn,
+     * tổng số lượng, địa chỉ giao hàng và thành tiền.
+     *
+     * @param order Chi tiết đơn hàng từ API
+     */
     private fun bindOrder(order: OrderDetailResponse) {
         loadedOrderDetail = order
         val fmt = NumberFormat.getNumberInstance(Locale("vi", "VN"))
@@ -109,6 +149,13 @@ class delivered_order_details : AppCompatActivity() {
         content.text = "${itemSummary}\nTổng số món: $totalQuantity\nĐịa chỉ: ${order.address_detail ?: "N/A"}\nPhương thức thanh toán: Thanh toán online/cash\nVoucher: Không có\nThành tiền: ${fmt.format(order.totalprice)}đ"
     }
 
+    /**
+     * Xử lý chức năng đặt lại đơn hàng.
+     *
+     * Chuyển sang màn hình đặt hàng (order) với `reorder_order_id` để
+     * tự động tải lại các món ăn từ đơn hàng cũ. Hiển thị Toast nếu
+     * đơn hàng chưa được tải xong.
+     */
     private fun reorderCurrentOrder() {
         val sourceOrder = loadedOrderDetail
         if (sourceOrder == null) {
@@ -123,6 +170,12 @@ class delivered_order_details : AppCompatActivity() {
         startActivity(intent)
     }
 
+    /**
+     * Định dạng chuỗi ngày từ ISO 8601 sang định dạng dd/MM/yyyy.
+     *
+     * @param raw Chuỗi ngày ở định dạng "yyyy-MM-dd'T'HH:mm:ss"
+     * @return Chuỗi ngày đã định dạng hoặc 10 ký tự đầu nếu parse thất bại
+     */
     private fun formatDate(raw: String): String {
         return try {
             val parser = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.US)

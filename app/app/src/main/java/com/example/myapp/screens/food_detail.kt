@@ -1,5 +1,15 @@
 package com.example.myapp.screens
 
+/**
+ * @file food_detail.kt
+ * @brief Màn hình chi tiết món ăn.
+ *
+ * Hiển thị thông tin đầy đủ của một món ăn bao gồm hình ảnh, giá,
+ * mô tả, đánh giá trung bình và danh sách nhận xét từ người dùng.
+ * Hỗ trợ chọn số lượng, thêm vào giỏ hàng, đặt trước và chia sẻ món ăn.
+ * Có thể nhận dữ liệu từ Deep Link hoặc Intent thông thường.
+ */
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -20,6 +30,22 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Activity hiển thị chi tiết món ăn.
+ *
+ * Nhận dữ liệu món ăn từ Deep Link (yourapp.com/food?id=) hoặc Intent extras.
+ * Hiển thị hình ảnh, tên, giá, mô tả, đánh giá sao và danh sách review.
+ * Cho phép người dùng tăng/giảm số lượng, thêm vào giỏ hàng hoặc đặt trước.
+ *
+ * @property qty Số lượng món ăn hiện tại, mặc định là 1
+ * @property price Đơn giá của món ăn (VND)
+ * @property foodId ID của món ăn, -1 nếu không hợp lệ
+ * @property foodName Tên món ăn
+ * @property foodImageUrl URL hình ảnh món ăn
+ * @property foodDescription Mô tả món ăn
+ * @property reviews Danh sách đánh giá của người dùng
+ * @property avgRating Điểm đánh giá trung bình (hỗ trợ sao lẻ như 4.3, 4.5)
+ */
 class food_detail : AppCompatActivity() {
     private var qty = 1
     private var price = 0
@@ -30,6 +56,13 @@ class food_detail : AppCompatActivity() {
     private var reviews: List<ReviewDetail>? = null
     private var avgRating: Float = 0f
 
+    /**
+     * Khởi tạo Activity, xử lý Deep Link hoặc Intent để lấy dữ liệu món ăn.
+     *
+     * Nếu có Deep Link (yourapp.com/food?id=), lấy ID từ query parameter.
+     * Ngược lại, lấy dữ liệu từ Intent extras.
+     * Gọi API để tải chi tiết món ăn kèm đánh giá.
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_food_detail)
@@ -59,6 +92,14 @@ class food_detail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Tải chi tiết món ăn từ API theo ID (dùng cho Deep Link).
+     *
+     * Gọi API getMenuItemDetail và cập nhật các thuộc tính món ăn
+     * (tên, giá, mô tả, hình ảnh, đánh giá) trước khi thiết lập giao diện.
+     *
+     * @param id ID của món ăn cần tải
+     */
     private fun fetchFoodDetails(id: Int) {
         RetrofitClient.apiService.getMenuItemDetail(id).enqueue(object : Callback<MenuItem> {
             override fun onResponse(call: Call<MenuItem>, response: Response<MenuItem>) {
@@ -84,6 +125,14 @@ class food_detail : AppCompatActivity() {
         })
     }
 
+    /**
+     * Tải chi tiết món ăn kèm đánh giá từ API (dùng cho Intent thông thường).
+     *
+     * Tương tự fetchFoodDetails nhưng có fallback: nếu API thất bại,
+     * vẫn gọi setupUI() với dữ liệu đã có từ Intent extras.
+     *
+     * @param id ID của món ăn cần tải
+     */
     private fun fetchFoodDetailsWithReviews(id: Int) {
         RetrofitClient.apiService.getMenuItemDetail(id).enqueue(object : Callback<MenuItem> {
             override fun onResponse(call: Call<MenuItem>, response: Response<MenuItem>) {
@@ -110,6 +159,13 @@ class food_detail : AppCompatActivity() {
         })
     }
 
+    /**
+     * Thiết lập giao diện chi tiết món ăn.
+     *
+     * Hiển thị tên, giá, mô tả, hình ảnh và đánh giá trung bình.
+     * Thiết lập các nút tăng/giảm số lượng, thêm vào giỏ hàng,
+     * đặt trước, chia sẻ và quay lại. Hiển thị danh sách review.
+     */
     private fun setupUI() {
         val btnshare: ImageView = findViewById(R.id.btn_share)
         btnshare.setOnClickListener {
@@ -186,6 +242,13 @@ class food_detail : AppCompatActivity() {
         refresh()
     }
 
+    /**
+     * Hiển thị danh sách đánh giá của người dùng.
+     *
+     * Tạo động các View cho mỗi review (tối đa 10) với tên người dùng,
+     * số sao đánh giá và nội dung nhận xét. Thêm background trắng
+     * và bóng đổ cho mỗi review card.
+     */
     private fun displayReviews() {
         try {
             val reviewsContainer: LinearLayout? = findViewById(R.id.reviewsContainer)
@@ -244,6 +307,13 @@ class food_detail : AppCompatActivity() {
         }
     }
 
+    /**
+     * Thêm món ăn vào giỏ hàng.
+     *
+     * Nếu món ăn đã có trong giỏ, cộng dồn số lượng.
+     * Nếu chưa có, tạo mới CartItem với thông tin hiện tại.
+     * Hiển thị Toast xác nhận và đóng Activity sau khi thêm.
+     */
     private fun addToCart() {
         if (foodId == -1) {
             Toast.makeText(this, "Lỗi dữ liệu món ăn", Toast.LENGTH_SHORT).show()

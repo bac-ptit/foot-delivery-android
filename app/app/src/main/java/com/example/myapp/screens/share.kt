@@ -1,5 +1,12 @@
 package com.example.myapp.screens
 
+/** @file share.kt
+ * @brief Màn hình chia sẻ thông tin món ăn.
+ *
+ * Hiển thị chi tiết món ăn và cho phép người dùng chia sẻ
+ * lên các mạng xã hội (Facebook, Zalo, Twitter, Messenger).
+ */
+
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,11 +20,29 @@ import com.squareup.picasso.Picasso
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Màn hình chia sẻ thông tin món ăn lên mạng xã hội.
+ *
+ * Hiển thị tên, mô tả, giá và hình ảnh món ăn.
+ * Cung cấp nút chia sẻ nhanh lên Facebook, Zalo, Twitter và Messenger
+ * thông qua Intent.ACTION_SEND.
+ */
 class share : AppCompatActivity() {
+    /** ID của món ăn cần chia sẻ */
     private var foodId: Int = -1
+    /** Tên của món ăn cần chia sẻ */
     private var foodName: String = ""
+    /** Mô tả của món ăn cần chia sẻ */
     private var foodDescription: String = ""
 
+    /**
+     * Khởi tạo màn hình chia sẻ món ăn.
+     *
+     * Nhận thông tin món ăn từ Intent (id, tên, giá, mô tả, hình ảnh),
+     * hiển thị lên giao diện và thiết lập các nút chia sẻ mạng xã hội.
+     *
+     * @param savedInstanceState Trạng thái đã lưu trước đó (nếu có).
+     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_share)
@@ -55,6 +80,15 @@ class share : AppCompatActivity() {
         findViewById<ImageView>(R.id.btnBack).setOnClickListener { finish() }
     }
 
+    /**
+     * Chia sẻ thông tin món ăn đến ứng dụng được chỉ định.
+     *
+     * Tạo nội dung chia sẻ bao gồm tên món, mô tả và link chi tiết.
+     * Sử dụng Intent.ACTION_SEND với package chỉ định. Nếu ứng dụng không
+     * được cài đặt, hiển thị chooser mặc định làm fallback.
+     *
+     * @param packageName Tên package của ứng dụng nhận chia sẻ (ví dụ: com.facebook.katana).
+     */
     private fun shareToApp(packageName: String) {
         val shareLink = "https://yourapp.com/food?id=$foodId"
         val shareText = "Thử ngay món $foodName cực ngon tại MyApp!\n$foodDescription\nXem chi tiết tại: $shareLink"
