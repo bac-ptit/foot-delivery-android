@@ -1,0 +1,83 @@
+\doxysection{VNPay\+Activity.\+kt}
+\hypertarget{VNPayActivity_8kt_source}{}\label{VNPayActivity_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/VNPayActivity.kt@{app/app/src/main/java/com/example/myapp/screens/VNPayActivity.kt}}
+\doxymbox{\hyperlink{VNPayActivity_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00013}00013\ import\ android.annotation.SuppressLint}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00014}00014\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00015}00015\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00016}00016\ import\ android.webkit.WebView}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00017}00017\ import\ android.webkit.WebViewClient}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00018}00018\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00019}00019\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.OrderStatusUpdateRequest}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00023}00023\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00024}00024\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00025}00025\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00038}00038\ class\ VNPayActivity\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00039}00039\ \ \ \ \ private\ var\ isHandlingReturn\ =\ false}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00049}00049\ \ \ \ \ @SuppressLint("{}SetJavaScriptEnabled"{})}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00050}00050\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ webView\ =\ WebView(this)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ setContentView(webView)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ val\ paymentUrl\ =\ intent.getStringExtra("{}URL"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ val\ orderId\ =\ intent.getIntExtra("{}order\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ webView.settings.javaScriptEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ webView.webViewClient\ =\ object\ :\ WebViewClient()\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ shouldOverrideUrlLoading(view:\ WebView?,\ url:\ String?):\ Boolean\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nếu\ thấy\ link\ vnpay\_return\ từ\ server\ trả\ về\ thì\ đóng\ webview}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (url\ !=\ null\ \&\&\ url.contains("{}vnpay\_return"{})\ \&\&\ !isHandlingReturn)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isHandlingReturn\ =\ true}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (url.contains("{}vnp\_ResponseCode=00"{}))\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (orderId\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.updateOrderStatus(orderId,\ OrderStatusUpdateRequest("{}paid"{}))}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .enqueue(object\ :\ Callback<OrderResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderResponse>,\ response:\ Response<OrderResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@VNPayActivity,\ "{}Không\ cập\ nhật\ được\ trạng\ thái\ đơn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ successIntent\ =\ Intent(this@VNPayActivity,\ payment\_successful::class.java)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ successIntent.putExtra("{}order\_id"{},\ orderId)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(successIntent)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@VNPayActivity,\ "{}Lỗi\ mạng\ khi\ cập\ nhật\ đơn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this@VNPayActivity,\ payment\_successful::class.java))}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ true}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ false}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ webView.loadUrl(paymentUrl)}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00101}00101\ \}}
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{VNPayActivity_8kt_source_l00104}00104\ }
+
+\end{DoxyCode}

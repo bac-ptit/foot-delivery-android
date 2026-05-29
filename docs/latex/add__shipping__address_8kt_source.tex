@@ -1,0 +1,125 @@
+\doxysection{add\+\_\+shipping\+\_\+address.\+kt}
+\hypertarget{add__shipping__address_8kt_source}{}\label{add__shipping__address_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/add\_shipping\_address.kt@{app/app/src/main/java/com/example/myapp/screens/add\_shipping\_address.kt}}
+\doxymbox{\hyperlink{add__shipping__address_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00010}00010\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00011}00011\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00012}00012\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00013}00013\ import\ android.widget.Button}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00014}00014\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00016}00016\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00018}00018\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00019}00019\ import\ com.example.myapp.screens.api.Address}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.AddressCreateRequest}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.ApiService}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00022}00022\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00023}00023\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00024}00024\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00025}00025\ import\ retrofit2.Retrofit}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00026}00026\ import\ retrofit2.converter.gson.GsonConverterFactory}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00035}00035\ class\ add\_shipping\_address\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00037}\doxymbox{\hyperlink{namespaceAppCompatActivity_a8231b891137bc5cf53a57bb6dd166660}{00037}}\ \ \ \ \ private\ lateinit\ var\ edtPhone:\ EditText}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00039}00039\ \ \ \ \ private\ lateinit\ var\ edtAddress:\ EditText}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00041}00041\ \ \ \ \ private\ lateinit\ var\ btnAdd:\ Button}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00051}00051\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ setContentView(R.layout.add\_shipping\_address)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialize\ views}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ edtPhone\ =\ findViewById(R.id.edtPhone)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ edtAddress\ =\ findViewById(R.id.edtAddress)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ btnAdd\ =\ findViewById(R.id.btnAdd)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Thiết\ lập\ sự\ kiện\ click\ cho\ nút\ "{}Thêm"{}}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ btnAdd.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ val\ phone\ =\ edtPhone.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ val\ address\ =\ edtAddress.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Validate\ input}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (phone.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edtPhone.error\ =\ "{}Vui\ lòng\ nhập\ số\ điện\ thoại"{}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edtPhone.requestFocus()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (address.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edtAddress.error\ =\ "{}Vui\ lòng\ nhập\ địa\ chỉ"{}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edtAddress.requestFocus()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lấy\ userId\ từ\ SharedPreferences}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ val\ userId\ =\ sharedPref.getInt("{}user\_id"{},\ 1)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gọi\ API\ tạo\ địa\ chỉ}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ createAddress(phone,\ address,\ userId)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icProfile}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00121}00121\ \ \ \ \ private\ fun\ createAddress(phone:\ String,\ address:\ String,\ userId:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ val\ retrofit\ =\ Retrofit.Builder()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ .baseUrl("{}http:\textcolor{comment}{//10.0.2.2:8000/"{})\ //\ Android\ emulator\ localhost}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ .addConverterFactory(GsonConverterFactory.create())}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ val\ apiService\ =\ retrofit.create(ApiService::class.java)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ val\ addressRequest\ =\ AddressCreateRequest(}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ detail\ =\ address,}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ phone\ =\ phone,}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ userid\ =\ userId}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ apiService.createAddress(addressRequest).enqueue(object\ :\ Callback<Address>\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<Address>,\ response:\ Response<Address>)\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thành\ công\ -\/\ chuyển\ sang\ màn\ hình\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@add\_shipping\_address,\ "{}Thêm\ địa\ chỉ\ thành\ công!"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this@add\_shipping\_address,\ shipping\_address\_added\_successfully::class.java)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@add\_shipping\_address,\ "{}Không\ thể\ thêm\ địa\ chỉ"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<Address>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@add\_shipping\_address,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00152}00152\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{add__shipping__address_8kt_source_l00153}00153\ \}}
+
+\end{DoxyCode}

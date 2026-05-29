@@ -1,0 +1,67 @@
+\doxysection{start.\+kt}
+\hypertarget{start_8kt_source}{}\label{start_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/start.kt@{app/app/src/main/java/com/example/myapp/screens/start.kt}}
+\doxymbox{\hyperlink{start_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00012}00012\ import\ android.Manifest}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00014}00014\ import\ android.content.pm.PackageManager}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00015}00015\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00016}00016\ import\ android.os.Build}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00018}00018\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00019}00019\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00022}00022\ \textcolor{comment}{//\ Thêm\ các\ bản\ import\ này}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00023}00023\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00024}00024\ import\ androidx.activity.result.contract.ActivityResultContracts}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00025}00025\ import\ androidx.core.content.ContextCompat.startActivity}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00026}00026\ import\ androidx.core.content.ContextCompat}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00027}00027\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00028}00028\ import\ com.example.myapp.screens.api.FcmTokenRegistrar}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00039}00039\ class\ start\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00041}00041\ \ \ \ \ private\ val\ requestNotificationPermission\ =}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ registerForActivityResult(ActivityResultContracts.RequestPermission())\ \{\ granted\ -\/>}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d("{}FCM\_DEBUG"{},\ "{}POST\_NOTIFICATIONS\ granted:\ \$granted"{})}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00054}00054\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ setContentView(R.layout.start)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ RetrofitClient.init(this)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ requestNotificationPermissionIfNeeded()}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ FcmTokenRegistrar.syncCurrentToken(this,\ "{}start"{})}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ val\ btnSignIn:\ View\ =\ findViewById(R.id.btnSignIn)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ btnSignIn.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ signin::class.java))}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ val\ btnSignUp:\ View\ =\ findViewById(R.id.btnSignUp)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ btnSignUp.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ signup::class.java))}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00073}00073\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00081}00081\ \ \ \ \ private\ fun\ requestNotificationPermissionIfNeeded()\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ if\ (Build.VERSION.SDK\_INT\ <\ Build.VERSION\_CODES.TIRAMISU)\ return}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ val\ permissionGranted\ =\ ContextCompat.checkSelfPermission(}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ this,}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ Manifest.permission.POST\_NOTIFICATIONS}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ )\ ==\ PackageManager.PERMISSION\_GRANTED}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ if\ (!permissionGranted)\ \{}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ requestNotificationPermission.launch(Manifest.permission.POST\_NOTIFICATIONS)}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00092}00092\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{start_8kt_source_l00093}00093\ \}}
+
+\end{DoxyCode}

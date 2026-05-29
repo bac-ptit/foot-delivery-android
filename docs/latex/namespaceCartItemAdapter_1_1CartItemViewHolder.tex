@@ -1,0 +1,70 @@
+\doxysection{Package Cart\+Item\+Adapter.\+Cart\+Item\+View\+Holder}
+\hypertarget{namespaceCartItemAdapter_1_1CartItemViewHolder}{}\label{namespaceCartItemAdapter_1_1CartItemViewHolder}\index{CartItemAdapter.CartItemViewHolder@{CartItemAdapter.CartItemViewHolder}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{namespaceCartItemAdapter_1_1CartItemViewHolder_a981e238e204f3499b6eaf3c72c48e8c1}{Cart\+Item\+View\+Holder}} (item\+View:\+android.\+view.\+View)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespaceCartItemAdapter_1_1CartItemViewHolder_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceCartItemAdapter_1_1CartItemViewHolder_a981e238e204f3499b6eaf3c72c48e8c1}\index{CartItemAdapter.CartItemViewHolder@{CartItemAdapter.CartItemViewHolder}!CartItemViewHolder@{CartItemViewHolder}}
+\index{CartItemViewHolder@{CartItemViewHolder}!CartItemAdapter.CartItemViewHolder@{CartItemAdapter.CartItemViewHolder}}
+\doxysubsubsection{\texorpdfstring{CartItemViewHolder()}{CartItemViewHolder()}}
+{\footnotesize\ttfamily \label{namespaceCartItemAdapter_1_1CartItemViewHolder_a981e238e204f3499b6eaf3c72c48e8c1} 
+class Cart\+Item\+Adapter.\+Cart\+Item\+View\+Holder.\+Cart\+Item\+View\+Holder (\begin{DoxyParamCaption}\item[{item\+View:\+android.\+view.}]{View}{}\end{DoxyParamCaption})}
+
+View\+Holder chứa các view con cho mỗi\+Cart\+Item.
+
+Bao gồm hình ảnh, tên món, số lượng và giá tiền. Image\+View hiển thị hình ảnh món ăn
+
+Text\+View hiển thị tên món ăn
+
+Text\+View hiển thị số lượng
+
+Text\+View hiển thị tổng giá tiền
+
+Gán dữ liệu\+Cart\+Item vào các view con.
+
+Hiển thị tên, số lượng, tổng giá tiền và hình ảnh (qua Picasso).
+
+
+\begin{DoxyParams}{Parameters}
+{\em cart\+Item} & Đối tượng\+Cart\+Item chứa dữ liệu cần hiển thị.\\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{CartItemAdapter_8kt_source_l00001}{1}} of file \doxymbox{\hyperlink{CartItemAdapter_8kt_source}{Cart\+Item\+Adapter.\+kt}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ android.view.View)\ :\ RecyclerView.ViewHolder(itemView)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ val\ imgCartItem:\ ImageView\ =\ itemView.findViewById(R.id.imgCartItem)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ val\ tvCartItemName:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemName)}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ val\ tvCartItemQty:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemQty)}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{private}\ val\ tvCartItemPrice:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemPrice)}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ fun\ \doxymbox{\hyperlink{namespacemain_a84490d23fa7a66ba4fbab70b4a53b6e5}{bind}}(cartItem:\ CartItem)\ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemName.text\ =\ cartItem.name}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemQty.text\ =\ \textcolor{stringliteral}{"{}SL:\ \$\{cartItem.qty\}"{}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale(\textcolor{stringliteral}{"{}vi"{}},\ \textcolor{stringliteral}{"{}VN"{}}))}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ val\ totalPrice\ =\ cartItem.qty\ *\ cartItem.price}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemPrice.text\ =\ \textcolor{stringliteral}{"{}\$\{fmt.format(totalPrice)\}đ"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!cartItem.imageUrl.isNullOrEmpty())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Picasso.get()}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .load(cartItem.imageUrl)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .placeholder(R.drawable.placeholder\_loading)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .error(R.drawable.pngwing)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .into(imgCartItem)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ imgCartItem.setImageResource(R.drawable.pngwing)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+
+\end{DoxyCode}

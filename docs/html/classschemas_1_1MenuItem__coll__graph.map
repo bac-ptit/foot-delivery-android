@@ -1,0 +1,7 @@
+<map id="schemas.MenuItem" name="schemas.MenuItem">
+<area shape="rect" id="Node000001" title=" " alt="" coords="20,155,157,181"/>
+<area shape="rect" id="Node000002" href="$classschemas_1_1MenuItemBase.html" title=" " alt="" coords="5,80,172,107"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="90,121,91,155,86,153,87,124"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="45,5,132,32"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,45,91,80,86,79,87,50"/>
+</map>

@@ -1,0 +1,166 @@
+\doxysection{list\+\_\+restaurant.\+kt}
+\hypertarget{list__restaurant_8kt_source}{}\label{list__restaurant_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/list\_restaurant.kt@{app/app/src/main/java/com/example/myapp/screens/list\_restaurant.kt}}
+\doxymbox{\hyperlink{list__restaurant_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00015}00015\ import\ android.os.Handler}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00016}00016\ import\ android.os.Looper}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00017}00017\ import\ android.text.Editable}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00018}00018\ import\ android.text.TextWatcher}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00019}00019\ import\ android.view.inputmethod.InputMethodManager}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00020}00020\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00021}00021\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00022}00022\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00023}00023\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00024}00024\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00025}00025\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00026}00026\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00027}00027\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00028}00028\ import\ com.example.myapp.adapters.RestaurantAdapter}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00029}00029\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00030}00030\ import\ com.example.myapp.screens.api.Restaurant}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00031}00031\ import\ com.example.myapp.screens.profile}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00032}00032\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00033}00033\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00034}00034\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00051}00051\ class\ list\_restaurant:\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00052}\doxymbox{\hyperlink{namespaceAppCompatActivity_a8fe3d04902b881001778795986a51a38}{00052}}\ \ \ \ \ private\ var\ restaurants:\ List<Restaurant>\ =\ emptyList()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00053}00053\ \ \ \ \ private\ lateinit\ var\ rvRestaurants:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00054}00054\ \ \ \ \ private\ lateinit\ var\ restaurantAdapter:\ RestaurantAdapter}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00055}00055\ \ \ \ \ private\ lateinit\ var\ edtSearch:\ EditText}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00056}00056\ \ \ \ \ private\ var\ searchJob:\ Call<List<Restaurant>>?\ =\ null}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00057}00057\ \ \ \ \ private\ val\ searchHandler\ =\ Handler(Looper.getMainLooper())}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00058}00058\ \ \ \ \ private\ var\ searchRunnable:\ Runnable?\ =\ null}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00059}00059\ \ \ \ \ private\ val\ SEARCH\_DELAY\ =\ 500L\ \textcolor{comment}{//\ 500ms\ delay\ for\ debouncing}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00068}00068\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ setContentView(R.layout.list\_restaurant)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00072}00072\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icProfile}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00078}00078\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ textMonAn}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ tvMonAn:\ TextView\ =\ findViewById(R.id.tvMonAn)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ tvMonAn.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00084}00084\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icHome}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00097}00097\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ imgNotification}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ val\ imgNotification:\ ImageView\ =\ findViewById(R.id.imgNotification)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ imgNotification.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ notification::class.java)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ rvRestaurants\ =\ findViewById(R.id.rvRestaurants)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ rvRestaurants.layoutManager\ =\ LinearLayoutManager(this,\ LinearLayoutManager.HORIZONTAL,\ false)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ Search\ -\/\ search\ as\ user\ types\ with\ debouncing}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ edtSearch\ =\ findViewById(R.id.edtSearch)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ edtSearch.addTextChangedListener(object\ :\ TextWatcher\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ beforeTextChanged(s:\ CharSequence?,\ start:\ Int,\ count:\ Int,\ after:\ Int)\ \{\}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onTextChanged(s:\ CharSequence?,\ start:\ Int,\ before:\ Int,\ count:\ Int)\ \{\}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ afterTextChanged(s:\ Editable?)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ pending\ search}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRunnable?.let\ \{\ searchHandler.removeCallbacks(it)\ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ search\ runnable\ with\ delay}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRunnable\ =\ Runnable\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ query\ =\ s?.toString()?.trim()\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (query.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fetchRestaurants()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRestaurants(query)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Post\ the\ search\ with\ delay}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchHandler.postDelayed(searchRunnable!!,\ SEARCH\_DELAY)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ restaurants\ from\ API}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ fetchRestaurants()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00137}00137\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00144}00144\ \ \ \ \ private\ fun\ fetchRestaurants()\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ ongoing\ search}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ searchJob?.cancel()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getRestaurants().enqueue(object\ :\ Callback<List<Restaurant>>\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<Restaurant>>,\ response:\ Response<List<Restaurant>>)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ restaurants\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ displayRestaurants()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@list\_restaurant,\ "{}Lỗi\ khi\ tải\ danh\ sách\ nhà\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00157}00157\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<Restaurant>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!call.isCanceled)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@list\_restaurant,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00164}00164\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00174}\doxymbox{\hyperlink{namespaceAppCompatActivity_ae4be9c2e381076302642ef99bf0246b3}{00174}}\ \ \ \ \ private\ fun\ searchRestaurants(query:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ ongoing\ search}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ searchJob?.cancel()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00178}00178\ \ \ \ \ \ \ \ \ searchJob\ =\ RetrofitClient.apiService.searchRestaurantsByName(query)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ searchJob?.enqueue(object\ :\ Callback<List<Restaurant>>\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<Restaurant>>,\ response:\ Response<List<Restaurant>>)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ results\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ restaurants\ =\ results}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ displayRestaurants()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (results.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@list\_restaurant,\ "{}Không\ tìm\ thấy\ nhà\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@list\_restaurant,\ "{}Lỗi\ khi\ tìm\ kiếm"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<Restaurant>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!call.isCanceled)\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@list\_restaurant,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00198}00198\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00199}00199\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00206}\doxymbox{\hyperlink{namespaceAppCompatActivity_a777f170143861df45045c5b70d12ee34}{00206}}\ \ \ \ \ private\ fun\ displayRestaurants()\ \{}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00207}00207\ \ \ \ \ \ \ \ \ restaurantAdapter\ =\ RestaurantAdapter(this,\ restaurants)}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00208}00208\ \ \ \ \ \ \ \ \ rvRestaurants.adapter\ =\ restaurantAdapter}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00209}00209\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{list__restaurant_8kt_source_l00210}00210\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,118 @@
+\doxysection{models.\+FAQ Class Reference}
+\hypertarget{classmodels_1_1FAQ}{}\label{classmodels_1_1FAQ}\index{models.FAQ@{models.FAQ}}
+
+
+Inheritance diagram for models.\+FAQ:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{classmodels_1_1FAQ__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+FAQ:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=151pt]{classmodels_1_1FAQ__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1FAQ_a9ae8479f2998f60eb4dbd205dc454e9b}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1FAQ_a5818229d1f7ab0120aa38b92174a7304}{question}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1FAQ_a7c3dbd70d8e2b2acc2c5f9f7e275fb41}{answer}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1FAQ_a8f08dbbd617698e81ee1bc6049c78e2a}{isactive}} = Column(Boolean, default=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1FAQ_a99a3ea73820ae2604636b62b6a166fd5}{user\+\_\+faqs}} = relationship("{}User\+FAQ"{}, back\+\_\+populates="{}faq"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1FAQ_a2127f0b30d94a44357d1e0df369addeb}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}faq"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng faq, lưu trữ câu hỏi thường gặp.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00021}{21}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1FAQ_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1FAQ_a2127f0b30d94a44357d1e0df369addeb}\index{models.FAQ@{models.FAQ}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a2127f0b30d94a44357d1e0df369addeb} 
+str models.\+FAQ.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}faq"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00023}{23}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1FAQ_a7c3dbd70d8e2b2acc2c5f9f7e275fb41}\index{models.FAQ@{models.FAQ}!answer@{answer}}
+\index{answer@{answer}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{answer}{answer}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a7c3dbd70d8e2b2acc2c5f9f7e275fb41} 
+models.\+FAQ.\+answer = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00026}{26}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1FAQ_a9ae8479f2998f60eb4dbd205dc454e9b}\index{models.FAQ@{models.FAQ}!id@{id}}
+\index{id@{id}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a9ae8479f2998f60eb4dbd205dc454e9b} 
+models.\+FAQ.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00024}{24}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1FAQ_a8f08dbbd617698e81ee1bc6049c78e2a}\index{models.FAQ@{models.FAQ}!isactive@{isactive}}
+\index{isactive@{isactive}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{isactive}{isactive}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a8f08dbbd617698e81ee1bc6049c78e2a} 
+models.\+FAQ.\+isactive = Column(Boolean, default=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00027}{27}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1FAQ_a5818229d1f7ab0120aa38b92174a7304}\index{models.FAQ@{models.FAQ}!question@{question}}
+\index{question@{question}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{question}{question}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a5818229d1f7ab0120aa38b92174a7304} 
+models.\+FAQ.\+question = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00025}{25}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1FAQ_a99a3ea73820ae2604636b62b6a166fd5}\index{models.FAQ@{models.FAQ}!user\_faqs@{user\_faqs}}
+\index{user\_faqs@{user\_faqs}!models.FAQ@{models.FAQ}}
+\doxysubsubsection{\texorpdfstring{user\_faqs}{user\_faqs}}
+{\footnotesize\ttfamily \label{classmodels_1_1FAQ_a99a3ea73820ae2604636b62b6a166fd5} 
+models.\+FAQ.\+user\+\_\+faqs = relationship("{}User\+FAQ"{}, back\+\_\+populates="{}faq"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00028}{28}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

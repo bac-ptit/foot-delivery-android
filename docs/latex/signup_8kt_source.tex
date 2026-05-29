@@ -1,0 +1,116 @@
+\doxysection{signup.\+kt}
+\hypertarget{signup_8kt_source}{}\label{signup_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/signup.kt@{app/app/src/main/java/com/example/myapp/screens/signup.kt}}
+\doxymbox{\hyperlink{signup_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00014}00014\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00015}00015\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00016}00016\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00018}00018\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00019}00019\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00020}00020\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.RegisterRequest}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.RegisterResponse}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00024}00024\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00025}00025\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00026}00026\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00038}00038\ class\ signup\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00048}00048\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ setContentView(R.layout.signup)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00052}00052\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00058}00058\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnSignIn}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ val\ tvLogin:\ TextView\ =\ findViewById(R.id.tvLogin)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ tvLogin.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ signin::class.java)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnSignUp}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ val\ btnSignUp:\ View\ =\ findViewById(R.id.btn\_signup)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ btnSignUp.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ val\ etUsername:\ EditText\ =\ findViewById(R.id.et\_username)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ val\ etPassword:\ EditText\ =\ findViewById(R.id.et\_password)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ val\ etRePassword:\ EditText\ =\ findViewById(R.id.et\_re\_password)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ val\ username\ =\ etUsername.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ val\ password\ =\ etPassword.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ val\ rePassword\ =\ etRePassword.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (username.isEmpty()\ ||\ password.isEmpty()\ ||\ rePassword.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Vui\ lòng\ nhập\ đầy\ đủ\ thông\ tin"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (password\ !=\ rePassword)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Mật\ khẩu\ không\ khớp"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gọi\ API\ đăng\ ký}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ val\ registerRequest\ =\ RegisterRequest(}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name\ =\ username,}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ username\ =\ username,}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ email\ =\ "{}\$username@example.com"{},}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ phone\ =\ "{}0000000000"{},}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ role\ =\ "{}user"{},}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ password\ =\ password}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.register(registerRequest).enqueue(object\ :\ Callback<RegisterResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<RegisterResponse>,\ response:\ Response<RegisterResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ registerResponse\ =\ response.body()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (registerResponse\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Đăng\ ký\ thành\ công}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signup,\ "{}Đăng\ ký\ thành\ công"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chuyển\ đến\ màn\ hình\ đăng\ nhập}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this@signup,\ signin::class.java)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Đăng\ ký\ thất\ bại}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signup,\ "{}Đăng\ ký\ thất\ bại"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lấy\ thông\ báo\ lỗi\ từ\ server}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ errorBody\ =\ response.errorBody()?.string()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ errorMessage\ =\ if\ (errorBody\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ jsonObject\ =\ org.json.JSONObject(errorBody)}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (jsonObject.has("{}detail"{}))\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jsonObject.getString("{}detail"{})}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Đăng\ ký\ thất\ bại"{}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Đăng\ ký\ thất\ bại"{}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Đăng\ ký\ thất\ bại"{}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signup,\ errorMessage,\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<RegisterResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signup,\ "{}Lỗi\ mạng:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00136}00136\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signup_8kt_source_l00137}00137\ \}}
+
+\end{DoxyCode}

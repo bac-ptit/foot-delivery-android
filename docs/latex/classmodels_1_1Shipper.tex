@@ -1,0 +1,142 @@
+\doxysection{models.\+Shipper Class Reference}
+\hypertarget{classmodels_1_1Shipper}{}\label{classmodels_1_1Shipper}\index{models.Shipper@{models.Shipper}}
+
+
+Inheritance diagram for models.\+Shipper:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classmodels_1_1Shipper__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Shipper:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classmodels_1_1Shipper__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_ac72e0115c037b5641df7044e9c93fb26}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_a6bef903983e00e269fe15269c0e3975e}{name}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_acea7184410fcc498b6dd6be70b3eaed9}{phone}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_acacda0bc61c092a0b28681264999418b}{rating}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_abc88702c8846709488aff8b2e12ed383}{description}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_a2871e068d00dcec073e93d5c81cbae5a}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Shipper_a8df65f477bf17245a5226f3931a65d49}{deliveries}} = relationship("{}Delivery"{}, back\+\_\+populates="{}shipper"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Shipper_accb2bf1347d655314936909eb62767ac}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}shipper"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng shipper, quản lý thông tin người giao hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00051}{51}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Shipper_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Shipper_accb2bf1347d655314936909eb62767ac}\index{models.Shipper@{models.Shipper}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_accb2bf1347d655314936909eb62767ac} 
+str models.\+Shipper.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}shipper"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00053}{53}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_a8df65f477bf17245a5226f3931a65d49}\index{models.Shipper@{models.Shipper}!deliveries@{deliveries}}
+\index{deliveries@{deliveries}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{deliveries}{deliveries}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_a8df65f477bf17245a5226f3931a65d49} 
+models.\+Shipper.\+deliveries = relationship("{}Delivery"{}, back\+\_\+populates="{}shipper"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00060}{60}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_abc88702c8846709488aff8b2e12ed383}\index{models.Shipper@{models.Shipper}!description@{description}}
+\index{description@{description}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_abc88702c8846709488aff8b2e12ed383} 
+models.\+Shipper.\+description = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00058}{58}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_ac72e0115c037b5641df7044e9c93fb26}\index{models.Shipper@{models.Shipper}!id@{id}}
+\index{id@{id}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_ac72e0115c037b5641df7044e9c93fb26} 
+models.\+Shipper.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00054}{54}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_a6bef903983e00e269fe15269c0e3975e}\index{models.Shipper@{models.Shipper}!name@{name}}
+\index{name@{name}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_a6bef903983e00e269fe15269c0e3975e} 
+models.\+Shipper.\+name = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00055}{55}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_acea7184410fcc498b6dd6be70b3eaed9}\index{models.Shipper@{models.Shipper}!phone@{phone}}
+\index{phone@{phone}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{phone}{phone}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_acea7184410fcc498b6dd6be70b3eaed9} 
+models.\+Shipper.\+phone = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00056}{56}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_acacda0bc61c092a0b28681264999418b}\index{models.Shipper@{models.Shipper}!rating@{rating}}
+\index{rating@{rating}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{rating}{rating}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_acacda0bc61c092a0b28681264999418b} 
+models.\+Shipper.\+rating = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00057}{57}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Shipper_a2871e068d00dcec073e93d5c81cbae5a}\index{models.Shipper@{models.Shipper}!status@{status}}
+\index{status@{status}!models.Shipper@{models.Shipper}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1Shipper_a2871e068d00dcec073e93d5c81cbae5a} 
+models.\+Shipper.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00059}{59}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,13 @@
+<map id="schemas.MenuItemBase" name="schemas.MenuItemBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="140,81,306,108"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1MenuItem.html" title=" " alt="" coords="400,5,536,32"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,72,353,41,402,31,397,33,355,47,271,77"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1MenuItemCreate.html" title=" " alt="" coords="380,56,555,83"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="321,82,382,78,377,79,322,87"/>
+<area shape="rect" id="Node000005" href="$classschemas_1_1MenuItemWithRestaurant.html" title=" " alt="" coords="354,107,581,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="321,102,356,108,351,108,322,108"/>
+<area shape="rect" id="Node000006" href="$classschemas_1_1MenuItemWithReviews.html" title=" " alt="" coords="360,157,575,184"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="270,112,355,143,400,157,394,157,353,148,269,117"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,81,92,108"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,92,141,94,137,96,108,97"/>
+</map>

@@ -1,0 +1,172 @@
+\doxysection{pre\+\_\+order.\+kt}
+\hypertarget{pre__order_8kt_source}{}\label{pre__order_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/pre\_order.kt@{app/app/src/main/java/com/example/myapp/screens/pre\_order.kt}}
+\doxymbox{\hyperlink{pre__order_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00010}00010\ import\ android.app.DatePickerDialog}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00011}00011\ import\ android.app.TimePickerDialog}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00014}00014\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00015}00015\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00016}00016\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00018}00018\ import\ androidx.appcompat.widget.AppCompatButton}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00019}00019\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00020}00020\ import\ com.squareup.picasso.Picasso}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00021}00021\ import\ java.text.NumberFormat}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00022}00022\ import\ java.util.*}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00033}00033\ class\ pre\_order\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00035}00035\ \ \ \ \ private\ var\ qty\ =\ 1}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00037}00037\ \ \ \ \ private\ var\ price\ =\ 0}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00039}00039\ \ \ \ \ private\ var\ foodId\ =\ -\/1}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00041}00041\ \ \ \ \ private\ var\ foodName\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00043}00043\ \ \ \ \ private\ var\ foodImageUrl\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00046}00046\ \ \ \ \ private\ var\ selectedCalendar:\ Calendar\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00048}00048\ \ \ \ \ private\ var\ isDateSelected\ =\ false}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00050}00050\ \ \ \ \ private\ var\ isTimeSelected\ =\ false}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00060}00060\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ setContentView(R.layout.activity\_pre\_order)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ foodId\ =\ intent.getIntExtra("{}food\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ foodName\ =\ intent.getStringExtra("{}food\_name"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ price\ =\ intent.getIntExtra("{}food\_price"{},\ 0)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ foodImageUrl\ =\ intent.getStringExtra("{}food\_image\_url"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ val\ tvFoodName:\ TextView\ =\ findViewById(R.id.tvFoodName)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ val\ tvUnitPrice:\ TextView\ =\ findViewById(R.id.tvUnitPrice)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ val\ tvQty:\ TextView\ =\ findViewById(R.id.tvQty)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ val\ tvTotalValue:\ TextView\ =\ findViewById(R.id.tvTotalValue)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ val\ imgFood:\ ImageView\ =\ findViewById(R.id.imgFood)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ val\ btnSelectDate:\ TextView\ =\ findViewById(R.id.btnSelectDate)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ val\ btnSelectTime:\ TextView\ =\ findViewById(R.id.btnSelectTime)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ val\ tvSelectedDateTime:\ TextView\ =\ findViewById(R.id.tvSelectedDateTime)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ btnDecrease:\ TextView\ =\ findViewById(R.id.btnDecrease)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ val\ btnIncrease:\ TextView\ =\ findViewById(R.id.btnIncrease)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ val\ btnAddToCart:\ AppCompatButton\ =\ findViewById(R.id.btnPreOrderAddToCart)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btnBack)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale("{}vi"{},\ "{}VN"{}))}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ tvFoodName.text\ =\ foodName}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ tvUnitPrice.text\ =\ fmt.format(price)\ +\ "{}đ"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ if\ (foodImageUrl.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ Picasso.get().load(foodImageUrl).placeholder(R.drawable.placeholder\_loading).error(R.drawable.pngwing).into(imgFood)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ fun\ updateUI()\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ tvQty.text\ =\ qty.toString()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ tvTotalValue.text\ =\ fmt.format(qty\ *\ price)\ +\ "{}đ"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (isDateSelected\ \&\&\ isTimeSelected)\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ day\ =\ selectedCalendar.get(Calendar.DAY\_OF\_MONTH)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ month\ =\ selectedCalendar.get(Calendar.MONTH)\ +\ 1}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ year\ =\ selectedCalendar.get(Calendar.YEAR)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ hour\ =\ selectedCalendar.get(Calendar.HOUR\_OF\_DAY)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ minute\ =\ selectedCalendar.get(Calendar.MINUTE)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ timeStr\ =\ String.format("{}\%02d:\%02d"{},\ hour,\ minute)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ dateStr\ =\ "{}\$day/\$month/\$year"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelectedDateTime.text\ =\ "{}Giao\ lúc:\ \$timeStr,\ \$dateStr"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelectedDateTime.setTextColor(resources.getColor(android.R.color.black))}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelectedDateTime.text\ =\ "{}Chưa\ chọn\ thời\ điểm\ giao"{}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelectedDateTime.setTextColor(resources.getColor(android.R.color.holo\_red\_dark))}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ btnDecrease.setOnClickListener\ \{\ if\ (qty\ >\ 1)\ \{\ qty-\/-\/;\ updateUI()\ \}\ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ btnIncrease.setOnClickListener\ \{\ qty++;\ updateUI()\ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ btnSelectDate.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ val\ calendar\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ val\ datePickerDialog\ =\ DatePickerDialog(\textcolor{keyword}{this},\ \{\ \_,\ year,\ month,\ dayOfMonth\ -\/>}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedCalendar.set(Calendar.YEAR,\ year)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedCalendar.set(Calendar.MONTH,\ month)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedCalendar.set(Calendar.DAY\_OF\_MONTH,\ dayOfMonth)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isDateSelected\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isTimeSelected\ =\ \textcolor{keyword}{false}\ \textcolor{comment}{//\ Reset\ time\ when\ date\ changes\ to\ force\ re-\/validation}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ calendar.get(Calendar.YEAR),\ calendar.get(Calendar.MONTH),\ calendar.get(Calendar.DAY\_OF\_MONTH))}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ datePickerDialog.datePicker.minDate\ =\ calendar.timeInMillis}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ datePickerDialog.show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ btnSelectTime.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isDateSelected)\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}Vui\ lòng\ chọn\ ngày\ trước"{}},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00138}00138\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ val\ calendar\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ TimePickerDialog(\textcolor{keyword}{this},\ \{\ \_,\ hourOfDay,\ minute\ -\/>}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ tempCalendar\ =\ selectedCalendar.clone()\ as\ Calendar}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tempCalendar.set(Calendar.HOUR\_OF\_DAY,\ hourOfDay)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tempCalendar.set(Calendar.MINUTE,\ minute)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00144}00144\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ now\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ minTime\ =\ Calendar.getInstance()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ minTime.add(Calendar.MINUTE,\ 30)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tempCalendar.before(minTime))\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}Thời\ gian\ giao\ phải\ ít\ nhất\ sau\ 30\ phút\ kể\ từ\ bây\ giờ"{}},\ Toast.LENGTH\_LONG).show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedCalendar.set(Calendar.HOUR\_OF\_DAY,\ hourOfDay)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedCalendar.set(Calendar.MINUTE,\ minute)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isTimeSelected\ =\ \textcolor{keyword}{true}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ calendar.get(Calendar.HOUR\_OF\_DAY),\ calendar.get(Calendar.MINUTE),\ \textcolor{keyword}{true}).show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ btnAddToCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!isDateSelected\ ||\ !isTimeSelected)\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}Chưa\ chọn\ thời\ điểm\ giao"{}},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00164}00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addToPreOrderCart()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00166}00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00168}00168\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{\ finish()\ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ updateUI()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00170}00170\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00178}00178\ \ \ \ \ \textcolor{keyword}{private}\ fun\ addToPreOrderCart()\ \{}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ val\ day\ =\ selectedCalendar.get(Calendar.DAY\_OF\_MONTH)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ val\ month\ =\ selectedCalendar.get(Calendar.MONTH)\ +\ 1}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ val\ year\ =\ selectedCalendar.get(Calendar.YEAR)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ val\ hour\ =\ selectedCalendar.get(Calendar.HOUR\_OF\_DAY)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ val\ minute\ =\ selectedCalendar.get(Calendar.MINUTE)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ val\ timeStr\ =\ String.format(\textcolor{stringliteral}{"{}\%02d:\%02d"{}},\ hour,\ minute)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ val\ dateStr\ =\ \textcolor{stringliteral}{"{}\$day/\$month/\$year"{}}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00188}00188\ \ \ \ \ \ \ \ \ pre\_order\_cart.preOrderList.add(}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ PreOrderItem(}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{id}\ =\ foodId,}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name\ =\ foodName,}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ price\ =\ price,}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ qty\ =\ qty,}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00194}00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ imageUrl\ =\ foodImageUrl,}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deliveryTime\ =\ \textcolor{stringliteral}{"{}\$timeStr,\ \$dateStr"{}}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00197}00197\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00198}00198\ \ \ \ \ \ \ \ \ Toast.makeText(\textcolor{keyword}{this},\ \textcolor{stringliteral}{"{}Đã\ thêm\ vào\ giỏ\ hàng\ đặt\ trước"{}},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(\textcolor{keyword}{this},\ pre\_order\_cart::class.java)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceAppCompatActivity_a11d323188360fba7749f590a91f8a806}{startActivity}}(intent)}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00201}00201\ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00202}00202\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{pre__order_8kt_source_l00203}00203\ \}}
+
+\end{DoxyCode}

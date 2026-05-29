@@ -1,0 +1,215 @@
+\doxysection{auth Namespace Reference}
+\hypertarget{namespaceauth}{}\label{namespaceauth}\index{auth@{auth}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a}{verify\+\_\+password}} (plain\+\_\+password, hashed\+\_\+password)
+\item 
+\doxymbox{\hyperlink{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b}{get\+\_\+password\+\_\+hash}} (password)
+\item 
+\doxymbox{\hyperlink{namespaceauth_a97c9965d0490a3148025f9305366f4ee}{create\+\_\+access\+\_\+token}} (dict data, Optional\+[timedelta]\+ expires\+\_\+delta=None)
+\item 
+\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{get\+\_\+current\+\_\+user}} (str token=Depends(\doxymbox{\hyperlink{namespaceauth_af3c79770bc28a778b1b63717c336cd9f}{oauth2\+\_\+scheme}}), Session db=Depends(\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{database.\+get\+\_\+db}}))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceauth_ab8f160d0540184bd0a08326c736f87c7}{SECRET\+\_\+\+KEY}} = os.\+getenv("{}SECRET\+\_\+\+KEY"{})
+\item 
+\doxymbox{\hyperlink{namespaceauth_a1c1692437a704556ae986fa037fd76cd}{ALGORITHM}} = os.\+getenv("{}ALGORITHM"{}, "{}HS256"{})
+\item 
+\doxymbox{\hyperlink{namespaceauth_aa78460ccee1c49eb9b493c5dee663797}{ACCESS\+\_\+\+TOKEN\+\_\+\+EXPIRE\+\_\+\+MINUTES}} = int(os.\+getenv("{}ACCESS\+\_\+\+TOKEN\+\_\+\+EXPIRE\+\_\+\+MINUTES"{}, 30))
+\item 
+\doxymbox{\hyperlink{namespaceauth_a53a352d046397746e2da67ad9eafc922}{pwd\+\_\+context}} = Crypt\+Context(schemes=\+["{}bcrypt"{}]\+, deprecated="{}auto"{})
+\item 
+\doxymbox{\hyperlink{namespaceauth_af3c79770bc28a778b1b63717c336cd9f}{oauth2\+\_\+scheme}} = OAuth2\+Password\+Bearer(token\+Url="{}token"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module: auth.py
+
+Xác thực và phân quyền người dùng.
+Cung cấp JWT token, mã hóa mật khẩu bcrypt, và dependency lấy user hiện tại.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespaceauth_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceauth_a97c9965d0490a3148025f9305366f4ee}\index{auth@{auth}!create\_access\_token@{create\_access\_token}}
+\index{create\_access\_token@{create\_access\_token}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{create\_access\_token()}{create\_access\_token()}}
+{\footnotesize\ttfamily \label{namespaceauth_a97c9965d0490a3148025f9305366f4ee} 
+auth.\+create\+\_\+access\+\_\+token (\begin{DoxyParamCaption}\item[{dict}]{data}{, }\item[{Optional\+[timedelta]\+ }]{expires\+\_\+delta}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tạo JWT access token với payload và thời gian hết hạn.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00042}{42}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00042\ \textcolor{keyword}{def\ }create\_access\_token(data:\ dict,\ expires\_delta:\ Optional[timedelta]\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ JWT\ access\ token\ với\ payload\ và\ thời\ gian\ hết\ hạn."{}"{}"{}}}
+\DoxyCodeLine{00044\ \ \ \ \ to\_encode\ =\ data.copy()}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordflow}{if}\ expires\_delta:}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ expire\ =\ datetime.utcnow()\ +\ expires\_delta}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ expire\ =\ datetime.utcnow()\ +\ timedelta(minutes=15)}
+\DoxyCodeLine{00049\ \ \ \ \ to\_encode.update(\{\textcolor{stringliteral}{"{}exp"{}}:\ expire\})}
+\DoxyCodeLine{00050\ \ \ \ \ encoded\_jwt\ =\ jwt.encode(to\_encode,\ SECRET\_KEY,\ algorithm=ALGORITHM)}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordflow}{return}\ encoded\_jwt}
+\DoxyCodeLine{00052\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=331pt]{namespaceauth_a97c9965d0490a3148025f9305366f4ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}\index{auth@{auth}!get\_current\_user@{get\_current\_user}}
+\index{get\_current\_user@{get\_current\_user}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{get\_current\_user()}{get\_current\_user()}}
+{\footnotesize\ttfamily \label{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32} 
+auth.\+get\+\_\+current\+\_\+user (\begin{DoxyParamCaption}\item[{str }]{token}{ = {\ttfamily Depends(\doxymbox{\hyperlink{namespaceauth_af3c79770bc28a778b1b63717c336cd9f}{oauth2\+\_\+scheme}})}, }\item[{Session }]{db}{ = {\ttfamily Depends(\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{database.\+get\+\_\+db}})}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Dependency: giải mã JWT token và trả về user hiện tại. Raise 401 nếu token không hợp lệ.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00053}{53}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00053\ \textcolor{keyword}{async\ def\ }get\_current\_user(token:\ str\ =\ Depends(oauth2\_scheme),\ db:\ Session\ =\ Depends(database.get\_db)):}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Dependency:\ giải\ mã\ JWT\ token\ và\ trả\ về\ user\ hiện\ tại.\ Raise\ 401\ nếu\ token\ không\ hợp\ lệ."{}"{}"{}}}
+\DoxyCodeLine{00055\ \ \ \ \ credentials\_exception\ =\ HTTPException(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ status\_code=status.HTTP\_401\_UNAUTHORIZED,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ detail=\textcolor{stringliteral}{"{}Could\ not\ validate\ credentials"{}},}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ headers=\{\textcolor{stringliteral}{"{}WWW-\/Authenticate"{}}:\ \textcolor{stringliteral}{"{}Bearer"{}}\},}
+\DoxyCodeLine{00059\ \ \ \ \ )}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ payload\ =\ jwt.decode(token,\ SECRET\_KEY,\ algorithms=[ALGORITHM])}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ email:\ str\ =\ payload.get(\textcolor{stringliteral}{"{}sub"{}})}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ email\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{except}\ JWTError:}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{00067\ \ \ \ \ user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.email\ ==\ email).first()}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordflow}{if}\ user\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordflow}{return}\ user}
+
+\end{DoxyCode}
+\Hypertarget{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b}\index{auth@{auth}!get\_password\_hash@{get\_password\_hash}}
+\index{get\_password\_hash@{get\_password\_hash}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{get\_password\_hash()}{get\_password\_hash()}}
+{\footnotesize\ttfamily \label{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b} 
+auth.\+get\+\_\+password\+\_\+hash (\begin{DoxyParamCaption}\item[{}]{password}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Hash mật khẩu plaintext bằng bcrypt.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00038}{38}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \textcolor{keyword}{def\ }get\_password\_hash(password):}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Hash\ mật\ khẩu\ plaintext\ bằng\ bcrypt."{}"{}"{}}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ pwd\_context.hash(password)}
+\DoxyCodeLine{00041\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a}\index{auth@{auth}!verify\_password@{verify\_password}}
+\index{verify\_password@{verify\_password}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{verify\_password()}{verify\_password()}}
+{\footnotesize\ttfamily \label{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a} 
+auth.\+verify\+\_\+password (\begin{DoxyParamCaption}\item[{}]{plain\+\_\+password}{, }\item[{}]{hashed\+\_\+password}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Xác thực mật khẩu plaintext với mật khẩu đã hash bằng bcrypt.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00034}{34}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00034\ \textcolor{keyword}{def\ }verify\_password(plain\_password,\ hashed\_password):}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xác\ thực\ mật\ khẩu\ plaintext\ với\ mật\ khẩu\ đã\ hash\ bằng\ bcrypt."{}"{}"{}}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordflow}{return}\ pwd\_context.verify(plain\_password,\ hashed\_password)}
+\DoxyCodeLine{00037\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=339pt]{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{namespaceauth_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceauth_aa78460ccee1c49eb9b493c5dee663797}\index{auth@{auth}!ACCESS\_TOKEN\_EXPIRE\_MINUTES@{ACCESS\_TOKEN\_EXPIRE\_MINUTES}}
+\index{ACCESS\_TOKEN\_EXPIRE\_MINUTES@{ACCESS\_TOKEN\_EXPIRE\_MINUTES}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{ACCESS\_TOKEN\_EXPIRE\_MINUTES}{ACCESS\_TOKEN\_EXPIRE\_MINUTES}}
+{\footnotesize\ttfamily \label{namespaceauth_aa78460ccee1c49eb9b493c5dee663797} 
+auth.\+ACCESS\+\_\+\+TOKEN\+\_\+\+EXPIRE\+\_\+\+MINUTES = int(os.\+getenv("{}ACCESS\+\_\+\+TOKEN\+\_\+\+EXPIRE\+\_\+\+MINUTES"{}, 30))}
+
+
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00027}{27}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+\Hypertarget{namespaceauth_a1c1692437a704556ae986fa037fd76cd}\index{auth@{auth}!ALGORITHM@{ALGORITHM}}
+\index{ALGORITHM@{ALGORITHM}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{ALGORITHM}{ALGORITHM}}
+{\footnotesize\ttfamily \label{namespaceauth_a1c1692437a704556ae986fa037fd76cd} 
+auth.\+ALGORITHM = os.\+getenv("{}ALGORITHM"{}, "{}HS256"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00025}{25}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+\Hypertarget{namespaceauth_af3c79770bc28a778b1b63717c336cd9f}\index{auth@{auth}!oauth2\_scheme@{oauth2\_scheme}}
+\index{oauth2\_scheme@{oauth2\_scheme}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{oauth2\_scheme}{oauth2\_scheme}}
+{\footnotesize\ttfamily \label{namespaceauth_af3c79770bc28a778b1b63717c336cd9f} 
+auth.\+oauth2\+\_\+scheme = OAuth2\+Password\+Bearer(token\+Url="{}token"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00032}{32}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+\Hypertarget{namespaceauth_a53a352d046397746e2da67ad9eafc922}\index{auth@{auth}!pwd\_context@{pwd\_context}}
+\index{pwd\_context@{pwd\_context}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{pwd\_context}{pwd\_context}}
+{\footnotesize\ttfamily \label{namespaceauth_a53a352d046397746e2da67ad9eafc922} 
+auth.\+pwd\+\_\+context = Crypt\+Context(schemes=\+["{}bcrypt"{}]\+, deprecated="{}auto"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00030}{30}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+
+\Hypertarget{namespaceauth_ab8f160d0540184bd0a08326c736f87c7}\index{auth@{auth}!SECRET\_KEY@{SECRET\_KEY}}
+\index{SECRET\_KEY@{SECRET\_KEY}!auth@{auth}}
+\doxysubsubsection{\texorpdfstring{SECRET\_KEY}{SECRET\_KEY}}
+{\footnotesize\ttfamily \label{namespaceauth_ab8f160d0540184bd0a08326c736f87c7} 
+auth.\+SECRET\+\_\+\+KEY = os.\+getenv("{}SECRET\+\_\+\+KEY"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{auth_8py_source_l00023}{23}} of file \doxymbox{\hyperlink{auth_8py_source}{auth.\+py}}.
+

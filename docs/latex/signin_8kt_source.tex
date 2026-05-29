@@ -1,0 +1,128 @@
+\doxysection{signin.\+kt}
+\hypertarget{signin_8kt_source}{}\label{signin_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/signin.kt@{app/app/src/main/java/com/example/myapp/screens/signin.kt}}
+\doxymbox{\hyperlink{signin_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00012}00012\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00016}00016\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00018}00018\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00019}00019\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00020}00020\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00021}00021\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.LoginResponse}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.FcmTokenRegistrar}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00024}00024\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00025}00025\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00026}00026\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00027}00027\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00040}00040\ class\ signin\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00049}00049\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ setContentView(R.layout.signin)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước\ (start)}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnSignIn}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ val\ btnSignIn:\ View\ =\ findViewById(R.id.btn\_signin)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ btnSignIn.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ val\ etUsername:\ EditText\ =\ findViewById(R.id.et\_username)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ val\ etPassword:\ EditText\ =\ findViewById(R.id.et\_password)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ val\ username\ =\ etUsername.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ val\ password\ =\ etPassword.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (username.isEmpty()\ ||\ password.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Vui\ lòng\ nhập\ đầy\ đủ\ thông\ tin"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gọi\ API\ đăng\ nhập}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.login(username,\ password).enqueue(object\ :\ Callback<LoginResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<LoginResponse>,\ response:\ Response<LoginResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ loginResponse\ =\ response.body()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (loginResponse\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Đăng\ nhập\ thành\ công}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signin,\ "{}Đăng\ nhập\ thành\ công"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lưu\ access\ token\ vào\ SharedPreferences}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ with(sharedPref.edit())\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putString("{}access\_token"{},\ loginResponse.access\_token)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apply()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FcmTokenRegistrar.syncCurrentToken(this@signin,\ "{}signin"{})}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lấy\ thông\ tin\ user\ hiện\ tại}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getCurrentUser().enqueue(object\ :\ Callback<com.example.myapp.screens.api.RegisterResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<com.example.myapp.screens.api.RegisterResponse>,\ response:\ Response<com.example.myapp.screens.api.RegisterResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ user\ =\ response.body()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (user\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lưu\ user\ ID\ và\ tên\ vào\ SharedPreferences}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ with(sharedPref.edit())\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putInt("{}user\_id"{},\ user.id)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putString("{}user\_name"{},\ user.name)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ apply()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chuyển\ đến\ màn\ hình\ chính}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this@signin,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<com.example.myapp.screens.api.RegisterResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Vẫn\ chuyển\ đến\ màn\ hình\ chính\ ngay\ cả\ khi\ lỗi}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this@signin,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Đăng\ nhập\ thất\ bại}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signin,\ "{}Đăng\ nhập\ thất\ bại"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lấy\ thông\ báo\ lỗi\ từ\ server}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ errorBody\ =\ response.errorBody()?.string()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ errorMessage\ =\ if\ (errorBody\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ jsonObject\ =\ org.json.JSONObject(errorBody)}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (jsonObject.has("{}detail"{}))\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ jsonObject.getString("{}detail"{})}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Sai\ tên\ đăng\ nhập\ hoặc\ mật\ khẩu"{}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Sai\ tên\ đăng\ nhập\ hoặc\ mật\ khẩu"{}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Sai\ tên\ đăng\ nhập\ hoặc\ mật\ khẩu"{}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signin,\ errorMessage,\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<LoginResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@signin,\ "{}Lỗi\ mạng:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00148}00148\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{signin_8kt_source_l00149}00149\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,130 @@
+\doxysection{models.\+User\+Device Class Reference}
+\hypertarget{classmodels_1_1UserDevice}{}\label{classmodels_1_1UserDevice}\index{models.UserDevice@{models.UserDevice}}
+
+
+Inheritance diagram for models.\+User\+Device:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{classmodels_1_1UserDevice__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+User\+Device:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{classmodels_1_1UserDevice__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_aeb76fe64a6329ea7e08e3e789738f8ec}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_a8de1152001a2a4af660e0921437458c3}{device\+\_\+token}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_a7043121db8138084baf9690bde011532}{device\+\_\+type}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_a247ca7d7d2be7f75c66fbb34e884f540}{last\+\_\+active}} = Column(Date\+Time, server\+\_\+default=func.\+now())
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_a279c96fa2c864d8518df118f29ab8a84}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1UserDevice_a7c431033521802618ee9a67115bdc8e8}{user}} = relationship("{}User"{}, back\+\_\+populates="{}user\+\_\+devices"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1UserDevice_a64ba48116b2a4ea4c368482d32ae548a}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}userdevice"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng userdevice, FCM token thiết bị của người dùng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00233}{233}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1UserDevice_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1UserDevice_a64ba48116b2a4ea4c368482d32ae548a}\index{models.UserDevice@{models.UserDevice}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a64ba48116b2a4ea4c368482d32ae548a} 
+str models.\+User\+Device.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}userdevice"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00235}{235}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_a8de1152001a2a4af660e0921437458c3}\index{models.UserDevice@{models.UserDevice}!device\_token@{device\_token}}
+\index{device\_token@{device\_token}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{device\_token}{device\_token}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a8de1152001a2a4af660e0921437458c3} 
+models.\+User\+Device.\+device\+\_\+token = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00237}{237}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_a7043121db8138084baf9690bde011532}\index{models.UserDevice@{models.UserDevice}!device\_type@{device\_type}}
+\index{device\_type@{device\_type}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{device\_type}{device\_type}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a7043121db8138084baf9690bde011532} 
+models.\+User\+Device.\+device\+\_\+type = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00238}{238}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_aeb76fe64a6329ea7e08e3e789738f8ec}\index{models.UserDevice@{models.UserDevice}!id@{id}}
+\index{id@{id}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_aeb76fe64a6329ea7e08e3e789738f8ec} 
+models.\+User\+Device.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00236}{236}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_a247ca7d7d2be7f75c66fbb34e884f540}\index{models.UserDevice@{models.UserDevice}!last\_active@{last\_active}}
+\index{last\_active@{last\_active}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{last\_active}{last\_active}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a247ca7d7d2be7f75c66fbb34e884f540} 
+models.\+User\+Device.\+last\+\_\+active = Column(Date\+Time, server\+\_\+default=func.\+now())\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00239}{239}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_a7c431033521802618ee9a67115bdc8e8}\index{models.UserDevice@{models.UserDevice}!user@{user}}
+\index{user@{user}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a7c431033521802618ee9a67115bdc8e8} 
+models.\+User\+Device.\+user = relationship("{}User"{}, back\+\_\+populates="{}user\+\_\+devices"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00242}{242}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1UserDevice_a279c96fa2c864d8518df118f29ab8a84}\index{models.UserDevice@{models.UserDevice}!userid@{userid}}
+\index{userid@{userid}!models.UserDevice@{models.UserDevice}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1UserDevice_a279c96fa2c864d8518df118f29ab8a84} 
+models.\+User\+Device.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00240}{240}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

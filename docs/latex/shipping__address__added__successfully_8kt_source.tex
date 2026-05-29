@@ -1,0 +1,54 @@
+\doxysection{shipping\+\_\+address\+\_\+added\+\_\+successfully.\+kt}
+\hypertarget{shipping__address__added__successfully_8kt_source}{}\label{shipping__address__added__successfully_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/shipping\_address\_added\_successfully.kt@{app/app/src/main/java/com/example/myapp/screens/shipping\_address\_added\_successfully.kt}}
+\doxymbox{\hyperlink{shipping__address__added__successfully_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00009}00009\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00010}00010\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00011}00011\ import\ android.widget.Button\ \textcolor{comment}{//\ Import\ Button}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00012}00012\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00013}00013\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00014}00014\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00015}00015\ import\ com.example.myapp.screens.home}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00024}00024\ class\ shipping\_address\_added\_successfully\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00033}00033\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ setContentView(R.layout.shipping\_address\_added\_successfully)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tìm\ nút\ "{}Trở\ về\ trang\ chủ"{}\ theo\ ID\ btnReturnHome}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ val\ btnReturnHome:\ Button\ =\ findViewById(R.id.btnReturnHome)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00039}00039\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thiết\ lập\ sự\ kiện\ click}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ btnReturnHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quay\ về\ trang\ chủ\ (Home)}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Xóa\ các\ trang\ trước\ đó\ để\ không\ bị\ quay\ lại\ trang\ thành\ công\ này\ khi\ nhấn\ Back}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ intent.flags\ =\ Intent.FLAG\_ACTIVITY\_NEW\_TASK\ or\ Intent.FLAG\_ACTIVITY\_CLEAR\_TASK}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icProfile}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00067}00067\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{shipping__address__added__successfully_8kt_source_l00068}00068\ \}}
+
+\end{DoxyCode}

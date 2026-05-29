@@ -1,0 +1,22 @@
+var searchData=
+[
+  ['faq_0',['FAQ',['../classmodels_1_1FAQ.html',1,'models.FAQ'],['../classschemas_1_1FAQ.html',1,'schemas.FAQ']]],
+  ['faq_1',['faq',['../classmodels_1_1UserFAQ.html#a20f81906896141abd15d02ad9377d95a',1,'models::UserFAQ']]],
+  ['faqadapter_2',['FAQAdapter',['../namespaceFAQAdapter.html',1,'']]],
+  ['faqadapter_2ekt_3',['FAQAdapter.kt',['../FAQAdapter_8kt.html',1,'']]],
+  ['faqadapter_3a_3afaqviewholder_4',['FAQViewHolder',['../namespaceFAQAdapter_1_1FAQViewHolder.html',1,'FAQAdapter']]],
+  ['faqbase_5',['FAQBase',['../classschemas_1_1FAQBase.html',1,'schemas']]],
+  ['faqcreate_6',['FAQCreate',['../classschemas_1_1FAQCreate.html',1,'schemas']]],
+  ['faqid_7',['faqid',['../classmodels_1_1UserFAQ.html#ae2c8ad3e2883a91f2df1a9c8b600a370',1,'models::UserFAQ']]],
+  ['fcm_8',['fcm',['../namespacecheck__db.html#a140aa425d58d90a376f18a1437249659',1,'check_db']]],
+  ['fcmtokenregistrar_9',['FcmTokenRegistrar',['../namespaceFcmTokenRegistrar.html',1,'']]],
+  ['fcmtokenregistrar_2ekt_10',['FcmTokenRegistrar.kt',['../FcmTokenRegistrar_8kt.html',1,'']]],
+  ['firebase_5fcredentials_5fpath_11',['FIREBASE_CREDENTIALS_PATH',['../namespacefirebase__utils.html#ad24b24b932e2e1a469ef52f24555e667',1,'firebase_utils']]],
+  ['firebase_5fstorage_5fbucket_12',['FIREBASE_STORAGE_BUCKET',['../namespacefirebase__utils.html#a2d019c8c3b67d802528ffc19fdd84db4',1,'firebase_utils']]],
+  ['firebase_5futils_13',['firebase_utils',['../namespacefirebase__utils.html',1,'']]],
+  ['firebase_5futils_2epy_14',['firebase_utils.py',['../firebase__utils_8py.html',1,'']]],
+  ['firebasemessagingservice_15',['FirebaseMessagingService',['../namespaceFirebaseMessagingService.html',1,'']]],
+  ['firstorderid_16',['firstOrderId',['../namespaceAppCompatActivity.html#ae3f2ab197a47ab7e646adb14b8ea1484',1,'AppCompatActivity']]],
+  ['food_5fdetail_2ekt_17',['food_detail.kt',['../food__detail_8kt.html',1,'']]],
+  ['foodid_18',['foodId',['../namespaceAppCompatActivity.html#ac990b852a0858829f26e601296edac7a',1,'AppCompatActivity']]]
+];

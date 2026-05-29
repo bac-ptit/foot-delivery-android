@@ -1,0 +1,45 @@
+\doxysection{Address\+Adapter.\+kt}
+\hypertarget{AddressAdapter_8kt_source}{}\label{AddressAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/AddressAdapter.kt@{app/app/src/main/java/com/example/myapp/adapters/AddressAdapter.kt}}
+\doxymbox{\hyperlink{AddressAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.adapters}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00008}00008\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00009}00009\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00010}00010\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00011}00011\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00012}00012\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00013}00013\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00014}00014\ import\ com.example.myapp.screens.api.Address}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00024}00024\ class\ AddressAdapter(}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00025}00025\ \ \ \ \ private\ val\ addresses:\ List<Address>,}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00026}00026\ \ \ \ \ private\ val\ onEditClick:\ (Address)\ -\/>\ Unit}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00027}\doxymbox{\hyperlink{namespaceAddressAdapter}{00027}}\ )\ :\ RecyclerView.Adapter<AddressAdapter.AddressViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00036}00036\ \ \ \ \ class\ AddressViewHolder(itemView:\ View)\ :\ RecyclerView.ViewHolder(itemView)\ \{}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ val\ tvPhone:\ TextView\ =\ itemView.findViewById(R.id.tvPhone)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ val\ tvAddress:\ TextView\ =\ itemView.findViewById(R.id.tvAddress)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ val\ tvEdit:\ TextView\ =\ itemView.findViewById(R.id.tvEdit)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00040}00040\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00049}00049\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ AddressViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ val\ view\ =\ LayoutInflater.from(parent.context)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ .inflate(R.layout.item\_address,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ return\ AddressViewHolder(view)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00062}00062\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ AddressViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ val\ address\ =\ addresses[position]}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ holder.tvPhone.text\ =\ "{}SDT:\ \$\{address.phone\ ?:\ "{}Chưa\ có\ số\ điện\ thoại"{}\}"{}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ holder.tvAddress.text\ =\ "{}Địa\ chỉ:\ \$\{address.detail\}"{}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ holder.tvEdit.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ onEditClick(address)}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00076}00076\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ addresses.size}
+\DoxyCodeLine{\Hypertarget{AddressAdapter_8kt_source_l00077}00077\ \}}
+
+\end{DoxyCode}

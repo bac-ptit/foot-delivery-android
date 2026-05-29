@@ -1,0 +1,866 @@
+\@ifundefined {etoctocstyle}{\let \etoc@startlocaltoc \@gobble \let \etoc@settocdepth \@gobble \let \etoc@depthtag \@gobble \let \etoc@setlocaltop \@gobble }{}
+\contentsline {chapter}{\numberline {1}Directory Hierarchy}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Directories}{1}{section.1.1}%
+\contentsline {chapter}{\numberline {2}Namespace Index}{11}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Namespace List}{11}{section.2.1}%
+\contentsline {chapter}{\numberline {3}Hierarchical Index}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Class Hierarchy}{13}{section.3.1}%
+\contentsline {chapter}{\numberline {4}Class Index}{17}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Class List}{17}{section.4.1}%
+\contentsline {chapter}{\numberline {5}File Index}{21}{chapter.5}%
+\contentsline {section}{\numberline {5.1}File List}{21}{section.5.1}%
+\contentsline {chapter}{\numberline {6}Directory Documentation}{23}{chapter.6}%
+\contentsline {section}{\numberline {6.1}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters Directory Reference}{23}{section.6.1}%
+\contentsline {section}{\numberline {6.2}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}api Directory Reference}{24}{section.6.2}%
+\contentsline {section}{\numberline {6.3}app Directory Reference}{24}{section.6.3}%
+\contentsline {section}{\numberline {6.4}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app Directory Reference}{24}{section.6.4}%
+\contentsline {section}{\numberline {6.5}backend Directory Reference}{25}{section.6.5}%
+\contentsline {section}{\numberline {6.6}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com Directory Reference}{25}{section.6.6}%
+\contentsline {section}{\numberline {6.7}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example Directory Reference}{26}{section.6.7}%
+\contentsline {section}{\numberline {6.8}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java Directory Reference}{26}{section.6.8}%
+\contentsline {section}{\numberline {6.9}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main Directory Reference}{27}{section.6.9}%
+\contentsline {section}{\numberline {6.10}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp Directory Reference}{27}{section.6.10}%
+\contentsline {section}{\numberline {6.11}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens Directory Reference}{28}{section.6.11}%
+\contentsline {section}{\numberline {6.12}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src Directory Reference}{29}{section.6.12}%
+\contentsline {chapter}{\numberline {7}Namespace Documentation}{31}{chapter.7}%
+\contentsline {section}{\numberline {7.1}Package Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{31}{section.7.1}%
+\contentsline {section}{\numberline {7.2}Package Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{31}{section.7.2}%
+\contentsline {section}{\numberline {7.3}Package Api\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service}{31}{section.7.3}%
+\contentsline {section}{\numberline {7.4}Package App\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Compat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Activity}{31}{section.7.4}%
+\contentsline {subsection}{\numberline {7.4.1}Function Documentation}{32}{subsection.7.4.1}%
+\contentsline {subsubsection}{\numberline {7.4.1.1}bindOrder()}{32}{subsubsection.7.4.1.1}%
+\contentsline {subsubsection}{\numberline {7.4.1.2}bindOrderCard()}{33}{subsubsection.7.4.1.2}%
+\contentsline {subsubsection}{\numberline {7.4.1.3}bindTopTwoOrders()}{33}{subsubsection.7.4.1.3}%
+\contentsline {subsubsection}{\numberline {7.4.1.4}displayMenuItems()}{34}{subsubsection.7.4.1.4}%
+\contentsline {subsubsection}{\numberline {7.4.1.5}displayRestaurants()}{34}{subsubsection.7.4.1.5}%
+\contentsline {subsubsection}{\numberline {7.4.1.6}if()\hspace {0.1cm}{\footnotesize \ttfamily [1/2]}}{34}{subsubsection.7.4.1.6}%
+\contentsline {subsubsection}{\numberline {7.4.1.7}if()\hspace {0.1cm}{\footnotesize \ttfamily [2/2]}}{35}{subsubsection.7.4.1.7}%
+\contentsline {subsubsection}{\numberline {7.4.1.8}loadOrders()}{35}{subsubsection.7.4.1.8}%
+\contentsline {subsubsection}{\numberline {7.4.1.9}onCreate()}{35}{subsubsection.7.4.1.9}%
+\contentsline {subsubsection}{\numberline {7.4.1.10}openOrderDetail()}{37}{subsubsection.7.4.1.10}%
+\contentsline {subsubsection}{\numberline {7.4.1.11}reorderCurrentOrder()}{37}{subsubsection.7.4.1.11}%
+\contentsline {subsubsection}{\numberline {7.4.1.12}resolveUserIdForPoints()}{37}{subsubsection.7.4.1.12}%
+\contentsline {subsubsection}{\numberline {7.4.1.13}searchByCategory()}{38}{subsubsection.7.4.1.13}%
+\contentsline {subsubsection}{\numberline {7.4.1.14}searchMenuItems()}{39}{subsubsection.7.4.1.14}%
+\contentsline {subsubsection}{\numberline {7.4.1.15}searchRestaurants()}{39}{subsubsection.7.4.1.15}%
+\contentsline {subsubsection}{\numberline {7.4.1.16}show()}{40}{subsubsection.7.4.1.16}%
+\contentsline {subsubsection}{\numberline {7.4.1.17}startActivity()}{40}{subsubsection.7.4.1.17}%
+\contentsline {subsubsection}{\numberline {7.4.1.18}updateAddress()}{41}{subsubsection.7.4.1.18}%
+\contentsline {subsubsection}{\numberline {7.4.1.19}updateOrderStatusToCODConfirmed()}{42}{subsubsection.7.4.1.19}%
+\contentsline {subsection}{\numberline {7.4.2}Variable Documentation}{42}{subsection.7.4.2}%
+\contentsline {subsubsection}{\numberline {7.4.2.1}currentAddress}{42}{subsubsection.7.4.2.1}%
+\contentsline {subsubsection}{\numberline {7.4.2.2}edtPhone}{42}{subsubsection.7.4.2.2}%
+\contentsline {subsubsection}{\numberline {7.4.2.3}firstOrderId}{42}{subsubsection.7.4.2.3}%
+\contentsline {subsubsection}{\numberline {7.4.2.4}foodId}{43}{subsubsection.7.4.2.4}%
+\contentsline {subsubsection}{\numberline {7.4.2.5}icCart}{43}{subsubsection.7.4.2.5}%
+\contentsline {subsubsection}{\numberline {7.4.2.6}icHeart}{43}{subsubsection.7.4.2.6}%
+\contentsline {subsubsection}{\numberline {7.4.2.7}icHome}{43}{subsubsection.7.4.2.7}%
+\contentsline {subsubsection}{\numberline {7.4.2.8}icProfile}{43}{subsubsection.7.4.2.8}%
+\contentsline {subsubsection}{\numberline {7.4.2.9}isRequestingVnPay}{43}{subsubsection.7.4.2.9}%
+\contentsline {subsubsection}{\numberline {7.4.2.10}món}{43}{subsubsection.7.4.2.10}%
+\contentsline {subsubsection}{\numberline {7.4.2.11}menuItems}{44}{subsubsection.7.4.2.11}%
+\contentsline {subsubsection}{\numberline {7.4.2.12}nay}{44}{subsubsection.7.4.2.12}%
+\contentsline {subsubsection}{\numberline {7.4.2.13}orderId}{44}{subsubsection.7.4.2.13}%
+\contentsline {subsubsection}{\numberline {7.4.2.14}pointsCard2}{44}{subsubsection.7.4.2.14}%
+\contentsline {subsubsection}{\numberline {7.4.2.15}pointsCard3}{44}{subsubsection.7.4.2.15}%
+\contentsline {subsubsection}{\numberline {7.4.2.16}pointsCard4}{44}{subsubsection.7.4.2.16}%
+\contentsline {subsubsection}{\numberline {7.4.2.17}recyclerView}{44}{subsubsection.7.4.2.17}%
+\contentsline {subsubsection}{\numberline {7.4.2.18}restaurant}{45}{subsubsection.7.4.2.18}%
+\contentsline {subsubsection}{\numberline {7.4.2.19}restaurantId}{45}{subsubsection.7.4.2.19}%
+\contentsline {subsubsection}{\numberline {7.4.2.20}restaurants}{45}{subsubsection.7.4.2.20}%
+\contentsline {subsubsection}{\numberline {7.4.2.21}rvAddresses}{45}{subsubsection.7.4.2.21}%
+\contentsline {subsubsection}{\numberline {7.4.2.22}rvCart}{45}{subsubsection.7.4.2.22}%
+\contentsline {subsubsection}{\numberline {7.4.2.23}rvNotifications}{45}{subsubsection.7.4.2.23}%
+\contentsline {subsubsection}{\numberline {7.4.2.24}rvPreOrderCart}{45}{subsubsection.7.4.2.24}%
+\contentsline {subsubsection}{\numberline {7.4.2.25}selectedPromotion}{46}{subsubsection.7.4.2.25}%
+\contentsline {section}{\numberline {7.5}auth Namespace Reference}{46}{section.7.5}%
+\contentsline {subsection}{\numberline {7.5.1}Detailed Description}{46}{subsection.7.5.1}%
+\contentsline {subsection}{\numberline {7.5.2}Function Documentation}{46}{subsection.7.5.2}%
+\contentsline {subsubsection}{\numberline {7.5.2.1}create\_access\_token()}{46}{subsubsection.7.5.2.1}%
+\contentsline {subsubsection}{\numberline {7.5.2.2}get\_current\_user()}{47}{subsubsection.7.5.2.2}%
+\contentsline {subsubsection}{\numberline {7.5.2.3}get\_password\_hash()}{47}{subsubsection.7.5.2.3}%
+\contentsline {subsubsection}{\numberline {7.5.2.4}verify\_password()}{48}{subsubsection.7.5.2.4}%
+\contentsline {subsection}{\numberline {7.5.3}Variable Documentation}{48}{subsection.7.5.3}%
+\contentsline {subsubsection}{\numberline {7.5.3.1}ACCESS\_TOKEN\_EXPIRE\_MINUTES}{48}{subsubsection.7.5.3.1}%
+\contentsline {subsubsection}{\numberline {7.5.3.2}ALGORITHM}{49}{subsubsection.7.5.3.2}%
+\contentsline {subsubsection}{\numberline {7.5.3.3}oauth2\_scheme}{49}{subsubsection.7.5.3.3}%
+\contentsline {subsubsection}{\numberline {7.5.3.4}pwd\_context}{49}{subsubsection.7.5.3.4}%
+\contentsline {subsubsection}{\numberline {7.5.3.5}SECRET\_KEY}{49}{subsubsection.7.5.3.5}%
+\contentsline {section}{\numberline {7.6}Package Cart\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{49}{section.7.6}%
+\contentsline {section}{\numberline {7.7}Package Cart\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cart\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{49}{section.7.7}%
+\contentsline {subsection}{\numberline {7.7.1}Function Documentation}{50}{subsection.7.7.1}%
+\contentsline {subsubsection}{\numberline {7.7.1.1}CartItemViewHolder()}{50}{subsubsection.7.7.1.1}%
+\contentsline {section}{\numberline {7.8}chatbot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service Namespace Reference}{50}{section.7.8}%
+\contentsline {subsection}{\numberline {7.8.1}Detailed Description}{51}{subsection.7.8.1}%
+\contentsline {subsection}{\numberline {7.8.2}Variable Documentation}{51}{subsection.7.8.2}%
+\contentsline {subsubsection}{\numberline {7.8.2.1}GEMINI\_API\_KEY}{51}{subsubsection.7.8.2.1}%
+\contentsline {section}{\numberline {7.9}Package Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{51}{section.7.9}%
+\contentsline {section}{\numberline {7.10}Package Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{51}{section.7.10}%
+\contentsline {section}{\numberline {7.11}check\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}db Namespace Reference}{51}{section.7.11}%
+\contentsline {subsection}{\numberline {7.11.1}Variable Documentation}{51}{subsection.7.11.1}%
+\contentsline {subsubsection}{\numberline {7.11.1.1}conn}{51}{subsubsection.7.11.1.1}%
+\contentsline {subsubsection}{\numberline {7.11.1.2}cursor}{51}{subsubsection.7.11.1.2}%
+\contentsline {subsubsection}{\numberline {7.11.1.3}fcm}{52}{subsubsection.7.11.1.3}%
+\contentsline {subsubsection}{\numberline {7.11.1.4}notifs}{52}{subsubsection.7.11.1.4}%
+\contentsline {subsubsection}{\numberline {7.11.1.5}tables}{52}{subsubsection.7.11.1.5}%
+\contentsline {section}{\numberline {7.12}database Namespace Reference}{52}{section.7.12}%
+\contentsline {subsection}{\numberline {7.12.1}Detailed Description}{52}{subsection.7.12.1}%
+\contentsline {subsection}{\numberline {7.12.2}Function Documentation}{52}{subsection.7.12.2}%
+\contentsline {subsubsection}{\numberline {7.12.2.1}get\_db()}{52}{subsubsection.7.12.2.1}%
+\contentsline {subsection}{\numberline {7.12.3}Variable Documentation}{53}{subsection.7.12.3}%
+\contentsline {subsubsection}{\numberline {7.12.3.1}Base}{53}{subsubsection.7.12.3.1}%
+\contentsline {subsubsection}{\numberline {7.12.3.2}engine}{53}{subsubsection.7.12.3.2}%
+\contentsline {subsubsection}{\numberline {7.12.3.3}SessionLocal}{53}{subsubsection.7.12.3.3}%
+\contentsline {subsubsection}{\numberline {7.12.3.4}SQLALCHEMY\_DATABASE\_URL}{53}{subsubsection.7.12.3.4}%
+\contentsline {section}{\numberline {7.13}Package FAQAdapter}{53}{section.7.13}%
+\contentsline {section}{\numberline {7.14}Package FAQAdapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQView\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{53}{section.7.14}%
+\contentsline {section}{\numberline {7.15}Package Fcm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Token\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Registrar}{53}{section.7.15}%
+\contentsline {section}{\numberline {7.16}firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils Namespace Reference}{53}{section.7.16}%
+\contentsline {subsection}{\numberline {7.16.1}Detailed Description}{54}{subsection.7.16.1}%
+\contentsline {subsection}{\numberline {7.16.2}Function Documentation}{54}{subsection.7.16.2}%
+\contentsline {subsubsection}{\numberline {7.16.2.1}\_upload\_image\_sync()}{54}{subsubsection.7.16.2.1}%
+\contentsline {subsubsection}{\numberline {7.16.2.2}init\_firebase()}{55}{subsubsection.7.16.2.2}%
+\contentsline {subsubsection}{\numberline {7.16.2.3}upload\_image()}{55}{subsubsection.7.16.2.3}%
+\contentsline {subsection}{\numberline {7.16.3}Variable Documentation}{55}{subsection.7.16.3}%
+\contentsline {subsubsection}{\numberline {7.16.3.1}FIREBASE\_CREDENTIALS\_PATH}{55}{subsubsection.7.16.3.1}%
+\contentsline {subsubsection}{\numberline {7.16.3.2}FIREBASE\_STORAGE\_BUCKET}{56}{subsubsection.7.16.3.2}%
+\contentsline {section}{\numberline {7.17}Package Firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Messaging\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service}{56}{section.7.17}%
+\contentsline {subsection}{\numberline {7.17.1}Function Documentation}{56}{subsection.7.17.1}%
+\contentsline {subsubsection}{\numberline {7.17.1.1}onMessageReceived()}{56}{subsubsection.7.17.1.1}%
+\contentsline {subsubsection}{\numberline {7.17.1.2}showNotification()}{56}{subsubsection.7.17.1.2}%
+\contentsline {section}{\numberline {7.18}main Namespace Reference}{57}{section.7.18}%
+\contentsline {subsection}{\numberline {7.18.1}Detailed Description}{58}{subsection.7.18.1}%
+\contentsline {subsection}{\numberline {7.18.2}Function Documentation}{58}{subsection.7.18.2}%
+\contentsline {subsubsection}{\numberline {7.18.2.1}build\_menuitem\_with\_reviews()}{58}{subsubsection.7.18.2.1}%
+\contentsline {subsubsection}{\numberline {7.18.2.2}chat\_with\_bot()}{59}{subsubsection.7.18.2.2}%
+\contentsline {subsubsection}{\numberline {7.18.2.3}create\_address()}{60}{subsubsection.7.18.2.3}%
+\contentsline {subsubsection}{\numberline {7.18.2.4}create\_menu\_item()}{61}{subsubsection.7.18.2.4}%
+\contentsline {subsubsection}{\numberline {7.18.2.5}create\_notification()}{61}{subsubsection.7.18.2.5}%
+\contentsline {subsubsection}{\numberline {7.18.2.6}create\_order()}{62}{subsubsection.7.18.2.6}%
+\contentsline {subsubsection}{\numberline {7.18.2.7}create\_payment()}{63}{subsubsection.7.18.2.7}%
+\contentsline {subsubsection}{\numberline {7.18.2.8}create\_restaurant()}{63}{subsubsection.7.18.2.8}%
+\contentsline {subsubsection}{\numberline {7.18.2.9}create\_review()}{64}{subsubsection.7.18.2.9}%
+\contentsline {subsubsection}{\numberline {7.18.2.10}create\_user()}{64}{subsubsection.7.18.2.10}%
+\contentsline {subsubsection}{\numberline {7.18.2.11}login\_for\_access\_token()}{65}{subsubsection.7.18.2.11}%
+\contentsline {subsubsection}{\numberline {7.18.2.12}mark\_notification\_as\_read()}{66}{subsubsection.7.18.2.12}%
+\contentsline {subsubsection}{\numberline {7.18.2.13}read\_all\_menu\_items()}{66}{subsubsection.7.18.2.13}%
+\contentsline {subsubsection}{\numberline {7.18.2.14}read\_categories()}{67}{subsubsection.7.18.2.14}%
+\contentsline {subsubsection}{\numberline {7.18.2.15}read\_faqs()}{67}{subsubsection.7.18.2.15}%
+\contentsline {subsubsection}{\numberline {7.18.2.16}read\_menu\_item\_detail()}{68}{subsubsection.7.18.2.16}%
+\contentsline {subsubsection}{\numberline {7.18.2.17}read\_order\_detail()}{68}{subsubsection.7.18.2.17}%
+\contentsline {subsubsection}{\numberline {7.18.2.18}read\_promotions()}{69}{subsubsection.7.18.2.18}%
+\contentsline {subsubsection}{\numberline {7.18.2.19}read\_restaurant()}{69}{subsubsection.7.18.2.19}%
+\contentsline {subsubsection}{\numberline {7.18.2.20}read\_restaurant\_menu()}{70}{subsubsection.7.18.2.20}%
+\contentsline {subsubsection}{\numberline {7.18.2.21}read\_restaurants()}{70}{subsubsection.7.18.2.21}%
+\contentsline {subsubsection}{\numberline {7.18.2.22}read\_root()}{70}{subsubsection.7.18.2.22}%
+\contentsline {subsubsection}{\numberline {7.18.2.23}read\_user\_addresses()}{71}{subsubsection.7.18.2.23}%
+\contentsline {subsubsection}{\numberline {7.18.2.24}read\_user\_notifications()}{71}{subsubsection.7.18.2.24}%
+\contentsline {subsubsection}{\numberline {7.18.2.25}read\_user\_orders()}{71}{subsubsection.7.18.2.25}%
+\contentsline {subsubsection}{\numberline {7.18.2.26}read\_user\_profile\_summary()}{72}{subsubsection.7.18.2.26}%
+\contentsline {subsubsection}{\numberline {7.18.2.27}read\_users()}{72}{subsubsection.7.18.2.27}%
+\contentsline {subsubsection}{\numberline {7.18.2.28}read\_users\_me()}{72}{subsubsection.7.18.2.28}%
+\contentsline {subsubsection}{\numberline {7.18.2.29}search\_menu\_items\_by\_category\_name()}{73}{subsubsection.7.18.2.29}%
+\contentsline {subsubsection}{\numberline {7.18.2.30}search\_menu\_items\_by\_name()}{73}{subsubsection.7.18.2.30}%
+\contentsline {subsubsection}{\numberline {7.18.2.31}search\_restaurants\_by\_name()}{74}{subsubsection.7.18.2.31}%
+\contentsline {subsubsection}{\numberline {7.18.2.32}update\_address()}{74}{subsubsection.7.18.2.32}%
+\contentsline {subsubsection}{\numberline {7.18.2.33}update\_device\_token()}{75}{subsubsection.7.18.2.33}%
+\contentsline {subsubsection}{\numberline {7.18.2.34}update\_order\_status()}{75}{subsubsection.7.18.2.34}%
+\contentsline {subsubsection}{\numberline {7.18.2.35}vnpay\_return()}{76}{subsubsection.7.18.2.35}%
+\contentsline {subsection}{\numberline {7.18.3}Variable Documentation}{77}{subsection.7.18.3}%
+\contentsline {subsubsection}{\numberline {7.18.3.1}allow\_credentials}{77}{subsubsection.7.18.3.1}%
+\contentsline {subsubsection}{\numberline {7.18.3.2}allow\_headers}{77}{subsubsection.7.18.3.2}%
+\contentsline {subsubsection}{\numberline {7.18.3.3}allow\_methods}{77}{subsubsection.7.18.3.3}%
+\contentsline {subsubsection}{\numberline {7.18.3.4}allow\_origins}{78}{subsubsection.7.18.3.4}%
+\contentsline {subsubsection}{\numberline {7.18.3.5}app}{78}{subsubsection.7.18.3.5}%
+\contentsline {subsubsection}{\numberline {7.18.3.6}bind}{78}{subsubsection.7.18.3.6}%
+\contentsline {subsubsection}{\numberline {7.18.3.7}host}{78}{subsubsection.7.18.3.7}%
+\contentsline {subsubsection}{\numberline {7.18.3.8}port}{78}{subsubsection.7.18.3.8}%
+\contentsline {section}{\numberline {7.19}Package Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{78}{section.7.19}%
+\contentsline {section}{\numberline {7.20}Package Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{78}{section.7.20}%
+\contentsline {section}{\numberline {7.21}Package Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Small}{78}{section.7.21}%
+\contentsline {section}{\numberline {7.22}Package Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Small.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{79}{section.7.22}%
+\contentsline {section}{\numberline {7.23}models Namespace Reference}{79}{section.7.23}%
+\contentsline {subsection}{\numberline {7.23.1}Detailed Description}{79}{subsection.7.23.1}%
+\contentsline {section}{\numberline {7.24}Package Network\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config}{79}{section.7.24}%
+\contentsline {section}{\numberline {7.25}notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service Namespace Reference}{79}{section.7.25}%
+\contentsline {subsection}{\numberline {7.25.1}Detailed Description}{79}{subsection.7.25.1}%
+\contentsline {subsection}{\numberline {7.25.2}Function Documentation}{80}{subsection.7.25.2}%
+\contentsline {subsubsection}{\numberline {7.25.2.1}notify\_user()}{80}{subsubsection.7.25.2.1}%
+\contentsline {subsubsection}{\numberline {7.25.2.2}send\_fcm\_notification()}{80}{subsubsection.7.25.2.2}%
+\contentsline {section}{\numberline {7.26}Package Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{81}{section.7.26}%
+\contentsline {section}{\numberline {7.27}Package Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{81}{section.7.27}%
+\contentsline {section}{\numberline {7.28}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service Namespace Reference}{81}{section.7.28}%
+\contentsline {subsection}{\numberline {7.28.1}Detailed Description}{82}{subsection.7.28.1}%
+\contentsline {subsection}{\numberline {7.28.2}Function Documentation}{82}{subsection.7.28.2}%
+\contentsline {subsubsection}{\numberline {7.28.2.1}generate\_vnpay\_url()}{82}{subsubsection.7.28.2.1}%
+\contentsline {subsection}{\numberline {7.28.3}Variable Documentation}{82}{subsection.7.28.3}%
+\contentsline {subsubsection}{\numberline {7.28.3.1}VNP\_HASH\_SECRET}{82}{subsubsection.7.28.3.1}%
+\contentsline {subsubsection}{\numberline {7.28.3.2}VNP\_RETURN\_URL}{83}{subsubsection.7.28.3.2}%
+\contentsline {subsubsection}{\numberline {7.28.3.3}VNP\_TMNCODE}{83}{subsubsection.7.28.3.3}%
+\contentsline {subsubsection}{\numberline {7.28.3.4}VNP\_URL}{83}{subsubsection.7.28.3.4}%
+\contentsline {section}{\numberline {7.29}Package Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter}{83}{section.7.29}%
+\contentsline {section}{\numberline {7.30}Package Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}View\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Holder}{83}{section.7.30}%
+\contentsline {section}{\numberline {7.31}Package Retrofit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client}{83}{section.7.31}%
+\contentsline {section}{\numberline {7.32}schemas Namespace Reference}{83}{section.7.32}%
+\contentsline {subsection}{\numberline {7.32.1}Detailed Description}{85}{subsection.7.32.1}%
+\contentsline {section}{\numberline {7.33}view\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data Namespace Reference}{85}{section.7.33}%
+\contentsline {subsection}{\numberline {7.33.1}Detailed Description}{85}{subsection.7.33.1}%
+\contentsline {subsection}{\numberline {7.33.2}Function Documentation}{85}{subsection.7.33.2}%
+\contentsline {subsubsection}{\numberline {7.33.2.1}get\_all\_tables()}{85}{subsubsection.7.33.2.1}%
+\contentsline {subsubsection}{\numberline {7.33.2.2}view\_all\_data()}{86}{subsubsection.7.33.2.2}%
+\contentsline {subsubsection}{\numberline {7.33.2.3}view\_specific\_table()}{86}{subsubsection.7.33.2.3}%
+\contentsline {subsubsection}{\numberline {7.33.2.4}view\_table\_data()}{87}{subsubsection.7.33.2.4}%
+\contentsline {subsection}{\numberline {7.33.3}Variable Documentation}{88}{subsection.7.33.3}%
+\contentsline {subsubsection}{\numberline {7.33.3.1}limit}{88}{subsubsection.7.33.3.1}%
+\contentsline {subsubsection}{\numberline {7.33.3.2}table\_name}{88}{subsubsection.7.33.3.2}%
+\contentsline {chapter}{\numberline {8}Class Documentation}{89}{chapter.8}%
+\contentsline {section}{\numberline {8.1}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address Class Reference}{89}{section.8.1}%
+\contentsline {subsection}{\numberline {8.1.1}Detailed Description}{90}{subsection.8.1.1}%
+\contentsline {subsection}{\numberline {8.1.2}Member Data Documentation}{90}{subsection.8.1.2}%
+\contentsline {subsubsection}{\numberline {8.1.2.1}\_\_tablename\_\_}{90}{subsubsection.8.1.2.1}%
+\contentsline {subsubsection}{\numberline {8.1.2.2}detail}{90}{subsubsection.8.1.2.2}%
+\contentsline {subsubsection}{\numberline {8.1.2.3}id}{90}{subsubsection.8.1.2.3}%
+\contentsline {subsubsection}{\numberline {8.1.2.4}orders}{90}{subsubsection.8.1.2.4}%
+\contentsline {subsubsection}{\numberline {8.1.2.5}phone}{91}{subsubsection.8.1.2.5}%
+\contentsline {subsubsection}{\numberline {8.1.2.6}user}{91}{subsubsection.8.1.2.6}%
+\contentsline {subsubsection}{\numberline {8.1.2.7}userid}{91}{subsubsection.8.1.2.7}%
+\contentsline {section}{\numberline {8.2}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address Class Reference}{91}{section.8.2}%
+\contentsline {subsection}{\numberline {8.2.1}Detailed Description}{92}{subsection.8.2.1}%
+\contentsline {subsection}{\numberline {8.2.2}Member Data Documentation}{92}{subsection.8.2.2}%
+\contentsline {subsubsection}{\numberline {8.2.2.1}model\_config}{92}{subsubsection.8.2.2.1}%
+\contentsline {section}{\numberline {8.3}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{93}{section.8.3}%
+\contentsline {subsection}{\numberline {8.3.1}Detailed Description}{93}{subsection.8.3.1}%
+\contentsline {subsection}{\numberline {8.3.2}Member Data Documentation}{94}{subsection.8.3.2}%
+\contentsline {subsubsection}{\numberline {8.3.2.1}phone}{94}{subsubsection.8.3.2.1}%
+\contentsline {section}{\numberline {8.4}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{94}{section.8.4}%
+\contentsline {subsection}{\numberline {8.4.1}Detailed Description}{95}{subsection.8.4.1}%
+\contentsline {section}{\numberline {8.5}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Update Class Reference}{95}{section.8.5}%
+\contentsline {subsection}{\numberline {8.5.1}Detailed Description}{96}{subsection.8.5.1}%
+\contentsline {subsection}{\numberline {8.5.2}Member Data Documentation}{96}{subsection.8.5.2}%
+\contentsline {subsubsection}{\numberline {8.5.2.1}detail}{96}{subsubsection.8.5.2.1}%
+\contentsline {subsubsection}{\numberline {8.5.2.2}phone}{96}{subsubsection.8.5.2.2}%
+\contentsline {section}{\numberline {8.6}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Category Class Reference}{96}{section.8.6}%
+\contentsline {subsection}{\numberline {8.6.1}Detailed Description}{97}{subsection.8.6.1}%
+\contentsline {subsection}{\numberline {8.6.2}Member Data Documentation}{97}{subsection.8.6.2}%
+\contentsline {subsubsection}{\numberline {8.6.2.1}\_\_tablename\_\_}{97}{subsubsection.8.6.2.1}%
+\contentsline {subsubsection}{\numberline {8.6.2.2}description}{97}{subsubsection.8.6.2.2}%
+\contentsline {subsubsection}{\numberline {8.6.2.3}id}{98}{subsubsection.8.6.2.3}%
+\contentsline {subsubsection}{\numberline {8.6.2.4}menu\_items}{98}{subsubsection.8.6.2.4}%
+\contentsline {subsubsection}{\numberline {8.6.2.5}name}{98}{subsubsection.8.6.2.5}%
+\contentsline {subsubsection}{\numberline {8.6.2.6}type}{98}{subsubsection.8.6.2.6}%
+\contentsline {section}{\numberline {8.7}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Category Class Reference}{98}{section.8.7}%
+\contentsline {subsection}{\numberline {8.7.1}Detailed Description}{99}{subsection.8.7.1}%
+\contentsline {subsection}{\numberline {8.7.2}Member Data Documentation}{99}{subsection.8.7.2}%
+\contentsline {subsubsection}{\numberline {8.7.2.1}model\_config}{99}{subsubsection.8.7.2.1}%
+\contentsline {section}{\numberline {8.8}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Category\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{100}{section.8.8}%
+\contentsline {subsection}{\numberline {8.8.1}Detailed Description}{100}{subsection.8.8.1}%
+\contentsline {subsection}{\numberline {8.8.2}Member Data Documentation}{101}{subsection.8.8.2}%
+\contentsline {subsubsection}{\numberline {8.8.2.1}description}{101}{subsubsection.8.8.2.1}%
+\contentsline {subsubsection}{\numberline {8.8.2.2}type}{101}{subsubsection.8.8.2.2}%
+\contentsline {section}{\numberline {8.9}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Category\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{101}{section.8.9}%
+\contentsline {subsection}{\numberline {8.9.1}Detailed Description}{102}{subsection.8.9.1}%
+\contentsline {section}{\numberline {8.10}chatbot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Bot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service Class Reference}{102}{section.8.10}%
+\contentsline {subsection}{\numberline {8.10.1}Detailed Description}{103}{subsection.8.10.1}%
+\contentsline {subsection}{\numberline {8.10.2}Constructor \& Destructor Documentation}{103}{subsection.8.10.2}%
+\contentsline {subsubsection}{\numberline {8.10.2.1}\_\_init\_\_()}{103}{subsubsection.8.10.2.1}%
+\contentsline {subsection}{\numberline {8.10.3}Member Function Documentation}{103}{subsection.8.10.3}%
+\contentsline {subsubsection}{\numberline {8.10.3.1}\_call\_gemini\_sdk()}{103}{subsubsection.8.10.3.1}%
+\contentsline {subsubsection}{\numberline {8.10.3.2}get\_app\_context()}{104}{subsubsection.8.10.3.2}%
+\contentsline {subsubsection}{\numberline {8.10.3.3}get\_response()}{104}{subsubsection.8.10.3.3}%
+\contentsline {subsection}{\numberline {8.10.4}Member Data Documentation}{105}{subsection.8.10.4}%
+\contentsline {subsubsection}{\numberline {8.10.4.1}\_call\_gemini\_sdk}{105}{subsubsection.8.10.4.1}%
+\contentsline {subsubsection}{\numberline {8.10.4.2}client}{105}{subsubsection.8.10.4.2}%
+\contentsline {subsubsection}{\numberline {8.10.4.3}db}{105}{subsubsection.8.10.4.3}%
+\contentsline {subsubsection}{\numberline {8.10.4.4}user\_id}{106}{subsubsection.8.10.4.4}%
+\contentsline {section}{\numberline {8.11}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message Class Reference}{106}{section.8.11}%
+\contentsline {subsection}{\numberline {8.11.1}Detailed Description}{107}{subsection.8.11.1}%
+\contentsline {subsection}{\numberline {8.11.2}Member Data Documentation}{107}{subsection.8.11.2}%
+\contentsline {subsubsection}{\numberline {8.11.2.1}\_\_tablename\_\_}{107}{subsubsection.8.11.2.1}%
+\contentsline {subsubsection}{\numberline {8.11.2.2}id}{107}{subsubsection.8.11.2.2}%
+\contentsline {subsubsection}{\numberline {8.11.2.3}message}{107}{subsubsection.8.11.2.3}%
+\contentsline {subsubsection}{\numberline {8.11.2.4}senderrole}{107}{subsubsection.8.11.2.4}%
+\contentsline {subsubsection}{\numberline {8.11.2.5}sentat}{107}{subsubsection.8.11.2.5}%
+\contentsline {subsubsection}{\numberline {8.11.2.6}session}{107}{subsubsection.8.11.2.6}%
+\contentsline {subsubsection}{\numberline {8.11.2.7}sessionid}{108}{subsubsection.8.11.2.7}%
+\contentsline {section}{\numberline {8.12}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message Class Reference}{108}{section.8.12}%
+\contentsline {subsection}{\numberline {8.12.1}Detailed Description}{109}{subsection.8.12.1}%
+\contentsline {subsection}{\numberline {8.12.2}Member Data Documentation}{109}{subsection.8.12.2}%
+\contentsline {subsubsection}{\numberline {8.12.2.1}model\_config}{109}{subsubsection.8.12.2.1}%
+\contentsline {section}{\numberline {8.13}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{109}{section.8.13}%
+\contentsline {subsection}{\numberline {8.13.1}Detailed Description}{110}{subsection.8.13.1}%
+\contentsline {section}{\numberline {8.14}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{110}{section.8.14}%
+\contentsline {subsection}{\numberline {8.14.1}Detailed Description}{111}{subsection.8.14.1}%
+\contentsline {section}{\numberline {8.15}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Session Class Reference}{111}{section.8.15}%
+\contentsline {subsection}{\numberline {8.15.1}Detailed Description}{112}{subsection.8.15.1}%
+\contentsline {subsection}{\numberline {8.15.2}Member Data Documentation}{112}{subsection.8.15.2}%
+\contentsline {subsubsection}{\numberline {8.15.2.1}\_\_tablename\_\_}{112}{subsubsection.8.15.2.1}%
+\contentsline {subsubsection}{\numberline {8.15.2.2}createdat}{112}{subsubsection.8.15.2.2}%
+\contentsline {subsubsection}{\numberline {8.15.2.3}id}{113}{subsubsection.8.15.2.3}%
+\contentsline {subsubsection}{\numberline {8.15.2.4}messages}{113}{subsubsection.8.15.2.4}%
+\contentsline {subsubsection}{\numberline {8.15.2.5}notifications}{113}{subsubsection.8.15.2.5}%
+\contentsline {subsubsection}{\numberline {8.15.2.6}status}{113}{subsubsection.8.15.2.6}%
+\contentsline {subsubsection}{\numberline {8.15.2.7}user}{113}{subsubsection.8.15.2.7}%
+\contentsline {subsubsection}{\numberline {8.15.2.8}userid}{113}{subsubsection.8.15.2.8}%
+\contentsline {section}{\numberline {8.16}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Session Class Reference}{114}{section.8.16}%
+\contentsline {subsection}{\numberline {8.16.1}Detailed Description}{114}{subsection.8.16.1}%
+\contentsline {subsection}{\numberline {8.16.2}Member Data Documentation}{114}{subsection.8.16.2}%
+\contentsline {subsubsection}{\numberline {8.16.2.1}messages}{114}{subsubsection.8.16.2.1}%
+\contentsline {subsubsection}{\numberline {8.16.2.2}model\_config}{115}{subsubsection.8.16.2.2}%
+\contentsline {section}{\numberline {8.17}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Session\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{115}{section.8.17}%
+\contentsline {subsection}{\numberline {8.17.1}Detailed Description}{115}{subsection.8.17.1}%
+\contentsline {section}{\numberline {8.18}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Delivery Class Reference}{116}{section.8.18}%
+\contentsline {subsection}{\numberline {8.18.1}Detailed Description}{116}{subsection.8.18.1}%
+\contentsline {subsection}{\numberline {8.18.2}Member Data Documentation}{117}{subsection.8.18.2}%
+\contentsline {subsubsection}{\numberline {8.18.2.1}\_\_tablename\_\_}{117}{subsubsection.8.18.2.1}%
+\contentsline {subsubsection}{\numberline {8.18.2.2}deliverytime}{117}{subsubsection.8.18.2.2}%
+\contentsline {subsubsection}{\numberline {8.18.2.3}id}{117}{subsubsection.8.18.2.3}%
+\contentsline {subsubsection}{\numberline {8.18.2.4}order}{117}{subsubsection.8.18.2.4}%
+\contentsline {subsubsection}{\numberline {8.18.2.5}orderid}{117}{subsubsection.8.18.2.5}%
+\contentsline {subsubsection}{\numberline {8.18.2.6}shipper}{117}{subsubsection.8.18.2.6}%
+\contentsline {subsubsection}{\numberline {8.18.2.7}shipperid}{117}{subsubsection.8.18.2.7}%
+\contentsline {subsubsection}{\numberline {8.18.2.8}status}{118}{subsubsection.8.18.2.8}%
+\contentsline {section}{\numberline {8.19}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Delivery Class Reference}{118}{section.8.19}%
+\contentsline {subsection}{\numberline {8.19.1}Detailed Description}{119}{subsection.8.19.1}%
+\contentsline {subsection}{\numberline {8.19.2}Member Data Documentation}{119}{subsection.8.19.2}%
+\contentsline {subsubsection}{\numberline {8.19.2.1}model\_config}{119}{subsubsection.8.19.2.1}%
+\contentsline {section}{\numberline {8.20}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Delivery\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{119}{section.8.20}%
+\contentsline {subsection}{\numberline {8.20.1}Detailed Description}{120}{subsection.8.20.1}%
+\contentsline {subsection}{\numberline {8.20.2}Member Data Documentation}{120}{subsection.8.20.2}%
+\contentsline {subsubsection}{\numberline {8.20.2.1}deliverytime}{120}{subsubsection.8.20.2.1}%
+\contentsline {section}{\numberline {8.21}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Delivery\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{121}{section.8.21}%
+\contentsline {subsection}{\numberline {8.21.1}Detailed Description}{122}{subsection.8.21.1}%
+\contentsline {section}{\numberline {8.22}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQ Class Reference}{122}{section.8.22}%
+\contentsline {subsection}{\numberline {8.22.1}Detailed Description}{123}{subsection.8.22.1}%
+\contentsline {subsection}{\numberline {8.22.2}Member Data Documentation}{123}{subsection.8.22.2}%
+\contentsline {subsubsection}{\numberline {8.22.2.1}\_\_tablename\_\_}{123}{subsubsection.8.22.2.1}%
+\contentsline {subsubsection}{\numberline {8.22.2.2}answer}{123}{subsubsection.8.22.2.2}%
+\contentsline {subsubsection}{\numberline {8.22.2.3}id}{123}{subsubsection.8.22.2.3}%
+\contentsline {subsubsection}{\numberline {8.22.2.4}isactive}{123}{subsubsection.8.22.2.4}%
+\contentsline {subsubsection}{\numberline {8.22.2.5}question}{123}{subsubsection.8.22.2.5}%
+\contentsline {subsubsection}{\numberline {8.22.2.6}user\_faqs}{124}{subsubsection.8.22.2.6}%
+\contentsline {section}{\numberline {8.23}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQ Class Reference}{124}{section.8.23}%
+\contentsline {subsection}{\numberline {8.23.1}Detailed Description}{125}{subsection.8.23.1}%
+\contentsline {subsection}{\numberline {8.23.2}Member Data Documentation}{125}{subsection.8.23.2}%
+\contentsline {subsubsection}{\numberline {8.23.2.1}model\_config}{125}{subsubsection.8.23.2.1}%
+\contentsline {section}{\numberline {8.24}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQBase Class Reference}{125}{section.8.24}%
+\contentsline {subsection}{\numberline {8.24.1}Detailed Description}{126}{subsection.8.24.1}%
+\contentsline {subsection}{\numberline {8.24.2}Member Data Documentation}{126}{subsection.8.24.2}%
+\contentsline {subsubsection}{\numberline {8.24.2.1}isactive}{126}{subsubsection.8.24.2.1}%
+\contentsline {section}{\numberline {8.25}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQCreate Class Reference}{127}{section.8.25}%
+\contentsline {subsection}{\numberline {8.25.1}Detailed Description}{128}{subsection.8.25.1}%
+\contentsline {section}{\numberline {8.26}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loyalty\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{128}{section.8.26}%
+\contentsline {subsection}{\numberline {8.26.1}Detailed Description}{129}{subsection.8.26.1}%
+\contentsline {subsection}{\numberline {8.26.2}Member Data Documentation}{129}{subsection.8.26.2}%
+\contentsline {subsubsection}{\numberline {8.26.2.1}\_\_tablename\_\_}{129}{subsubsection.8.26.2.1}%
+\contentsline {subsubsection}{\numberline {8.26.2.2}id}{129}{subsubsection.8.26.2.2}%
+\contentsline {subsubsection}{\numberline {8.26.2.3}menu\_item}{129}{subsubsection.8.26.2.3}%
+\contentsline {subsubsection}{\numberline {8.26.2.4}menuitemid}{129}{subsubsection.8.26.2.4}%
+\contentsline {subsubsection}{\numberline {8.26.2.5}points}{129}{subsubsection.8.26.2.5}%
+\contentsline {subsubsection}{\numberline {8.26.2.6}updatedat}{129}{subsubsection.8.26.2.6}%
+\contentsline {subsubsection}{\numberline {8.26.2.7}user}{130}{subsubsection.8.26.2.7}%
+\contentsline {subsubsection}{\numberline {8.26.2.8}userid}{130}{subsubsection.8.26.2.8}%
+\contentsline {section}{\numberline {8.27}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loyalty\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point Class Reference}{130}{section.8.27}%
+\contentsline {subsection}{\numberline {8.27.1}Detailed Description}{131}{subsection.8.27.1}%
+\contentsline {subsection}{\numberline {8.27.2}Member Data Documentation}{131}{subsection.8.27.2}%
+\contentsline {subsubsection}{\numberline {8.27.2.1}model\_config}{131}{subsubsection.8.27.2.1}%
+\contentsline {section}{\numberline {8.28}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loyalty\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{132}{section.8.28}%
+\contentsline {subsection}{\numberline {8.28.1}Detailed Description}{132}{subsection.8.28.1}%
+\contentsline {subsection}{\numberline {8.28.2}Member Data Documentation}{133}{subsection.8.28.2}%
+\contentsline {subsubsection}{\numberline {8.28.2.1}points}{133}{subsubsection.8.28.2.1}%
+\contentsline {section}{\numberline {8.29}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Loyalty\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Point\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{133}{section.8.29}%
+\contentsline {subsection}{\numberline {8.29.1}Detailed Description}{134}{subsection.8.29.1}%
+\contentsline {section}{\numberline {8.30}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{134}{section.8.30}%
+\contentsline {subsection}{\numberline {8.30.1}Detailed Description}{135}{subsection.8.30.1}%
+\contentsline {subsection}{\numberline {8.30.2}Member Data Documentation}{135}{subsection.8.30.2}%
+\contentsline {subsubsection}{\numberline {8.30.2.1}\_\_tablename\_\_}{135}{subsubsection.8.30.2.1}%
+\contentsline {subsubsection}{\numberline {8.30.2.2}category}{135}{subsubsection.8.30.2.2}%
+\contentsline {subsubsection}{\numberline {8.30.2.3}categoryid}{135}{subsubsection.8.30.2.3}%
+\contentsline {subsubsection}{\numberline {8.30.2.4}description}{136}{subsubsection.8.30.2.4}%
+\contentsline {subsubsection}{\numberline {8.30.2.5}id}{136}{subsubsection.8.30.2.5}%
+\contentsline {subsubsection}{\numberline {8.30.2.6}image\_url}{136}{subsubsection.8.30.2.6}%
+\contentsline {subsubsection}{\numberline {8.30.2.7}is\_available}{136}{subsubsection.8.30.2.7}%
+\contentsline {subsubsection}{\numberline {8.30.2.8}name}{136}{subsubsection.8.30.2.8}%
+\contentsline {subsubsection}{\numberline {8.30.2.9}order\_items}{136}{subsubsection.8.30.2.9}%
+\contentsline {subsubsection}{\numberline {8.30.2.10}price}{136}{subsubsection.8.30.2.10}%
+\contentsline {subsubsection}{\numberline {8.30.2.11}restaurant}{136}{subsubsection.8.30.2.11}%
+\contentsline {subsubsection}{\numberline {8.30.2.12}restaurantid}{137}{subsubsection.8.30.2.12}%
+\contentsline {subsubsection}{\numberline {8.30.2.13}reviews}{137}{subsubsection.8.30.2.13}%
+\contentsline {subsubsection}{\numberline {8.30.2.14}social\_shares}{137}{subsubsection.8.30.2.14}%
+\contentsline {section}{\numberline {8.31}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{137}{section.8.31}%
+\contentsline {subsection}{\numberline {8.31.1}Detailed Description}{138}{subsection.8.31.1}%
+\contentsline {subsection}{\numberline {8.31.2}Member Data Documentation}{138}{subsection.8.31.2}%
+\contentsline {subsubsection}{\numberline {8.31.2.1}model\_config}{138}{subsubsection.8.31.2.1}%
+\contentsline {section}{\numberline {8.32}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{139}{section.8.32}%
+\contentsline {subsection}{\numberline {8.32.1}Detailed Description}{139}{subsection.8.32.1}%
+\contentsline {subsection}{\numberline {8.32.2}Member Data Documentation}{139}{subsection.8.32.2}%
+\contentsline {subsubsection}{\numberline {8.32.2.1}description}{139}{subsubsection.8.32.2.1}%
+\contentsline {subsubsection}{\numberline {8.32.2.2}image\_url}{140}{subsubsection.8.32.2.2}%
+\contentsline {subsubsection}{\numberline {8.32.2.3}is\_available}{140}{subsubsection.8.32.2.3}%
+\contentsline {section}{\numberline {8.33}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{140}{section.8.33}%
+\contentsline {subsection}{\numberline {8.33.1}Detailed Description}{141}{subsection.8.33.1}%
+\contentsline {section}{\numberline {8.34}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}With\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant Class Reference}{142}{section.8.34}%
+\contentsline {subsection}{\numberline {8.34.1}Detailed Description}{143}{subsection.8.34.1}%
+\contentsline {subsection}{\numberline {8.34.2}Member Data Documentation}{143}{subsection.8.34.2}%
+\contentsline {subsubsection}{\numberline {8.34.2.1}model\_config}{143}{subsubsection.8.34.2.1}%
+\contentsline {subsubsection}{\numberline {8.34.2.2}restaurant\_name}{143}{subsubsection.8.34.2.2}%
+\contentsline {section}{\numberline {8.35}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}With\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Reviews Class Reference}{143}{section.8.35}%
+\contentsline {subsection}{\numberline {8.35.1}Detailed Description}{144}{subsection.8.35.1}%
+\contentsline {subsection}{\numberline {8.35.2}Member Data Documentation}{144}{subsection.8.35.2}%
+\contentsline {subsubsection}{\numberline {8.35.2.1}avg\_rating}{144}{subsubsection.8.35.2.1}%
+\contentsline {subsubsection}{\numberline {8.35.2.2}model\_config}{145}{subsubsection.8.35.2.2}%
+\contentsline {subsubsection}{\numberline {8.35.2.3}restaurant\_name}{145}{subsubsection.8.35.2.3}%
+\contentsline {subsubsection}{\numberline {8.35.2.4}reviews}{145}{subsubsection.8.35.2.4}%
+\contentsline {section}{\numberline {8.36}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification Class Reference}{145}{section.8.36}%
+\contentsline {subsection}{\numberline {8.36.1}Detailed Description}{146}{subsection.8.36.1}%
+\contentsline {subsection}{\numberline {8.36.2}Member Data Documentation}{146}{subsection.8.36.2}%
+\contentsline {subsubsection}{\numberline {8.36.2.1}\_\_tablename\_\_}{146}{subsubsection.8.36.2.1}%
+\contentsline {subsubsection}{\numberline {8.36.2.2}content}{146}{subsubsection.8.36.2.2}%
+\contentsline {subsubsection}{\numberline {8.36.2.3}createdat}{146}{subsubsection.8.36.2.3}%
+\contentsline {subsubsection}{\numberline {8.36.2.4}id}{147}{subsubsection.8.36.2.4}%
+\contentsline {subsubsection}{\numberline {8.36.2.5}isread}{147}{subsubsection.8.36.2.5}%
+\contentsline {subsubsection}{\numberline {8.36.2.6}order}{147}{subsubsection.8.36.2.6}%
+\contentsline {subsubsection}{\numberline {8.36.2.7}orderid}{147}{subsubsection.8.36.2.7}%
+\contentsline {subsubsection}{\numberline {8.36.2.8}session}{147}{subsubsection.8.36.2.8}%
+\contentsline {subsubsection}{\numberline {8.36.2.9}sessionid}{147}{subsubsection.8.36.2.9}%
+\contentsline {subsubsection}{\numberline {8.36.2.10}title}{147}{subsubsection.8.36.2.10}%
+\contentsline {subsubsection}{\numberline {8.36.2.11}type}{147}{subsubsection.8.36.2.11}%
+\contentsline {subsubsection}{\numberline {8.36.2.12}user}{148}{subsubsection.8.36.2.12}%
+\contentsline {subsubsection}{\numberline {8.36.2.13}userid}{148}{subsubsection.8.36.2.13}%
+\contentsline {section}{\numberline {8.37}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification Class Reference}{148}{section.8.37}%
+\contentsline {subsection}{\numberline {8.37.1}Detailed Description}{149}{subsection.8.37.1}%
+\contentsline {subsection}{\numberline {8.37.2}Member Data Documentation}{149}{subsection.8.37.2}%
+\contentsline {subsubsection}{\numberline {8.37.2.1}model\_config}{149}{subsubsection.8.37.2.1}%
+\contentsline {section}{\numberline {8.38}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{150}{section.8.38}%
+\contentsline {subsection}{\numberline {8.38.1}Detailed Description}{150}{subsection.8.38.1}%
+\contentsline {subsection}{\numberline {8.38.2}Member Data Documentation}{151}{subsection.8.38.2}%
+\contentsline {subsubsection}{\numberline {8.38.2.1}isread}{151}{subsubsection.8.38.2.1}%
+\contentsline {subsubsection}{\numberline {8.38.2.2}orderid}{151}{subsubsection.8.38.2.2}%
+\contentsline {subsubsection}{\numberline {8.38.2.3}sessionid}{151}{subsubsection.8.38.2.3}%
+\contentsline {section}{\numberline {8.39}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{151}{section.8.39}%
+\contentsline {subsection}{\numberline {8.39.1}Detailed Description}{152}{subsection.8.39.1}%
+\contentsline {section}{\numberline {8.40}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order Class Reference}{153}{section.8.40}%
+\contentsline {subsection}{\numberline {8.40.1}Detailed Description}{154}{subsection.8.40.1}%
+\contentsline {subsection}{\numberline {8.40.2}Member Data Documentation}{154}{subsection.8.40.2}%
+\contentsline {subsubsection}{\numberline {8.40.2.1}model\_config}{154}{subsubsection.8.40.2.1}%
+\contentsline {subsubsection}{\numberline {8.40.2.2}order\_items}{154}{subsubsection.8.40.2.2}%
+\contentsline {section}{\numberline {8.41}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{154}{section.8.41}%
+\contentsline {subsection}{\numberline {8.41.1}Detailed Description}{155}{subsection.8.41.1}%
+\contentsline {subsection}{\numberline {8.41.2}Member Data Documentation}{155}{subsection.8.41.2}%
+\contentsline {subsubsection}{\numberline {8.41.2.1}preorderdate}{155}{subsubsection.8.41.2.1}%
+\contentsline {subsubsection}{\numberline {8.41.2.2}preordertime}{155}{subsubsection.8.41.2.2}%
+\contentsline {section}{\numberline {8.42}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{155}{section.8.42}%
+\contentsline {subsection}{\numberline {8.42.1}Detailed Description}{156}{subsection.8.42.1}%
+\contentsline {subsection}{\numberline {8.42.2}Member Data Documentation}{156}{subsection.8.42.2}%
+\contentsline {subsubsection}{\numberline {8.42.2.1}order\_items}{156}{subsubsection.8.42.2.1}%
+\contentsline {section}{\numberline {8.43}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail Class Reference}{157}{section.8.43}%
+\contentsline {subsection}{\numberline {8.43.1}Detailed Description}{158}{subsection.8.43.1}%
+\contentsline {subsection}{\numberline {8.43.2}Member Data Documentation}{158}{subsection.8.43.2}%
+\contentsline {subsubsection}{\numberline {8.43.2.1}address\_detail}{158}{subsubsection.8.43.2.1}%
+\contentsline {subsubsection}{\numberline {8.43.2.2}order\_items}{158}{subsubsection.8.43.2.2}%
+\contentsline {subsubsection}{\numberline {8.43.2.3}restaurant\_name}{158}{subsubsection.8.43.2.3}%
+\contentsline {section}{\numberline {8.44}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{158}{section.8.44}%
+\contentsline {subsection}{\numberline {8.44.1}Detailed Description}{159}{subsection.8.44.1}%
+\contentsline {subsection}{\numberline {8.44.2}Member Data Documentation}{159}{subsection.8.44.2}%
+\contentsline {subsubsection}{\numberline {8.44.2.1}\_\_tablename\_\_}{159}{subsubsection.8.44.2.1}%
+\contentsline {subsubsection}{\numberline {8.44.2.2}id}{159}{subsubsection.8.44.2.2}%
+\contentsline {subsubsection}{\numberline {8.44.2.3}menu\_item}{160}{subsubsection.8.44.2.3}%
+\contentsline {subsubsection}{\numberline {8.44.2.4}menuitemid}{160}{subsubsection.8.44.2.4}%
+\contentsline {subsubsection}{\numberline {8.44.2.5}order}{160}{subsubsection.8.44.2.5}%
+\contentsline {subsubsection}{\numberline {8.44.2.6}orderid}{160}{subsubsection.8.44.2.6}%
+\contentsline {subsubsection}{\numberline {8.44.2.7}price}{160}{subsubsection.8.44.2.7}%
+\contentsline {subsubsection}{\numberline {8.44.2.8}quantity}{160}{subsubsection.8.44.2.8}%
+\contentsline {section}{\numberline {8.45}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item Class Reference}{161}{section.8.45}%
+\contentsline {subsection}{\numberline {8.45.1}Detailed Description}{161}{subsection.8.45.1}%
+\contentsline {subsection}{\numberline {8.45.2}Member Data Documentation}{162}{subsection.8.45.2}%
+\contentsline {subsubsection}{\numberline {8.45.2.1}model\_config}{162}{subsubsection.8.45.2.1}%
+\contentsline {section}{\numberline {8.46}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{162}{section.8.46}%
+\contentsline {subsection}{\numberline {8.46.1}Detailed Description}{163}{subsection.8.46.1}%
+\contentsline {section}{\numberline {8.47}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{163}{section.8.47}%
+\contentsline {subsection}{\numberline {8.47.1}Detailed Description}{164}{subsection.8.47.1}%
+\contentsline {section}{\numberline {8.48}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail Class Reference}{164}{section.8.48}%
+\contentsline {subsection}{\numberline {8.48.1}Detailed Description}{164}{subsection.8.48.1}%
+\contentsline {subsection}{\numberline {8.48.2}Member Data Documentation}{165}{subsection.8.48.2}%
+\contentsline {subsubsection}{\numberline {8.48.2.1}image\_url}{165}{subsubsection.8.48.2.1}%
+\contentsline {subsubsection}{\numberline {8.48.2.2}menuitem\_name}{165}{subsubsection.8.48.2.2}%
+\contentsline {section}{\numberline {8.49}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Orders Class Reference}{165}{section.8.49}%
+\contentsline {subsection}{\numberline {8.49.1}Detailed Description}{166}{subsection.8.49.1}%
+\contentsline {subsection}{\numberline {8.49.2}Member Data Documentation}{166}{subsection.8.49.2}%
+\contentsline {subsubsection}{\numberline {8.49.2.1}\_\_tablename\_\_}{166}{subsubsection.8.49.2.1}%
+\contentsline {subsubsection}{\numberline {8.49.2.2}address}{166}{subsubsection.8.49.2.2}%
+\contentsline {subsubsection}{\numberline {8.49.2.3}addressid}{166}{subsubsection.8.49.2.3}%
+\contentsline {subsubsection}{\numberline {8.49.2.4}createdat}{167}{subsubsection.8.49.2.4}%
+\contentsline {subsubsection}{\numberline {8.49.2.5}delivery}{167}{subsubsection.8.49.2.5}%
+\contentsline {subsubsection}{\numberline {8.49.2.6}id}{167}{subsubsection.8.49.2.6}%
+\contentsline {subsubsection}{\numberline {8.49.2.7}notifications}{167}{subsubsection.8.49.2.7}%
+\contentsline {subsubsection}{\numberline {8.49.2.8}order\_items}{167}{subsubsection.8.49.2.8}%
+\contentsline {subsubsection}{\numberline {8.49.2.9}payments}{167}{subsubsection.8.49.2.9}%
+\contentsline {subsubsection}{\numberline {8.49.2.10}preorderdate}{167}{subsubsection.8.49.2.10}%
+\contentsline {subsubsection}{\numberline {8.49.2.11}preordertime}{167}{subsubsection.8.49.2.11}%
+\contentsline {subsubsection}{\numberline {8.49.2.12}restaurant}{168}{subsubsection.8.49.2.12}%
+\contentsline {subsubsection}{\numberline {8.49.2.13}restaurantid}{168}{subsubsection.8.49.2.13}%
+\contentsline {subsubsection}{\numberline {8.49.2.14}status}{168}{subsubsection.8.49.2.14}%
+\contentsline {subsubsection}{\numberline {8.49.2.15}totalprice}{168}{subsubsection.8.49.2.15}%
+\contentsline {subsubsection}{\numberline {8.49.2.16}used\_promotions}{168}{subsubsection.8.49.2.16}%
+\contentsline {subsubsection}{\numberline {8.49.2.17}user}{168}{subsubsection.8.49.2.17}%
+\contentsline {subsubsection}{\numberline {8.49.2.18}userid}{168}{subsubsection.8.49.2.18}%
+\contentsline {section}{\numberline {8.50}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Status\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Update Class Reference}{169}{section.8.50}%
+\contentsline {subsection}{\numberline {8.50.1}Detailed Description}{169}{subsection.8.50.1}%
+\contentsline {section}{\numberline {8.51}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Payment Class Reference}{170}{section.8.51}%
+\contentsline {subsection}{\numberline {8.51.1}Detailed Description}{170}{subsection.8.51.1}%
+\contentsline {subsection}{\numberline {8.51.2}Member Data Documentation}{171}{subsection.8.51.2}%
+\contentsline {subsubsection}{\numberline {8.51.2.1}\_\_tablename\_\_}{171}{subsubsection.8.51.2.1}%
+\contentsline {subsubsection}{\numberline {8.51.2.2}id}{171}{subsubsection.8.51.2.2}%
+\contentsline {subsubsection}{\numberline {8.51.2.3}method}{171}{subsubsection.8.51.2.3}%
+\contentsline {subsubsection}{\numberline {8.51.2.4}order}{171}{subsubsection.8.51.2.4}%
+\contentsline {subsubsection}{\numberline {8.51.2.5}orderid}{171}{subsubsection.8.51.2.5}%
+\contentsline {subsubsection}{\numberline {8.51.2.6}status}{171}{subsubsection.8.51.2.6}%
+\contentsline {section}{\numberline {8.52}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Payment Class Reference}{172}{section.8.52}%
+\contentsline {subsection}{\numberline {8.52.1}Detailed Description}{172}{subsection.8.52.1}%
+\contentsline {subsection}{\numberline {8.52.2}Member Data Documentation}{173}{subsection.8.52.2}%
+\contentsline {subsubsection}{\numberline {8.52.2.1}model\_config}{173}{subsubsection.8.52.2.1}%
+\contentsline {section}{\numberline {8.53}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{173}{section.8.53}%
+\contentsline {subsection}{\numberline {8.53.1}Detailed Description}{174}{subsection.8.53.1}%
+\contentsline {section}{\numberline {8.54}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{174}{section.8.54}%
+\contentsline {subsection}{\numberline {8.54.1}Detailed Description}{175}{subsection.8.54.1}%
+\contentsline {section}{\numberline {8.55}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion Class Reference}{175}{section.8.55}%
+\contentsline {subsection}{\numberline {8.55.1}Detailed Description}{176}{subsection.8.55.1}%
+\contentsline {subsection}{\numberline {8.55.2}Member Data Documentation}{176}{subsection.8.55.2}%
+\contentsline {subsubsection}{\numberline {8.55.2.1}\_\_tablename\_\_}{176}{subsubsection.8.55.2.1}%
+\contentsline {subsubsection}{\numberline {8.55.2.2}code}{176}{subsubsection.8.55.2.2}%
+\contentsline {subsubsection}{\numberline {8.55.2.3}discounttype}{176}{subsubsection.8.55.2.3}%
+\contentsline {subsubsection}{\numberline {8.55.2.4}discountvalue}{176}{subsubsection.8.55.2.4}%
+\contentsline {subsubsection}{\numberline {8.55.2.5}expiredate}{176}{subsubsection.8.55.2.5}%
+\contentsline {subsubsection}{\numberline {8.55.2.6}id}{176}{subsubsection.8.55.2.6}%
+\contentsline {subsubsection}{\numberline {8.55.2.7}minordervalue}{177}{subsubsection.8.55.2.7}%
+\contentsline {subsubsection}{\numberline {8.55.2.8}status}{177}{subsubsection.8.55.2.8}%
+\contentsline {subsubsection}{\numberline {8.55.2.9}used\_promotions}{177}{subsubsection.8.55.2.9}%
+\contentsline {section}{\numberline {8.56}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion Class Reference}{177}{section.8.56}%
+\contentsline {subsection}{\numberline {8.56.1}Detailed Description}{178}{subsection.8.56.1}%
+\contentsline {subsection}{\numberline {8.56.2}Member Data Documentation}{178}{subsection.8.56.2}%
+\contentsline {subsubsection}{\numberline {8.56.2.1}model\_config}{178}{subsubsection.8.56.2.1}%
+\contentsline {section}{\numberline {8.57}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{179}{section.8.57}%
+\contentsline {subsection}{\numberline {8.57.1}Detailed Description}{179}{subsection.8.57.1}%
+\contentsline {section}{\numberline {8.58}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{180}{section.8.58}%
+\contentsline {subsection}{\numberline {8.58.1}Detailed Description}{180}{subsection.8.58.1}%
+\contentsline {section}{\numberline {8.59}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant Class Reference}{181}{section.8.59}%
+\contentsline {subsection}{\numberline {8.59.1}Detailed Description}{182}{subsection.8.59.1}%
+\contentsline {subsection}{\numberline {8.59.2}Member Data Documentation}{182}{subsection.8.59.2}%
+\contentsline {subsubsection}{\numberline {8.59.2.1}\_\_tablename\_\_}{182}{subsubsection.8.59.2.1}%
+\contentsline {subsubsection}{\numberline {8.59.2.2}address}{182}{subsubsection.8.59.2.2}%
+\contentsline {subsubsection}{\numberline {8.59.2.3}close\_time}{182}{subsubsection.8.59.2.3}%
+\contentsline {subsubsection}{\numberline {8.59.2.4}description}{182}{subsubsection.8.59.2.4}%
+\contentsline {subsubsection}{\numberline {8.59.2.5}id}{182}{subsubsection.8.59.2.5}%
+\contentsline {subsubsection}{\numberline {8.59.2.6}image\_url}{182}{subsubsection.8.59.2.6}%
+\contentsline {subsubsection}{\numberline {8.59.2.7}menu\_items}{183}{subsubsection.8.59.2.7}%
+\contentsline {subsubsection}{\numberline {8.59.2.8}name}{183}{subsubsection.8.59.2.8}%
+\contentsline {subsubsection}{\numberline {8.59.2.9}open\_time}{183}{subsubsection.8.59.2.9}%
+\contentsline {subsubsection}{\numberline {8.59.2.10}orders}{183}{subsubsection.8.59.2.10}%
+\contentsline {subsubsection}{\numberline {8.59.2.11}phone\_number}{183}{subsubsection.8.59.2.11}%
+\contentsline {subsubsection}{\numberline {8.59.2.12}rating}{183}{subsubsection.8.59.2.12}%
+\contentsline {subsubsection}{\numberline {8.59.2.13}reviews}{183}{subsubsection.8.59.2.13}%
+\contentsline {subsubsection}{\numberline {8.59.2.14}social\_shares}{183}{subsubsection.8.59.2.14}%
+\contentsline {subsubsection}{\numberline {8.59.2.15}status}{184}{subsubsection.8.59.2.15}%
+\contentsline {section}{\numberline {8.60}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant Class Reference}{184}{section.8.60}%
+\contentsline {subsection}{\numberline {8.60.1}Detailed Description}{185}{subsection.8.60.1}%
+\contentsline {subsection}{\numberline {8.60.2}Member Data Documentation}{185}{subsection.8.60.2}%
+\contentsline {subsubsection}{\numberline {8.60.2.1}menu\_items}{185}{subsubsection.8.60.2.1}%
+\contentsline {subsubsection}{\numberline {8.60.2.2}model\_config}{185}{subsubsection.8.60.2.2}%
+\contentsline {section}{\numberline {8.61}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{186}{section.8.61}%
+\contentsline {subsection}{\numberline {8.61.1}Detailed Description}{186}{subsection.8.61.1}%
+\contentsline {subsection}{\numberline {8.61.2}Member Data Documentation}{187}{subsection.8.61.2}%
+\contentsline {subsubsection}{\numberline {8.61.2.1}address}{187}{subsubsection.8.61.2.1}%
+\contentsline {subsubsection}{\numberline {8.61.2.2}close\_time}{187}{subsubsection.8.61.2.2}%
+\contentsline {subsubsection}{\numberline {8.61.2.3}description}{187}{subsubsection.8.61.2.3}%
+\contentsline {subsubsection}{\numberline {8.61.2.4}image\_url}{187}{subsubsection.8.61.2.4}%
+\contentsline {subsubsection}{\numberline {8.61.2.5}open\_time}{187}{subsubsection.8.61.2.5}%
+\contentsline {subsubsection}{\numberline {8.61.2.6}rating}{187}{subsubsection.8.61.2.6}%
+\contentsline {section}{\numberline {8.62}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{188}{section.8.62}%
+\contentsline {subsection}{\numberline {8.62.1}Detailed Description}{189}{subsection.8.62.1}%
+\contentsline {section}{\numberline {8.63}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Review Class Reference}{189}{section.8.63}%
+\contentsline {subsection}{\numberline {8.63.1}Detailed Description}{190}{subsection.8.63.1}%
+\contentsline {subsection}{\numberline {8.63.2}Member Data Documentation}{190}{subsection.8.63.2}%
+\contentsline {subsubsection}{\numberline {8.63.2.1}\_\_tablename\_\_}{190}{subsubsection.8.63.2.1}%
+\contentsline {subsubsection}{\numberline {8.63.2.2}comment}{190}{subsubsection.8.63.2.2}%
+\contentsline {subsubsection}{\numberline {8.63.2.3}id}{190}{subsubsection.8.63.2.3}%
+\contentsline {subsubsection}{\numberline {8.63.2.4}menu\_item}{190}{subsubsection.8.63.2.4}%
+\contentsline {subsubsection}{\numberline {8.63.2.5}menuitemid}{190}{subsubsection.8.63.2.5}%
+\contentsline {subsubsection}{\numberline {8.63.2.6}order}{190}{subsubsection.8.63.2.6}%
+\contentsline {subsubsection}{\numberline {8.63.2.7}orderid}{191}{subsubsection.8.63.2.7}%
+\contentsline {subsubsection}{\numberline {8.63.2.8}rating}{191}{subsubsection.8.63.2.8}%
+\contentsline {subsubsection}{\numberline {8.63.2.9}restaurant}{191}{subsubsection.8.63.2.9}%
+\contentsline {subsubsection}{\numberline {8.63.2.10}restaurantid}{191}{subsubsection.8.63.2.10}%
+\contentsline {subsubsection}{\numberline {8.63.2.11}user}{191}{subsubsection.8.63.2.11}%
+\contentsline {subsubsection}{\numberline {8.63.2.12}userid}{191}{subsubsection.8.63.2.12}%
+\contentsline {section}{\numberline {8.64}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Review Class Reference}{192}{section.8.64}%
+\contentsline {subsection}{\numberline {8.64.1}Detailed Description}{193}{subsection.8.64.1}%
+\contentsline {subsection}{\numberline {8.64.2}Member Data Documentation}{193}{subsection.8.64.2}%
+\contentsline {subsubsection}{\numberline {8.64.2.1}model\_config}{193}{subsubsection.8.64.2.1}%
+\contentsline {section}{\numberline {8.65}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Review\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{193}{section.8.65}%
+\contentsline {subsection}{\numberline {8.65.1}Detailed Description}{194}{subsection.8.65.1}%
+\contentsline {subsection}{\numberline {8.65.2}Member Data Documentation}{194}{subsection.8.65.2}%
+\contentsline {subsubsection}{\numberline {8.65.2.1}comment}{194}{subsubsection.8.65.2.1}%
+\contentsline {subsubsection}{\numberline {8.65.2.2}menuitemid}{194}{subsubsection.8.65.2.2}%
+\contentsline {subsubsection}{\numberline {8.65.2.3}restaurantid}{194}{subsubsection.8.65.2.3}%
+\contentsline {section}{\numberline {8.66}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Review\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{195}{section.8.66}%
+\contentsline {subsection}{\numberline {8.66.1}Detailed Description}{196}{subsection.8.66.1}%
+\contentsline {section}{\numberline {8.67}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Review\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Response Class Reference}{196}{section.8.67}%
+\contentsline {subsection}{\numberline {8.67.1}Detailed Description}{197}{subsection.8.67.1}%
+\contentsline {subsection}{\numberline {8.67.2}Member Data Documentation}{197}{subsection.8.67.2}%
+\contentsline {subsubsection}{\numberline {8.67.2.1}comment}{197}{subsubsection.8.67.2.1}%
+\contentsline {subsubsection}{\numberline {8.67.2.2}model\_config}{197}{subsubsection.8.67.2.2}%
+\contentsline {subsubsection}{\numberline {8.67.2.3}user\_name}{197}{subsubsection.8.67.2.3}%
+\contentsline {section}{\numberline {8.68}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Shipper Class Reference}{197}{section.8.68}%
+\contentsline {subsection}{\numberline {8.68.1}Detailed Description}{198}{subsection.8.68.1}%
+\contentsline {subsection}{\numberline {8.68.2}Member Data Documentation}{198}{subsection.8.68.2}%
+\contentsline {subsubsection}{\numberline {8.68.2.1}\_\_tablename\_\_}{198}{subsubsection.8.68.2.1}%
+\contentsline {subsubsection}{\numberline {8.68.2.2}deliveries}{198}{subsubsection.8.68.2.2}%
+\contentsline {subsubsection}{\numberline {8.68.2.3}description}{199}{subsubsection.8.68.2.3}%
+\contentsline {subsubsection}{\numberline {8.68.2.4}id}{199}{subsubsection.8.68.2.4}%
+\contentsline {subsubsection}{\numberline {8.68.2.5}name}{199}{subsubsection.8.68.2.5}%
+\contentsline {subsubsection}{\numberline {8.68.2.6}phone}{199}{subsubsection.8.68.2.6}%
+\contentsline {subsubsection}{\numberline {8.68.2.7}rating}{199}{subsubsection.8.68.2.7}%
+\contentsline {subsubsection}{\numberline {8.68.2.8}status}{199}{subsubsection.8.68.2.8}%
+\contentsline {section}{\numberline {8.69}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Shipper Class Reference}{200}{section.8.69}%
+\contentsline {subsection}{\numberline {8.69.1}Detailed Description}{201}{subsection.8.69.1}%
+\contentsline {subsection}{\numberline {8.69.2}Member Data Documentation}{201}{subsection.8.69.2}%
+\contentsline {subsubsection}{\numberline {8.69.2.1}model\_config}{201}{subsubsection.8.69.2.1}%
+\contentsline {section}{\numberline {8.70}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Shipper\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{201}{section.8.70}%
+\contentsline {subsection}{\numberline {8.70.1}Detailed Description}{202}{subsection.8.70.1}%
+\contentsline {subsection}{\numberline {8.70.2}Member Data Documentation}{202}{subsection.8.70.2}%
+\contentsline {subsubsection}{\numberline {8.70.2.1}description}{202}{subsubsection.8.70.2.1}%
+\contentsline {subsubsection}{\numberline {8.70.2.2}rating}{202}{subsubsection.8.70.2.2}%
+\contentsline {section}{\numberline {8.71}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Shipper\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{202}{section.8.71}%
+\contentsline {subsection}{\numberline {8.71.1}Detailed Description}{203}{subsection.8.71.1}%
+\contentsline {section}{\numberline {8.72}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Social\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Share Class Reference}{203}{section.8.72}%
+\contentsline {subsection}{\numberline {8.72.1}Detailed Description}{204}{subsection.8.72.1}%
+\contentsline {subsection}{\numberline {8.72.2}Member Data Documentation}{204}{subsection.8.72.2}%
+\contentsline {subsubsection}{\numberline {8.72.2.1}\_\_tablename\_\_}{204}{subsubsection.8.72.2.1}%
+\contentsline {subsubsection}{\numberline {8.72.2.2}context}{205}{subsubsection.8.72.2.2}%
+\contentsline {subsubsection}{\numberline {8.72.2.3}createdat}{205}{subsubsection.8.72.2.3}%
+\contentsline {subsubsection}{\numberline {8.72.2.4}id}{205}{subsubsection.8.72.2.4}%
+\contentsline {subsubsection}{\numberline {8.72.2.5}menu\_item}{205}{subsubsection.8.72.2.5}%
+\contentsline {subsubsection}{\numberline {8.72.2.6}menuitemid}{205}{subsubsection.8.72.2.6}%
+\contentsline {subsubsection}{\numberline {8.72.2.7}platform}{205}{subsubsection.8.72.2.7}%
+\contentsline {subsubsection}{\numberline {8.72.2.8}restaurant}{205}{subsubsection.8.72.2.8}%
+\contentsline {subsubsection}{\numberline {8.72.2.9}restaurantid}{205}{subsubsection.8.72.2.9}%
+\contentsline {subsubsection}{\numberline {8.72.2.10}sharetype}{206}{subsubsection.8.72.2.10}%
+\contentsline {subsubsection}{\numberline {8.72.2.11}user}{206}{subsubsection.8.72.2.11}%
+\contentsline {subsubsection}{\numberline {8.72.2.12}userid}{206}{subsubsection.8.72.2.12}%
+\contentsline {section}{\numberline {8.73}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Social\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Share Class Reference}{206}{section.8.73}%
+\contentsline {subsection}{\numberline {8.73.1}Detailed Description}{207}{subsection.8.73.1}%
+\contentsline {subsection}{\numberline {8.73.2}Member Data Documentation}{207}{subsection.8.73.2}%
+\contentsline {subsubsection}{\numberline {8.73.2.1}model\_config}{207}{subsubsection.8.73.2.1}%
+\contentsline {section}{\numberline {8.74}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Social\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Share\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{208}{section.8.74}%
+\contentsline {subsection}{\numberline {8.74.1}Detailed Description}{208}{subsection.8.74.1}%
+\contentsline {subsection}{\numberline {8.74.2}Member Data Documentation}{209}{subsection.8.74.2}%
+\contentsline {subsubsection}{\numberline {8.74.2.1}context}{209}{subsubsection.8.74.2.1}%
+\contentsline {section}{\numberline {8.75}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Social\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Share\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{209}{section.8.75}%
+\contentsline {subsection}{\numberline {8.75.1}Detailed Description}{210}{subsection.8.75.1}%
+\contentsline {section}{\numberline {8.76}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Token Class Reference}{210}{section.8.76}%
+\contentsline {subsection}{\numberline {8.76.1}Detailed Description}{211}{subsection.8.76.1}%
+\contentsline {section}{\numberline {8.77}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Token\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Data Class Reference}{211}{section.8.77}%
+\contentsline {subsection}{\numberline {8.77.1}Detailed Description}{212}{subsection.8.77.1}%
+\contentsline {subsection}{\numberline {8.77.2}Member Data Documentation}{212}{subsection.8.77.2}%
+\contentsline {subsubsection}{\numberline {8.77.2.1}email}{212}{subsubsection.8.77.2.1}%
+\contentsline {section}{\numberline {8.78}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Used\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion Class Reference}{212}{section.8.78}%
+\contentsline {subsection}{\numberline {8.78.1}Detailed Description}{213}{subsection.8.78.1}%
+\contentsline {subsection}{\numberline {8.78.2}Member Data Documentation}{213}{subsection.8.78.2}%
+\contentsline {subsubsection}{\numberline {8.78.2.1}\_\_tablename\_\_}{213}{subsubsection.8.78.2.1}%
+\contentsline {subsubsection}{\numberline {8.78.2.2}id}{213}{subsubsection.8.78.2.2}%
+\contentsline {subsubsection}{\numberline {8.78.2.3}order}{213}{subsubsection.8.78.2.3}%
+\contentsline {subsubsection}{\numberline {8.78.2.4}orderid}{213}{subsubsection.8.78.2.4}%
+\contentsline {subsubsection}{\numberline {8.78.2.5}promotion}{214}{subsubsection.8.78.2.5}%
+\contentsline {subsubsection}{\numberline {8.78.2.6}promotionid}{214}{subsubsection.8.78.2.6}%
+\contentsline {subsubsection}{\numberline {8.78.2.7}usedat}{214}{subsubsection.8.78.2.7}%
+\contentsline {section}{\numberline {8.79}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Used\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion Class Reference}{214}{section.8.79}%
+\contentsline {subsection}{\numberline {8.79.1}Detailed Description}{215}{subsection.8.79.1}%
+\contentsline {subsection}{\numberline {8.79.2}Member Data Documentation}{215}{subsection.8.79.2}%
+\contentsline {subsubsection}{\numberline {8.79.2.1}model\_config}{215}{subsubsection.8.79.2.1}%
+\contentsline {section}{\numberline {8.80}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Used\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{216}{section.8.80}%
+\contentsline {subsection}{\numberline {8.80.1}Detailed Description}{216}{subsection.8.80.1}%
+\contentsline {section}{\numberline {8.81}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Used\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Promotion\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{217}{section.8.81}%
+\contentsline {subsection}{\numberline {8.81.1}Detailed Description}{217}{subsection.8.81.1}%
+\contentsline {section}{\numberline {8.82}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User Class Reference}{218}{section.8.82}%
+\contentsline {subsection}{\numberline {8.82.1}Detailed Description}{219}{subsection.8.82.1}%
+\contentsline {subsection}{\numberline {8.82.2}Member Data Documentation}{219}{subsection.8.82.2}%
+\contentsline {subsubsection}{\numberline {8.82.2.1}\_\_tablename\_\_}{219}{subsubsection.8.82.2.1}%
+\contentsline {subsubsection}{\numberline {8.82.2.2}addresses}{219}{subsubsection.8.82.2.2}%
+\contentsline {subsubsection}{\numberline {8.82.2.3}chat\_sessions}{219}{subsubsection.8.82.2.3}%
+\contentsline {subsubsection}{\numberline {8.82.2.4}email}{219}{subsubsection.8.82.2.4}%
+\contentsline {subsubsection}{\numberline {8.82.2.5}id}{219}{subsubsection.8.82.2.5}%
+\contentsline {subsubsection}{\numberline {8.82.2.6}loyalty\_points}{219}{subsubsection.8.82.2.6}%
+\contentsline {subsubsection}{\numberline {8.82.2.7}name}{220}{subsubsection.8.82.2.7}%
+\contentsline {subsubsection}{\numberline {8.82.2.8}notifications}{220}{subsubsection.8.82.2.8}%
+\contentsline {subsubsection}{\numberline {8.82.2.9}orders}{220}{subsubsection.8.82.2.9}%
+\contentsline {subsubsection}{\numberline {8.82.2.10}password}{220}{subsubsection.8.82.2.10}%
+\contentsline {subsubsection}{\numberline {8.82.2.11}phone}{220}{subsubsection.8.82.2.11}%
+\contentsline {subsubsection}{\numberline {8.82.2.12}reviews}{220}{subsubsection.8.82.2.12}%
+\contentsline {subsubsection}{\numberline {8.82.2.13}role}{220}{subsubsection.8.82.2.13}%
+\contentsline {subsubsection}{\numberline {8.82.2.14}social\_shares}{220}{subsubsection.8.82.2.14}%
+\contentsline {subsubsection}{\numberline {8.82.2.15}user\_devices}{221}{subsubsection.8.82.2.15}%
+\contentsline {subsubsection}{\numberline {8.82.2.16}user\_faqs}{221}{subsubsection.8.82.2.16}%
+\contentsline {subsubsection}{\numberline {8.82.2.17}username}{221}{subsubsection.8.82.2.17}%
+\contentsline {section}{\numberline {8.83}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User Class Reference}{221}{section.8.83}%
+\contentsline {subsection}{\numberline {8.83.1}Detailed Description}{222}{subsection.8.83.1}%
+\contentsline {subsection}{\numberline {8.83.2}Member Data Documentation}{222}{subsection.8.83.2}%
+\contentsline {subsubsection}{\numberline {8.83.2.1}model\_config}{222}{subsubsection.8.83.2.1}%
+\contentsline {section}{\numberline {8.84}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{223}{section.8.84}%
+\contentsline {subsection}{\numberline {8.84.1}Detailed Description}{223}{subsection.8.84.1}%
+\contentsline {section}{\numberline {8.85}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{224}{section.8.85}%
+\contentsline {subsection}{\numberline {8.85.1}Detailed Description}{224}{subsection.8.85.1}%
+\contentsline {section}{\numberline {8.86}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Device Class Reference}{225}{section.8.86}%
+\contentsline {subsection}{\numberline {8.86.1}Detailed Description}{225}{subsection.8.86.1}%
+\contentsline {subsection}{\numberline {8.86.2}Member Data Documentation}{226}{subsection.8.86.2}%
+\contentsline {subsubsection}{\numberline {8.86.2.1}\_\_tablename\_\_}{226}{subsubsection.8.86.2.1}%
+\contentsline {subsubsection}{\numberline {8.86.2.2}device\_token}{226}{subsubsection.8.86.2.2}%
+\contentsline {subsubsection}{\numberline {8.86.2.3}device\_type}{226}{subsubsection.8.86.2.3}%
+\contentsline {subsubsection}{\numberline {8.86.2.4}id}{226}{subsubsection.8.86.2.4}%
+\contentsline {subsubsection}{\numberline {8.86.2.5}last\_active}{226}{subsubsection.8.86.2.5}%
+\contentsline {subsubsection}{\numberline {8.86.2.6}user}{226}{subsubsection.8.86.2.6}%
+\contentsline {subsubsection}{\numberline {8.86.2.7}userid}{226}{subsubsection.8.86.2.7}%
+\contentsline {section}{\numberline {8.87}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Device Class Reference}{227}{section.8.87}%
+\contentsline {subsection}{\numberline {8.87.1}Detailed Description}{228}{subsection.8.87.1}%
+\contentsline {subsection}{\numberline {8.87.2}Member Data Documentation}{228}{subsection.8.87.2}%
+\contentsline {subsubsection}{\numberline {8.87.2.1}model\_config}{228}{subsubsection.8.87.2.1}%
+\contentsline {section}{\numberline {8.88}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Device\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Base Class Reference}{228}{section.8.88}%
+\contentsline {subsection}{\numberline {8.88.1}Detailed Description}{229}{subsection.8.88.1}%
+\contentsline {subsection}{\numberline {8.88.2}Member Data Documentation}{229}{subsection.8.88.2}%
+\contentsline {subsubsection}{\numberline {8.88.2.1}device\_type}{229}{subsubsection.8.88.2.1}%
+\contentsline {section}{\numberline {8.89}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Device\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Create Class Reference}{229}{section.8.89}%
+\contentsline {subsection}{\numberline {8.89.1}Detailed Description}{230}{subsection.8.89.1}%
+\contentsline {section}{\numberline {8.90}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQ Class Reference}{230}{section.8.90}%
+\contentsline {subsection}{\numberline {8.90.1}Detailed Description}{231}{subsection.8.90.1}%
+\contentsline {subsection}{\numberline {8.90.2}Member Data Documentation}{231}{subsection.8.90.2}%
+\contentsline {subsubsection}{\numberline {8.90.2.1}\_\_tablename\_\_}{231}{subsubsection.8.90.2.1}%
+\contentsline {subsubsection}{\numberline {8.90.2.2}faq}{231}{subsubsection.8.90.2.2}%
+\contentsline {subsubsection}{\numberline {8.90.2.3}faqid}{232}{subsubsection.8.90.2.3}%
+\contentsline {subsubsection}{\numberline {8.90.2.4}id}{232}{subsubsection.8.90.2.4}%
+\contentsline {subsubsection}{\numberline {8.90.2.5}user}{232}{subsubsection.8.90.2.5}%
+\contentsline {subsubsection}{\numberline {8.90.2.6}userid}{232}{subsubsection.8.90.2.6}%
+\contentsline {subsubsection}{\numberline {8.90.2.7}viewedat}{232}{subsubsection.8.90.2.7}%
+\contentsline {section}{\numberline {8.91}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQ Class Reference}{233}{section.8.91}%
+\contentsline {subsection}{\numberline {8.91.1}Detailed Description}{233}{subsection.8.91.1}%
+\contentsline {subsection}{\numberline {8.91.2}Member Data Documentation}{234}{subsection.8.91.2}%
+\contentsline {subsubsection}{\numberline {8.91.2.1}model\_config}{234}{subsubsection.8.91.2.1}%
+\contentsline {section}{\numberline {8.92}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQBase Class Reference}{234}{section.8.92}%
+\contentsline {subsection}{\numberline {8.92.1}Detailed Description}{235}{subsection.8.92.1}%
+\contentsline {section}{\numberline {8.93}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQCreate Class Reference}{235}{section.8.93}%
+\contentsline {subsection}{\numberline {8.93.1}Detailed Description}{236}{subsection.8.93.1}%
+\contentsline {section}{\numberline {8.94}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}User\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Profile\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Summary Class Reference}{236}{section.8.94}%
+\contentsline {subsection}{\numberline {8.94.1}Detailed Description}{236}{subsection.8.94.1}%
+\contentsline {chapter}{\numberline {9}File Documentation}{237}{chapter.9}%
+\contentsline {section}{\numberline {9.1}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{237}{section.9.1}%
+\contentsline {section}{\numberline {9.2}Address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{237}{section.9.2}%
+\contentsline {section}{\numberline {9.3}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{238}{section.9.3}%
+\contentsline {section}{\numberline {9.4}Chat\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Message\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{238}{section.9.4}%
+\contentsline {section}{\numberline {9.5}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}FAQAdapter.kt File Reference}{238}{section.9.5}%
+\contentsline {section}{\numberline {9.6}FAQAdapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{239}{section.9.6}%
+\contentsline {section}{\numberline {9.7}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{239}{section.9.7}%
+\contentsline {section}{\numberline {9.8}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{239}{section.9.8}%
+\contentsline {section}{\numberline {9.9}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Small.kt File Reference}{241}{section.9.9}%
+\contentsline {section}{\numberline {9.10}Menu\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Small.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{241}{section.9.10}%
+\contentsline {section}{\numberline {9.11}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}My\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Messaging\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.kt File Reference}{242}{section.9.11}%
+\contentsline {section}{\numberline {9.12}My\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Messaging\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{242}{section.9.12}%
+\contentsline {section}{\numberline {9.13}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{243}{section.9.13}%
+\contentsline {section}{\numberline {9.14}Notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{243}{section.9.14}%
+\contentsline {section}{\numberline {9.15}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}adapters/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{244}{section.9.15}%
+\contentsline {section}{\numberline {9.16}Restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{244}{section.9.16}%
+\contentsline {section}{\numberline {9.17}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}api/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Api\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.kt File Reference}{245}{section.9.17}%
+\contentsline {section}{\numberline {9.18}Api\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{245}{section.9.18}%
+\contentsline {section}{\numberline {9.19}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}api/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Fcm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Token\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Registrar.kt File Reference}{249}{section.9.19}%
+\contentsline {section}{\numberline {9.20}Fcm\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Token\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Registrar.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{249}{section.9.20}%
+\contentsline {section}{\numberline {9.21}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}api/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Network\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config.kt File Reference}{251}{section.9.21}%
+\contentsline {section}{\numberline {9.22}Network\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Config.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{251}{section.9.22}%
+\contentsline {section}{\numberline {9.23}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}api/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Retrofit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.kt File Reference}{251}{section.9.23}%
+\contentsline {section}{\numberline {9.24}Retrofit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Client.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{252}{section.9.24}%
+\contentsline {section}{\numberline {9.25}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}activity\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cart.kt File Reference}{252}{section.9.25}%
+\contentsline {section}{\numberline {9.26}activity\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cart.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{253}{section.9.26}%
+\contentsline {section}{\numberline {9.27}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}add\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address.kt File Reference}{254}{section.9.27}%
+\contentsline {section}{\numberline {9.28}add\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{254}{section.9.28}%
+\contentsline {section}{\numberline {9.29}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cart.kt File Reference}{255}{section.9.29}%
+\contentsline {section}{\numberline {9.30}cart.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{256}{section.9.30}%
+\contentsline {section}{\numberline {9.31}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Cart\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.kt File Reference}{257}{section.9.31}%
+\contentsline {section}{\numberline {9.32}Cart\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Item\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Adapter.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{258}{section.9.32}%
+\contentsline {section}{\numberline {9.33}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}chatbot.kt File Reference}{258}{section.9.33}%
+\contentsline {section}{\numberline {9.34}chatbot.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{259}{section.9.34}%
+\contentsline {section}{\numberline {9.35}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}customer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}support.kt File Reference}{260}{section.9.35}%
+\contentsline {section}{\numberline {9.36}customer\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}support.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{260}{section.9.36}%
+\contentsline {section}{\numberline {9.37}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}delivered\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}details.kt File Reference}{261}{section.9.37}%
+\contentsline {section}{\numberline {9.38}delivered\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}details.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{261}{section.9.38}%
+\contentsline {section}{\numberline {9.39}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detail\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}support.kt File Reference}{263}{section.9.39}%
+\contentsline {section}{\numberline {9.40}detail\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}support.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{263}{section.9.40}%
+\contentsline {section}{\numberline {9.41}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}discouts.kt File Reference}{264}{section.9.41}%
+\contentsline {section}{\numberline {9.42}discouts.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{264}{section.9.42}%
+\contentsline {section}{\numberline {9.43}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}edit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address.kt File Reference}{265}{section.9.43}%
+\contentsline {section}{\numberline {9.44}edit\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{265}{section.9.44}%
+\contentsline {section}{\numberline {9.45}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}food\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detail.kt File Reference}{267}{section.9.45}%
+\contentsline {section}{\numberline {9.46}food\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}detail.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{268}{section.9.46}%
+\contentsline {section}{\numberline {9.47}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}home.kt File Reference}{271}{section.9.47}%
+\contentsline {section}{\numberline {9.48}home.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{271}{section.9.48}%
+\contentsline {section}{\numberline {9.49}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}list\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}restaurant.kt File Reference}{273}{section.9.49}%
+\contentsline {section}{\numberline {9.50}list\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}restaurant.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{274}{section.9.50}%
+\contentsline {section}{\numberline {9.51}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}notification.kt File Reference}{276}{section.9.51}%
+\contentsline {section}{\numberline {9.52}notification.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{276}{section.9.52}%
+\contentsline {section}{\numberline {9.53}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order.kt File Reference}{277}{section.9.53}%
+\contentsline {section}{\numberline {9.54}order.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{278}{section.9.54}%
+\contentsline {section}{\numberline {9.55}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}history.kt File Reference}{282}{section.9.55}%
+\contentsline {section}{\numberline {9.56}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}history.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{283}{section.9.56}%
+\contentsline {section}{\numberline {9.57}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracking.kt File Reference}{284}{section.9.57}%
+\contentsline {section}{\numberline {9.58}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracking.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{284}{section.9.58}%
+\contentsline {section}{\numberline {9.59}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail.kt File Reference}{289}{section.9.59}%
+\contentsline {section}{\numberline {9.60}Order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Tracking\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{290}{section.9.60}%
+\contentsline {section}{\numberline {9.61}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}methods.kt File Reference}{294}{section.9.61}%
+\contentsline {section}{\numberline {9.62}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}methods.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{294}{section.9.62}%
+\contentsline {section}{\numberline {9.63}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successful.kt File Reference}{296}{section.9.63}%
+\contentsline {section}{\numberline {9.64}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successful.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{296}{section.9.64}%
+\contentsline {section}{\numberline {9.65}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Points\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail.kt File Reference}{297}{section.9.65}%
+\contentsline {section}{\numberline {9.66}Points\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Detail.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{298}{section.9.66}%
+\contentsline {section}{\numberline {9.67}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pre\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order.kt File Reference}{299}{section.9.67}%
+\contentsline {section}{\numberline {9.68}pre\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{300}{section.9.68}%
+\contentsline {section}{\numberline {9.69}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}pre\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cart.kt File Reference}{302}{section.9.69}%
+\contentsline {section}{\numberline {9.70}pre\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}order\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}cart.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{302}{section.9.70}%
+\contentsline {section}{\numberline {9.71}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}profile.kt File Reference}{304}{section.9.71}%
+\contentsline {section}{\numberline {9.72}profile.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{305}{section.9.72}%
+\contentsline {section}{\numberline {9.73}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}profile.kt File Reference}{306}{section.9.73}%
+\contentsline {section}{\numberline {9.74}restaurant\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}profile.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{306}{section.9.74}%
+\contentsline {section}{\numberline {9.75}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}savedeliveryaddress.kt File Reference}{308}{section.9.75}%
+\contentsline {section}{\numberline {9.76}savedeliveryaddress.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{308}{section.9.76}%
+\contentsline {section}{\numberline {9.77}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}share.kt File Reference}{310}{section.9.77}%
+\contentsline {section}{\numberline {9.78}share.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{310}{section.9.78}%
+\contentsline {section}{\numberline {9.79}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}share\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}restaurant.kt File Reference}{311}{section.9.79}%
+\contentsline {section}{\numberline {9.80}share\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}restaurant.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{311}{section.9.80}%
+\contentsline {section}{\numberline {9.81}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}added\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successfully.kt File Reference}{312}{section.9.81}%
+\contentsline {section}{\numberline {9.82}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}added\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successfully.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{312}{section.9.82}%
+\contentsline {section}{\numberline {9.83}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}fixed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successfully.kt File Reference}{313}{section.9.83}%
+\contentsline {section}{\numberline {9.84}shipping\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}address\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}fixed\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}successfully.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{313}{section.9.84}%
+\contentsline {section}{\numberline {9.85}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}signin.kt File Reference}{314}{section.9.85}%
+\contentsline {section}{\numberline {9.86}signin.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{314}{section.9.86}%
+\contentsline {section}{\numberline {9.87}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}signup.kt File Reference}{316}{section.9.87}%
+\contentsline {section}{\numberline {9.88}signup.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{316}{section.9.88}%
+\contentsline {section}{\numberline {9.89}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}start.kt File Reference}{318}{section.9.89}%
+\contentsline {section}{\numberline {9.90}start.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{318}{section.9.90}%
+\contentsline {section}{\numberline {9.91}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}app/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}src/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}java/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}com/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}example/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}myapp/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}screens/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}VNPay\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Activity.kt File Reference}{319}{section.9.91}%
+\contentsline {section}{\numberline {9.92}VNPay\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}Activity.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}kt}{319}{section.9.92}%
+\contentsline {section}{\numberline {9.93}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}auth.py File Reference}{320}{section.9.93}%
+\contentsline {section}{\numberline {9.94}auth.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{320}{section.9.94}%
+\contentsline {section}{\numberline {9.95}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}chatbot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.py File Reference}{321}{section.9.95}%
+\contentsline {section}{\numberline {9.96}chatbot\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{322}{section.9.96}%
+\contentsline {section}{\numberline {9.97}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}check\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}db.py File Reference}{323}{section.9.97}%
+\contentsline {section}{\numberline {9.98}check\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}db.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{323}{section.9.98}%
+\contentsline {section}{\numberline {9.99}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}database.py File Reference}{324}{section.9.99}%
+\contentsline {section}{\numberline {9.100}database.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{324}{section.9.100}%
+\contentsline {section}{\numberline {9.101}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.py File Reference}{324}{section.9.101}%
+\contentsline {section}{\numberline {9.102}firebase\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}utils.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{325}{section.9.102}%
+\contentsline {section}{\numberline {9.103}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}main.py File Reference}{326}{section.9.103}%
+\contentsline {section}{\numberline {9.104}main.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{327}{section.9.104}%
+\contentsline {section}{\numberline {9.105}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}models.py File Reference}{336}{section.9.105}%
+\contentsline {section}{\numberline {9.106}models.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{337}{section.9.106}%
+\contentsline {section}{\numberline {9.107}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.py File Reference}{340}{section.9.107}%
+\contentsline {section}{\numberline {9.108}notification\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{340}{section.9.108}%
+\contentsline {section}{\numberline {9.109}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.py File Reference}{341}{section.9.109}%
+\contentsline {section}{\numberline {9.110}payment\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}service.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{342}{section.9.110}%
+\contentsline {section}{\numberline {9.111}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}schemas.py File Reference}{342}{section.9.111}%
+\contentsline {section}{\numberline {9.112}schemas.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{344}{section.9.112}%
+\contentsline {section}{\numberline {9.113}backend/\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}view\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data.py File Reference}{349}{section.9.113}%
+\contentsline {section}{\numberline {9.114}view\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}\_\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}data.\discretionary {\mbox {\scriptsize $\hookleftarrow $}}{}{}py}{349}{section.9.114}%
+\contentsline {chapter}{Index}{351}{section*.500}%

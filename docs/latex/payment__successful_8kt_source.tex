@@ -1,0 +1,85 @@
+\doxysection{payment\+\_\+successful.\+kt}
+\hypertarget{payment__successful_8kt_source}{}\label{payment__successful_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/payment\_successful.kt@{app/app/src/main/java/com/example/myapp/screens/payment\_successful.kt}}
+\doxymbox{\hyperlink{payment__successful_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00014}00014\ import\ android.widget.Button}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00016}00016\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00018}00018\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00019}00019\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.OrderStatusUpdateRequest}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00022}00022\ import\ com.example.myapp.screens.home}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00023}00023\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00024}00024\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00025}00025\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00034}00034\ class\ payment\_successful\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00042}00042\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ setContentView(R.layout.payment\_successful)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ val\ orderId\ =\ intent.getIntExtra("{}order\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nếu\ là\ COD\ (payment\ từ\ order.kt),\ cập\ nhật\ status\ thành\ "{}confirmed"{}\ để\ gửi\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ if\ (orderId\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ updateOrderStatusToCODConfirmed(orderId)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tìm\ nút\ "{}Trở\ về\ trang\ chủ"{}\ theo\ ID\ btnReturnHome}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ btnReturnHome:\ Button\ =\ findViewById(R.id.btnReturnHome)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thiết\ lập\ sự\ kiện\ click}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ btnReturnHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chuyển\ về\ màn\ hình\ Home}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Xóa\ hết\ các\ Activity\ cũ\ để\ khi\ nhấn\ Back\ ở\ Home\ không\ bị\ quay\ lại\ trang\ thành\ công}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ intent.flags\ =\ Intent.FLAG\_ACTIVITY\_NEW\_TASK\ or\ Intent.FLAG\_ACTIVITY\_CLEAR\_TASK}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icProfile}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00094}\doxymbox{\hyperlink{namespaceAppCompatActivity_ac6db6edc8d56a42a516be37dd20e297f}{00094}}\ \ \ \ \ private\ fun\ updateOrderStatusToCODConfirmed(orderId:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.updateOrderStatus(orderId,\ OrderStatusUpdateRequest("{}confirmed"{}))}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ .enqueue(object\ :\ Callback<OrderResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderResponse>,\ response:\ Response<OrderResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thông\ báo\ sẽ\ được\ gửi\ từ\ backend}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@payment\_successful,\ "{}Cập\ nhật\ đơn\ hàng\ thất\ bại"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@payment\_successful,\ "{}Lỗi\ mạng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__successful_8kt_source_l00110}00110\ \}}
+
+\end{DoxyCode}

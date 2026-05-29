@@ -1,0 +1,62 @@
+\doxysection{Chat\+Message\+Adapter.\+kt}
+\hypertarget{ChatMessageAdapter_8kt_source}{}\label{ChatMessageAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/ChatMessageAdapter.kt@{app/app/src/main/java/com/example/myapp/adapters/ChatMessageAdapter.kt}}
+\doxymbox{\hyperlink{ChatMessageAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens.adapters}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00008}00008\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00009}00009\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00010}00010\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00011}00011\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00012}00012\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00013}00013\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00014}00014\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00023}00023\ data\ class\ ChatMessage(}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00024}00024\ \ \ \ \ val\ message:\ String,}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00025}00025\ \ \ \ \ val\ isUser:\ Boolean,}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00026}00026\ \ \ \ \ val\ timestamp:\ String\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00027}00027\ )}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00035}00035\ class\ ChatMessageAdapter(private\ val\ messages:\ MutableList<ChatMessage>)\ :}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00036}\doxymbox{\hyperlink{namespaceChatMessageAdapter}{00036}}\ \ \ \ \ RecyclerView.Adapter<ChatMessageAdapter.MessageViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00039}00039\ \ \ \ \ companion\ object\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ private\ const\ val\ VIEW\_TYPE\_USER\ =\ 1}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ private\ const\ val\ VIEW\_TYPE\_BOT\ =\ 2}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00042}00042\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00050}00050\ \ \ \ \ class\ MessageViewHolder(view:\ View)\ :\ RecyclerView.ViewHolder(view)\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ val\ tvMessage:\ TextView\ =\ view.findViewById(R.id.tvMessage)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ ivAvatar:\ ImageView\ =\ view.findViewById(R.id.ivAvatar)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00061}00061\ \ \ \ \ override\ fun\ getItemViewType(position:\ Int):\ Int\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ return\ if\ (messages[position].isUser)\ VIEW\_TYPE\_USER\ else\ VIEW\_TYPE\_BOT}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00063}00063\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00072}00072\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ MessageViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ val\ layoutId\ =\ if\ (viewType\ ==\ VIEW\_TYPE\_USER)\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ R.layout.item\_chat\_user}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ R.layout.item\_chat\_bot}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ val\ view\ =\ LayoutInflater.from(parent.context).inflate(layoutId,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ return\ MessageViewHolder(view)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00088}00088\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ MessageViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ val\ message\ =\ messages[position]}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ holder.tvMessage.text\ =\ message.message}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00091}00091\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00098}00098\ \ \ \ \ override\ fun\ getItemCount()\ =\ messages.size}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00106}00106\ \ \ \ \ fun\ addMessage(message:\ ChatMessage)\ \{}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ messages.add(message)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ notifyItemInserted(messages.size\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00109}00109\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{ChatMessageAdapter_8kt_source_l00110}00110\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,76 @@
+\doxysection{auth.\+py}
+\hypertarget{auth_8py_source}{}\label{auth_8py_source}\index{backend/auth.py@{backend/auth.py}}
+\doxymbox{\hyperlink{auth_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00001}\doxymbox{\hyperlink{namespaceauth}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ auth.py}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00004}00004\ \textcolor{stringliteral}{Xác\ thực\ và\ phân\ quyền\ người\ dùng.}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00005}00005\ \textcolor{stringliteral}{Cung\ cấp\ JWT\ token,\ mã\ hóa\ mật\ khẩu\ bcrypt,\ và\ dependency\ lấy\ user\ hiện\ tại.}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00008}00008\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00009}00009\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ datetime,\ timedelta}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00010}00010\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ Optional}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00011}00011\ \textcolor{keyword}{from}\ jose\ \textcolor{keyword}{import}\ JWTError,\ jwt}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00012}00012\ \textcolor{keyword}{from}\ passlib.context\ \textcolor{keyword}{import}\ CryptContext}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00013}00013\ \textcolor{keyword}{from}\ fastapi\ \textcolor{keyword}{import}\ Depends,\ HTTPException,\ status}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00014}00014\ \textcolor{keyword}{from}\ fastapi.security\ \textcolor{keyword}{import}\ OAuth2PasswordBearer}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00015}00015\ \textcolor{keyword}{from}\ sqlalchemy.orm\ \textcolor{keyword}{import}\ Session}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00016}00016\ \textcolor{keyword}{from}\ dotenv\ \textcolor{keyword}{import}\ load\_dotenv}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00018}00018\ \textcolor{keyword}{import}\ models,\ database}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00020}00020\ load\_dotenv()}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00022}00022\ \textcolor{comment}{\#\ Khóa\ bí\ mật\ để\ ký\ JWT\ token,\ lấy\ từ\ biến\ môi\ trường}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00023}\doxymbox{\hyperlink{namespaceauth_ab8f160d0540184bd0a08326c736f87c7}{00023}}\ SECRET\_KEY\ =\ os.getenv(\textcolor{stringliteral}{"{}SECRET\_KEY"{}})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00024}00024\ \textcolor{comment}{\#\ Thuật\ toán\ mã\ hóa\ JWT,\ mặc\ định\ HS256}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00025}\doxymbox{\hyperlink{namespaceauth_a1c1692437a704556ae986fa037fd76cd}{00025}}\ ALGORITHM\ =\ os.getenv(\textcolor{stringliteral}{"{}ALGORITHM"{}},\ \textcolor{stringliteral}{"{}HS256"{}})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00026}00026\ \textcolor{comment}{\#\ Thời\ gian\ hết\ hạn\ token\ (phút),\ mặc\ định\ 30\ phút}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00027}\doxymbox{\hyperlink{namespaceauth_aa78460ccee1c49eb9b493c5dee663797}{00027}}\ ACCESS\_TOKEN\_EXPIRE\_MINUTES\ =\ int(os.getenv(\textcolor{stringliteral}{"{}ACCESS\_TOKEN\_EXPIRE\_MINUTES"{}},\ 30))}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00029}00029\ \textcolor{comment}{\#\ Context\ mã\ hóa\ mật\ khẩu\ bằng\ bcrypt}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00030}\doxymbox{\hyperlink{namespaceauth_a53a352d046397746e2da67ad9eafc922}{00030}}\ pwd\_context\ =\ CryptContext(schemes=[\textcolor{stringliteral}{"{}bcrypt"{}}],\ deprecated=\textcolor{stringliteral}{"{}auto"{}})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00031}00031\ \textcolor{comment}{\#\ Scheme\ trích\ xuất\ Bearer\ token\ từ\ header\ Authorization}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00032}\doxymbox{\hyperlink{namespaceauth_af3c79770bc28a778b1b63717c336cd9f}{00032}}\ oauth2\_scheme\ =\ OAuth2PasswordBearer(tokenUrl=\textcolor{stringliteral}{"{}token"{}})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00034}\doxymbox{\hyperlink{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a}{00034}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a}{verify\_password}}(plain\_password,\ hashed\_password):}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00035}00035\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xác\ thực\ mật\ khẩu\ plaintext\ với\ mật\ khẩu\ đã\ hash\ bằng\ bcrypt."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00036}00036\ \ \ \ \ \textcolor{keywordflow}{return}\ pwd\_context.verify(plain\_password,\ hashed\_password)}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00038}\doxymbox{\hyperlink{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b}{00038}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b}{get\_password\_hash}}(password):}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00039}00039\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Hash\ mật\ khẩu\ plaintext\ bằng\ bcrypt."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{return}\ pwd\_context.hash(password)}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00042}\doxymbox{\hyperlink{namespaceauth_a97c9965d0490a3148025f9305366f4ee}{00042}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceauth_a97c9965d0490a3148025f9305366f4ee}{create\_access\_token}}(data:\ dict,\ expires\_delta:\ Optional[timedelta]\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00043}00043\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ JWT\ access\ token\ với\ payload\ và\ thời\ gian\ hết\ hạn."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00044}00044\ \ \ \ \ to\_encode\ =\ data.copy()}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{if}\ expires\_delta:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ expire\ =\ datetime.utcnow()\ +\ expires\_delta}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00047}00047\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ expire\ =\ datetime.utcnow()\ +\ timedelta(minutes=15)}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00049}00049\ \ \ \ \ to\_encode.update(\{\textcolor{stringliteral}{"{}exp"{}}:\ expire\})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00050}00050\ \ \ \ \ encoded\_jwt\ =\ jwt.encode(to\_encode,\ SECRET\_KEY,\ algorithm=ALGORITHM)}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00051}00051\ \ \ \ \ \textcolor{keywordflow}{return}\ encoded\_jwt}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00053}\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{00053}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{get\_current\_user}}(token:\ str\ =\ Depends(oauth2\_scheme),\ db:\ Session\ =\ Depends(database.get\_db)):}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00054}00054\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Dependency:\ giải\ mã\ JWT\ token\ và\ trả\ về\ user\ hiện\ tại.\ Raise\ 401\ nếu\ token\ không\ hợp\ lệ."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00055}00055\ \ \ \ \ credentials\_exception\ =\ HTTPException(}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00056}00056\ \ \ \ \ \ \ \ \ status\_code=status.HTTP\_401\_UNAUTHORIZED,}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00057}00057\ \ \ \ \ \ \ \ \ detail=\textcolor{stringliteral}{"{}Could\ not\ validate\ credentials"{}},}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00058}00058\ \ \ \ \ \ \ \ \ headers=\{\textcolor{stringliteral}{"{}WWW-\/Authenticate"{}}:\ \textcolor{stringliteral}{"{}Bearer"{}}\},}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00059}00059\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ payload\ =\ jwt.decode(token,\ SECRET\_KEY,\ algorithms=[ALGORITHM])}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ email:\ str\ =\ payload.get(\textcolor{stringliteral}{"{}sub"{}})}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ email\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00065}00065\ \ \ \ \ \textcolor{keywordflow}{except}\ JWTError:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00067}00067\ \ \ \ \ user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.email\ ==\ email).first()}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{if}\ user\ \textcolor{keywordflow}{is}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ credentials\_exception}
+\DoxyCodeLine{\Hypertarget{auth_8py_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{return}\ user}
+
+\end{DoxyCode}

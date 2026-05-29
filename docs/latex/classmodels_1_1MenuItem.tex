@@ -1,0 +1,214 @@
+\doxysection{models.\+Menu\+Item Class Reference}
+\hypertarget{classmodels_1_1MenuItem}{}\label{classmodels_1_1MenuItem}\index{models.MenuItem@{models.MenuItem}}
+
+
+Inheritance diagram for models.\+Menu\+Item:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classmodels_1_1MenuItem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Menu\+Item:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classmodels_1_1MenuItem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_ac1f5624d24a7b7197228d448c7e56bf0}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a89f5ef216d9406bb34661f58d9bf02e1}{name}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_acb3ee6cf6527f563f858de5a1c5675be}{image\+\_\+url}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a8f57080a68caf0a0d65274be3c8f282e}{price}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_ad529ec1453e57f189003d87463acc4c0}{is\+\_\+available}} = Column(Boolean, default=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a560f59dc05e33cb494a68f752ff6c30e}{description}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_aa77791a1d11e107c873d395d54013b52}{restaurantid}} = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a32456d5feaac6577272d12dae7bb08e8}{categoryid}} = Column(Integer, Foreign\+Key("{}category.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a9df0774467b599f079c5e173e7bd00fd}{restaurant}} = relationship("{}Restaurant"{}, back\+\_\+populates="{}menu\+\_\+items"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a41b12f4dffc8857bbccaed1e5eecd519}{category}} = relationship("{}Category"{}, back\+\_\+populates="{}menu\+\_\+items"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_ae2fd1dddd64ffe1b69f3db5f1ee5d369}{order\+\_\+items}} = relationship("{}Order\+Item"{}, back\+\_\+populates="{}menu\+\_\+item"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_aca8081841388cc0fabe2551bffb76cfb}{reviews}} = relationship("{}Review"{}, back\+\_\+populates="{}menu\+\_\+item"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1MenuItem_a2e5d3c248fb87cab69012936e709ebbb}{social\+\_\+shares}} = relationship("{}Social\+Share"{}, back\+\_\+populates="{}menu\+\_\+item"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1MenuItem_ad594ece6ff3e105c104601a64d94f658}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}menuitem"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng menuitem, món ăn thuộc nhà hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00093}{93}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1MenuItem_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1MenuItem_ad594ece6ff3e105c104601a64d94f658}\index{models.MenuItem@{models.MenuItem}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_ad594ece6ff3e105c104601a64d94f658} 
+str models.\+Menu\+Item.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}menuitem"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00095}{95}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a41b12f4dffc8857bbccaed1e5eecd519}\index{models.MenuItem@{models.MenuItem}!category@{category}}
+\index{category@{category}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{category}{category}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a41b12f4dffc8857bbccaed1e5eecd519} 
+models.\+Menu\+Item.\+category = relationship("{}Category"{}, back\+\_\+populates="{}menu\+\_\+items"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00106}{106}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a32456d5feaac6577272d12dae7bb08e8}\index{models.MenuItem@{models.MenuItem}!categoryid@{categoryid}}
+\index{categoryid@{categoryid}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{categoryid}{categoryid}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a32456d5feaac6577272d12dae7bb08e8} 
+models.\+Menu\+Item.\+categoryid = Column(Integer, Foreign\+Key("{}category.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00103}{103}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a560f59dc05e33cb494a68f752ff6c30e}\index{models.MenuItem@{models.MenuItem}!description@{description}}
+\index{description@{description}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a560f59dc05e33cb494a68f752ff6c30e} 
+models.\+Menu\+Item.\+description = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00101}{101}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_ac1f5624d24a7b7197228d448c7e56bf0}\index{models.MenuItem@{models.MenuItem}!id@{id}}
+\index{id@{id}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_ac1f5624d24a7b7197228d448c7e56bf0} 
+models.\+Menu\+Item.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00096}{96}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_acb3ee6cf6527f563f858de5a1c5675be}\index{models.MenuItem@{models.MenuItem}!image\_url@{image\_url}}
+\index{image\_url@{image\_url}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{image\_url}{image\_url}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_acb3ee6cf6527f563f858de5a1c5675be} 
+models.\+Menu\+Item.\+image\+\_\+url = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00098}{98}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_ad529ec1453e57f189003d87463acc4c0}\index{models.MenuItem@{models.MenuItem}!is\_available@{is\_available}}
+\index{is\_available@{is\_available}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{is\_available}{is\_available}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_ad529ec1453e57f189003d87463acc4c0} 
+models.\+Menu\+Item.\+is\+\_\+available = Column(Boolean, default=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00100}{100}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a89f5ef216d9406bb34661f58d9bf02e1}\index{models.MenuItem@{models.MenuItem}!name@{name}}
+\index{name@{name}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a89f5ef216d9406bb34661f58d9bf02e1} 
+models.\+Menu\+Item.\+name = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00097}{97}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_ae2fd1dddd64ffe1b69f3db5f1ee5d369}\index{models.MenuItem@{models.MenuItem}!order\_items@{order\_items}}
+\index{order\_items@{order\_items}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{order\_items}{order\_items}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_ae2fd1dddd64ffe1b69f3db5f1ee5d369} 
+models.\+Menu\+Item.\+order\+\_\+items = relationship("{}Order\+Item"{}, back\+\_\+populates="{}menu\+\_\+item"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00107}{107}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a8f57080a68caf0a0d65274be3c8f282e}\index{models.MenuItem@{models.MenuItem}!price@{price}}
+\index{price@{price}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{price}{price}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a8f57080a68caf0a0d65274be3c8f282e} 
+models.\+Menu\+Item.\+price = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00099}{99}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a9df0774467b599f079c5e173e7bd00fd}\index{models.MenuItem@{models.MenuItem}!restaurant@{restaurant}}
+\index{restaurant@{restaurant}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{restaurant}{restaurant}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a9df0774467b599f079c5e173e7bd00fd} 
+models.\+Menu\+Item.\+restaurant = relationship("{}Restaurant"{}, back\+\_\+populates="{}menu\+\_\+items"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00105}{105}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_aa77791a1d11e107c873d395d54013b52}\index{models.MenuItem@{models.MenuItem}!restaurantid@{restaurantid}}
+\index{restaurantid@{restaurantid}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{restaurantid}{restaurantid}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_aa77791a1d11e107c873d395d54013b52} 
+models.\+Menu\+Item.\+restaurantid = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00102}{102}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_aca8081841388cc0fabe2551bffb76cfb}\index{models.MenuItem@{models.MenuItem}!reviews@{reviews}}
+\index{reviews@{reviews}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{reviews}{reviews}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_aca8081841388cc0fabe2551bffb76cfb} 
+models.\+Menu\+Item.\+reviews = relationship("{}Review"{}, back\+\_\+populates="{}menu\+\_\+item"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00108}{108}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1MenuItem_a2e5d3c248fb87cab69012936e709ebbb}\index{models.MenuItem@{models.MenuItem}!social\_shares@{social\_shares}}
+\index{social\_shares@{social\_shares}!models.MenuItem@{models.MenuItem}}
+\doxysubsubsection{\texorpdfstring{social\_shares}{social\_shares}}
+{\footnotesize\ttfamily \label{classmodels_1_1MenuItem_a2e5d3c248fb87cab69012936e709ebbb} 
+models.\+Menu\+Item.\+social\+\_\+shares = relationship("{}Social\+Share"{}, back\+\_\+populates="{}menu\+\_\+item"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00109}{109}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,54 @@
+\doxysection{Network\+Config.\+kt}
+\hypertarget{NetworkConfig_8kt_source}{}\label{NetworkConfig_8kt_source}\index{app/app/src/main/java/com/example/myapp/api/NetworkConfig.kt@{app/app/src/main/java/com/example/myapp/api/NetworkConfig.kt}}
+\doxymbox{\hyperlink{NetworkConfig_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens.api}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00010}\doxymbox{\hyperlink{namespaceNetworkConfig}{00010}}\ object\ NetworkConfig\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00011}00011\ \ \ \ \ \textcolor{comment}{//\ Cấu\ hình\ URL\ cho\ backend\ API}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00012}00012\ \ \ \ \ \textcolor{comment}{//\ Thay\ đổi\ giá\ trị\ này\ tùy\ theo\ môi\ trường\ sử\ dụng}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00016}00016\ \ \ \ \ \textcolor{comment}{//\ Cho\ Android\ Emulator\ (máy\ ảo)}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00017}00017\ \ \ \ \ private\ const\ val\ EMULATOR\_URL\ =\ "{}http:\textcolor{comment}{//10.0.2.2:8000/"{}}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00021}00021\ \ \ \ \ \textcolor{comment}{//\ Cho\ thiết\ bị\ thật\ -\/\ thay\ IP\ bằng\ địa\ chỉ\ IP\ của\ máy\ tính\ chạy\ backend}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00022}00022\ \ \ \ \ \textcolor{comment}{//\ Cách\ lấy\ IP:\ Mở\ CMD\ -\/>\ gõ\ ipconfig\ -\/>\ tìm\ "{}IPv4\ Address"{}}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00023}00023\ \ \ \ \ private\ const\ val\ DEVICE\_URL\ =\ "{}http:\textcolor{comment}{//192.168.1.100:8000/"{}\ \ //\ Thay\ IP\ này}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00027}00027\ \ \ \ \ \textcolor{comment}{//\ Chọn\ URL\ phù\ hợp:}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00028}00028\ \ \ \ \ \textcolor{comment}{//\ -\/\ true:\ dùng\ cho\ emulator}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00029}00029\ \ \ \ \ \textcolor{comment}{//\ -\/\ false:\ dùng\ cho\ thiết\ bị\ thật}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00030}00030\ \ \ \ \ private\ const\ val\ USE\_EMULATOR\ =\ true}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00034}00034\ \ \ \ \ val\ BASE\_URL:\ String}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ get()\ =\ if\ (USE\_EMULATOR)\ EMULATOR\_URL\ else\ DEVICE\_URL}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00036}00036\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00043}00043\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ để\ lấy\ IP\ máy\ tính\ (chạy\ trên\ máy\ tính)}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00044}00044\ \ \ \ \ fun\ getLocalIpAddress():\ String\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ val\ interfaces\ =\ java.net.NetworkInterface.getNetworkInterfaces()}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ while\ (interfaces.hasMoreElements())\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ networkInterface\ =\ interfaces.nextElement()}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ addresses\ =\ networkInterface.inetAddresses}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ while\ (addresses.hasMoreElements())\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ address\ =\ addresses.nextElement()}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!address.isLoopbackAddress\ \&\&\ address\ is\ java.net.Inet4Address)\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return\ address.hostAddress\ ?:\ "{}unknown"{}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ e.printStackTrace()}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ return\ "{}unknown"{}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00061}00061\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00062}00062\ \}}
+\DoxyCodeLine{\Hypertarget{NetworkConfig_8kt_source_l00063}00063\ }
+
+\end{DoxyCode}

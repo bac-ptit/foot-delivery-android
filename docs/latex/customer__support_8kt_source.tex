@@ -1,0 +1,74 @@
+\doxysection{customer\+\_\+support.\+kt}
+\hypertarget{customer__support_8kt_source}{}\label{customer__support_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/customer\_support.kt@{app/app/src/main/java/com/example/myapp/screens/customer\_support.kt}}
+\doxymbox{\hyperlink{customer__support_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00014}00014\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00015}00015\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00016}00016\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00017}00017\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00018}00018\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00019}00019\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00020}00020\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00021}00021\ import\ com.example.myapp.screens.adapters.FAQAdapter}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.FAQ}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00024}00024\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00025}00025\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00026}00026\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00037}00037\ class\ customer\_support\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00038}00038\ \ \ \ \ private\ lateinit\ var\ recyclerView:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00039}00039\ \ \ \ \ private\ lateinit\ var\ adapter:\ FAQAdapter}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00047}00047\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ setContentView(R.layout.customer\_support)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước\ (start)}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ recyclerView\ =\ findViewById(R.id.faqRecyclerView)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ recyclerView.layoutManager\ =\ LinearLayoutManager(this)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ FAQs\ from\ API}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ loadFAQs()}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00064}00064\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btn\_chatbot}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ val\ btnchatbot:\ View\ =\ findViewById(R.id.btnChatbot)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ btnchatbot.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ chatbot::class.java)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00068}\doxymbox{\hyperlink{namespaceAppCompatActivity_a11d323188360fba7749f590a91f8a806}{00068}}\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00078}00078\ \ \ \ \ private\ fun\ loadFAQs()\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getFAQs().enqueue(object\ :\ Callback<List<FAQ>>\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<FAQ>>,\ response:\ Response<List<FAQ>>)\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ faqs\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter\ =\ FAQAdapter(faqs)}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recyclerView.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@customer\_support,\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Lỗi\ tải\ FAQ:\ \$\{response.code()\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<FAQ>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@customer\_support,\ }
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00096}00096\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{customer__support_8kt_source_l00097}00097\ \}}
+
+\end{DoxyCode}

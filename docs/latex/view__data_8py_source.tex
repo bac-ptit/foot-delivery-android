@@ -1,0 +1,110 @@
+\doxysection{view\+\_\+data.\+py}
+\hypertarget{view__data_8py_source}{}\label{view__data_8py_source}\index{backend/view\_data.py@{backend/view\_data.py}}
+\doxymbox{\hyperlink{view__data_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00001}\doxymbox{\hyperlink{namespaceview__data}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00002}00002\ \textcolor{stringliteral}{Script\ đã\ sửa\ để\ hiển\ thị\ chi\ tiết\ thuộc\ tính\ của\ từng\ bản\ ghi}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00003}00003\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00004}00004\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00005}00005\ \textcolor{keyword}{from}\ sqlalchemy.orm\ \textcolor{keyword}{import}\ Session}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00006}00006\ \textcolor{keyword}{from}\ database\ \textcolor{keyword}{import}\ SessionLocal,\ engine}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00007}00007\ \textcolor{keyword}{from}\ models\ \textcolor{keyword}{import}\ (}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00008}00008\ \ \ \ \ Category,\ FAQ,\ User,\ Shipper,\ Promotion,\ Restaurant,\ MenuItem,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00009}00009\ \ \ \ \ Address,\ Orders,\ OrderItem,\ Payment,\ Delivery,\ Review,\ Notification,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00010}00010\ \ \ \ \ ChatSession,\ ChatMessage,\ UserDevice,\ UserFAQ,\ UsedPromotion,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00011}00011\ \ \ \ \ LoyaltyPoint,\ SocialShare}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00012}00012\ )}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00013}00013\ \textcolor{keyword}{from}\ sqlalchemy\ \textcolor{keyword}{import}\ inspect}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00015}\doxymbox{\hyperlink{namespaceview__data_a8484946fa885c32ea015d128ea286226}{00015}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceview__data_a8484946fa885c32ea015d128ea286226}{get\_all\_tables}}():}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00016}00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ các\ bảng"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00017}00017\ \ \ \ \ inspector\ =\ inspect(engine)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00018}00018\ \ \ \ \ \textcolor{keywordflow}{return}\ inspector.get\_table\_names()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00020}\doxymbox{\hyperlink{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}{00020}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}{view\_table\_data}}(db:\ Session,\ model\_class,\ table\_name:\ str,\ limit:\ int\ =\ 10):}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00021}00021\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ của\ một\ bảng\ với\ đầy\ đủ\ thuộc\ tính"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00022}00022\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n\{'='*60\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00023}00023\ \ \ \ \ print(f\textcolor{stringliteral}{"{}BẢNG:\ \{table\_name\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00024}00024\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{'='*60\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00025}00025\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00026}00026\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ total\ =\ db.query(model\_class).count()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Tổng\ số\ bản\ ghi:\ \{total\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ records\ =\ db.query(model\_class).\doxymbox{\hyperlink{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}{limit}}(limit).all()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ records:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Không\ có\ dữ\ liệu\ trong\ bảng\ này."{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nHiển\ thị\ \{len(records)\}\ bản\ ghi\ đầu\ tiên:"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}-\/"{}}\ *\ 60)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00039}00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ SỬA\ ĐOẠN\ NÀY\ ĐỂ\ HIỂN\ THỊ\ THUỘC\ TÍNH}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00040}00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i,\ record\ \textcolor{keywordflow}{in}\ enumerate(records,\ 1):}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Lấy\ danh\ sách\ các\ cột\ thực\ tế\ từ\ Model}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ columns\ =\ [column.key\ \textcolor{keywordflow}{for}\ column\ \textcolor{keywordflow}{in}\ inspect(record).mapper.column\_attrs]}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Tạo\ dictionary\ chứa\ dữ\ liệu\ của\ các\ cột\ đó}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \{col:\ getattr(record,\ col)\ \textcolor{keywordflow}{for}\ col\ \textcolor{keywordflow}{in}\ columns\}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ In\ ra\ dưới\ dạng\ đẹp\ hơn}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}[\{i\}]\ \{data\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00050}00050\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ khi\ truy\ vấn\ bảng\ \{table\_name\}:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00053}00053\ \textcolor{comment}{\#\ ...\ (Các\ hàm\ view\_all\_data\ và\ view\_specific\_table\ giữ\ nguyên\ như\ cũ)\ ...}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00055}\doxymbox{\hyperlink{namespaceview__data_a9b6231e088188412492b5711af6b3115}{00055}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceview__data_a9b6231e088188412492b5711af6b3115}{view\_all\_data}}():}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00056}00056\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ tất\ cả\ các\ bảng"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00057}00057\ \ \ \ \ db\ =\ SessionLocal()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}*60)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}DỮ\ LIỆU\ HIỆN\ TẠI\ TRONG\ DATABASE"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}*60)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ tables\ =\ [}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ (Category,\ \textcolor{stringliteral}{"{}category"{}}),\ (FAQ,\ \textcolor{stringliteral}{"{}faq"{}}),\ (User,\ \textcolor{stringliteral}{"{}User"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ (Shipper,\ \textcolor{stringliteral}{"{}shipper"{}}),\ (Promotion,\ \textcolor{stringliteral}{"{}promotion"{}}),\ (Restaurant,\ \textcolor{stringliteral}{"{}restaurant"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ (MenuItem,\ \textcolor{stringliteral}{"{}menuitem"{}}),\ (Address,\ \textcolor{stringliteral}{"{}address"{}}),\ (Orders,\ \textcolor{stringliteral}{"{}orders"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ (OrderItem,\ \textcolor{stringliteral}{"{}orderitem"{}}),\ (Payment,\ \textcolor{stringliteral}{"{}payment"{}}),\ (Delivery,\ \textcolor{stringliteral}{"{}delivery"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ (Review,\ \textcolor{stringliteral}{"{}review"{}}),\ (Notification,\ \textcolor{stringliteral}{"{}notification"{}}),\ (ChatSession,\ \textcolor{stringliteral}{"{}chatsession"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ (ChatMessage,\ \textcolor{stringliteral}{"{}chatmessage"{}}),\ (UserDevice,\ \textcolor{stringliteral}{"{}userdevice"{}}),\ (UserFAQ,\ \textcolor{stringliteral}{"{}userfaq"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ (UsedPromotion,\ \textcolor{stringliteral}{"{}usedpromotion"{}}),\ (LoyaltyPoint,\ \textcolor{stringliteral}{"{}loyaltypoint"{}}),\ (SocialShare,\ \textcolor{stringliteral}{"{}socialshare"{}}),}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00070}00070\ \ \ \ \ \ \ \ \ ]}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00071}00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ model\_class,\ table\_name\ \textcolor{keywordflow}{in}\ tables:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}{view\_table\_data}}(db,\ model\_class,\ table\_name,\ limit=20)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00073}00073\ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00074}00074\ \ \ \ \ \ \ \ \ db.close()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00075}00075\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00076}\doxymbox{\hyperlink{namespaceview__data_ac035f3894613808d6b84ac788141049b}{00076}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespaceview__data_ac035f3894613808d6b84ac788141049b}{view\_specific\_table}}(table\_name:\ str,\ limit:\ int\ =\ 20):}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00077}00077\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ của\ một\ bảng\ cụ\ thể\ theo\ tên."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00078}00078\ \ \ \ \ db\ =\ SessionLocal()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ table\_map\ =\ \{}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}category"{}}:\ Category,\ \textcolor{stringliteral}{"{}faq"{}}:\ FAQ,\ \textcolor{stringliteral}{"{}user"{}}:\ User,\ \textcolor{stringliteral}{"{}shipper"{}}:\ Shipper,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}promotion"{}}:\ Promotion,\ \textcolor{stringliteral}{"{}restaurant"{}}:\ Restaurant,\ \textcolor{stringliteral}{"{}menuitem"{}}:\ MenuItem,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}address"{}}:\ Address,\ \textcolor{stringliteral}{"{}orders"{}}:\ Orders,\ \textcolor{stringliteral}{"{}orderitem"{}}:\ OrderItem,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}payment"{}}:\ Payment,\ \textcolor{stringliteral}{"{}delivery"{}}:\ Delivery,\ \textcolor{stringliteral}{"{}review"{}}:\ Review,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}notification"{}}:\ Notification,\ \textcolor{stringliteral}{"{}chatsession"{}}:\ ChatSession,\ \textcolor{stringliteral}{"{}chatmessage"{}}:\ ChatMessage,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}userdevice"{}}:\ UserDevice,\ \textcolor{stringliteral}{"{}userfaq"{}}:\ UserFAQ,\ \textcolor{stringliteral}{"{}usedpromotion"{}}:\ UsedPromotion,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}loyaltypoint"{}}:\ LoyaltyPoint,\ \textcolor{stringliteral}{"{}socialshare"{}}:\ SocialShare,}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ model\_class\ =\ table\_map.get(table\_name.lower())}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ model\_class:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Không\ tìm\ thấy\ bảng\ '\{table\_name\}'"{}})}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00093}00093\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}{view\_table\_data}}(db,\ model\_class,\ table\_name,\ limit)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00095}00095\ \ \ \ \ \ \ \ \ db.close()}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00097}00097\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00098}00098\ \ \ \ \ \textcolor{keyword}{import}\ sys}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ len(sys.argv)\ >\ 1:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00100}\doxymbox{\hyperlink{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e}{00100}}\ \ \ \ \ \ \ \ \ table\_name\ =\ sys.argv[1]}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00101}\doxymbox{\hyperlink{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}{00101}}\ \ \ \ \ \ \ \ \ limit\ =\ int(sys.argv[2])\ \textcolor{keywordflow}{if}\ len(sys.argv)\ >\ 2\ \textcolor{keywordflow}{else}\ 20}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00102}00102\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceview__data_ac035f3894613808d6b84ac788141049b}{view\_specific\_table}}(table\_name,\ limit)}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{view__data_8py_source_l00104}00104\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceview__data_a9b6231e088188412492b5711af6b3115}{view\_all\_data}}()}
+
+\end{DoxyCode}

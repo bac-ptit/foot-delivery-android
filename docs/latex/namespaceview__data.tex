@@ -1,0 +1,221 @@
+\doxysection{view\+\_\+data Namespace Reference}
+\hypertarget{namespaceview__data}{}\label{namespaceview__data}\index{view\_data@{view\_data}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceview__data_a8484946fa885c32ea015d128ea286226}{get\+\_\+all\+\_\+tables}} ()
+\item 
+\doxymbox{\hyperlink{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}{view\+\_\+table\+\_\+data}} (Session db, model\+\_\+class, str \doxymbox{\hyperlink{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e}{table\+\_\+name}}, int \doxymbox{\hyperlink{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}{limit}}=10)
+\item 
+\doxymbox{\hyperlink{namespaceview__data_a9b6231e088188412492b5711af6b3115}{view\+\_\+all\+\_\+data}} ()
+\item 
+\doxymbox{\hyperlink{namespaceview__data_ac035f3894613808d6b84ac788141049b}{view\+\_\+specific\+\_\+table}} (str \doxymbox{\hyperlink{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e}{table\+\_\+name}}, int \doxymbox{\hyperlink{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}{limit}}=20)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e}{table\+\_\+name}} = sys.\+argv\+[1]\+
+\item 
+int \doxymbox{\hyperlink{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}{limit}} = int(sys.\+argv\+[2]\+) if len(sys.\+argv) $>$ 2 else 20
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Script đã sửa để hiển thị chi tiết thuộc tính của từng bản ghi
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespaceview__data_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceview__data_a8484946fa885c32ea015d128ea286226}\index{view\_data@{view\_data}!get\_all\_tables@{get\_all\_tables}}
+\index{get\_all\_tables@{get\_all\_tables}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{get\_all\_tables()}{get\_all\_tables()}}
+{\footnotesize\ttfamily \label{namespaceview__data_a8484946fa885c32ea015d128ea286226} 
+view\+\_\+data.\+get\+\_\+all\+\_\+tables (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Lấy danh sách tất cả các bảng\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00015}{15}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00015\ \textcolor{keyword}{def\ }get\_all\_tables(): }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ các\ bảng"{}"{}"{}} }
+\DoxyCodeLine{00017\ \ \ \ \ inspector\ =\ inspect(engine) }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordflow}{return}\ inspector.get\_table\_names() }
+\DoxyCodeLine{00019\  }
+
+\end{DoxyCode}
+\Hypertarget{namespaceview__data_a9b6231e088188412492b5711af6b3115}\index{view\_data@{view\_data}!view\_all\_data@{view\_all\_data}}
+\index{view\_all\_data@{view\_all\_data}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{view\_all\_data()}{view\_all\_data()}}
+{\footnotesize\ttfamily \label{namespaceview__data_a9b6231e088188412492b5711af6b3115} 
+view\+\_\+data.\+view\+\_\+all\+\_\+data (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Xem dữ liệu tất cả các bảng\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00055}{55}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00055\ \textcolor{keyword}{def\ }view\_all\_data(): }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ tất\ cả\ các\ bảng"{}"{}"{}} }
+\DoxyCodeLine{00057\ \ \ \ \ db\ =\ SessionLocal() }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{try}: }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}\(\backslash\)n"{}}\ +\ \textcolor{stringliteral}{"{}="{}}*60) }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}DỮ\ LIỆU\ HIỆN\ TẠI\ TRONG\ DATABASE"{}}) }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}="{}}*60) }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ tables\ =\ [ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ (Category,\ \textcolor{stringliteral}{"{}category"{}}),\ (FAQ,\ \textcolor{stringliteral}{"{}faq"{}}),\ (User,\ \textcolor{stringliteral}{"{}User"{}}), }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ (Shipper,\ \textcolor{stringliteral}{"{}shipper"{}}),\ (Promotion,\ \textcolor{stringliteral}{"{}promotion"{}}),\ (Restaurant,\ \textcolor{stringliteral}{"{}restaurant"{}}), }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ (MenuItem,\ \textcolor{stringliteral}{"{}menuitem"{}}),\ (Address,\ \textcolor{stringliteral}{"{}address"{}}),\ (Orders,\ \textcolor{stringliteral}{"{}orders"{}}), }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ (OrderItem,\ \textcolor{stringliteral}{"{}orderitem"{}}),\ (Payment,\ \textcolor{stringliteral}{"{}payment"{}}),\ (Delivery,\ \textcolor{stringliteral}{"{}delivery"{}}), }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ (Review,\ \textcolor{stringliteral}{"{}review"{}}),\ (Notification,\ \textcolor{stringliteral}{"{}notification"{}}),\ (ChatSession,\ \textcolor{stringliteral}{"{}chatsession"{}}), }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ (ChatMessage,\ \textcolor{stringliteral}{"{}chatmessage"{}}),\ (UserDevice,\ \textcolor{stringliteral}{"{}userdevice"{}}),\ (UserFAQ,\ \textcolor{stringliteral}{"{}userfaq"{}}), }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ (UsedPromotion,\ \textcolor{stringliteral}{"{}usedpromotion"{}}),\ (LoyaltyPoint,\ \textcolor{stringliteral}{"{}loyaltypoint"{}}),\ (SocialShare,\ \textcolor{stringliteral}{"{}socialshare"{}}), }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ ] }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ model\_class,\ table\_name\ \textcolor{keywordflow}{in}\ tables: }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ view\_table\_data(db,\ model\_class,\ table\_name,\ limit=20) }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{finally}: }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ db.close() }
+\DoxyCodeLine{00075\  }
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceview__data_a9b6231e088188412492b5711af6b3115_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceview__data_ac035f3894613808d6b84ac788141049b}\index{view\_data@{view\_data}!view\_specific\_table@{view\_specific\_table}}
+\index{view\_specific\_table@{view\_specific\_table}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{view\_specific\_table()}{view\_specific\_table()}}
+{\footnotesize\ttfamily \label{namespaceview__data_ac035f3894613808d6b84ac788141049b} 
+view\+\_\+data.\+view\+\_\+specific\+\_\+table (\begin{DoxyParamCaption}\item[{str}]{table\+\_\+name}{, }\item[{int }]{limit}{ = {\ttfamily 20}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Xem dữ liệu của một bảng cụ thể theo tên.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00076}{76}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00076\ \textcolor{keyword}{def\ }view\_specific\_table(table\_name:\ str,\ limit:\ int\ =\ 20): }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ của\ một\ bảng\ cụ\ thể\ theo\ tên."{}"{}"{}} }
+\DoxyCodeLine{00078\ \ \ \ \ db\ =\ SessionLocal() }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{try}: }
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ table\_map\ =\ \{ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}category"{}}:\ Category,\ \textcolor{stringliteral}{"{}faq"{}}:\ FAQ,\ \textcolor{stringliteral}{"{}user"{}}:\ User,\ \textcolor{stringliteral}{"{}shipper"{}}:\ Shipper, }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}promotion"{}}:\ Promotion,\ \textcolor{stringliteral}{"{}restaurant"{}}:\ Restaurant,\ \textcolor{stringliteral}{"{}menuitem"{}}:\ MenuItem, }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}address"{}}:\ Address,\ \textcolor{stringliteral}{"{}orders"{}}:\ Orders,\ \textcolor{stringliteral}{"{}orderitem"{}}:\ OrderItem, }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}payment"{}}:\ Payment,\ \textcolor{stringliteral}{"{}delivery"{}}:\ Delivery,\ \textcolor{stringliteral}{"{}review"{}}:\ Review, }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}notification"{}}:\ Notification,\ \textcolor{stringliteral}{"{}chatsession"{}}:\ ChatSession,\ \textcolor{stringliteral}{"{}chatmessage"{}}:\ ChatMessage, }
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}userdevice"{}}:\ UserDevice,\ \textcolor{stringliteral}{"{}userfaq"{}}:\ UserFAQ,\ \textcolor{stringliteral}{"{}usedpromotion"{}}:\ UsedPromotion, }
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}loyaltypoint"{}}:\ LoyaltyPoint,\ \textcolor{stringliteral}{"{}socialshare"{}}:\ SocialShare, }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \} }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ model\_class\ =\ table\_map.get(table\_name.lower()) }
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ model\_class: }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Không\ tìm\ thấy\ bảng\ '\{table\_name\}'"{}}) }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return} }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ view\_table\_data(db,\ model\_class,\ table\_name,\ limit) }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{finally}: }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ db.close() }
+\DoxyCodeLine{00096\  }
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceview__data_ac035f3894613808d6b84ac788141049b_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2}\index{view\_data@{view\_data}!view\_table\_data@{view\_table\_data}}
+\index{view\_table\_data@{view\_table\_data}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{view\_table\_data()}{view\_table\_data()}}
+{\footnotesize\ttfamily \label{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2} 
+view\+\_\+data.\+view\+\_\+table\+\_\+data (\begin{DoxyParamCaption}\item[{Session}]{db}{, }\item[{}]{model\+\_\+class}{, }\item[{str}]{table\+\_\+name}{, }\item[{int }]{limit}{ = {\ttfamily 10}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Xem dữ liệu của một bảng với đầy đủ thuộc tính\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00020}{20}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00020\ \textcolor{keyword}{def\ }view\_table\_data(db:\ Session,\ model\_class,\ table\_name:\ str,\ limit:\ int\ =\ 10): }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Xem\ dữ\ liệu\ của\ một\ bảng\ với\ đầy\ đủ\ thuộc\ tính"{}"{}"{}} }
+\DoxyCodeLine{00022\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)n\{'='*60\}"{}}) }
+\DoxyCodeLine{00023\ \ \ \ \ print(f\textcolor{stringliteral}{"{}BẢNG:\ \{table\_name\}"{}}) }
+\DoxyCodeLine{00024\ \ \ \ \ print(f\textcolor{stringliteral}{"{}\{'='*60\}"{}}) }
+\DoxyCodeLine{00025\ \ \ \ \  }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{try}: }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ total\ =\ db.query(model\_class).count() }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Tổng\ số\ bản\ ghi:\ \{total\}"{}}) }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ records\ =\ db.query(model\_class).limit(limit).all() }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ records: }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}Không\ có\ dữ\ liệu\ trong\ bảng\ này."{}}) }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return} }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}\(\backslash\)nHiển\ thị\ \{len(records)\}\ bản\ ghi\ đầu\ tiên:"{}}) }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ print(\textcolor{stringliteral}{"{}-\/"{}}\ *\ 60) }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ SỬA\ ĐOẠN\ NÀY\ ĐỂ\ HIỂN\ THỊ\ THUỘC\ TÍNH }}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ i,\ record\ \textcolor{keywordflow}{in}\ enumerate(records,\ 1): }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Lấy\ danh\ sách\ các\ cột\ thực\ tế\ từ\ Model }}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ columns\ =\ [column.key\ \textcolor{keywordflow}{for}\ column\ \textcolor{keywordflow}{in}\ inspect(record).mapper.column\_attrs] }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Tạo\ dictionary\ chứa\ dữ\ liệu\ của\ các\ cột\ đó }}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ data\ =\ \{col:\ getattr(record,\ col)\ \textcolor{keywordflow}{for}\ col\ \textcolor{keywordflow}{in}\ columns\} }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ In\ ra\ dưới\ dạng\ đẹp\ hơn }}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}[\{i\}]\ \{data\}"{}}) }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \  }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e: }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ khi\ truy\ vấn\ bảng\ \{table\_name\}:\ \{e\}"{}}) }
+\DoxyCodeLine{00052\  }
+\DoxyCodeLine{00053\ \textcolor{comment}{\#\ ...\ (Các\ hàm\ view\_all\_data\ và\ view\_specific\_table\ giữ\ nguyên\ như\ cũ)\ ... }}
+\DoxyCodeLine{00054\  }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespaceview__data_adfef500479f0f7ea2615abe4c7e813f2_icgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-var-members}
+\Hypertarget{namespaceview__data_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespaceview__data_a7cc0bbd97b68151b792c797554115dec}\index{view\_data@{view\_data}!limit@{limit}}
+\index{limit@{limit}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{limit}{limit}}
+{\footnotesize\ttfamily \label{namespaceview__data_a7cc0bbd97b68151b792c797554115dec} 
+int view\+\_\+data.\+limit = int(sys.\+argv\+[2]\+) if len(sys.\+argv) $>$ 2 else 20}
+
+
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00101}{101}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+
+\Hypertarget{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e}\index{view\_data@{view\_data}!table\_name@{table\_name}}
+\index{table\_name@{table\_name}!view\_data@{view\_data}}
+\doxysubsubsection{\texorpdfstring{table\_name}{table\_name}}
+{\footnotesize\ttfamily \label{namespaceview__data_a61c3ee7210e34bd993ae28833e3cf06e} 
+view\+\_\+data.\+table\+\_\+name = sys.\+argv\+[1]\+}
+
+
+
+Definition at line \doxymbox{\hyperlink{view__data_8py_source_l00100}{100}} of file \doxymbox{\hyperlink{view__data_8py_source}{view\+\_\+data.\+py}}.
+

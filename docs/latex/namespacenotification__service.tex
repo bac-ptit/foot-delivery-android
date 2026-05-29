@@ -1,0 +1,115 @@
+\doxysection{notification\+\_\+service Namespace Reference}
+\hypertarget{namespacenotification__service}{}\label{namespacenotification__service}\index{notification\_service@{notification\_service}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacenotification__service_a0250629a5f0d126be42b05d98c031778}{send\+\_\+fcm\+\_\+notification}} (str token, str title, str body, dict data=None)
+\item 
+\doxymbox{\hyperlink{namespacenotification__service_acd13d6252bcf90c70d06efbe0ccfafeb}{notify\+\_\+user}} (Session db, int user\+\_\+id, str title, str body, int order\+\_\+id=None)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module: notification_service.py
+
+Service gửi thông báo đẩy qua Firebase Cloud Messaging (FCM).
+Lưu thông báo vào database và gửi push notification đến tất cả thiết bị của người dùng.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacenotification__service_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacenotification__service_acd13d6252bcf90c70d06efbe0ccfafeb}\index{notification\_service@{notification\_service}!notify\_user@{notify\_user}}
+\index{notify\_user@{notify\_user}!notification\_service@{notification\_service}}
+\doxysubsubsection{\texorpdfstring{notify\_user()}{notify\_user()}}
+{\footnotesize\ttfamily \label{namespacenotification__service_acd13d6252bcf90c70d06efbe0ccfafeb} 
+notification\+\_\+service.\+notify\+\_\+user (\begin{DoxyParamCaption}\item[{Session}]{db}{, }\item[{int}]{user\+\_\+id}{, }\item[{str}]{title}{, }\item[{str}]{body}{, }\item[{int }]{order\+\_\+id}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Gửi thông báo cho tất cả thiết bị của một người dùng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{notification__service_8py_source_l00036}{36}} of file \doxymbox{\hyperlink{notification__service_8py_source}{notification\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00036\ \textcolor{keyword}{def\ }notify\_user(db:\ Session,\ user\_id:\ int,\ title:\ str,\ body:\ str,\ order\_id:\ int\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Gửi\ thông\ báo\ cho\ tất\ cả\ thiết\ bị\ của\ một\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{\#\ 1.\ Lưu\ thông\ báo\ vào\ bảng\ Notification\ trong\ DB}}
+\DoxyCodeLine{00039\ \ \ \ \ db\_notification\ =\ \doxymbox{\hyperlink{classmodels_1_1Notification}{models.Notification}}(}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ title=title,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ content=body,}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ type=\textcolor{stringliteral}{"{}order\_update"{}},}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ userid=user\_id,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ orderid=order\_id,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ isread=\textcolor{keyword}{False}}
+\DoxyCodeLine{00046\ \ \ \ \ )}
+\DoxyCodeLine{00047\ \ \ \ \ db.add(db\_notification)}
+\DoxyCodeLine{00048\ \ \ \ \ db.commit()}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{\#\ 2.\ Lấy\ danh\ sách\ FCM\ Token\ của\ người\ dùng\ đó}}
+\DoxyCodeLine{00051\ \ \ \ \ devices\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1UserDevice}{models.UserDevice}}).filter(models.UserDevice.userid\ ==\ user\_id).all()}
+\DoxyCodeLine{00052\ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{\#\ 3.\ Gửi\ thông\ báo\ thực\ tới\ điện\ thoại}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordflow}{for}\ device\ \textcolor{keywordflow}{in}\ devices:}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ send\_fcm\_notification(}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ token=device.device\_token,}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ title=title,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ body=body,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ data=\{\textcolor{stringliteral}{"{}order\_id"{}}:\ str(order\_id)\}\ \textcolor{keywordflow}{if}\ order\_id\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ )}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenotification__service_acd13d6252bcf90c70d06efbe0ccfafeb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacenotification__service_a0250629a5f0d126be42b05d98c031778}\index{notification\_service@{notification\_service}!send\_fcm\_notification@{send\_fcm\_notification}}
+\index{send\_fcm\_notification@{send\_fcm\_notification}!notification\_service@{notification\_service}}
+\doxysubsubsection{\texorpdfstring{send\_fcm\_notification()}{send\_fcm\_notification()}}
+{\footnotesize\ttfamily \label{namespacenotification__service_a0250629a5f0d126be42b05d98c031778} 
+notification\+\_\+service.\+send\+\_\+fcm\+\_\+notification (\begin{DoxyParamCaption}\item[{str}]{token}{, }\item[{str}]{title}{, }\item[{str}]{body}{, }\item[{dict }]{data}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Gửi thông báo tới một thiết bị Android cụ thể qua FCM.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{notification__service_8py_source_l00014}{14}} of file \doxymbox{\hyperlink{notification__service_8py_source}{notification\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00014\ \textcolor{keyword}{def\ }send\_fcm\_notification(token:\ str,\ title:\ str,\ body:\ str,\ data:\ dict\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Gửi\ thông\ báo\ tới\ một\ thiết\ bị\ Android\ cụ\ thể\ qua\ FCM."{}"{}"{}}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ firebase\_admin.\_apps:}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ init\_firebase()}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00019\ \ \ \ \ message\ =\ messaging.Message(}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ notification=messaging.Notification(}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ title=title,}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ body=body,}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ ),}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ data=data,}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ token=token,}
+\DoxyCodeLine{00026\ \ \ \ \ )}
+\DoxyCodeLine{00027\ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ response\ =\ messaging.send(message)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Successfully\ sent\ message:\ \{response\}"{}})}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ sending\ FCM\ message:\ \{e\}"{}})}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{00035\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{namespacenotification__service_a0250629a5f0d126be42b05d98c031778_icgraph}
+\end{center}
+\end{figure}

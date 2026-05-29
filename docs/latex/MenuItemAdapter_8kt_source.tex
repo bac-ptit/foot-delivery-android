@@ -1,0 +1,89 @@
+\doxysection{Menu\+Item\+Adapter.\+kt}
+\hypertarget{MenuItemAdapter_8kt_source}{}\label{MenuItemAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/MenuItemAdapter.kt@{app/app/src/main/java/com/example/myapp/adapters/MenuItemAdapter.kt}}
+\doxymbox{\hyperlink{MenuItemAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.adapters}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00008}00008\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00009}00009\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00010}00010\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00011}00011\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00012}00012\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00013}00013\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00014}00014\ import\ android.widget.RatingBar}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00015}00015\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00016}00016\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00017}00017\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00018}00018\ import\ com.example.myapp.screens.api.MenuItem}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00019}00019\ import\ com.example.myapp.screens.food\_detail}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00020}00020\ import\ com.squareup.picasso.Picasso}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00030}00030\ class\ MenuItemAdapter(}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00031}00031\ \ \ \ \ private\ val\ context:\ Context,}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00032}00032\ \ \ \ \ private\ val\ menuItems:\ List<MenuItem>}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00033}\doxymbox{\hyperlink{namespaceMenuItemAdapter}{00033}}\ )\ :\ RecyclerView.Adapter<MenuItemAdapter.MenuItemViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00047}00047\ \ \ \ \ class\ MenuItemViewHolder(itemView:\ View)\ :\ RecyclerView.ViewHolder(itemView)\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ val\ imgFood:\ ImageView\ =\ itemView.findViewById(R.id.imgFood)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ val\ tvFoodName:\ TextView\ =\ itemView.findViewById(R.id.tvFoodName)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ val\ tvFoodPrice:\ TextView\ =\ itemView.findViewById(R.id.tvFoodPrice)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ val\ tvRestaurantName:\ TextView\ =\ itemView.findViewById(R.id.tvRestaurantName)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ ratingBar:\ RatingBar\ =\ itemView.findViewById(R.id.ratingBar)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ tvRating:\ TextView\ =\ itemView.findViewById(R.id.tvRating)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ tvDescription:\ TextView\ =\ itemView.findViewById(R.id.tvDescription)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ val\ foodTitleCard:\ View\ =\ itemView.findViewById(R.id.foodTitleCard)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00065}00065\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ MenuItemViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ val\ view\ =\ LayoutInflater.from(context).inflate(R.layout.item\_menu,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ return\ MenuItemViewHolder(view)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00078}00078\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ MenuItemViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ menuItem\ =\ menuItems[position]}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ menu\ item\ image}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ if\ (!menuItem.image\_url.isNullOrEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ Picasso.get()}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .load(menuItem.image\_url)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .placeholder(R.drawable.placeholder\_loading)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .error(R.drawable.pngwing)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .into(holder.imgFood)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ menu\ item\ name}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ holder.tvFoodName.text\ =\ menuItem.name}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ menu\ item\ price}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ holder.tvFoodPrice.text\ =\ "{}\$\{menuItem.price\}\ VNĐ"{}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ restaurant\ name}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ holder.tvRestaurantName.text\ =\ menuItem.restaurant\_name\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ rating}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ val\ avgRating\ =\ menuItem.avg\_rating\ ?:\ 0f}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ holder.ratingBar.rating\ =\ avgRating}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ holder.tvRating.text\ =\ String.format("{}(\%.1f)"{},\ avgRating)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ description}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ holder.tvDescription.text\ =\ menuItem.description\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ click\ listener\ on\ foodTitleCard\ to\ navigate\ to\ food\_detail}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ holder.foodTitleCard.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(context,\ food\_detail::class.java).apply\ \{}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}food\_id"{},\ menuItem.id)\ \textcolor{comment}{//\ Pass\ food\_id}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}food\_name"{},\ menuItem.name)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}food\_price"{},\ menuItem.price)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}food\_description"{},\ menuItem.description\ ?:\ "{}"{})}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}food\_image\_url"{},\ menuItem.image\_url\ ?:\ "{}"{})}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra("{}restaurant\_name"{},\ menuItem.restaurant\_name\ ?:\ "{}"{})}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ context.startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00119}00119\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00120}00120\ }
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00126}00126\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ menuItems.size}
+\DoxyCodeLine{\Hypertarget{MenuItemAdapter_8kt_source_l00127}00127\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,9 @@
+<map id="schemas.UserBase" name="schemas.UserBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="65,80,201,107"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1User.html" title=" " alt="" coords="5,155,112,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="112,117,73,156,70,152,107,118"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1UserCreate.html" title=" " alt="" coords="135,155,280,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="158,115,198,154,192,154,156,120"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="90,5,176,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="135,46,136,80,131,79,132,50"/>
+</map>

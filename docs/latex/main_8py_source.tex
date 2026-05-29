@@ -1,0 +1,796 @@
+\doxysection{main.\+py}
+\hypertarget{main_8py_source}{}\label{main_8py_source}\index{backend/main.py@{backend/main.py}}
+\doxymbox{\hyperlink{main_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00001}\doxymbox{\hyperlink{namespacemain}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ main.py}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00004}00004\ \textcolor{stringliteral}{FastAPI\ application\ chính\ của\ hệ\ thống\ Đặt\ Món.}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00005}00005\ \textcolor{stringliteral}{Định\ nghĩa\ tất\ cả\ REST\ API\ endpoints:\ auth,\ user,\ restaurant,\ menu,\ order,\ payment,\ chatbot,\ notification.}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00008}00008\ \textcolor{keyword}{from}\ fastapi\ \textcolor{keyword}{import}\ FastAPI,\ Depends,\ HTTPException,\ File,\ UploadFile,\ Form,\ status}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00009}00009\ \textcolor{keyword}{from}\ fastapi.security\ \textcolor{keyword}{import}\ OAuth2PasswordRequestForm}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00010}00010\ \textcolor{keyword}{from}\ fastapi.middleware.cors\ \textcolor{keyword}{import}\ CORSMiddleware}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00011}00011\ \textcolor{keyword}{from}\ sqlalchemy.orm\ \textcolor{keyword}{import}\ Session}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00012}00012\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ List,\ Optional}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00013}00013\ \textcolor{keyword}{from}\ decimal\ \textcolor{keyword}{import}\ Decimal}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00014}00014\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ timedelta,\ datetime}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00017}00017\ \textcolor{keyword}{import}\ models,\ schemas,\ auth,\ os}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00018}00018\ \textcolor{keyword}{from}\ database\ \textcolor{keyword}{import}\ engine,\ get\_db}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00019}00019\ \textcolor{keyword}{from}\ firebase\_utils\ \textcolor{keyword}{import}\ upload\_image}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00020}00020\ \textcolor{keyword}{from}\ chatbot\_service\ \textcolor{keyword}{import}\ ChatBotService}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00021}00021\ \textcolor{keyword}{from}\ notification\_service\ \textcolor{keyword}{import}\ notify\_user}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00024}00024\ \textcolor{keyword}{from}\ payment\_service\ \textcolor{keyword}{import}\ generate\_vnpay\_url}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00025}00025\ \textcolor{keyword}{from}\ fastapi\ \textcolor{keyword}{import}\ Request}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00028}00028\ \textcolor{comment}{\#\ Create\ tables\ in\ the\ database\ (optional\ if\ using\ migrations\ like\ Alembic)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00029}\doxymbox{\hyperlink{namespacemain_a84490d23fa7a66ba4fbab70b4a53b6e5}{00029}}\ models.Base.metadata.create\_all(bind=engine)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00031}00031\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00032}\doxymbox{\hyperlink{namespacemain_a5fa94f0581009434c7a63791944d6ff4}{00032}}\ app\ =\ FastAPI(title=\textcolor{stringliteral}{"{}Đặt\ Món\ Food\ Delivery\ API"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00035}00035\ \textcolor{comment}{\#\ CORS\ middleware\ -\/\ Cho\ phép\ Android\ app\ kết\ nối}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00036}00036\ app.add\_middleware(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00037}00037\ \ \ \ \ CORSMiddleware,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00038}\doxymbox{\hyperlink{namespacemain_ab277227e15a80c8a674b8540cc01f33f}{00038}}\ \ \ \ \ allow\_origins=[\textcolor{stringliteral}{"{}*"{}}],\ \ \textcolor{comment}{\#\ Cho\ phép\ tất\ cả\ origins\ (development)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00039}\doxymbox{\hyperlink{namespacemain_a723efd63c798243e87a130a80fcdafc0}{00039}}\ \ \ \ \ allow\_credentials=\textcolor{keyword}{True},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00040}\doxymbox{\hyperlink{namespacemain_a1b7923d71410345d3dbff8017b7e6f0d}{00040}}\ \ \ \ \ allow\_methods=[\textcolor{stringliteral}{"{}*"{}}],}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00041}\doxymbox{\hyperlink{namespacemain_ab58bda9b3875379c76aa7d3bd977b5bd}{00041}}\ \ \ \ \ allow\_headers=[\textcolor{stringliteral}{"{}*"{}}],}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00042}00042\ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00045}00045\ \textcolor{preprocessor}{@app.get("{}/"{})}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00046}\doxymbox{\hyperlink{namespacemain_a82f50f8b598afeb472eaf2c23164bb43}{00046}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a82f50f8b598afeb472eaf2c23164bb43}{read\_root}}():}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00047}00047\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Endpoint\ gốc,\ trả\ lời\ chào\ mừng\ API."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00048}00048\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Welcome\ to\ Đặt\ Món\ Food\ Delivery\ API"{}}\}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00051}00051\ \textcolor{comment}{\#\ -\/-\/-\/\ AUTH\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00052}00052\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00054}00054\ \textcolor{preprocessor}{@app.post("{}/token"{},\ response\_model=schemas.Token)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00055}\doxymbox{\hyperlink{namespacemain_a31cb91f294b74809e1f4860c9283014a}{00055}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a31cb91f294b74809e1f4860c9283014a}{login\_for\_access\_token}}(form\_data:\ OAuth2PasswordRequestForm\ =\ Depends(),\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00056}00056\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Đăng\ nhập\ bằng\ username/password,\ trả\ về\ JWT\ access\ token."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00057}00057\ \ \ \ \ user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.username\ ==\ form\_data.username).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ user\ \textcolor{keywordflow}{or}\ \textcolor{keywordflow}{not}\ \doxymbox{\hyperlink{namespaceauth_a66045b230ebbe61c2cb80dd71c79497a}{auth.verify\_password}}(form\_data.password,\ user.password):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00059}00059\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ status\_code=status.HTTP\_401\_UNAUTHORIZED,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ detail=\textcolor{stringliteral}{"{}Incorrect\ username\ or\ password"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ headers=\{\textcolor{stringliteral}{"{}WWW-\/Authenticate"{}}:\ \textcolor{stringliteral}{"{}Bearer"{}}\},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00063}00063\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00064}00064\ \ \ \ \ access\_token\_expires\ =\ timedelta(minutes=auth.ACCESS\_TOKEN\_EXPIRE\_MINUTES)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00065}00065\ \ \ \ \ access\_token\ =\ \doxymbox{\hyperlink{namespaceauth_a97c9965d0490a3148025f9305366f4ee}{auth.create\_access\_token}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00066}00066\ \ \ \ \ \ \ \ \ data=\{\textcolor{stringliteral}{"{}sub"{}}:\ user.email\},\ expires\_delta=access\_token\_expires}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00067}00067\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00068}00068\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}access\_token"{}}:\ access\_token,\ \textcolor{stringliteral}{"{}token\_type"{}}:\ \textcolor{stringliteral}{"{}bearer"{}}\}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00071}00071\ \textcolor{comment}{\#\ -\/-\/-\/\ USER\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00074}00074\ \textcolor{preprocessor}{@app.post("{}/users/"{},\ response\_model=schemas.User)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00075}\doxymbox{\hyperlink{namespacemain_a2c12d4f20a519da64739f45ba9858278}{00075}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a2c12d4f20a519da64739f45ba9858278}{create\_user}}(user:\ schemas.UserCreate,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00076}00076\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Đăng\ ký\ tài\ khoản\ người\ dùng\ mới."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00077}00077\ \ \ \ \ \textcolor{comment}{\#\ Check\ if\ user\ exists}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00078}00078\ \ \ \ \ db\_user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.email\ ==\ user.email).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00079}00079\ \ \ \ \ \textcolor{keywordflow}{if}\ db\_user:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00080}00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=400,\ detail=\textcolor{stringliteral}{"{}Email\ already\ registered"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00081}00081\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00082}00082\ \ \ \ \ hashed\_password\ =\ \doxymbox{\hyperlink{namespaceauth_a92f4bd77c94adef07a0e3db219b5dd0b}{auth.get\_password\_hash}}(user.password)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00083}00083\ \ \ \ \ db\_user\ =\ \doxymbox{\hyperlink{classmodels_1_1User}{models.User}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00084}00084\ \ \ \ \ \ \ \ \ name=user.name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00085}00085\ \ \ \ \ \ \ \ \ username=user.username,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00086}00086\ \ \ \ \ \ \ \ \ email=user.email,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00087}00087\ \ \ \ \ \ \ \ \ password=hashed\_password,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00088}00088\ \ \ \ \ \ \ \ \ phone=user.phone,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00089}00089\ \ \ \ \ \ \ \ \ role=user.role}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00090}00090\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00091}00091\ \ \ \ \ db.add(db\_user)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00092}00092\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00093}00093\ \ \ \ \ db.refresh(db\_user)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00094}00094\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_user}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00097}00097\ \textcolor{preprocessor}{@app.get("{}/users/me/"{},\ response\_model=schemas.User)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00098}\doxymbox{\hyperlink{namespacemain_a927e0e9f6209aae4b0c1992433a1c619}{00098}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a927e0e9f6209aae4b0c1992433a1c619}{read\_users\_me}}(current\_user:\ models.User\ =\ Depends(auth.get\_current\_user)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00099}00099\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ thông\ tin\ người\ dùng\ hiện\ tại\ từ\ JWT\ token."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00100}00100\ \ \ \ \ \textcolor{keywordflow}{return}\ current\_user}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00103}00103\ \textcolor{preprocessor}{@app.post("{}/devices/token"{})}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00104}\doxymbox{\hyperlink{namespacemain_a293327b9679288f5aa989fff7fb7201c}{00104}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a293327b9679288f5aa989fff7fb7201c}{update\_device\_token}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00105}00105\ \ \ \ \ token:\ str\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00106}00106\ \ \ \ \ device\_type:\ str\ =\ Form(\textcolor{stringliteral}{"{}android"{}}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00107}00107\ \ \ \ \ current\_user:\ \doxymbox{\hyperlink{classmodels_1_1User}{models.User}}\ =\ Depends(auth.get\_current\_user),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00108}00108\ \ \ \ \ db:\ Session\ =\ Depends(get\_db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00109}00109\ ):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00110}00110\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Android\ App\ gọi\ API\ này\ để\ gửi\ FCM\ Token\ lên\ Server."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00111}00111\ \ \ \ \ \textcolor{comment}{\#\ Kiểm\ tra\ xem\ token\ này\ đã\ có\ chưa}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00112}00112\ \ \ \ \ db\_device\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1UserDevice}{models.UserDevice}}).filter(models.UserDevice.device\_token\ ==\ token).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00113}00113\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ db\_device:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00114}00114\ \ \ \ \ \ \ \ \ db\_device\ =\ \doxymbox{\hyperlink{classmodels_1_1UserDevice}{models.UserDevice}}(device\_token=token,\ device\_type=device\_type,\ userid=current\_user.id)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00115}00115\ \ \ \ \ \ \ \ \ db.add(db\_device)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00116}00116\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00117}00117\ \ \ \ \ \ \ \ \ db\_device.userid\ =\ current\_user.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Cập\ nhật\ thời\ gian\ hoạt\ động}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00119}00119\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00120}00120\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00121}00121\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Device\ token\ updated\ successfully"{}}\}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00124}00124\ \textcolor{preprocessor}{@app.get("{}/users/"{},\ response\_model=List[schemas.User])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00125}\doxymbox{\hyperlink{namespacemain_a5dbe0b39257ac06b0c96a48a53a6dc27}{00125}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a5dbe0b39257ac06b0c96a48a53a6dc27}{read\_users}}(skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00126}00126\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ người\ dùng\ (phân\ trang)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00127}00127\ \ \ \ \ users\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{return}\ users}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00129}00129\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00131}00131\ \textcolor{comment}{\#\ -\/-\/-\/\ ADDRESS\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00132}00132\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00134}00134\ \textcolor{preprocessor}{@app.post("{}/addresses/"{},\ response\_model=schemas.Address)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00135}\doxymbox{\hyperlink{namespacemain_ab8336f1460e58b4f49bef85f6cadea35}{00135}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ab8336f1460e58b4f49bef85f6cadea35}{create\_address}}(address:\ schemas.AddressCreate,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00136}00136\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ địa\ chỉ\ giao\ hàng\ mới\ cho\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00137}00137\ \ \ \ \ db\_address\ =\ \doxymbox{\hyperlink{classmodels_1_1Address}{models.Address}}(detail=address.detail,\ phone=address.phone,\ userid=address.userid)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00138}00138\ \ \ \ \ db.add(db\_address)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00139}00139\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00140}00140\ \ \ \ \ db.refresh(db\_address)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00141}00141\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_address}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00144}00144\ \textcolor{preprocessor}{@app.get("{}/users/\{user\_id\}/addresses/"{},\ response\_model=List[schemas.Address])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00145}\doxymbox{\hyperlink{namespacemain_abbdd77079941d52435c0570f9c8a20b5}{00145}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_abbdd77079941d52435c0570f9c8a20b5}{read\_user\_addresses}}(user\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00146}00146\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ địa\ chỉ\ giao\ hàng\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00147}00147\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1Address}{models.Address}}).filter(models.Address.userid\ ==\ user\_id).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00148}00148\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00150}00150\ \textcolor{preprocessor}{@app.put("{}/addresses/\{address\_id\}/"{},\ response\_model=schemas.Address)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00151}\doxymbox{\hyperlink{namespacemain_ad78896f14fdd7e3eb7a372d4552f71f4}{00151}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ad78896f14fdd7e3eb7a372d4552f71f4}{update\_address}}(address\_id:\ int,\ address:\ \doxymbox{\hyperlink{classschemas_1_1AddressUpdate}{schemas.AddressUpdate}},\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00152}00152\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Cập\ nhật\ địa\ chỉ\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00153}00153\ \ \ \ \ db\_address\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Address}{models.Address}}).filter(models.Address.id\ ==\ address\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00154}00154\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ db\_address:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00155}00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Address\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00156}00156\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00157}00157\ \ \ \ \ \textcolor{comment}{\#\ Cập\ nhật\ các\ trường}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00158}00158\ \ \ \ \ \textcolor{keywordflow}{if}\ address.detail\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00159}00159\ \ \ \ \ \ \ \ \ db\_address.detail\ =\ address.detail}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00160}00160\ \ \ \ \ \textcolor{keywordflow}{if}\ address.phone\ \textcolor{keywordflow}{is}\ \textcolor{keywordflow}{not}\ \textcolor{keywordtype}{None}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00161}00161\ \ \ \ \ \ \ \ \ db\_address.phone\ =\ address.phone}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00162}00162\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00163}00163\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00164}00164\ \ \ \ \ db.refresh(db\_address)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00165}00165\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_address}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00167}00167\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00168}00168\ \textcolor{comment}{\#\ -\/-\/-\/\ CATEGORY\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00169}00169\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00170}00170\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00171}00171\ \textcolor{preprocessor}{@app.get("{}/categories/"{},\ response\_model=List[schemas.Category])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00172}\doxymbox{\hyperlink{namespacemain_ad8877311e2bcfe4bf4f83c2071a73fca}{00172}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ad8877311e2bcfe4bf4f83c2071a73fca}{read\_categories}}(db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00173}00173\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ danh\ mục\ món\ ăn."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00174}00174\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1Category}{models.Category}}).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00175}00175\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00177}00177\ \textcolor{preprocessor}{@app.get("{}/promotions/"{},\ response\_model=List[schemas.Promotion])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00178}\doxymbox{\hyperlink{namespacemain_a13ee4d49b7fef087f6d0daad5ef65021}{00178}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a13ee4d49b7fef087f6d0daad5ef65021}{read\_promotions}}(active\_only:\ bool\ =\ \textcolor{keyword}{True},\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00179}00179\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ mã\ khuyến\ mãi,\ mặc\ định\ chỉ\ lấy\ mã\ đang\ active."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00180}00180\ \ \ \ \ query\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Promotion}{models.Promotion}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00181}00181\ \ \ \ \ \textcolor{keywordflow}{if}\ active\_only:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00182}00182\ \ \ \ \ \ \ \ \ query\ =\ query.filter(models.Promotion.status.ilike(\textcolor{stringliteral}{"{}active"{}}))}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00183}00183\ \ \ \ \ \textcolor{keywordflow}{return}\ query.all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00184}00184\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00185}00185\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00186}00186\ \textcolor{comment}{\#\ -\/-\/-\/\ CHAT\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00189}00189\ \textcolor{preprocessor}{@app.post("{}/chat/"{},\ response\_model=schemas.ChatMessage)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00190}\doxymbox{\hyperlink{namespacemain_a14bf6aad30096ea2acb38b59a384c892}{00190}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a14bf6aad30096ea2acb38b59a384c892}{chat\_with\_bot}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00191}00191\ \ \ \ \ "{}"{}"{}Gửi\ tin\ nhắn\ đến\ chatbot\ AI\ và\ nhận\ phản\ hồi."{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00192}00192\ \ \ \ \ chat\_input:\ schemas.ChatMessageCreate,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00193}00193\ \ \ \ \ session\_id:\ Optional[int]\ =\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00194}00194\ \ \ \ \ current\_user:\ \doxymbox{\hyperlink{classmodels_1_1User}{models.User}}\ =\ Depends(auth.get\_current\_user),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00195}00195\ \ \ \ \ db:\ Session\ =\ Depends(get\_db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00196}00196\ ):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00197}00197\ \ \ \ \ \textcolor{comment}{\#\ 1.\ Tìm\ hoặc\ tạo\ ChatSession}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00198}00198\ \ \ \ \ \textcolor{keywordflow}{if}\ session\_id:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00199}00199\ \ \ \ \ \ \ \ \ session\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1ChatSession}{models.ChatSession}}).filter(models.ChatSession.id\ ==\ session\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00200}00200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ session:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00201}00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Chat\ Session\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00202}00202\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00203}00203\ \ \ \ \ \ \ \ \ session\ =\ \doxymbox{\hyperlink{classmodels_1_1ChatSession}{models.ChatSession}}(status=\textcolor{stringliteral}{"{}active"{}},\ userid=current\_user.id)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00204}00204\ \ \ \ \ \ \ \ \ db.add(session)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00205}00205\ \ \ \ \ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00206}00206\ \ \ \ \ \ \ \ \ db.refresh(session)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00207}00207\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00209}00209\ \ \ \ \ \textcolor{comment}{\#\ 2.\ Lưu\ tin\ nhắn\ người\ dùng}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00210}00210\ \ \ \ \ user\_msg\ =\ \doxymbox{\hyperlink{classmodels_1_1ChatMessage}{models.ChatMessage}}(senderrole=\textcolor{stringliteral}{"{}user"{}},\ message=chat\_input.message,\ sessionid=session.id)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00211}00211\ \ \ \ \ db.add(user\_msg)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00212}00212\ \ \ \ \ db.commit()\ \textcolor{comment}{\#\ Lưu\ trước\ để\ AI\ có\ thể\ đọc\ lịch\ sử\ nếu\ cần\ (trong\ tương\ lai)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00213}00213\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00214}00214\ \ \ \ \ \textcolor{comment}{\#\ 3.\ Gọi\ AI\ xử\ lý}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00215}00215\ \ \ \ \ bot\_service\ =\ \doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService}{ChatBotService}}(db,\ user\_id=current\_user.id)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00216}00216\ \ \ \ \ bot\_response\_text\ =\ await\ bot\_service.get\_response(chat\_input.message)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00217}00217\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00218}00218\ \ \ \ \ \textcolor{comment}{\#\ 4.\ Lưu\ phản\ hồi\ của\ AI}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00219}00219\ \ \ \ \ bot\_msg\ =\ \doxymbox{\hyperlink{classmodels_1_1ChatMessage}{models.ChatMessage}}(senderrole=\textcolor{stringliteral}{"{}bot"{}},\ message=bot\_response\_text,\ sessionid=session.id)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00220}00220\ \ \ \ \ db.add(bot\_msg)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00221}00221\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00222}00222\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00223}00223\ \ \ \ \ db.refresh(bot\_msg)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00224}00224\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00225}00225\ \ \ \ \ \textcolor{keywordflow}{return}\ bot\_msg}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00227}00227\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00228}00228\ \textcolor{comment}{\#\ -\/-\/-\/\ RESTAURANT\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00231}00231\ \textcolor{preprocessor}{@app.post("{}/restaurants/"{},\ response\_model=schemas.Restaurant)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00232}\doxymbox{\hyperlink{namespacemain_a056bac3ae0b771154c21be61cdea6912}{00232}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a056bac3ae0b771154c21be61cdea6912}{create\_restaurant}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00233}00233\ \ \ \ \ "{}"{}"{}Tạo\ nhà\ hàng\ mới\ với\ ảnh\ upload\ lên\ Firebase\ Storage."{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00234}00234\ \ \ \ \ name:\ str\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00235}00235\ \ \ \ \ address:\ Optional[str]\ =\ Form(\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00236}00236\ \ \ \ \ phone\_number:\ str\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00237}00237\ \ \ \ \ status:\ str\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00238}00238\ \ \ \ \ description:\ Optional[str]\ =\ Form(\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00239}00239\ \ \ \ \ image:\ Optional[UploadFile]\ =\ File(\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00240}00240\ \ \ \ \ db:\ Session\ =\ Depends(get\_db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00241}00241\ ):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00242}00242\ \ \ \ \ image\_url\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00243}00243\ \ \ \ \ \textcolor{keywordflow}{if}\ image:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00244}00244\ \ \ \ \ \ \ \ \ content\ =\ await\ image.read()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00245}00245\ \ \ \ \ \ \ \ \ image\_url\ =\ await\ upload\_image(content,\ image.filename)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00246}00246\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00247}00247\ \ \ \ \ db\_restaurant\ =\ \doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00248}00248\ \ \ \ \ \ \ \ \ name=name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00249}00249\ \ \ \ \ \ \ \ \ address=address,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00250}00250\ \ \ \ \ \ \ \ \ phone\_number=phone\_number,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00251}00251\ \ \ \ \ \ \ \ \ status=status,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00252}00252\ \ \ \ \ \ \ \ \ description=description,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00253}00253\ \ \ \ \ \ \ \ \ image\_url=image\_url}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00254}00254\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00255}00255\ \ \ \ \ db.add(db\_restaurant)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00256}00256\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00257}00257\ \ \ \ \ db.refresh(db\_restaurant)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00258}00258\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_restaurant}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00259}00259\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00260}00260\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00261}00261\ \textcolor{preprocessor}{@app.get("{}/restaurants/"{},\ response\_model=List[schemas.Restaurant])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00262}\doxymbox{\hyperlink{namespacemain_a6d2abd708109dfadfaf941336acefdc9}{00262}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a6d2abd708109dfadfaf941336acefdc9}{read\_restaurants}}(skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00263}00263\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ nhà\ hàng\ (phân\ trang)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00264}00264\ \ \ \ \ restaurants\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00265}00265\ \ \ \ \ \textcolor{keywordflow}{return}\ restaurants}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00266}00266\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00267}00267\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00268}00268\ \textcolor{preprocessor}{@app.get("{}/restaurants/search/"{},\ response\_model=List[schemas.Restaurant])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00269}\doxymbox{\hyperlink{namespacemain_aaaf6c3d8f5c3ca3ccdec1de4131be44d}{00269}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_aaaf6c3d8f5c3ca3ccdec1de4131be44d}{search\_restaurants\_by\_name}}(name:\ str,\ skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00270}00270\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tìm\ kiếm\ nhà\ hàng\ theo\ tên\ (không\ phân\ biệt\ hoa\ thường)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00271}00271\ \ \ \ \ restaurants\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).filter(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00272}00272\ \ \ \ \ \ \ \ \ models.Restaurant.name.ilike(f\textcolor{stringliteral}{"{}\%\{name\}\%"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00273}00273\ \ \ \ \ ).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00274}00274\ \ \ \ \ \textcolor{keywordflow}{return}\ restaurants}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00276}00276\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00277}00277\ \textcolor{preprocessor}{@app.get("{}/restaurants/\{restaurant\_id\}/"{},\ response\_model=schemas.Restaurant)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00278}\doxymbox{\hyperlink{namespacemain_a2965b84838fdf2bf4cc852bd1eb6ff32}{00278}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a2965b84838fdf2bf4cc852bd1eb6ff32}{read\_restaurant}}(restaurant\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00279}00279\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ chi\ tiết\ nhà\ hàng\ theo\ ID."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00280}00280\ \ \ \ \ restaurant\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).filter(models.Restaurant.id\ ==\ restaurant\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00281}00281\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ restaurant:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00282}00282\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Restaurant\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00283}00283\ \ \ \ \ \textcolor{keywordflow}{return}\ restaurant}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00284}00284\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00285}00285\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00286}00286\ \textcolor{comment}{\#\ -\/-\/-\/\ MENU\ ITEM\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00288}00288\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00289}00289\ \textcolor{preprocessor}{@app.post("{}/menu-\/items/"{},\ response\_model=schemas.MenuItem)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00290}\doxymbox{\hyperlink{namespacemain_a6a02bb59473147b6c9bbad83767e4ac1}{00290}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_a6a02bb59473147b6c9bbad83767e4ac1}{create\_menu\_item}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00291}00291\ \ \ \ \ "{}"{}"{}Tạo\ món\ ăn\ mới\ với\ ảnh\ upload\ lên\ Firebase\ Storage."{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00292}00292\ \ \ \ \ name:\ str\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00293}00293\ \ \ \ \ price:\ Decimal\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00294}00294\ \ \ \ \ description:\ Optional[str]\ =\ Form(\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00295}00295\ \ \ \ \ restaurantid:\ int\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00296}00296\ \ \ \ \ categoryid:\ int\ =\ Form(...),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00297}00297\ \ \ \ \ image:\ Optional[UploadFile]\ =\ File(\textcolor{keywordtype}{None}),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00298}00298\ \ \ \ \ db:\ Session\ =\ Depends(get\_db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00299}00299\ ):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00300}00300\ \ \ \ \ image\_url\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00301}00301\ \ \ \ \ \textcolor{keywordflow}{if}\ image:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00302}00302\ \ \ \ \ \ \ \ \ content\ =\ await\ image.read()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00303}00303\ \ \ \ \ \ \ \ \ image\_url\ =\ await\ upload\_image(content,\ image.filename)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00304}00304\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00305}00305\ \ \ \ \ db\_item\ =\ \doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00306}00306\ \ \ \ \ \ \ \ \ name=name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00307}00307\ \ \ \ \ \ \ \ \ price=price,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00308}00308\ \ \ \ \ \ \ \ \ description=description,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00309}00309\ \ \ \ \ \ \ \ \ restaurantid=restaurantid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00310}00310\ \ \ \ \ \ \ \ \ categoryid=categoryid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00311}00311\ \ \ \ \ \ \ \ \ image\_url=image\_url}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00312}00312\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00313}00313\ \ \ \ \ db.add(db\_item)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00314}00314\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00315}00315\ \ \ \ \ db.refresh(db\_item)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00316}00316\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_item}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00317}00317\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00318}00318\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00319}\doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{00319}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{build\_menuitem\_with\_reviews}}(item:\ models.MenuItem,\ db:\ Session):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00320}00320\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Helper\ function\ to\ build\ MenuItem\ with\ reviews\ and\ avg\_rating."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00321}00321\ \ \ \ \ restaurant\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).filter(models.Restaurant.id\ ==\ item.restaurantid).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00322}00322\ \ \ \ \ restaurant\_name\ =\ restaurant.name\ \textcolor{keywordflow}{if}\ restaurant\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00323}00323\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00324}00324\ \ \ \ \ \textcolor{comment}{\#\ Fetch\ reviews\ for\ this\ menu\ item}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00325}00325\ \ \ \ \ reviews\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Review}{models.Review}}).filter(models.Review.menuitemid\ ==\ item.id).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00326}00326\ \ \ \ \ reviews\_data\ =\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00327}00327\ \ \ \ \ total\_rating\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00328}00328\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00329}00329\ \ \ \ \ \textcolor{keywordflow}{for}\ review\ \textcolor{keywordflow}{in}\ reviews:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00330}00330\ \ \ \ \ \ \ \ \ user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.id\ ==\ review.userid).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00331}00331\ \ \ \ \ \ \ \ \ user\_name\ =\ user.name\ \textcolor{keywordflow}{if}\ user\ \textcolor{keywordflow}{else}\ \textcolor{stringliteral}{"{}Unknown"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00332}00332\ \ \ \ \ \ \ \ \ reviews\_data.append(\{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00333}00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ review.id,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00334}00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}rating"{}}:\ review.rating,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00335}00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}comment"{}}:\ review.comment,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00336}00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}userid"{}}:\ review.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00337}00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user\_name"{}}:\ user\_name}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00338}00338\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00339}00339\ \ \ \ \ \ \ \ \ total\_rating\ +=\ review.rating}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00340}00340\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00341}00341\ \ \ \ \ avg\_rating\ =\ total\_rating\ /\ len(reviews)\ \textcolor{keywordflow}{if}\ reviews\ \textcolor{keywordflow}{else}\ 0.0}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00342}00342\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00343}00343\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00344}00344\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ item.id,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00345}00345\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}name"{}}:\ item.name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00346}00346\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}image\_url"{}}:\ item.image\_url,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00347}00347\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}price"{}}:\ item.price,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00348}00348\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}is\_available"{}}:\ item.is\_available,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00349}00349\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}description"{}}:\ item.description,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00350}00350\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}restaurantid"{}}:\ item.restaurantid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00351}00351\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}categoryid"{}}:\ item.categoryid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00352}00352\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}restaurant\_name"{}}:\ restaurant\_name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00353}00353\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}reviews"{}}:\ reviews\_data,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00354}00354\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}avg\_rating"{}}:\ avg\_rating}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00355}00355\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00357}00357\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00358}00358\ \textcolor{preprocessor}{@app.get("{}/menu-\/items/"{},\ response\_model=List[schemas.MenuItemWithReviews])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00359}\doxymbox{\hyperlink{namespacemain_acc8af54782c29b2ddf07839a610e1d88}{00359}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_acc8af54782c29b2ddf07839a610e1d88}{read\_all\_menu\_items}}(skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00360}00360\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ tất\ cả\ món\ ăn\ từ\ tất\ cả\ nhà\ hàng,\ bao\ gồm\ reviews."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00361}00361\ \ \ \ \ menu\_items\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00362}00362\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00363}00363\ \ \ \ \ result\ =\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00364}00364\ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ menu\_items:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00365}00365\ \ \ \ \ \ \ \ \ item\_dict\ =\ \doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{build\_menuitem\_with\_reviews}}(item,\ db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00366}00366\ \ \ \ \ \ \ \ \ result.append(item\_dict)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00367}00367\ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00368}00368\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00369}00369\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00370}00370\ \textcolor{preprocessor}{@app.get("{}/restaurants/\{restaurant\_id\}/menu/"{},\ response\_model=List[schemas.MenuItem])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00371}\doxymbox{\hyperlink{namespacemain_a5cbbe9967b64a9c9ac7947b8f8910791}{00371}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a5cbbe9967b64a9c9ac7947b8f8910791}{read\_restaurant\_menu}}(restaurant\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00372}00372\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ món\ ăn\ của\ một\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00373}00373\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).filter(models.MenuItem.restaurantid\ ==\ restaurant\_id).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00374}00374\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00375}00375\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00376}00376\ \textcolor{preprocessor}{@app.get("{}/menu-\/items/search/"{},\ response\_model=List[schemas.MenuItemWithReviews])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00377}\doxymbox{\hyperlink{namespacemain_a0be48579aa86eb7b0fa96ce9b096bf57}{00377}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a0be48579aa86eb7b0fa96ce9b096bf57}{search\_menu\_items\_by\_name}}(name:\ str,\ skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00378}00378\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tìm\ kiếm\ món\ ăn\ theo\ tên\ (không\ phân\ biệt\ hoa\ thường)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00379}00379\ \ \ \ \ menu\_items\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).filter(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00380}00380\ \ \ \ \ \ \ \ \ models.MenuItem.name.ilike(f\textcolor{stringliteral}{"{}\%\{name\}\%"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00381}00381\ \ \ \ \ ).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00382}00382\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00383}00383\ \ \ \ \ result\ =\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00384}00384\ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ menu\_items:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00385}00385\ \ \ \ \ \ \ \ \ item\_dict\ =\ \doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{build\_menuitem\_with\_reviews}}(item,\ db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00386}00386\ \ \ \ \ \ \ \ \ result.append(item\_dict)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00387}00387\ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00388}00388\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00389}00389\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00390}00390\ \textcolor{preprocessor}{@app.get("{}/menu-\/items/category/search/"{},\ response\_model=List[schemas.MenuItemWithReviews])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00391}\doxymbox{\hyperlink{namespacemain_a3266eba28f90daf8ebf7b423324df72c}{00391}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a3266eba28f90daf8ebf7b423324df72c}{search\_menu\_items\_by\_category\_name}}(category\_name:\ str,\ skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00392}00392\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tìm\ kiếm\ món\ ăn\ theo\ tên\ danh\ mục\ (không\ phân\ biệt\ hoa\ thường)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00393}00393\ \ \ \ \ \textcolor{comment}{\#\ Tìm\ category\ theo\ tên}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00394}00394\ \ \ \ \ categories\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Category}{models.Category}}).filter(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00395}00395\ \ \ \ \ \ \ \ \ models.Category.name.ilike(f\textcolor{stringliteral}{"{}\%\{category\_name\}\%"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00396}00396\ \ \ \ \ ).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00397}00397\ \ \ \ \ category\_ids\ =\ [cat.id\ \textcolor{keywordflow}{for}\ cat\ \textcolor{keywordflow}{in}\ categories]}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00398}00398\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00399}00399\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ category\_ids:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00400}00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00401}00401\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00402}00402\ \ \ \ \ menu\_items\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).filter(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00403}00403\ \ \ \ \ \ \ \ \ models.MenuItem.categoryid.in\_(category\_ids)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00404}00404\ \ \ \ \ ).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00405}00405\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00406}00406\ \ \ \ \ result\ =\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00407}00407\ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ menu\_items:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00408}00408\ \ \ \ \ \ \ \ \ item\_dict\ =\ \doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{build\_menuitem\_with\_reviews}}(item,\ db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00409}00409\ \ \ \ \ \ \ \ \ result.append(item\_dict)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00410}00410\ \ \ \ \ \textcolor{keywordflow}{return}\ result}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00411}00411\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00412}00412\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00413}00413\ \textcolor{preprocessor}{@app.get("{}/menu-\/items/\{menu\_item\_id\}/"{},\ response\_model=schemas.MenuItemWithReviews)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00414}\doxymbox{\hyperlink{namespacemain_ace5b8f6be7d4c3e3a80d715f3302035e}{00414}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ace5b8f6be7d4c3e3a80d715f3302035e}{read\_menu\_item\_detail}}(menu\_item\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00415}00415\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ chi\ tiết\ món\ ăn\ bao\ gồm\ reviews."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00416}00416\ \ \ \ \ item\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).filter(models.MenuItem.id\ ==\ menu\_item\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00417}00417\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ item:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00418}00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Menu\ item\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00419}00419\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00420}00420\ \ \ \ \ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{build\_menuitem\_with\_reviews}}(item,\ db)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00421}00421\ \textcolor{comment}{\#\ -\/-\/-\/\ VNPAY\ RETURN\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00422}00422\ \textcolor{preprocessor}{@app.get("{}/vnpay\_return"{})}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00423}\doxymbox{\hyperlink{namespacemain_aa7b1857264f2dfb44209d06cf685d657}{00423}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_aa7b1857264f2dfb44209d06cf685d657}{vnpay\_return}}(request:\ Request,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00424}00424\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Callback\ từ\ VNPay\ sau\ khi\ thanh\ toán,\ cập\ nhật\ trạng\ thái\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00425}00425\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00426}00426\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00427}00427\ \ \ \ \ params\ =\ dict(request.query\_params)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00428}00428\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00429}00429\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00430}00430\ \ \ \ \ response\_code\ =\ params.get(\textcolor{stringliteral}{"{}vnp\_ResponseCode"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00431}00431\ \ \ \ \ order\_ref\ =\ params.get(\textcolor{stringliteral}{"{}vnp\_TxnRef"{}})\ \ \textcolor{comment}{\#\ Format:\ DH\{order\_id\}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00432}00432\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00433}00433\ \ \ \ \ \textcolor{comment}{\#\ Trích\ xuất\ order\_id\ từ\ reference\ (VD:\ "{}DH123"{}\ -\/>\ 123)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00434}00434\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00435}00435\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Nếu\ là\ định\ dạng\ "{}DH\{id\}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00436}00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ order\_ref\ \textcolor{keywordflow}{and}\ order\_ref.startswith(\textcolor{stringliteral}{"{}DH"{}}):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ order\_id\ =\ int(order\_ref[2:])}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00438}00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ order\_id\ =\ int(order\_ref)\ \textcolor{keywordflow}{if}\ order\_ref\ \textcolor{keywordflow}{else}\ 0}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00440}00440\ \ \ \ \ \textcolor{keywordflow}{except}\ (ValueError,\ AttributeError):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00441}00441\ \ \ \ \ \ \ \ \ order\_id\ =\ 0}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00442}00442\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00443}00443\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00444}00444\ \ \ \ \ \textcolor{keywordflow}{if}\ response\_code\ ==\ \textcolor{stringliteral}{"{}00"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00445}00445\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Thanh\ toán\ thành\ công\ -\/\ cập\ nhật\ đơn\ hàng\ trong\ DB}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00446}00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ order\_id\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ order\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.id\ ==\ order\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ order:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ order.status\ =\ \textcolor{stringliteral}{"{}paid"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00450}00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00451}00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Tạo\ Payment\ record}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00452}00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ payment\_record\ =\ \doxymbox{\hyperlink{classmodels_1_1Payment}{models.Payment}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00453}00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=\textcolor{stringliteral}{"{}success"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00454}00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ method=\textcolor{stringliteral}{"{}vnpay"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00455}00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orderid=order.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00456}00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db.add(payment\_record)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db.refresh(order)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Gửi\ notification}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ total\_formatted\ =\ f\textcolor{stringliteral}{"{}\{order.totalprice:,.0f\}"{}}.replace(\textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}."{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notify\_user(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db=db,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_id=order.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00466}00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title=\textcolor{stringliteral}{"{}Đơn\ hàng\ được\ đặt\ thành\ công!\ 🎉"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00467}00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ body=f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{order.id\}\ đã\ được\ đặt\ thành\ công.\ Tổng\ tiền:\ \{total\_formatted\}đ.\ Đang\ chờ\ quán\ xác\ nhận."{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00468}00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ order\_id=order.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00469}00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00470}00470\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00471}00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00472}00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}status"{}}:\ \textcolor{stringliteral}{"{}success"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}message"{}}:\ f\textcolor{stringliteral}{"{}Thanh\ toán\ thành\ công\ cho\ đơn\ \{order\_ref\}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00474}00474\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00475}00475\ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00476}00476\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Thanh\ toán\ thất\ bại\ -\/\ cập\ nhật\ Payment\ record}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00477}00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ order\_id\ >\ 0:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00478}00478\ \ \ \ \ \ \ \ \ \ \ \ \ payment\_record\ =\ \doxymbox{\hyperlink{classmodels_1_1Payment}{models.Payment}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00479}00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ status=\textcolor{stringliteral}{"{}failed"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00480}00480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ method=\textcolor{stringliteral}{"{}vnpay"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00481}00481\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orderid=order\_id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00482}00482\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00483}00483\ \ \ \ \ \ \ \ \ \ \ \ \ db.add(payment\_record)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00484}00484\ \ \ \ \ \ \ \ \ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00485}00485\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00486}00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00487}00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}status"{}}:\ \textcolor{stringliteral}{"{}failed"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00488}00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Thanh\ toán\ thất\ bại"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00489}00489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00490}00490\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00492}00492\ \ \ \ \ \textcolor{comment}{\#\ -\/-\/-\/\ PAYMENT\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00493}00493\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00494}00494\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00495}00495\ \textcolor{preprocessor}{@app.get("{}/create-\/payment"{})}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00496}\doxymbox{\hyperlink{namespacemain_ae1d98f24e58fd2a8402e9ce407977dca}{00496}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacemain_ae1d98f24e58fd2a8402e9ce407977dca}{create\_payment}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00497}00497\ \ \ \ \ "{}"{}"{}Tạo\ URL\ thanh\ toán\ VNPay\ cho\ đơn\ hàng."{}"{}"{}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00498}00498\ \ \ \ \ order\_id:\ str,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00499}00499\ \ \ \ \ amount:\ int,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00500}00500\ \ \ \ \ request:\ Request}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00501}00501\ ):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00502}00502\ \ \ \ \ ip\_address\ =\ request.client.host}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00503}00503\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00504}00504\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00505}00505\ \ \ \ \ payment\_url\ =\ generate\_vnpay\_url(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00506}00506\ \ \ \ \ \ \ \ \ order\_id=str(order\_id),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00507}00507\ \ \ \ \ \ \ \ \ amount=amount,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00508}00508\ \ \ \ \ \ \ \ \ ip\_address=ip\_address}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00509}00509\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00510}00510\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00511}00511\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00512}00512\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00513}00513\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}payment\_url"{}}:\ payment\_url}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00514}00514\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00515}00515\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00516}00516\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00517}00517\ \textcolor{comment}{\#\ -\/-\/-\/\ ORDER\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00518}00518\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00519}00519\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00520}00520\ \textcolor{preprocessor}{@app.post("{}/orders/"{},\ response\_model=schemas.Order)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00521}\doxymbox{\hyperlink{namespacemain_a50afb6444c8640434e216f314a7fd65d}{00521}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a50afb6444c8640434e216f314a7fd65d}{create\_order}}(order:\ schemas.OrderCreate,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00522}00522\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ đơn\ hàng\ mới\ kèm\ danh\ sách\ món\ ăn\ và\ gửi\ thông\ báo."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00523}00523\ \ \ \ \ db\_order\ =\ \doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00524}00524\ \ \ \ \ \ \ \ \ status=order.status,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00525}00525\ \ \ \ \ \ \ \ \ preorderdate=order.preorderdate,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00526}00526\ \ \ \ \ \ \ \ \ preordertime=order.preordertime,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00527}00527\ \ \ \ \ \ \ \ \ totalprice=order.totalprice,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00528}00528\ \ \ \ \ \ \ \ \ restaurantid=order.restaurantid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00529}00529\ \ \ \ \ \ \ \ \ addressid=order.addressid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00530}00530\ \ \ \ \ \ \ \ \ userid=order.userid}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00531}00531\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00532}00532\ \ \ \ \ db.add(db\_order)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00533}00533\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00534}00534\ \ \ \ \ db.refresh(db\_order)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00535}00535\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00536}00536\ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ order.order\_items:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00537}00537\ \ \ \ \ \ \ \ \ db\_order\_item\ =\ \doxymbox{\hyperlink{classmodels_1_1OrderItem}{models.OrderItem}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00538}00538\ \ \ \ \ \ \ \ \ \ \ \ \ quantity=item.quantity,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00539}00539\ \ \ \ \ \ \ \ \ \ \ \ \ price=item.price,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00540}00540\ \ \ \ \ \ \ \ \ \ \ \ \ menuitemid=item.menuitemid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00541}00541\ \ \ \ \ \ \ \ \ \ \ \ \ orderid=db\_order.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00542}00542\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00543}00543\ \ \ \ \ \ \ \ \ db.add(db\_order\_item)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00544}00544\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00545}00545\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00546}00546\ \ \ \ \ db.refresh(db\_order)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00547}00547\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00548}00548\ \ \ \ \ \textcolor{comment}{\#\ Nếu\ là\ COD\ (status="{}confirmed"{}),\ gửi\ thông\ báo\ ngay\ lúc\ tạo\ đơn\ hàng}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00549}00549\ \ \ \ \ \textcolor{keywordflow}{if}\ db\_order.status\ ==\ \textcolor{stringliteral}{"{}confirmed"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00550}00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00551}00551\ \ \ \ \ \ \ \ \ \ \ \ \ total\_formatted\ =\ f\textcolor{stringliteral}{"{}\{db\_order.totalprice:,.0f\}"{}}.replace(\textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}."{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00552}00552\ \ \ \ \ \ \ \ \ \ \ \ \ notify\_user(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00553}00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db=db,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00554}00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_id=db\_order.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00555}00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title=\textcolor{stringliteral}{"{}Đơn\ hàng\ được\ đặt\ thành\ công!\ 🎉"{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00556}00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ body=f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{db\_order.id\}\ đã\ được\ đặt\ thành\ công.\ Tổng\ tiền:\ \{total\_formatted\}đ.\ Đang\ chờ\ quán\ xác\ nhận."{}},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00557}00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ order\_id=db\_order.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00558}00558\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00559}00559\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00560}00560\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ sending\ notification:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00561}00561\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00562}00562\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_order}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00563}00563\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00564}00564\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00565}00565\ \textcolor{preprocessor}{@app.get("{}/users/\{user\_id\}/orders/"{},\ response\_model=List[schemas.Order])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00566}\doxymbox{\hyperlink{namespacemain_ad9799e548b6b13e78c030458bd16b176}{00566}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ad9799e548b6b13e78c030458bd16b176}{read\_user\_orders}}(user\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00567}00567\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ đơn\ hàng\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00568}00568\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.userid\ ==\ user\_id).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00569}00569\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00570}00570\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00571}00571\ \textcolor{preprocessor}{@app.get("{}/orders/\{order\_id\}/detail"{},\ response\_model=schemas.OrderDetail)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00572}\doxymbox{\hyperlink{namespacemain_ae91d057d4a3671666b759f0a84f0ae3e}{00572}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ae91d057d4a3671666b759f0a84f0ae3e}{read\_order\_detail}}(order\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00573}00573\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ chi\ tiết\ đơn\ hàng\ kèm\ tên\ nhà\ hàng,\ địa\ chỉ\ và\ danh\ sách\ món."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00574}00574\ \ \ \ \ order\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.id\ ==\ order\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00575}00575\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ order:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00576}00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Order\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00577}00577\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00578}00578\ \ \ \ \ restaurant\_name\ =\ order.restaurant.name\ \textcolor{keywordflow}{if}\ order.restaurant\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00579}00579\ \ \ \ \ address\_detail\ =\ order.address.detail\ \textcolor{keywordflow}{if}\ order.address\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00580}00580\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00581}00581\ \ \ \ \ order\_items\ =\ []}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00582}00582\ \ \ \ \ \textcolor{keywordflow}{for}\ item\ \textcolor{keywordflow}{in}\ order.order\_items:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00583}00583\ \ \ \ \ \ \ \ \ order\_items.append(\{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00584}00584\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ item.id,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00585}00585\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}quantity"{}}:\ item.quantity,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00586}00586\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}price"{}}:\ item.price,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00587}00587\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}menuitemid"{}}:\ item.menuitemid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00588}00588\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}menuitem\_name"{}}:\ item.menu\_item.name\ \textcolor{keywordflow}{if}\ item.menu\_item\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None},}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00589}00589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}image\_url"{}}:\ item.menu\_item.image\_url\ \textcolor{keywordflow}{if}\ item.menu\_item\ \textcolor{keywordflow}{else}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00590}00590\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00591}00591\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00592}00592\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00593}00593\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ order.id,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00594}00594\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}status"{}}:\ order.status,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00595}00595\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}preorderdate"{}}:\ order.preorderdate,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00596}00596\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}preordertime"{}}:\ order.preordertime,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00597}00597\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}totalprice"{}}:\ order.totalprice,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00598}00598\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}restaurantid"{}}:\ order.restaurantid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00599}00599\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}addressid"{}}:\ order.addressid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00600}00600\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}userid"{}}:\ order.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00601}00601\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}createdat"{}}:\ order.createdat,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00602}00602\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}restaurant\_name"{}}:\ restaurant\_name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00603}00603\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}address\_detail"{}}:\ address\_detail,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00604}00604\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}order\_items"{}}:\ order\_items}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00605}00605\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00606}00606\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00607}00607\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00608}00608\ \textcolor{preprocessor}{@app.put("{}/orders/\{order\_id\}/status"{},\ response\_model=schemas.Order)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00609}\doxymbox{\hyperlink{namespacemain_a36615c74c80aa16f8c2aa9198ce6be06}{00609}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a36615c74c80aa16f8c2aa9198ce6be06}{update\_order\_status}}(order\_id:\ int,\ payload:\ \doxymbox{\hyperlink{classschemas_1_1OrderStatusUpdate}{schemas.OrderStatusUpdate}},\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00610}00610\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Cập\ nhật\ trạng\ thái\ đơn\ hàng\ và\ gửi\ thông\ báo\ tương\ ứng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00611}00611\ \ \ \ \ order\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.id\ ==\ order\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00612}00612\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ order:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00613}00613\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Order\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00614}00614\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00615}00615\ \ \ \ \ old\_status\ =\ order.status}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00616}00616\ \ \ \ \ order.status\ =\ payload.status}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00617}00617\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00618}00618\ \ \ \ \ db.refresh(order)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00619}00619\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00620}00620\ \ \ \ \ print(f\textcolor{stringliteral}{"{}DEBUG:\ Update\ order\ \{order\_id\}:\ \{old\_status\}\ -\/>\ \{payload.status\}"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00621}00621\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00622}00622\ \ \ \ \ \textcolor{comment}{\#\ Tạo\ thông\ báo\ khi\ trạng\ thái\ đơn\ hàng\ thay\ đổi}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00623}00623\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00624}00624\ \ \ \ \ \ \ \ \ notification\_title\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00625}00625\ \ \ \ \ \ \ \ \ notification\_body\ =\ \textcolor{stringliteral}{"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00626}00626\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00627}00627\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ payload.status\ \textcolor{keywordflow}{in}\ [\textcolor{stringliteral}{"{}paid"{}},\ \textcolor{stringliteral}{"{}confirmed"{}}]\ \textcolor{keywordflow}{and}\ old\_status\ \textcolor{keywordflow}{not}\ \textcolor{keywordflow}{in}\ [\textcolor{stringliteral}{"{}paid"{}},\ \textcolor{stringliteral}{"{}confirmed"{}}]:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00628}00628\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_title\ =\ \textcolor{stringliteral}{"{}Đơn\ hàng\ được\ đặt\ thành\ công!\ ✅"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00629}00629\ \ \ \ \ \ \ \ \ \ \ \ \ total\_formatted\ =\ f\textcolor{stringliteral}{"{}\{order.totalprice:,.0f\}"{}}.replace(\textcolor{stringliteral}{"{},"{}},\ \textcolor{stringliteral}{"{}."{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00630}00630\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_body\ =\ f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{order.id\}\ đã\ được\ đặt\ thành\ công.\ Tổng\ tiền:\ \{total\_formatted\}đ.\ Đang\ chờ\ quán\ xác\ nhận."{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00631}00631\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}DEBUG:\ Sending\ notification\ for\ order\ \{order\_id\}"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00632}00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ payload.status\ ==\ \textcolor{stringliteral}{"{}delivering"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00633}00633\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_title\ =\ \textcolor{stringliteral}{"{}Đơn\ hàng\ đang\ giao\ 🚚"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00634}00634\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_body\ =\ f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{order.id\}\ đang\ trên\ đường\ giao\ đến\ bạn"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00635}00635\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ payload.status\ ==\ \textcolor{stringliteral}{"{}completed"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00636}00636\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_title\ =\ \textcolor{stringliteral}{"{}Đơn\ hàng\ đã\ giao\ 🎉"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00637}00637\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_body\ =\ f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{order.id\}\ đã\ giao\ thành\ công.\ Cảm\ ơn\ đã\ đặt\ hàng!"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00638}00638\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{elif}\ payload.status\ ==\ \textcolor{stringliteral}{"{}cancelled"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00639}00639\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_title\ =\ \textcolor{stringliteral}{"{}Đơn\ hàng\ bị\ hủy\ ❌"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00640}00640\ \ \ \ \ \ \ \ \ \ \ \ \ notification\_body\ =\ f\textcolor{stringliteral}{"{}Đơn\ hàng\ \#\{order.id\}\ đã\ bị\ hủy"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00641}00641\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00642}00642\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Nếu\ có\ thay\ đổi\ trạng\ thái,\ tạo\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00643}00643\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ notification\_title:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00644}00644\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}DEBUG:\ Sending\ '\{notification\_title\}'\ to\ user\ \{order.userid\}"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00645}00645\ \ \ \ \ \ \ \ \ \ \ \ \ notify\_user(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00646}00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ db=db,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00647}00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_id=order.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00648}00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ title=notification\_title,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00649}00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ body=notification\_body,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00650}00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ order\_id=order.id}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00651}00651\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00652}00652\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}DEBUG:\ Notification\ sent\ successfully"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00653}00653\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00654}00654\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ khi\ tạo\ thông\ báo\ trạng\ thái:\ \{str(e)\}"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00655}00655\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00656}00656\ \ \ \ \ \textcolor{keywordflow}{return}\ order}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00657}00657\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00658}00658\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00659}00659\ \textcolor{preprocessor}{@app.post("{}/reviews/"{},\ response\_model=schemas.Review)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00660}\doxymbox{\hyperlink{namespacemain_a160fd3d94d73b59c4def332d05ce3016}{00660}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a160fd3d94d73b59c4def332d05ce3016}{create\_review}}(review:\ schemas.ReviewCreate,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00661}00661\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ đánh\ giá\ cho\ đơn\ hàng\ và\ cập\ nhật\ điểm\ trung\ bình\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00662}00662\ \ \ \ \ order\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.id\ ==\ review.orderid).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00663}00663\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ order:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00664}00664\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Order\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00665}00665\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00666}00666\ \ \ \ \ \textcolor{keywordflow}{if}\ order.userid\ !=\ review.userid:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00667}00667\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=403,\ detail=\textcolor{stringliteral}{"{}Review\ does\ not\ belong\ to\ this\ user"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00668}00668\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00669}00669\ \ \ \ \ order\_item\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1OrderItem}{models.OrderItem}}).filter(models.OrderItem.orderid\ ==\ order.id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00670}00670\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ order\_item:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00671}00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=400,\ detail=\textcolor{stringliteral}{"{}Order\ has\ no\ items\ to\ review"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00672}00672\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00673}00673\ \ \ \ \ menuitemid\ =\ review.menuitemid\ \textcolor{keywordflow}{or}\ order\_item.menuitemid}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00674}00674\ \ \ \ \ restaurantid\ =\ review.restaurantid\ \textcolor{keywordflow}{or}\ order.restaurantid}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00675}00675\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00676}00676\ \ \ \ \ db\_review\ =\ \doxymbox{\hyperlink{classmodels_1_1Review}{models.Review}}(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00677}00677\ \ \ \ \ \ \ \ \ rating=review.rating,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00678}00678\ \ \ \ \ \ \ \ \ comment=review.comment,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00679}00679\ \ \ \ \ \ \ \ \ orderid=review.orderid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00680}00680\ \ \ \ \ \ \ \ \ menuitemid=menuitemid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00681}00681\ \ \ \ \ \ \ \ \ restaurantid=restaurantid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00682}00682\ \ \ \ \ \ \ \ \ userid=review.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00683}00683\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00684}00684\ \ \ \ \ db.add(db\_review)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00685}00685\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00686}00686\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00687}00687\ \ \ \ \ \textcolor{comment}{\#\ Tính\ lại\ điểm\ đánh\ giá\ trung\ bình\ của\ nhà\ hàng}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00688}00688\ \ \ \ \ restaurant\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).filter(models.Restaurant.id\ ==\ restaurantid).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00689}00689\ \ \ \ \ \textcolor{keywordflow}{if}\ restaurant:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00690}00690\ \ \ \ \ \ \ \ \ all\_reviews\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Review}{models.Review}}).filter(models.Review.restaurantid\ ==\ restaurantid).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00691}00691\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ all\_reviews:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00692}00692\ \ \ \ \ \ \ \ \ \ \ \ \ avg\_rating\ =\ sum(r.rating\ \textcolor{keywordflow}{for}\ r\ \textcolor{keywordflow}{in}\ all\_reviews)\ /\ len(all\_reviews)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00693}00693\ \ \ \ \ \ \ \ \ \ \ \ \ restaurant.rating\ =\ int(round(avg\_rating))}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00694}00694\ \ \ \ \ \ \ \ \ \ \ \ \ db.add(restaurant)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00695}00695\ \ \ \ \ \ \ \ \ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00696}00696\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00697}00697\ \ \ \ \ db.refresh(db\_review)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00698}00698\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_review}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00699}00699\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00700}00700\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00701}00701\ \textcolor{preprocessor}{@app.get("{}/users/\{user\_id\}/profile-\/summary"{},\ response\_model=schemas.UserProfileSummary)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00702}\doxymbox{\hyperlink{namespacemain_ace8d2e8041648c1711e982efd9900791}{00702}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ace8d2e8041648c1711e982efd9900791}{read\_user\_profile\_summary}}(user\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00703}00703\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ tóm\ tắt\ hồ\ sơ\ người\ dùng:\ điểm,\ đơn\ hàng\ đã\ giao,\ tổng\ chi\ tiêu."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00704}00704\ \ \ \ \ user\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.id\ ==\ user\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00705}00705\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ user:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00706}00706\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}User\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00707}00707\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00708}00708\ \ \ \ \ orders\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.userid\ ==\ user\_id).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00709}00709\ \ \ \ \ delivered\_orders\ =\ [o\ \textcolor{keywordflow}{for}\ o\ \textcolor{keywordflow}{in}\ orders\ \textcolor{keywordflow}{if}\ (o.status\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{"{}"{}}).lower()\ \textcolor{keywordflow}{in}\ \{\textcolor{stringliteral}{"{}delivered"{}},\ \textcolor{stringliteral}{"{}completed"{}},\ \textcolor{stringliteral}{"{}done"{}}\}]}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00710}00710\ \ \ \ \ total\_spent\ =\ sum(o.totalprice\ \textcolor{keywordflow}{or}\ 0\ \textcolor{keywordflow}{for}\ o\ \textcolor{keywordflow}{in}\ orders)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00711}00711\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00712}00712\ \ \ \ \ \textcolor{comment}{\#\ Quy\ ước\ điểm\ đơn\ giản\ để\ Android\ hiển\ thị\ động\ thay\ cho\ số\ cứng.}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00713}00713\ \ \ \ \ points\ =\ total\_spent\ //\ 10000}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00714}00714\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00715}00715\ \ \ \ \ \textcolor{keywordflow}{return}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00716}00716\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user\_id"{}}:\ user.id,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00717}00717\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}user\_name"{}}:\ user.name,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00718}00718\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}points"{}}:\ points,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00719}00719\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}delivered\_orders"{}}:\ len(delivered\_orders),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00720}00720\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}total\_spent"{}}:\ total\_spent}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00721}00721\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00722}00722\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00723}00723\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00724}00724\ \textcolor{comment}{\#\ -\/-\/-\/\ FAQ\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00725}00725\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00726}00726\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00727}00727\ \textcolor{preprocessor}{@app.get("{}/faqs/"{},\ response\_model=List[schemas.FAQ])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00728}\doxymbox{\hyperlink{namespacemain_ab7b4a0fd7bd711f597de2724e9d12411}{00728}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ab7b4a0fd7bd711f597de2724e9d12411}{read\_faqs}}(skip:\ int\ =\ 0,\ limit:\ int\ =\ 100,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00729}00729\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ các\ câu\ hỏi\ thường\ gặp\ (FAQ)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00730}00730\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1FAQ}{models.FAQ}}).filter(models.FAQ.isactive\ ==\ \textcolor{keyword}{True}).offset(skip).limit(limit).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00731}00731\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00732}00732\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00733}00733\ \textcolor{comment}{\#\ -\/-\/-\/\ NOTIFICATION\ ENDPOINTS\ -\/-\/-\/}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00734}00734\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00735}00735\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00736}00736\ \textcolor{preprocessor}{@app.get("{}/users/\{user\_id\}/notifications/"{},\ response\_model=List[schemas.Notification])}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00737}\doxymbox{\hyperlink{namespacemain_a6f6a1b266d30959fa9a9bbe4b071d022}{00737}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_a6f6a1b266d30959fa9a9bbe4b071d022}{read\_user\_notifications}}(user\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00738}00738\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ danh\ sách\ thông\ báo\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00739}00739\ \ \ \ \ \textcolor{keywordflow}{return}\ db.query(\doxymbox{\hyperlink{classmodels_1_1Notification}{models.Notification}}).filter(models.Notification.userid\ ==\ user\_id).order\_by(models.Notification.createdat.desc()).all()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00740}00740\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00741}00741\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00742}00742\ \textcolor{preprocessor}{@app.post("{}/notifications/"{},\ response\_model=schemas.Notification)}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00743}\doxymbox{\hyperlink{namespacemain_aa99080a534ffe575d7f2313c41778fcc}{00743}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_aa99080a534ffe575d7f2313c41778fcc}{create\_notification}}(notification:\ schemas.NotificationCreate,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00744}00744\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ thông\ báo\ mới\ và\ gửi\ push\ notification."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00745}00745\ \ \ \ \ \textcolor{comment}{\#\ Sử\ dụng\ notify\_user\ để\ tạo\ thông\ báo\ -\/\ nó\ sẽ\ vừa\ lưu\ vào\ DB\ vừa\ gửi\ push}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00746}00746\ \ \ \ \ notify\_user(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00747}00747\ \ \ \ \ \ \ \ \ db=db,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00748}00748\ \ \ \ \ \ \ \ \ user\_id=notification.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00749}00749\ \ \ \ \ \ \ \ \ title=notification.title,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00750}00750\ \ \ \ \ \ \ \ \ body=notification.content,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00751}00751\ \ \ \ \ \ \ \ \ order\_id=notification.orderid}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00752}00752\ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00753}00753\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00754}00754\ \ \ \ \ \textcolor{comment}{\#\ Lấy\ thông\ báo\ vừa\ tạo\ để\ trả\ về}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00755}00755\ \ \ \ \ db\_notification\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Notification}{models.Notification}}).filter(}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00756}00756\ \ \ \ \ \ \ \ \ models.Notification.userid\ ==\ notification.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00757}00757\ \ \ \ \ \ \ \ \ models.Notification.title\ ==\ notification.title}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00758}00758\ \ \ \ \ ).order\_by(models.Notification.id.desc()).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00759}00759\ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00760}00760\ \ \ \ \ \textcolor{keywordflow}{return}\ db\_notification\ \textcolor{keywordflow}{if}\ db\_notification\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00761}00761\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}id"{}}:\ 0,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00762}00762\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}title"{}}:\ notification.title,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00763}00763\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}type"{}}:\ notification.type,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00764}00764\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}content"{}}:\ notification.content,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00765}00765\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}isread"{}}:\ notification.isread,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00766}00766\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}createdat"{}}:\ datetime.now(),}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00767}00767\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}userid"{}}:\ notification.userid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00768}00768\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}orderid"{}}:\ notification.orderid,}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00769}00769\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}sessionid"{}}:\ notification.sessionid}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00770}00770\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00771}00771\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00772}00772\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00773}00773\ \textcolor{preprocessor}{@app.put("{}/notifications/\{notification\_id\}/read"{})}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00774}\doxymbox{\hyperlink{namespacemain_ad7c2f881ac8ee3b0f029b5de0c453982}{00774}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacemain_ad7c2f881ac8ee3b0f029b5de0c453982}{mark\_notification\_as\_read}}(notification\_id:\ int,\ db:\ Session\ =\ Depends(get\_db)):}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00775}00775\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Đánh\ dấu\ thông\ báo\ đã\ đọc."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00776}00776\ \ \ \ \ db\_notification\ =\ db.query(\doxymbox{\hyperlink{classmodels_1_1Notification}{models.Notification}}).filter(models.Notification.id\ ==\ notification\_id).first()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00777}00777\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ db\_notification:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00778}00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ HTTPException(status\_code=404,\ detail=\textcolor{stringliteral}{"{}Notification\ not\ found"{}})}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00779}00779\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00780}00780\ \ \ \ \ db\_notification.isread\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00781}00781\ \ \ \ \ db.commit()}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00782}00782\ \ \ \ \ \textcolor{keywordflow}{return}\ \{\textcolor{stringliteral}{"{}message"{}}:\ \textcolor{stringliteral}{"{}Notification\ marked\ as\ read"{}}\}}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00783}00783\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00784}00784\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00785}00785\ \textcolor{keywordflow}{if}\ \_\_name\_\_\ ==\ \textcolor{stringliteral}{"{}\_\_main\_\_"{}}:}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00786}00786\ \ \ \ \ \textcolor{keyword}{import}\ uvicorn}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00787}\doxymbox{\hyperlink{namespacemain_a0cf58d9b4a444874a8cf80fdf162b0fb}{00787}}\ \ \ \ \ uvicorn.run(app,\ host=\textcolor{stringliteral}{"{}0.0.0.0"{}},\ port=8000)}
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00788}00788\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00789}00789\ }
+\DoxyCodeLine{\Hypertarget{main_8py_source_l00790}00790\ }
+
+\end{DoxyCode}

@@ -1,0 +1,142 @@
+\doxysection{models.\+Chat\+Session Class Reference}
+\hypertarget{classmodels_1_1ChatSession}{}\label{classmodels_1_1ChatSession}\index{models.ChatSession@{models.ChatSession}}
+
+
+Inheritance diagram for models.\+Chat\+Session:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classmodels_1_1ChatSession__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Chat\+Session:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=187pt]{classmodels_1_1ChatSession__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a0a6aeae12537a1adc1fc4fe137f3a899}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a35d8bb19c9af8398b218d8986a4f9de7}{createdat}} = Column(Date\+Time, server\+\_\+default=func.\+now())
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a57e397ff5d76d94a8b27a88e9818661f}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a12dc4afc450fe3032ac2d11f856d2f76}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a6b837b00ac3650ed940d123fd72abb89}{user}} = relationship("{}User"{}, back\+\_\+populates="{}chat\+\_\+sessions"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_afd579bb9c9de4594ee6a53c223f23291}{messages}} = relationship("{}Chat\+Message"{}, back\+\_\+populates="{}session"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1ChatSession_a6b089fb29b4f210f17d6a01a246dc229}{notifications}} = relationship("{}Notification"{}, back\+\_\+populates="{}session"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1ChatSession_a0da39f6d04b61dcbdb6febe1df0feba3}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}chatsession"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng chatsession, phiên trò chuyện với chatbot AI.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00210}{210}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1ChatSession_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1ChatSession_a0da39f6d04b61dcbdb6febe1df0feba3}\index{models.ChatSession@{models.ChatSession}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a0da39f6d04b61dcbdb6febe1df0feba3} 
+str models.\+Chat\+Session.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}chatsession"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00212}{212}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a35d8bb19c9af8398b218d8986a4f9de7}\index{models.ChatSession@{models.ChatSession}!createdat@{createdat}}
+\index{createdat@{createdat}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{createdat}{createdat}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a35d8bb19c9af8398b218d8986a4f9de7} 
+models.\+Chat\+Session.\+createdat = Column(Date\+Time, server\+\_\+default=func.\+now())\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00214}{214}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a0a6aeae12537a1adc1fc4fe137f3a899}\index{models.ChatSession@{models.ChatSession}!id@{id}}
+\index{id@{id}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a0a6aeae12537a1adc1fc4fe137f3a899} 
+models.\+Chat\+Session.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00213}{213}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_afd579bb9c9de4594ee6a53c223f23291}\index{models.ChatSession@{models.ChatSession}!messages@{messages}}
+\index{messages@{messages}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{messages}{messages}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_afd579bb9c9de4594ee6a53c223f23291} 
+models.\+Chat\+Session.\+messages = relationship("{}Chat\+Message"{}, back\+\_\+populates="{}session"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00219}{219}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a6b089fb29b4f210f17d6a01a246dc229}\index{models.ChatSession@{models.ChatSession}!notifications@{notifications}}
+\index{notifications@{notifications}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{notifications}{notifications}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a6b089fb29b4f210f17d6a01a246dc229} 
+models.\+Chat\+Session.\+notifications = relationship("{}Notification"{}, back\+\_\+populates="{}session"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00220}{220}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a57e397ff5d76d94a8b27a88e9818661f}\index{models.ChatSession@{models.ChatSession}!status@{status}}
+\index{status@{status}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a57e397ff5d76d94a8b27a88e9818661f} 
+models.\+Chat\+Session.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00215}{215}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a6b837b00ac3650ed940d123fd72abb89}\index{models.ChatSession@{models.ChatSession}!user@{user}}
+\index{user@{user}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a6b837b00ac3650ed940d123fd72abb89} 
+models.\+Chat\+Session.\+user = relationship("{}User"{}, back\+\_\+populates="{}chat\+\_\+sessions"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00218}{218}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1ChatSession_a12dc4afc450fe3032ac2d11f856d2f76}\index{models.ChatSession@{models.ChatSession}!userid@{userid}}
+\index{userid@{userid}!models.ChatSession@{models.ChatSession}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1ChatSession_a12dc4afc450fe3032ac2d11f856d2f76} 
+models.\+Chat\+Session.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00216}{216}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

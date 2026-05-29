@@ -1,0 +1,149 @@
+\doxysection{payment\+\_\+methods.\+kt}
+\hypertarget{payment__methods_8kt_source}{}\label{payment__methods_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/payment\_methods.kt@{app/app/src/main/java/com/example/myapp/screens/payment\_methods.kt}}
+\doxymbox{\hyperlink{payment__methods_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00016}00016\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00017}00017\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00018}00018\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00019}00019\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.OrderStatusUpdateRequest}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.VNPayResponse}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00024}00024\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00025}00025\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00026}00026\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00044}00044\ class\ payment\_methods\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00046}\doxymbox{\hyperlink{namespaceAppCompatActivity_a4b204a9257a4928343b53b24849bdf7b}{00046}}\ \ \ \ \ private\ var\ isRequestingVnPay:\ Boolean\ =\ false}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00056}00056\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ setContentView(R.layout.payment\_methods)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ val\ isSelectMode\ =\ intent.getBooleanExtra("{}select\_mode"{},\ false)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ val\ autoPayNow\ =\ intent.getBooleanExtra("{}auto\_pay\_now"{},\ false)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ val\ tvPayOnDelivery\ =\ findViewById<TextView>(R.id.tvPayOnDelivery)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ val\ tvPayNow\ =\ findViewById<TextView>(R.id.tvPayNow)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ val\ icBack\ =\ findViewById<ImageView>(R.id.icBack)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ tvPayOnDelivery.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (isSelectMode)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ resultIntent\ =\ Intent()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}payment\_method"{},\ "{}cod"{})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}payment\_method\_label"{},\ "{}Thanh\ toán\ khi\ nhận\ hàng"{})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setResult(RESULT\_OK,\ resultIntent)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ orderId\ =\ intent.getIntExtra("{}order\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (orderId\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateOrderStatusAndGoSuccess(orderId,\ "{}confirmed"{})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Đã\ chọn\ thanh\ toán\ khi\ nhận\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ payment\_successful::class.java))}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ tvPayNow.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (isSelectMode)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ resultIntent\ =\ Intent()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}payment\_method"{},\ "{}online"{})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}payment\_method\_label"{},\ "{}Thanh\ toán\ ngay"{})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setResult(RESULT\_OK,\ resultIntent)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ startVnPayPayment()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ if\ (!isSelectMode\ \&\&\ autoPayNow)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ startVnPayPayment()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ nút\ quay\ lại}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ icBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00119}00119\ \ \ \ \ private\ fun\ startVnPayPayment()\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ if\ (isRequestingVnPay)\ return}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ isRequestingVnPay\ =\ true}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ val\ orderId\ =\ intent.getIntExtra("{}order\_id"{},\ -\/1).let\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (it\ >\ 0)\ "{}DH\$it"{}\ else\ "{}DH"{}\ +\ System.currentTimeMillis()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ val\ amount\ =\ intent.getIntExtra("{}order\_total"{},\ 70000)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00127}00127\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getVNPayUrl(amount,\ orderId)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ .enqueue(object\ :\ Callback<VNPayResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ call:\ Call<VNPayResponse>,}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response:\ Response<VNPayResponse>}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isRequestingVnPay\ =\ false}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful\ \&\&\ response.body()\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ paymentUrl\ =\ response.body()!!.payment\_url}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this@payment\_methods,\ VNPayActivity::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intent.putExtra("{}URL"{},\ paymentUrl)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_id"{},\ this@payment\_methods.intent.getIntExtra("{}order\_id"{},\ -\/1))}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this@payment\_methods,}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Lấy\ link\ thanh\ toán\ thất\ bại"{},}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00149}00149\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<VNPayResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isRequestingVnPay\ =\ false}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ this@payment\_methods,}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Không\ kết\ nối\ được\ server"{},}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.LENGTH\_SHORT}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ).show()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00159}00159\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00160}00160\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00170}00170\ \ \ \ \ private\ fun\ updateOrderStatusAndGoSuccess(orderId:\ Int,\ status:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.updateOrderStatus(orderId,\ OrderStatusUpdateRequest(status))}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00172}00172\ \ \ \ \ \ \ \ \ \ \ \ \ .enqueue(object\ :\ Callback<OrderResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderResponse>,\ response:\ Response<OrderResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@payment\_methods,\ "{}Không\ cập\ nhật\ được\ trạng\ thái\ đơn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00178}00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ successIntent\ =\ Intent(this@payment\_methods,\ payment\_successful::class.java)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ successIntent.putExtra("{}order\_id"{},\ orderId)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(successIntent)}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00183}00183\ }
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@payment\_methods,\ "{}Lỗi\ mạng\ khi\ cập\ nhật\ đơn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00189}00189\ \}}
+\DoxyCodeLine{\Hypertarget{payment__methods_8kt_source_l00190}00190\ }
+
+\end{DoxyCode}

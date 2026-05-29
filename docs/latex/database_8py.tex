@@ -1,0 +1,23 @@
+\doxysection{backend/\+database.py File Reference}
+\hypertarget{database_8py}{}\label{database_8py}\index{backend/database.py@{backend/database.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacedatabase}{database}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{database.\+get\+\_\+db}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{database.\+SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL}} = os.\+getenv("{}DATABASE\+\_\+\+URL"{}, "{}postgresql:\+/\+/\+postgres:\+password@localhost/\+food\+\_\+delivery"{})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{database.\+engine}} = create\+\_\+engine(\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL}})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a}{database.\+Session\+Local}} = sessionmaker(autocommit=False, autoflush=False, bind=\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{engine}})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a0a351bcdc86bdc97cd3c88759443bb4a}{database.\+Base}} = declarative\+\_\+base()
+\end{DoxyCompactItemize}

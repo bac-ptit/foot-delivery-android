@@ -1,0 +1,299 @@
+\doxysection{models.\+py}
+\hypertarget{models_8py_source}{}\label{models_8py_source}\index{backend/models.py@{backend/models.py}}
+\doxymbox{\hyperlink{models_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00001}\doxymbox{\hyperlink{namespacemodels}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ models.py}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00004}00004\ \textcolor{stringliteral}{Định\ nghĩa\ tất\ cả\ SQLAlchemy\ ORM\ models\ cho\ cơ\ sở\ dữ\ liệu\ ứng\ dụng\ đặt\ món.}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00005}00005\ \textcolor{stringliteral}{Bao\ gồm\ 19\ model:\ User,\ Restaurant,\ MenuItem,\ Orders,\ Payment,\ Delivery,\ Review,\ v.v.}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00008}00008\ \textcolor{keyword}{from}\ sqlalchemy\ \textcolor{keyword}{import}\ Column,\ Integer,\ String,\ Boolean,\ Numeric,\ Text,\ Date,\ Time,\ ForeignKey,\ DateTime,\ func}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00009}00009\ \textcolor{keyword}{from}\ sqlalchemy.orm\ \textcolor{keyword}{import}\ relationship}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00010}00010\ \textcolor{keyword}{from}\ database\ \textcolor{keyword}{import}\ Base}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00012}\doxymbox{\hyperlink{classmodels_1_1Category}{00012}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Category}{Category}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00013}00013\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ category,\ phân\ loại\ món\ ăn."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00014}\doxymbox{\hyperlink{classmodels_1_1Category_aaba669ff02c5c8cf1c78cc0e32c5078b}{00014}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}category"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00015}\doxymbox{\hyperlink{classmodels_1_1Category_a4b1a15ea5ee9d4bd1c449b2727f4b3dc}{00015}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00016}\doxymbox{\hyperlink{classmodels_1_1Category_a99fc6d240106fd264ddeff6dd1e24370}{00016}}\ \ \ \ \ name\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00017}\doxymbox{\hyperlink{classmodels_1_1Category_a3fc23742b34e067df3c4162ee8684c52}{00017}}\ \ \ \ \ type\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00018}\doxymbox{\hyperlink{classmodels_1_1Category_a4a1f931f037bda5a355e0867158eaa9f}{00018}}\ \ \ \ \ description\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00019}\doxymbox{\hyperlink{classmodels_1_1Category_aa95c0ab8349b8d66869821e849e5383c}{00019}}\ \ \ \ \ menu\_items\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}category"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00021}\doxymbox{\hyperlink{classmodels_1_1FAQ}{00021}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1FAQ}{FAQ}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00022}00022\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ faq,\ lưu\ trữ\ câu\ hỏi\ thường\ gặp."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00023}\doxymbox{\hyperlink{classmodels_1_1FAQ_a2127f0b30d94a44357d1e0df369addeb}{00023}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}faq"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00024}\doxymbox{\hyperlink{classmodels_1_1FAQ_a9ae8479f2998f60eb4dbd205dc454e9b}{00024}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00025}\doxymbox{\hyperlink{classmodels_1_1FAQ_a5818229d1f7ab0120aa38b92174a7304}{00025}}\ \ \ \ \ question\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00026}\doxymbox{\hyperlink{classmodels_1_1FAQ_a7c3dbd70d8e2b2acc2c5f9f7e275fb41}{00026}}\ \ \ \ \ answer\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00027}\doxymbox{\hyperlink{classmodels_1_1FAQ_a8f08dbbd617698e81ee1bc6049c78e2a}{00027}}\ \ \ \ \ isactive\ =\ Column(Boolean,\ default=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00028}\doxymbox{\hyperlink{classmodels_1_1FAQ_a99a3ea73820ae2604636b62b6a166fd5}{00028}}\ \ \ \ \ user\_faqs\ =\ relationship(\textcolor{stringliteral}{"{}UserFAQ"{}},\ back\_populates=\textcolor{stringliteral}{"{}faq"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00030}\doxymbox{\hyperlink{classmodels_1_1User}{00030}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1User}{User}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00031}00031\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ User,\ lưu\ trữ\ thông\ tin\ tài\ khoản\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00032}\doxymbox{\hyperlink{classmodels_1_1User_aeaeaf5673e6fcacd3090eb9e170685a7}{00032}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}User"{}}\ \ \textcolor{comment}{\#\ Quoted\ in\ SQL\ as\ "{}User"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00033}\doxymbox{\hyperlink{classmodels_1_1User_a9a9aa1a53e9b8722a5f98595ceb52ae7}{00033}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00034}\doxymbox{\hyperlink{classmodels_1_1User_a909a3d717846cab5cda482157711975f}{00034}}\ \ \ \ \ name\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00035}\doxymbox{\hyperlink{classmodels_1_1User_af91e045e43995203fdf1d5c8367bd612}{00035}}\ \ \ \ \ username\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00036}\doxymbox{\hyperlink{classmodels_1_1User_aaa88e21675421b6cebbef6eb5597046b}{00036}}\ \ \ \ \ email\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False},\ unique=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00037}\doxymbox{\hyperlink{classmodels_1_1User_a8adb818833979fd1f6a642a8ef50bce7}{00037}}\ \ \ \ \ password\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00038}\doxymbox{\hyperlink{classmodels_1_1User_a74a1f1a33615a35b9bc226f649982e87}{00038}}\ \ \ \ \ phone\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00039}\doxymbox{\hyperlink{classmodels_1_1User_a88f3d4745f3ad2acaaf65a459bb647db}{00039}}\ \ \ \ \ role\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00041}\doxymbox{\hyperlink{classmodels_1_1User_a890612e3342d517d829ff1be838d2a5b}{00041}}\ \ \ \ \ addresses\ =\ relationship(\textcolor{stringliteral}{"{}Address"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00042}\doxymbox{\hyperlink{classmodels_1_1User_a5c26fb13c076f29013369c84c07ae212}{00042}}\ \ \ \ \ orders\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00043}\doxymbox{\hyperlink{classmodels_1_1User_a995229be0deafc143677ed2946650b08}{00043}}\ \ \ \ \ reviews\ =\ relationship(\textcolor{stringliteral}{"{}Review"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00044}\doxymbox{\hyperlink{classmodels_1_1User_a697ab62fdb92ebf9d98889de77c29d20}{00044}}\ \ \ \ \ user\_devices\ =\ relationship(\textcolor{stringliteral}{"{}UserDevice"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00045}\doxymbox{\hyperlink{classmodels_1_1User_af550f8f94f2e3513851402426276cfe1}{00045}}\ \ \ \ \ user\_faqs\ =\ relationship(\textcolor{stringliteral}{"{}UserFAQ"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00046}\doxymbox{\hyperlink{classmodels_1_1User_a82c1ee3cce81edc4874dd9f57e56ba63}{00046}}\ \ \ \ \ chat\_sessions\ =\ relationship(\textcolor{stringliteral}{"{}ChatSession"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00047}\doxymbox{\hyperlink{classmodels_1_1User_a15e7c25f8c6e1b48f5f02ea2f5365c5d}{00047}}\ \ \ \ \ notifications\ =\ relationship(\textcolor{stringliteral}{"{}Notification"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00048}\doxymbox{\hyperlink{classmodels_1_1User_ac21badddeaf3d1f8e6c93c6ad0faf4d9}{00048}}\ \ \ \ \ loyalty\_points\ =\ relationship(\textcolor{stringliteral}{"{}LoyaltyPoint"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00049}\doxymbox{\hyperlink{classmodels_1_1User_a0df68ea3b11f8aeec3279acdaa0980b1}{00049}}\ \ \ \ \ social\_shares\ =\ relationship(\textcolor{stringliteral}{"{}SocialShare"{}},\ back\_populates=\textcolor{stringliteral}{"{}user"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00051}\doxymbox{\hyperlink{classmodels_1_1Shipper}{00051}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Shipper}{Shipper}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00052}00052\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ shipper,\ quản\ lý\ thông\ tin\ người\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00053}\doxymbox{\hyperlink{classmodels_1_1Shipper_accb2bf1347d655314936909eb62767ac}{00053}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}shipper"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00054}\doxymbox{\hyperlink{classmodels_1_1Shipper_ac72e0115c037b5641df7044e9c93fb26}{00054}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00055}\doxymbox{\hyperlink{classmodels_1_1Shipper_a6bef903983e00e269fe15269c0e3975e}{00055}}\ \ \ \ \ name\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00056}\doxymbox{\hyperlink{classmodels_1_1Shipper_acea7184410fcc498b6dd6be70b3eaed9}{00056}}\ \ \ \ \ phone\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00057}\doxymbox{\hyperlink{classmodels_1_1Shipper_acacda0bc61c092a0b28681264999418b}{00057}}\ \ \ \ \ rating\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00058}\doxymbox{\hyperlink{classmodels_1_1Shipper_abc88702c8846709488aff8b2e12ed383}{00058}}\ \ \ \ \ description\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00059}\doxymbox{\hyperlink{classmodels_1_1Shipper_a2871e068d00dcec073e93d5c81cbae5a}{00059}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00060}\doxymbox{\hyperlink{classmodels_1_1Shipper_a8df65f477bf17245a5226f3931a65d49}{00060}}\ \ \ \ \ deliveries\ =\ relationship(\textcolor{stringliteral}{"{}Delivery"{}},\ back\_populates=\textcolor{stringliteral}{"{}shipper"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00062}\doxymbox{\hyperlink{classmodels_1_1Promotion}{00062}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Promotion}{Promotion}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00063}00063\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ promotion,\ mã\ khuyến\ mãi\ và\ giảm\ giá."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00064}\doxymbox{\hyperlink{classmodels_1_1Promotion_ae8e73c8618631fa939eee430fdffa6ce}{00064}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}promotion"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00065}\doxymbox{\hyperlink{classmodels_1_1Promotion_a12209546ea427d284b55026b5ea1d449}{00065}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00066}\doxymbox{\hyperlink{classmodels_1_1Promotion_a4c4bb0f4a16877ef3f24f11f5b08568e}{00066}}\ \ \ \ \ code\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00067}\doxymbox{\hyperlink{classmodels_1_1Promotion_ab64470b4e845d9986f5aff6c5655261f}{00067}}\ \ \ \ \ discounttype\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00068}\doxymbox{\hyperlink{classmodels_1_1Promotion_af6c27af79182c59d2c039931b2964428}{00068}}\ \ \ \ \ discountvalue\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00069}\doxymbox{\hyperlink{classmodels_1_1Promotion_a2c40e2be1a44b6fabeeb804f31bba21a}{00069}}\ \ \ \ \ expiredate\ =\ Column(Date)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00070}\doxymbox{\hyperlink{classmodels_1_1Promotion_aa389a75d6218981b70264e05e21fe0c1}{00070}}\ \ \ \ \ minordervalue\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00071}\doxymbox{\hyperlink{classmodels_1_1Promotion_ab91f6f09f4a60be062fd04d6b7802d2c}{00071}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00072}\doxymbox{\hyperlink{classmodels_1_1Promotion_abad7d593a26472bbff00ca4567d93f9c}{00072}}\ \ \ \ \ used\_promotions\ =\ relationship(\textcolor{stringliteral}{"{}UsedPromotion"{}},\ back\_populates=\textcolor{stringliteral}{"{}promotion"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00074}\doxymbox{\hyperlink{classmodels_1_1Restaurant}{00074}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Restaurant}{Restaurant}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00075}00075\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ restaurant,\ thông\ tin\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00076}\doxymbox{\hyperlink{classmodels_1_1Restaurant_aada82d8baf9547d2634864956ecc1f43}{00076}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}restaurant"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00077}\doxymbox{\hyperlink{classmodels_1_1Restaurant_a2505a74e594aa9890781c6c55efce4a9}{00077}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00078}\doxymbox{\hyperlink{classmodels_1_1Restaurant_aa70124f8abbabc271deddb5472e626d8}{00078}}\ \ \ \ \ name\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00079}\doxymbox{\hyperlink{classmodels_1_1Restaurant_abf6ff0e47d95aef4c1c998603bf28db6}{00079}}\ \ \ \ \ image\_url\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00080}\doxymbox{\hyperlink{classmodels_1_1Restaurant_a0c2719ef11f8264bc230ae9bdac8959a}{00080}}\ \ \ \ \ address\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00081}\doxymbox{\hyperlink{classmodels_1_1Restaurant_a40dd449295bb60b47f0e35651e192211}{00081}}\ \ \ \ \ rating\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00082}\doxymbox{\hyperlink{classmodels_1_1Restaurant_ac7045f1dd6062e64951c0c87061bb4b6}{00082}}\ \ \ \ \ open\_time\ =\ Column(Time)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00083}\doxymbox{\hyperlink{classmodels_1_1Restaurant_acaebb6fe46b165efac6426de56267084}{00083}}\ \ \ \ \ close\_time\ =\ Column(Time)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00084}\doxymbox{\hyperlink{classmodels_1_1Restaurant_ac9e67b95eb0584786c5d239b317094e5}{00084}}\ \ \ \ \ phone\_number\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00085}\doxymbox{\hyperlink{classmodels_1_1Restaurant_a746ebee8af94d22c2b5c842923fc8dab}{00085}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00086}\doxymbox{\hyperlink{classmodels_1_1Restaurant_ab70e0a40de3621e27244d474d36ef401}{00086}}\ \ \ \ \ description\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00087}00087\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00088}\doxymbox{\hyperlink{classmodels_1_1Restaurant_abbe418d04e9d83adcd6170538700651e}{00088}}\ \ \ \ \ menu\_items\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}restaurant"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00089}\doxymbox{\hyperlink{classmodels_1_1Restaurant_aa8a4a04970d3b66ac20c6e2f313dac46}{00089}}\ \ \ \ \ orders\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}restaurant"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00090}\doxymbox{\hyperlink{classmodels_1_1Restaurant_ab2557db614a589693e337ea21818faa7}{00090}}\ \ \ \ \ reviews\ =\ relationship(\textcolor{stringliteral}{"{}Review"{}},\ back\_populates=\textcolor{stringliteral}{"{}restaurant"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00091}\doxymbox{\hyperlink{classmodels_1_1Restaurant_a731cc6b8c2be30e3692f0e9c6c7a5e02}{00091}}\ \ \ \ \ social\_shares\ =\ relationship(\textcolor{stringliteral}{"{}SocialShare"{}},\ back\_populates=\textcolor{stringliteral}{"{}restaurant"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00093}\doxymbox{\hyperlink{classmodels_1_1MenuItem}{00093}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1MenuItem}{MenuItem}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00094}00094\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ menuitem,\ món\ ăn\ thuộc\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00095}\doxymbox{\hyperlink{classmodels_1_1MenuItem_ad594ece6ff3e105c104601a64d94f658}{00095}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}menuitem"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00096}\doxymbox{\hyperlink{classmodels_1_1MenuItem_ac1f5624d24a7b7197228d448c7e56bf0}{00096}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00097}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a89f5ef216d9406bb34661f58d9bf02e1}{00097}}\ \ \ \ \ name\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00098}\doxymbox{\hyperlink{classmodels_1_1MenuItem_acb3ee6cf6527f563f858de5a1c5675be}{00098}}\ \ \ \ \ image\_url\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00099}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a8f57080a68caf0a0d65274be3c8f282e}{00099}}\ \ \ \ \ price\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00100}\doxymbox{\hyperlink{classmodels_1_1MenuItem_ad529ec1453e57f189003d87463acc4c0}{00100}}\ \ \ \ \ is\_available\ =\ Column(Boolean,\ default=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00101}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a560f59dc05e33cb494a68f752ff6c30e}{00101}}\ \ \ \ \ description\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00102}\doxymbox{\hyperlink{classmodels_1_1MenuItem_aa77791a1d11e107c873d395d54013b52}{00102}}\ \ \ \ \ restaurantid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}restaurant.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00103}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a32456d5feaac6577272d12dae7bb08e8}{00103}}\ \ \ \ \ categoryid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}category.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00105}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a9df0774467b599f079c5e173e7bd00fd}{00105}}\ \ \ \ \ restaurant\ =\ relationship(\textcolor{stringliteral}{"{}Restaurant"{}},\ back\_populates=\textcolor{stringliteral}{"{}menu\_items"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00106}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a41b12f4dffc8857bbccaed1e5eecd519}{00106}}\ \ \ \ \ category\ =\ relationship(\textcolor{stringliteral}{"{}Category"{}},\ back\_populates=\textcolor{stringliteral}{"{}menu\_items"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00107}\doxymbox{\hyperlink{classmodels_1_1MenuItem_ae2fd1dddd64ffe1b69f3db5f1ee5d369}{00107}}\ \ \ \ \ order\_items\ =\ relationship(\textcolor{stringliteral}{"{}OrderItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}menu\_item"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00108}\doxymbox{\hyperlink{classmodels_1_1MenuItem_aca8081841388cc0fabe2551bffb76cfb}{00108}}\ \ \ \ \ reviews\ =\ relationship(\textcolor{stringliteral}{"{}Review"{}},\ back\_populates=\textcolor{stringliteral}{"{}menu\_item"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00109}\doxymbox{\hyperlink{classmodels_1_1MenuItem_a2e5d3c248fb87cab69012936e709ebbb}{00109}}\ \ \ \ \ social\_shares\ =\ relationship(\textcolor{stringliteral}{"{}SocialShare"{}},\ back\_populates=\textcolor{stringliteral}{"{}menu\_item"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00111}\doxymbox{\hyperlink{classmodels_1_1Address}{00111}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Address}{Address}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00112}00112\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ address,\ địa\ chỉ\ giao\ hàng\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00113}\doxymbox{\hyperlink{classmodels_1_1Address_a84515ed98d47f0a14b19f33e2812d3d3}{00113}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}address"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00114}\doxymbox{\hyperlink{classmodels_1_1Address_a8bd7707b7b12b7c580b4294e886667ec}{00114}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00115}\doxymbox{\hyperlink{classmodels_1_1Address_a56fb23d2c71d1dce947b2d766268b9af}{00115}}\ \ \ \ \ detail\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00116}\doxymbox{\hyperlink{classmodels_1_1Address_a25672bd3449e2b193bbdf9831aff795f}{00116}}\ \ \ \ \ phone\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00117}\doxymbox{\hyperlink{classmodels_1_1Address_aa7f636df0609a3facac5f6f5d5646460}{00117}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00118}00118\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00119}\doxymbox{\hyperlink{classmodels_1_1Address_a600665360e84cdfd4a11aa0cbdb6a8d4}{00119}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}addresses"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00120}\doxymbox{\hyperlink{classmodels_1_1Address_a9e73d66c8a047c123de22fe8e15eb94a}{00120}}\ \ \ \ \ orders\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}address"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00122}\doxymbox{\hyperlink{classmodels_1_1Orders}{00122}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Orders}{Orders}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00123}00123\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ orders,\ đơn\ hàng\ đặt\ món."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00124}\doxymbox{\hyperlink{classmodels_1_1Orders_ac0a172822c55cc1a7c25affc26267c44}{00124}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}orders"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00125}\doxymbox{\hyperlink{classmodels_1_1Orders_a64dfcd3a9934d106e0e5b5b217899916}{00125}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00126}\doxymbox{\hyperlink{classmodels_1_1Orders_aaf4952605ee2b9543a76dd9988589a33}{00126}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00127}\doxymbox{\hyperlink{classmodels_1_1Orders_aa1548e209995ee5d3545fec4a3f17d13}{00127}}\ \ \ \ \ createdat\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00128}\doxymbox{\hyperlink{classmodels_1_1Orders_ae6dd11da860076e5c54ede61212bcde8}{00128}}\ \ \ \ \ preorderdate\ =\ Column(Date)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00129}\doxymbox{\hyperlink{classmodels_1_1Orders_af943433a383bbdae22c190f72e74ff5a}{00129}}\ \ \ \ \ preordertime\ =\ Column(Time)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00130}\doxymbox{\hyperlink{classmodels_1_1Orders_a752deef88bbbd6f45b4da3f134277ee5}{00130}}\ \ \ \ \ totalprice\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00131}\doxymbox{\hyperlink{classmodels_1_1Orders_a7cc980bd5049c395c242ee975f23d477}{00131}}\ \ \ \ \ restaurantid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}restaurant.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00132}\doxymbox{\hyperlink{classmodels_1_1Orders_a6c5b50dcc0cae314eedaab4e5bc8c1ae}{00132}}\ \ \ \ \ addressid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}address.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00133}\doxymbox{\hyperlink{classmodels_1_1Orders_a4cc48cd4110e921d6e4c5ce3cf9365ca}{00133}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00135}\doxymbox{\hyperlink{classmodels_1_1Orders_a0cee6c48316c482950a6b908e6b939f0}{00135}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}orders"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00136}\doxymbox{\hyperlink{classmodels_1_1Orders_a31502dcf15476e81fa0caa006e46c428}{00136}}\ \ \ \ \ restaurant\ =\ relationship(\textcolor{stringliteral}{"{}Restaurant"{}},\ back\_populates=\textcolor{stringliteral}{"{}orders"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00137}\doxymbox{\hyperlink{classmodels_1_1Orders_a178309bab9e87e20218f774151c9ecb9}{00137}}\ \ \ \ \ address\ =\ relationship(\textcolor{stringliteral}{"{}Address"{}},\ back\_populates=\textcolor{stringliteral}{"{}orders"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00138}\doxymbox{\hyperlink{classmodels_1_1Orders_ad2ceadc907f8faec96d3a204ca600801}{00138}}\ \ \ \ \ order\_items\ =\ relationship(\textcolor{stringliteral}{"{}OrderItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}order"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00139}\doxymbox{\hyperlink{classmodels_1_1Orders_a960b50f8ea0f9fca008703ae15a212b6}{00139}}\ \ \ \ \ payments\ =\ relationship(\textcolor{stringliteral}{"{}Payment"{}},\ back\_populates=\textcolor{stringliteral}{"{}order"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00140}\doxymbox{\hyperlink{classmodels_1_1Orders_aec0534ff73787d1d7c231325a188641f}{00140}}\ \ \ \ \ delivery\ =\ relationship(\textcolor{stringliteral}{"{}Delivery"{}},\ back\_populates=\textcolor{stringliteral}{"{}order"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00141}\doxymbox{\hyperlink{classmodels_1_1Orders_aaf84a41b8885d599bb6457ccb2511a22}{00141}}\ \ \ \ \ used\_promotions\ =\ relationship(\textcolor{stringliteral}{"{}UsedPromotion"{}},\ back\_populates=\textcolor{stringliteral}{"{}order"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00142}\doxymbox{\hyperlink{classmodels_1_1Orders_a4d79b3fd28551dd7dac91e256f03e3cd}{00142}}\ \ \ \ \ notifications\ =\ relationship(\textcolor{stringliteral}{"{}Notification"{}},\ back\_populates=\textcolor{stringliteral}{"{}order"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00143}00143\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00144}\doxymbox{\hyperlink{classmodels_1_1OrderItem}{00144}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1OrderItem}{OrderItem}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00145}00145\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ orderitem,\ chi\ tiết\ từng\ món\ trong\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00146}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a51f3be33790a198ee53c2f8d44cc1810}{00146}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}orderitem"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00147}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a4b9ce09c4d5ade2d0da0792ed92b4cf6}{00147}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00148}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a403aa6f02bcd89a0608949055bd06a95}{00148}}\ \ \ \ \ quantity\ =\ Column(Integer,\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00149}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a9c41d8460296839f2ef3e9c60aebb503}{00149}}\ \ \ \ \ price\ =\ Column(Integer,\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00150}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a3c0f099830c5174485ddd825419bf5ed}{00150}}\ \ \ \ \ menuitemid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}menuitem.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00151}\doxymbox{\hyperlink{classmodels_1_1OrderItem_afc119692710278fb19b95d67b1075ef9}{00151}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00152}00152\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00153}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a44cf8c71ea8b584b0c64d48a78060150}{00153}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}order\_items"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00154}\doxymbox{\hyperlink{classmodels_1_1OrderItem_a4dff4ff353069139225b77024bb1093c}{00154}}\ \ \ \ \ menu\_item\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}order\_items"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00155}00155\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00156}\doxymbox{\hyperlink{classmodels_1_1Payment}{00156}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Payment}{Payment}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00157}00157\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ payment,\ thông\ tin\ thanh\ toán\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00158}\doxymbox{\hyperlink{classmodels_1_1Payment_a3f6b7e0cacd195e9f5323e2800d1864a}{00158}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}payment"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00159}\doxymbox{\hyperlink{classmodels_1_1Payment_ac3df3d34473a2dd4b8a55fbd0d130e93}{00159}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00160}\doxymbox{\hyperlink{classmodels_1_1Payment_ae1bcde5d6b916010895f4d900b3c71fd}{00160}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00161}\doxymbox{\hyperlink{classmodels_1_1Payment_ac6a79e2c079e6f96df45f4ba8d86a296}{00161}}\ \ \ \ \ method\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00162}\doxymbox{\hyperlink{classmodels_1_1Payment_a35a5bc950e1083ec21a61e166b93260e}{00162}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00163}\doxymbox{\hyperlink{classmodels_1_1Payment_a73d603feb28fc36830d9f7edb675bdbb}{00163}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}payments"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00165}\doxymbox{\hyperlink{classmodels_1_1Delivery}{00165}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Delivery}{Delivery}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00166}00166\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ delivery,\ thông\ tin\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00167}\doxymbox{\hyperlink{classmodels_1_1Delivery_a57e088093c3dc7a74d002f6ad8ac41e4}{00167}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}delivery"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00168}\doxymbox{\hyperlink{classmodels_1_1Delivery_ae511ef4397602e2b3fbc40e178764f18}{00168}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00169}\doxymbox{\hyperlink{classmodels_1_1Delivery_a8140110e7895dad07fe199c713f246c0}{00169}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00170}\doxymbox{\hyperlink{classmodels_1_1Delivery_a8e23e7b445659ace291bbec56c751e07}{00170}}\ \ \ \ \ deliverytime\ =\ Column(Time)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00171}\doxymbox{\hyperlink{classmodels_1_1Delivery_a445c066f3b9869c61ca7fd38283b1d41}{00171}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00172}\doxymbox{\hyperlink{classmodels_1_1Delivery_ad427bc0f3a12ea8231ccf06a8ad0ae39}{00172}}\ \ \ \ \ shipperid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}shipper.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00174}\doxymbox{\hyperlink{classmodels_1_1Delivery_ae83f04875ddd0d077656e6490d184968}{00174}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}delivery"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00175}\doxymbox{\hyperlink{classmodels_1_1Delivery_a2e4b84ab87e6b2e6ad5ad0cd1318f00e}{00175}}\ \ \ \ \ shipper\ =\ relationship(\textcolor{stringliteral}{"{}Shipper"{}},\ back\_populates=\textcolor{stringliteral}{"{}deliveries"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00177}\doxymbox{\hyperlink{classmodels_1_1Review}{00177}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Review}{Review}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00178}00178\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ review,\ đánh\ giá\ của\ người\ dùng\ về\ món\ ăn\ và\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00179}\doxymbox{\hyperlink{classmodels_1_1Review_abd41ddbd88c3a60510cebe250ae096fa}{00179}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}review"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00180}\doxymbox{\hyperlink{classmodels_1_1Review_a187d71ad5d4d620b4646744b2f61406e}{00180}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00181}\doxymbox{\hyperlink{classmodels_1_1Review_a4a4c46b534d5f75c69eddd914d5c9665}{00181}}\ \ \ \ \ rating\ =\ Column(Integer)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00182}\doxymbox{\hyperlink{classmodels_1_1Review_ae379206ba9c2f0448fa8426831ec4862}{00182}}\ \ \ \ \ comment\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00183}\doxymbox{\hyperlink{classmodels_1_1Review_a9771e728bea1b4b1ce32b33123ca6e19}{00183}}\ \ \ \ \ menuitemid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}menuitem.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00184}\doxymbox{\hyperlink{classmodels_1_1Review_aa13e0a9505a75d0404cd4b11276a753f}{00184}}\ \ \ \ \ restaurantid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}restaurant.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00185}\doxymbox{\hyperlink{classmodels_1_1Review_ac72530e342101bd9d4a3356209a83fa1}{00185}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00186}\doxymbox{\hyperlink{classmodels_1_1Review_a73a679e97970297f87deee2310ff1c0f}{00186}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00188}\doxymbox{\hyperlink{classmodels_1_1Review_a6709f892a959e4cfb747e8d24e9bbc68}{00188}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}reviews"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00189}\doxymbox{\hyperlink{classmodels_1_1Review_a4f1c2205857c3ff06e8c638822e6fd2e}{00189}}\ \ \ \ \ menu\_item\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}reviews"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00190}\doxymbox{\hyperlink{classmodels_1_1Review_a22370c5ff38b5b63fbf3f9119e860704}{00190}}\ \ \ \ \ restaurant\ =\ relationship(\textcolor{stringliteral}{"{}Restaurant"{}},\ back\_populates=\textcolor{stringliteral}{"{}reviews"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00191}\doxymbox{\hyperlink{classmodels_1_1Review_a7a6f2407d3d0a96fe7b01e957ff23e7b}{00191}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00192}00192\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00193}\doxymbox{\hyperlink{classmodels_1_1Notification}{00193}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1Notification}{Notification}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00194}00194\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ notification,\ thông\ báo\ đẩy\ đến\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00195}\doxymbox{\hyperlink{classmodels_1_1Notification_a9bb2a1f3bfce19a106cca2d74f25b848}{00195}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}notification"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00196}\doxymbox{\hyperlink{classmodels_1_1Notification_a4975ff791dfbfebc15868698deba2631}{00196}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00197}\doxymbox{\hyperlink{classmodels_1_1Notification_a07814ea05ee2c7e115342011f9c0cb7d}{00197}}\ \ \ \ \ title\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00198}\doxymbox{\hyperlink{classmodels_1_1Notification_ab3d46d12c626065719f93e0461b1a911}{00198}}\ \ \ \ \ type\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00199}\doxymbox{\hyperlink{classmodels_1_1Notification_ae9e836a229eb234750ef321c03e1beb5}{00199}}\ \ \ \ \ content\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00200}\doxymbox{\hyperlink{classmodels_1_1Notification_a48813318d611abde4ab9764340e854b8}{00200}}\ \ \ \ \ isread\ =\ Column(Boolean,\ default=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00201}\doxymbox{\hyperlink{classmodels_1_1Notification_a7c89606f581f356fccc489eba4c3b759}{00201}}\ \ \ \ \ createdat\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00202}\doxymbox{\hyperlink{classmodels_1_1Notification_aacd27d38668ddb4cac349d883fa4db02}{00202}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00203}\doxymbox{\hyperlink{classmodels_1_1Notification_aa35ee37116a4693d150e76fde2b421e4}{00203}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}),\ nullable=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00204}\doxymbox{\hyperlink{classmodels_1_1Notification_a26b124e12c5ff53df6aa582bc28fa0ce}{00204}}\ \ \ \ \ sessionid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}chatsession.id"{}}),\ nullable=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00206}\doxymbox{\hyperlink{classmodels_1_1Notification_a000bf4544041444d84a7b9752703060a}{00206}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}notifications"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00207}\doxymbox{\hyperlink{classmodels_1_1Notification_af94400ad1c0c4be842560e36ebbbf597}{00207}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}notifications"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00208}\doxymbox{\hyperlink{classmodels_1_1Notification_a5a88f78de222ab00a5b6d816d2cccb80}{00208}}\ \ \ \ \ session\ =\ relationship(\textcolor{stringliteral}{"{}ChatSession"{}},\ back\_populates=\textcolor{stringliteral}{"{}notifications"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00209}00209\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00210}\doxymbox{\hyperlink{classmodels_1_1ChatSession}{00210}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1ChatSession}{ChatSession}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00211}00211\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ chatsession,\ phiên\ trò\ chuyện\ với\ chatbot\ AI."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00212}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a0da39f6d04b61dcbdb6febe1df0feba3}{00212}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}chatsession"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00213}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a0a6aeae12537a1adc1fc4fe137f3a899}{00213}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00214}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a35d8bb19c9af8398b218d8986a4f9de7}{00214}}\ \ \ \ \ createdat\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00215}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a57e397ff5d76d94a8b27a88e9818661f}{00215}}\ \ \ \ \ status\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00216}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a12dc4afc450fe3032ac2d11f856d2f76}{00216}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00218}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a6b837b00ac3650ed940d123fd72abb89}{00218}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}chat\_sessions"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00219}\doxymbox{\hyperlink{classmodels_1_1ChatSession_afd579bb9c9de4594ee6a53c223f23291}{00219}}\ \ \ \ \ messages\ =\ relationship(\textcolor{stringliteral}{"{}ChatMessage"{}},\ back\_populates=\textcolor{stringliteral}{"{}session"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00220}\doxymbox{\hyperlink{classmodels_1_1ChatSession_a6b089fb29b4f210f17d6a01a246dc229}{00220}}\ \ \ \ \ notifications\ =\ relationship(\textcolor{stringliteral}{"{}Notification"{}},\ back\_populates=\textcolor{stringliteral}{"{}session"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00222}\doxymbox{\hyperlink{classmodels_1_1ChatMessage}{00222}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1ChatMessage}{ChatMessage}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00223}00223\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ chatmessage,\ tin\ nhắn\ trong\ phiên\ trò\ chuyện."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00224}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_a0fd8ec338de0959799d6cfaf2a21e2c0}{00224}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}chatmessage"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00225}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_a360cc777195516b7fca55ee50a134114}{00225}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00226}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_a941df11f6f273f03756f2d68ccd8d839}{00226}}\ \ \ \ \ senderrole\ =\ Column(String(255))\ \ \textcolor{comment}{\#\ "{}user"{}\ hoặc\ "{}bot"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00227}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_ad8f6338f6fc00c46736e01d2dc028574}{00227}}\ \ \ \ \ message\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00228}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_a7c985789e31a4c77e215b804d4f42796}{00228}}\ \ \ \ \ sentat\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00229}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_aac355a7731e4f22378afa5b3f4cf0b6e}{00229}}\ \ \ \ \ sessionid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}chatsession.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00230}00230\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00231}\doxymbox{\hyperlink{classmodels_1_1ChatMessage_ad21e6834a486c3c80a94399bc5f0adc1}{00231}}\ \ \ \ \ session\ =\ relationship(\textcolor{stringliteral}{"{}ChatSession"{}},\ back\_populates=\textcolor{stringliteral}{"{}messages"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00232}00232\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00233}\doxymbox{\hyperlink{classmodels_1_1UserDevice}{00233}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1UserDevice}{UserDevice}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00234}00234\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ userdevice,\ FCM\ token\ thiết\ bị\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00235}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a64ba48116b2a4ea4c368482d32ae548a}{00235}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}userdevice"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00236}\doxymbox{\hyperlink{classmodels_1_1UserDevice_aeb76fe64a6329ea7e08e3e789738f8ec}{00236}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00237}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a8de1152001a2a4af660e0921437458c3}{00237}}\ \ \ \ \ device\_token\ =\ Column(String(255),\ nullable=\textcolor{keyword}{False})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00238}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a7043121db8138084baf9690bde011532}{00238}}\ \ \ \ \ device\_type\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00239}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a247ca7d7d2be7f75c66fbb34e884f540}{00239}}\ \ \ \ \ last\_active\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00240}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a279c96fa2c864d8518df118f29ab8a84}{00240}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00241}00241\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00242}\doxymbox{\hyperlink{classmodels_1_1UserDevice_a7c431033521802618ee9a67115bdc8e8}{00242}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}user\_devices"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00243}00243\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00244}\doxymbox{\hyperlink{classmodels_1_1UserFAQ}{00244}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1UserFAQ}{UserFAQ}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00245}00245\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ userfaq,\ lịch\ sử\ xem\ FAQ\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00246}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a663886705caf90d78f71fccf8fe182b6}{00246}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}userfaq"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00247}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a49b0395761cfae02690d56cffdf4d41f}{00247}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00248}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a294a64ee6aaad9012835941871bac5b2}{00248}}\ \ \ \ \ viewedat\ =\ Column(DateTime,\ server\_default=func.now())}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00249}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a733d7b4dcf94a57da55acd09e233d0e7}{00249}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00250}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_ae2c8ad3e2883a91f2df1a9c8b600a370}{00250}}\ \ \ \ \ faqid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}faq.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00251}00251\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00252}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a4216f714b6eaf20b4cf4d68e90a43fb9}{00252}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}user\_faqs"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00253}\doxymbox{\hyperlink{classmodels_1_1UserFAQ_a20f81906896141abd15d02ad9377d95a}{00253}}\ \ \ \ \ faq\ =\ relationship(\textcolor{stringliteral}{"{}FAQ"{}},\ back\_populates=\textcolor{stringliteral}{"{}user\_faqs"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00255}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion}{00255}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1UsedPromotion}{UsedPromotion}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00256}00256\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ usedpromotion,\ mã\ khuyến\ mãi\ đã\ sử\ dụng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00257}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a2e85993950fa5903efad819d1c0103e3}{00257}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}usedpromotion"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00258}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a9b7a7ce19ebda93445c0e5da7e6c9002}{00258}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00259}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a47027f903a0b1c7f0d24a19a981f387a}{00259}}\ \ \ \ \ usedat\ =\ Column(Date)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00260}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_afeb263fdbbd682a1e550d66b29d82e82}{00260}}\ \ \ \ \ promotionid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}promotion.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00261}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a3ab777a0ec93d55f13e3b01515b48c11}{00261}}\ \ \ \ \ orderid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}orders.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00262}00262\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00263}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a0f54b8b0eab12de6377f385c1ccacfa0}{00263}}\ \ \ \ \ promotion\ =\ relationship(\textcolor{stringliteral}{"{}Promotion"{}},\ back\_populates=\textcolor{stringliteral}{"{}used\_promotions"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00264}\doxymbox{\hyperlink{classmodels_1_1UsedPromotion_a9d32d80639f8a70d3a1cb193a8931c64}{00264}}\ \ \ \ \ order\ =\ relationship(\textcolor{stringliteral}{"{}Orders"{}},\ back\_populates=\textcolor{stringliteral}{"{}used\_promotions"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00265}00265\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00266}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint}{00266}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint}{LoyaltyPoint}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00267}00267\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ loaltypoint,\ điểm\ tích\ lũy\ thành\ viên."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00268}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_ae4db57ab80c8a6dd510641409f03d8f6}{00268}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}loyaltypoint"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00269}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a39ec588d098afa1e8acc595387a3003f}{00269}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00270}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a8c14089c76c0bb9db5e144b7b6819f4d}{00270}}\ \ \ \ \ points\ =\ Column(Integer,\ default=0)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00271}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a9d913e3743657fe248d0911d6030aad8}{00271}}\ \ \ \ \ updatedat\ =\ Column(Date)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00272}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_af6378a278c74577738a3afc982f6e2c2}{00272}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00273}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a68abf502a00e7f464178f4fe8509f8f9}{00273}}\ \ \ \ \ menuitemid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}menuitem.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00274}00274\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00275}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a561ca554c6319d2f00d11da32121644f}{00275}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}loyalty\_points"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00276}\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a488e32f9f3f1562b5aa4db6720e26b7a}{00276}}\ \ \ \ \ menu\_item\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00277}00277\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00278}\doxymbox{\hyperlink{classmodels_1_1SocialShare}{00278}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classmodels_1_1SocialShare}{SocialShare}}(Base):}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00279}00279\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}ORM\ model\ cho\ bảng\ socialshare,\ lượt\ chia\ sẻ\ mạng\ xã\ hội."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00280}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a4fb3aa442dec39564adbaafd92cd7e88}{00280}}\ \ \ \ \ \_\_tablename\_\_\ =\ \textcolor{stringliteral}{"{}socialshare"{}}}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00281}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a3b6948966b443a477fe7c224d3dbf44b}{00281}}\ \ \ \ \ id\ =\ Column(Integer,\ primary\_key=\textcolor{keyword}{True},\ index=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00282}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a3e5ce631c2c4eb25bb5a76477f6f64a5}{00282}}\ \ \ \ \ sharetype\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00283}\doxymbox{\hyperlink{classmodels_1_1SocialShare_aa294922ad4f9aa099b279cb7ede63aeb}{00283}}\ \ \ \ \ platform\ =\ Column(String(255))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00284}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a2772dbc2bfadf1a7d7ce68facce1c9c7}{00284}}\ \ \ \ \ context\ =\ Column(Text)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00285}\doxymbox{\hyperlink{classmodels_1_1SocialShare_aac7194f0f37064442848b0c818a6e28c}{00285}}\ \ \ \ \ createdat\ =\ Column(Date)}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00286}\doxymbox{\hyperlink{classmodels_1_1SocialShare_ad0242453ca3e757c70d0c88c1d2676d4}{00286}}\ \ \ \ \ userid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}User.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00287}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a1ac27a87edbf24e63561fc4d7635bb75}{00287}}\ \ \ \ \ restaurantid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}restaurant.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00288}\doxymbox{\hyperlink{classmodels_1_1SocialShare_adfa78d735a2887737d0594907eef25e8}{00288}}\ \ \ \ \ menuitemid\ =\ Column(Integer,\ ForeignKey(\textcolor{stringliteral}{"{}menuitem.id"{}}))}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00289}00289\ }
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00290}\doxymbox{\hyperlink{classmodels_1_1SocialShare_ac411e13c7a94b82a05b5c2d421fa8961}{00290}}\ \ \ \ \ user\ =\ relationship(\textcolor{stringliteral}{"{}User"{}},\ back\_populates=\textcolor{stringliteral}{"{}social\_shares"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00291}\doxymbox{\hyperlink{classmodels_1_1SocialShare_a5af845781c5c9298b2520133025d53ad}{00291}}\ \ \ \ \ restaurant\ =\ relationship(\textcolor{stringliteral}{"{}Restaurant"{}},\ back\_populates=\textcolor{stringliteral}{"{}social\_shares"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00292}\doxymbox{\hyperlink{classmodels_1_1SocialShare_af1501dc42cd4dc749079db5173e7ece6}{00292}}\ \ \ \ \ menu\_item\ =\ relationship(\textcolor{stringliteral}{"{}MenuItem"{}},\ back\_populates=\textcolor{stringliteral}{"{}social\_shares"{}})}
+\DoxyCodeLine{\Hypertarget{models_8py_source_l00293}00293\ }
+
+\end{DoxyCode}

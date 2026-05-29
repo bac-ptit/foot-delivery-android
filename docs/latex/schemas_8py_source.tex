@@ -1,0 +1,419 @@
+\doxysection{schemas.\+py}
+\hypertarget{schemas_8py_source}{}\label{schemas_8py_source}\index{backend/schemas.py@{backend/schemas.py}}
+\doxymbox{\hyperlink{schemas_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00001}\doxymbox{\hyperlink{namespaceschemas}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ schemas.py}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00004}00004\ \textcolor{stringliteral}{Định\ nghĩa\ tất\ cả\ Pydantic\ v2\ schemas\ cho\ request/response\ validation.}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00005}00005\ \textcolor{stringliteral}{Bao\ gồm\ schema\ cho\ Category,\ MenuItem,\ Restaurant,\ User,\ Order,\ Payment,\ Review,\ v.v.}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00008}00008\ \textcolor{keyword}{from}\ pydantic\ \textcolor{keyword}{import}\ BaseModel,\ ConfigDict}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00009}00009\ \textcolor{keyword}{from}\ typing\ \textcolor{keyword}{import}\ List,\ Optional}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00010}00010\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ date,\ time,\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00011}00011\ \textcolor{keyword}{from}\ decimal\ \textcolor{keyword}{import}\ Decimal}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00013}00013\ \textcolor{comment}{\#\ ───\ Base\ Schemas\ ────────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00015}\doxymbox{\hyperlink{classschemas_1_1CategoryBase}{00015}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1CategoryBase}{CategoryBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00016}00016\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ danh\ mục\ món\ ăn."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00017}00017\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00018}\doxymbox{\hyperlink{classschemas_1_1CategoryBase_a78cbece4278ae4fbde56cdd94b8086bb}{00018}}\ \ \ \ \ type:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00019}\doxymbox{\hyperlink{classschemas_1_1CategoryBase_a64a417e4d5d48fd2910a46d84b5d2107}{00019}}\ \ \ \ \ description:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00021}\doxymbox{\hyperlink{classschemas_1_1CategoryCreate}{00021}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1CategoryCreate}{CategoryCreate}}(\doxymbox{\hyperlink{classschemas_1_1CategoryBase}{CategoryBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00022}00022\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00024}\doxymbox{\hyperlink{classschemas_1_1Category}{00024}}\ \textcolor{keyword}{class\ }Category(CategoryBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00025}00025\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00026}\doxymbox{\hyperlink{classschemas_1_1Category_aaa2a937af8812f796db1fdf02c697490}{00026}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00028}\doxymbox{\hyperlink{classschemas_1_1MenuItemBase}{00028}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1MenuItemBase}{MenuItemBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00029}00029\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ món\ ăn\ trong\ thực\ đơn."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00030}00030\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00031}\doxymbox{\hyperlink{classschemas_1_1MenuItemBase_aa6523af702be81c668bfc653cb12b52c}{00031}}\ \ \ \ \ image\_url:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00032}00032\ \ \ \ \ price:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00033}\doxymbox{\hyperlink{classschemas_1_1MenuItemBase_a4d4fc862651426451cd859d2c9ff885e}{00033}}\ \ \ \ \ is\_available:\ bool\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00034}\doxymbox{\hyperlink{classschemas_1_1MenuItemBase_a6f6d72296294672466ad5bf4d966b885}{00034}}\ \ \ \ \ description:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00035}00035\ \ \ \ \ restaurantid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00036}00036\ \ \ \ \ categoryid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00038}\doxymbox{\hyperlink{classschemas_1_1MenuItemCreate}{00038}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1MenuItemCreate}{MenuItemCreate}}(\doxymbox{\hyperlink{classschemas_1_1MenuItemBase}{MenuItemBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00039}00039\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00041}\doxymbox{\hyperlink{classschemas_1_1MenuItem}{00041}}\ \textcolor{keyword}{class\ }MenuItem(MenuItemBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00042}00042\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00043}\doxymbox{\hyperlink{classschemas_1_1MenuItem_a822b2f59040317fa25dbca9be472f04e}{00043}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00045}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithRestaurant}{00045}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1MenuItemWithRestaurant}{MenuItemWithRestaurant}}(\doxymbox{\hyperlink{classschemas_1_1MenuItemBase}{MenuItemBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00046}00046\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00047}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithRestaurant_aa6899416b4f064a4017af512404bdf8a}{00047}}\ \ \ \ \ restaurant\_name:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00048}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithRestaurant_adcf438b807a47ef101eb5fe85a27590b}{00048}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00050}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase}{00050}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1RestaurantBase}{RestaurantBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00051}00051\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ nhà\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00052}00052\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00053}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_a2c0d53bb76c223c6bda948316f49527f}{00053}}\ \ \ \ \ image\_url:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00054}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_a5616cf64f60ca5d334f99e568913e89b}{00054}}\ \ \ \ \ address:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00055}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_a494a682a15db8ceb1f25820cd32ff459}{00055}}\ \ \ \ \ rating:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00056}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_aa986073e6a8b83633f22dbe4e50dc7b1}{00056}}\ \ \ \ \ open\_time:\ Optional[time]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00057}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_aa9c6f2433d4f258b6eef14af542e6029}{00057}}\ \ \ \ \ close\_time:\ Optional[time]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00058}00058\ \ \ \ \ phone\_number:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00059}00059\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00060}\doxymbox{\hyperlink{classschemas_1_1RestaurantBase_adb5ae709d81f8f4bfcf1e08fb8af1149}{00060}}\ \ \ \ \ description:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00062}\doxymbox{\hyperlink{classschemas_1_1RestaurantCreate}{00062}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1RestaurantCreate}{RestaurantCreate}}(\doxymbox{\hyperlink{classschemas_1_1RestaurantBase}{RestaurantBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00063}00063\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00064}00064\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00065}\doxymbox{\hyperlink{classschemas_1_1Restaurant}{00065}}\ \textcolor{keyword}{class\ }Restaurant(RestaurantBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00066}00066\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00067}\doxymbox{\hyperlink{classschemas_1_1Restaurant_afa4b6b065dad201a1200c675dc35e3c1}{00067}}\ \ \ \ \ menu\_items:\ List[MenuItem]\ =\ []}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00068}\doxymbox{\hyperlink{classschemas_1_1Restaurant_ab0e9e98f2717de02750bf1b0f63fa5d2}{00068}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00070}\doxymbox{\hyperlink{classschemas_1_1UserBase}{00070}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserBase}{UserBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00071}00071\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00072}00072\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00073}00073\ \ \ \ \ username:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00074}00074\ \ \ \ \ email:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00075}00075\ \ \ \ \ phone:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00076}00076\ \ \ \ \ role:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00078}\doxymbox{\hyperlink{classschemas_1_1UserCreate}{00078}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserCreate}{UserCreate}}(\doxymbox{\hyperlink{classschemas_1_1UserBase}{UserBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00079}00079\ \ \ \ \ password:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00081}\doxymbox{\hyperlink{classschemas_1_1User}{00081}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1User}{User}}(\doxymbox{\hyperlink{classschemas_1_1UserBase}{UserBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00082}00082\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00083}\doxymbox{\hyperlink{classschemas_1_1User_a7a794d64b9caaa7d0e034cad1e06e0f1}{00083}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00085}\doxymbox{\hyperlink{classschemas_1_1Token}{00085}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1Token}{Token}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00086}00086\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ phản\ hồi\ JWT\ token\ khi\ đăng\ nhập\ thành\ công."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00087}00087\ \ \ \ \ access\_token:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00088}00088\ \ \ \ \ token\_type:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00090}\doxymbox{\hyperlink{classschemas_1_1TokenData}{00090}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1TokenData}{TokenData}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00091}00091\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ dữ\ liệu\ giải\ mã\ từ\ JWT\ token."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00092}\doxymbox{\hyperlink{classschemas_1_1TokenData_a4760bc1053fddda2d8e9bdb25ff1d2d3}{00092}}\ \ \ \ \ email:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00094}\doxymbox{\hyperlink{classschemas_1_1AddressBase}{00094}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1AddressBase}{AddressBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00095}00095\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ địa\ chỉ\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00096}00096\ \ \ \ \ detail:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00097}\doxymbox{\hyperlink{classschemas_1_1AddressBase_a416c518326da65a14505e27071163405}{00097}}\ \ \ \ \ phone:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00098}00098\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00100}\doxymbox{\hyperlink{classschemas_1_1AddressCreate}{00100}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1AddressCreate}{AddressCreate}}(\doxymbox{\hyperlink{classschemas_1_1AddressBase}{AddressBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00101}00101\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00103}\doxymbox{\hyperlink{classschemas_1_1AddressUpdate}{00103}}\ \textcolor{keyword}{class\ }AddressUpdate(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00104}\doxymbox{\hyperlink{classschemas_1_1AddressUpdate_ae20f8e23eb1dac63e4b32daabff1cd1e}{00104}}\ \ \ \ \ detail:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00105}\doxymbox{\hyperlink{classschemas_1_1AddressUpdate_a8642e819a9fd8c6dc1f03c5a2137ccb2}{00105}}\ \ \ \ \ phone:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00107}\doxymbox{\hyperlink{classschemas_1_1Address}{00107}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1Address}{Address}}(\doxymbox{\hyperlink{classschemas_1_1AddressBase}{AddressBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00108}00108\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00109}\doxymbox{\hyperlink{classschemas_1_1Address_a3b001c081358ca703517f36eaf6d4278}{00109}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00111}\doxymbox{\hyperlink{classschemas_1_1OrderItemBase}{00111}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderItemBase}{OrderItemBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00112}00112\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ chi\ tiết\ món\ trong\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00113}00113\ \ \ \ \ quantity:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00114}00114\ \ \ \ \ price:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00115}00115\ \ \ \ \ menuitemid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00117}\doxymbox{\hyperlink{classschemas_1_1OrderItemCreate}{00117}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderItemCreate}{OrderItemCreate}}(\doxymbox{\hyperlink{classschemas_1_1OrderItemBase}{OrderItemBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00118}00118\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00120}\doxymbox{\hyperlink{classschemas_1_1OrderItem}{00120}}\ \textcolor{keyword}{class\ }OrderItem(OrderItemBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00121}00121\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00122}\doxymbox{\hyperlink{classschemas_1_1OrderItem_afcb3a1799fd1921a4889c4b552398bd7}{00122}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00124}\doxymbox{\hyperlink{classschemas_1_1OrderBase}{00124}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderBase}{OrderBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00125}00125\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00126}00126\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00127}\doxymbox{\hyperlink{classschemas_1_1OrderBase_a3cd6c835a41ea9c65d2f96f4d90c0abc}{00127}}\ \ \ \ \ preorderdate:\ Optional[date]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00128}\doxymbox{\hyperlink{classschemas_1_1OrderBase_a34ddf745bdbed040031366279e6e3684}{00128}}\ \ \ \ \ preordertime:\ Optional[time]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00129}00129\ \ \ \ \ totalprice:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00130}00130\ \ \ \ \ restaurantid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00131}00131\ \ \ \ \ addressid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00132}00132\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00134}\doxymbox{\hyperlink{classschemas_1_1OrderCreate}{00134}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderCreate}{OrderCreate}}(\doxymbox{\hyperlink{classschemas_1_1OrderBase}{OrderBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00135}\doxymbox{\hyperlink{classschemas_1_1OrderCreate_a08d2c2998402bf5b62c26874d2f834bc}{00135}}\ \ \ \ \ order\_items:\ List[OrderItemCreate]}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00136}00136\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00137}\doxymbox{\hyperlink{classschemas_1_1Order}{00137}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1Order}{Order}}(\doxymbox{\hyperlink{classschemas_1_1OrderBase}{OrderBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00138}00138\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00139}00139\ \ \ \ \ createdat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00140}\doxymbox{\hyperlink{classschemas_1_1Order_a30aa16efd2c9a9cec12c6ab3091d5297}{00140}}\ \ \ \ \ order\_items:\ List[OrderItem]\ =\ []}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00141}\doxymbox{\hyperlink{classschemas_1_1Order_a4528400e0717ca34c52a9d8e52f853ff}{00141}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00142}00142\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00143}\doxymbox{\hyperlink{classschemas_1_1OrderItemDetail}{00143}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderItemDetail}{OrderItemDetail}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00144}00144\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ chi\ tiết\ món\ ăn\ trong\ đơn\ hàng\ kèm\ tên\ và\ ảnh."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00145}00145\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00146}00146\ \ \ \ \ quantity:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00147}00147\ \ \ \ \ price:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00148}00148\ \ \ \ \ menuitemid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00149}\doxymbox{\hyperlink{classschemas_1_1OrderItemDetail_a3066dbc04a4a1f059008052922f18de6}{00149}}\ \ \ \ \ menuitem\_name:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00150}\doxymbox{\hyperlink{classschemas_1_1OrderItemDetail_a88ef86d74b5df47892088d921f7ada38}{00150}}\ \ \ \ \ image\_url:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00152}\doxymbox{\hyperlink{classschemas_1_1OrderDetail}{00152}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderDetail}{OrderDetail}}(\doxymbox{\hyperlink{classschemas_1_1OrderBase}{OrderBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00153}00153\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ chi\ tiết\ đơn\ hàng\ đầy\ đủ\ kèm\ tên\ nhà\ hàng\ và\ địa\ chỉ."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00154}00154\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00155}00155\ \ \ \ \ createdat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00156}\doxymbox{\hyperlink{classschemas_1_1OrderDetail_a1a0c891bc9cf1bdaa03dd558e923348f}{00156}}\ \ \ \ \ restaurant\_name:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00157}\doxymbox{\hyperlink{classschemas_1_1OrderDetail_a91120dbc94e3aad99ab046104d84fe44}{00157}}\ \ \ \ \ address\_detail:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00158}\doxymbox{\hyperlink{classschemas_1_1OrderDetail_aeec67fa4ee01d5d2d14afa02b28988f6}{00158}}\ \ \ \ \ order\_items:\ List[OrderItemDetail]\ =\ []}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00159}00159\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00160}\doxymbox{\hyperlink{classschemas_1_1OrderStatusUpdate}{00160}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1OrderStatusUpdate}{OrderStatusUpdate}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00161}00161\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cập\ nhật\ trạng\ thái\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00162}00162\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00163}00163\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00164}\doxymbox{\hyperlink{classschemas_1_1UserProfileSummary}{00164}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserProfileSummary}{UserProfileSummary}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00165}00165\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ tóm\ tắt\ hồ\ sơ\ người\ dùng:\ điểm,\ đơn\ hàng,\ tổng\ chi\ tiêu."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00166}00166\ \ \ \ \ user\_id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00167}00167\ \ \ \ \ user\_name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00168}00168\ \ \ \ \ points:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00169}00169\ \ \ \ \ delivered\_orders:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00170}00170\ \ \ \ \ total\_spent:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00171}00171\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00172}00172\ \textcolor{comment}{\#\ ───\ Chat\ Schemas\ ────────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00173}00173\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00174}\doxymbox{\hyperlink{classschemas_1_1ChatMessageBase}{00174}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ChatMessageBase}{ChatMessageBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00175}00175\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ tin\ nhắn\ chat."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00176}00176\ \ \ \ \ message:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00177}00177\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00178}\doxymbox{\hyperlink{classschemas_1_1ChatMessageCreate}{00178}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ChatMessageCreate}{ChatMessageCreate}}(\doxymbox{\hyperlink{classschemas_1_1ChatMessageBase}{ChatMessageBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00179}00179\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00180}00180\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00181}\doxymbox{\hyperlink{classschemas_1_1ChatMessage}{00181}}\ \textcolor{keyword}{class\ }ChatMessage(ChatMessageBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00182}00182\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00183}00183\ \ \ \ \ senderrole:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00184}00184\ \ \ \ \ sentat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00185}00185\ \ \ \ \ sessionid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00186}\doxymbox{\hyperlink{classschemas_1_1ChatMessage_a93661ee4f4df138445ffe402c7f923bb}{00186}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00187}00187\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00188}\doxymbox{\hyperlink{classschemas_1_1ChatSessionCreate}{00188}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ChatSessionCreate}{ChatSessionCreate}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00189}00189\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ tạo\ phiên\ trò\ chuyện\ chatbot\ mới."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00190}00190\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00191}00191\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00192}\doxymbox{\hyperlink{classschemas_1_1ChatSession}{00192}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ChatSession}{ChatSession}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00193}00193\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00194}00194\ \ \ \ \ createdat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00195}00195\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00196}\doxymbox{\hyperlink{classschemas_1_1ChatSession_a2eb7110307a156ab635cbe6d056a5ef4}{00196}}\ \ \ \ \ messages:\ List[ChatMessage]\ =\ []}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00197}\doxymbox{\hyperlink{classschemas_1_1ChatSession_a056534efc3aacdd97560646ec8d16037}{00197}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00198}00198\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00199}00199\ \textcolor{comment}{\#\ ───\ UserDevice\ Schemas\ ──────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00200}00200\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00201}\doxymbox{\hyperlink{classschemas_1_1UserDeviceBase}{00201}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserDeviceBase}{UserDeviceBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00202}00202\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ thiết\ bị\ người\ dùng\ (FCM\ token)."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00203}00203\ \ \ \ \ device\_token:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00204}\doxymbox{\hyperlink{classschemas_1_1UserDeviceBase_aa44a8302956ae94198199f7b3530ae6d}{00204}}\ \ \ \ \ device\_type:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00205}00205\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00206}\doxymbox{\hyperlink{classschemas_1_1UserDeviceCreate}{00206}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserDeviceCreate}{UserDeviceCreate}}(\doxymbox{\hyperlink{classschemas_1_1UserDeviceBase}{UserDeviceBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00207}00207\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00208}00208\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00209}\doxymbox{\hyperlink{classschemas_1_1UserDevice}{00209}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserDevice}{UserDevice}}(\doxymbox{\hyperlink{classschemas_1_1UserDeviceBase}{UserDeviceBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00210}00210\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00211}00211\ \ \ \ \ last\_active:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00212}00212\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00213}\doxymbox{\hyperlink{classschemas_1_1UserDevice_a09c2b2a4fade3abc81f781497354befa}{00213}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00214}00214\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00215}00215\ \textcolor{comment}{\#\ ───\ UserFAQ\ Schemas\ ─────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00216}00216\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00217}\doxymbox{\hyperlink{classschemas_1_1UserFAQBase}{00217}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserFAQBase}{UserFAQBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00218}00218\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ lịch\ sử\ xem\ FAQ\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00219}00219\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00220}00220\ \ \ \ \ faqid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00221}00221\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00222}\doxymbox{\hyperlink{classschemas_1_1UserFAQCreate}{00222}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UserFAQCreate}{UserFAQCreate}}(\doxymbox{\hyperlink{classschemas_1_1UserFAQBase}{UserFAQBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00223}00223\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00224}00224\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00225}\doxymbox{\hyperlink{classschemas_1_1UserFAQ}{00225}}\ \textcolor{keyword}{class\ }UserFAQ(UserFAQBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00226}00226\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00227}00227\ \ \ \ \ viewedat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00228}\doxymbox{\hyperlink{classschemas_1_1UserFAQ_a7aec7759289c642e1322e547eb37d752}{00228}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00229}00229\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00230}00230\ \textcolor{comment}{\#\ ───\ FAQ\ Schemas\ ─────────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00231}00231\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00232}\doxymbox{\hyperlink{classschemas_1_1FAQBase}{00232}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1FAQBase}{FAQBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00233}00233\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ câu\ hỏi\ thường\ gặp."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00234}00234\ \ \ \ \ question:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00235}00235\ \ \ \ \ answer:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00236}\doxymbox{\hyperlink{classschemas_1_1FAQBase_a8ef37f28b848a0923b9d530a3b577fbc}{00236}}\ \ \ \ \ isactive:\ bool\ =\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00237}00237\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00238}\doxymbox{\hyperlink{classschemas_1_1FAQCreate}{00238}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1FAQCreate}{FAQCreate}}(\doxymbox{\hyperlink{classschemas_1_1FAQBase}{FAQBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00239}00239\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00240}00240\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00241}\doxymbox{\hyperlink{classschemas_1_1FAQ}{00241}}\ \textcolor{keyword}{class\ }FAQ(FAQBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00242}00242\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00243}\doxymbox{\hyperlink{classschemas_1_1FAQ_aeefba79b7232d27954723b648aab8465}{00243}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00244}00244\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00245}00245\ \textcolor{comment}{\#\ ───\ Shipper\ Schemas\ ─────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00246}00246\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00247}\doxymbox{\hyperlink{classschemas_1_1ShipperBase}{00247}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ShipperBase}{ShipperBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00248}00248\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ người\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00249}00249\ \ \ \ \ name:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00250}00250\ \ \ \ \ phone:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00251}\doxymbox{\hyperlink{classschemas_1_1ShipperBase_a33172917ec9579c90df7c2fb52899cb8}{00251}}\ \ \ \ \ rating:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00252}\doxymbox{\hyperlink{classschemas_1_1ShipperBase_aab3b1cd514b1060efb971607e4cb1be4}{00252}}\ \ \ \ \ description:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00253}00253\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00255}\doxymbox{\hyperlink{classschemas_1_1ShipperCreate}{00255}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ShipperCreate}{ShipperCreate}}(\doxymbox{\hyperlink{classschemas_1_1ShipperBase}{ShipperBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00256}00256\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00257}00257\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00258}\doxymbox{\hyperlink{classschemas_1_1Shipper}{00258}}\ \textcolor{keyword}{class\ }Shipper(ShipperBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00259}00259\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00260}\doxymbox{\hyperlink{classschemas_1_1Shipper_a61731c20942d3dfdce44e0e08ef379b0}{00260}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00261}00261\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00262}00262\ \textcolor{comment}{\#\ ───\ Promotion\ Schemas\ ───────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00263}00263\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00264}\doxymbox{\hyperlink{classschemas_1_1PromotionBase}{00264}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1PromotionBase}{PromotionBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00265}00265\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ mã\ khuyến\ mãi."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00266}00266\ \ \ \ \ code:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00267}00267\ \ \ \ \ discounttype:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00268}00268\ \ \ \ \ discountvalue:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00269}00269\ \ \ \ \ expiredate:\ date}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00270}00270\ \ \ \ \ minordervalue:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00271}00271\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00273}\doxymbox{\hyperlink{classschemas_1_1PromotionCreate}{00273}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1PromotionCreate}{PromotionCreate}}(\doxymbox{\hyperlink{classschemas_1_1PromotionBase}{PromotionBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00274}00274\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00275}00275\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00276}\doxymbox{\hyperlink{classschemas_1_1Promotion}{00276}}\ \textcolor{keyword}{class\ }Promotion(PromotionBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00277}00277\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00278}\doxymbox{\hyperlink{classschemas_1_1Promotion_ae96ca066e9177406b2aa3457cb84e30b}{00278}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00279}00279\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00280}00280\ \textcolor{comment}{\#\ ───\ Payment\ Schemas\ ─────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00281}00281\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00282}\doxymbox{\hyperlink{classschemas_1_1PaymentBase}{00282}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1PaymentBase}{PaymentBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00283}00283\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ thông\ tin\ thanh\ toán."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00284}00284\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00285}00285\ \ \ \ \ method:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00286}00286\ \ \ \ \ orderid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00287}00287\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00288}\doxymbox{\hyperlink{classschemas_1_1PaymentCreate}{00288}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1PaymentCreate}{PaymentCreate}}(\doxymbox{\hyperlink{classschemas_1_1PaymentBase}{PaymentBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00289}00289\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00290}00290\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00291}\doxymbox{\hyperlink{classschemas_1_1Payment}{00291}}\ \textcolor{keyword}{class\ }Payment(PaymentBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00292}00292\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00293}\doxymbox{\hyperlink{classschemas_1_1Payment_a113bb967e5d3047d35b703c5de5ede06}{00293}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00294}00294\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00295}00295\ \textcolor{comment}{\#\ ───\ Delivery\ Schemas\ ────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00296}00296\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00297}\doxymbox{\hyperlink{classschemas_1_1DeliveryBase}{00297}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1DeliveryBase}{DeliveryBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00298}00298\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ thông\ tin\ giao\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00299}00299\ \ \ \ \ status:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00300}\doxymbox{\hyperlink{classschemas_1_1DeliveryBase_a21e9acac25b0b6d7f9c8a8a672c93406}{00300}}\ \ \ \ \ deliverytime:\ Optional[time]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00301}00301\ \ \ \ \ orderid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00302}00302\ \ \ \ \ shipperid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00303}00303\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00304}\doxymbox{\hyperlink{classschemas_1_1DeliveryCreate}{00304}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1DeliveryCreate}{DeliveryCreate}}(\doxymbox{\hyperlink{classschemas_1_1DeliveryBase}{DeliveryBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00305}00305\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00306}00306\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00307}\doxymbox{\hyperlink{classschemas_1_1Delivery}{00307}}\ \textcolor{keyword}{class\ }Delivery(DeliveryBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00308}00308\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00309}\doxymbox{\hyperlink{classschemas_1_1Delivery_a463568e015a6073ecc6275717c1e6bc7}{00309}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00310}00310\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00311}00311\ \textcolor{comment}{\#\ ───\ Review\ Schemas\ ──────────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00312}00312\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00313}\doxymbox{\hyperlink{classschemas_1_1ReviewBase}{00313}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ReviewBase}{ReviewBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00314}00314\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ đánh\ giá\ của\ người\ dùng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00315}00315\ \ \ \ \ rating:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00316}\doxymbox{\hyperlink{classschemas_1_1ReviewBase_a76f2adf9127b227eea21d3f1c624bd47}{00316}}\ \ \ \ \ comment:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00317}00317\ \ \ \ \ orderid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00318}00318\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00319}\doxymbox{\hyperlink{classschemas_1_1ReviewBase_a9b86115f0d5624210b9f9f59dc360fc1}{00319}}\ \ \ \ \ menuitemid:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00320}\doxymbox{\hyperlink{classschemas_1_1ReviewBase_a88c955bd32264f77deb8b4abb3094fca}{00320}}\ \ \ \ \ restaurantid:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00321}00321\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00322}\doxymbox{\hyperlink{classschemas_1_1ReviewCreate}{00322}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ReviewCreate}{ReviewCreate}}(\doxymbox{\hyperlink{classschemas_1_1ReviewBase}{ReviewBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00323}00323\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00324}00324\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00325}\doxymbox{\hyperlink{classschemas_1_1Review}{00325}}\ \textcolor{keyword}{class\ }Review(ReviewBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00326}00326\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00327}\doxymbox{\hyperlink{classschemas_1_1Review_a14d6a5f3192366592a0671b307fcd6ce}{00327}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00328}00328\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00329}\doxymbox{\hyperlink{classschemas_1_1ReviewResponse}{00329}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1ReviewResponse}{ReviewResponse}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00330}00330\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00331}00331\ \ \ \ \ rating:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00332}\doxymbox{\hyperlink{classschemas_1_1ReviewResponse_ae52eb50ddf01fd92ee9882be6b339a96}{00332}}\ \ \ \ \ comment:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00333}00333\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00334}\doxymbox{\hyperlink{classschemas_1_1ReviewResponse_a366d278353b3721b6397ac84c5634772}{00334}}\ \ \ \ \ user\_name:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00335}\doxymbox{\hyperlink{classschemas_1_1ReviewResponse_ab9af23a4afc79b9f53e9cfb6aaaf3fb9}{00335}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00336}00336\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00337}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews}{00337}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews}{MenuItemWithReviews}}(\doxymbox{\hyperlink{classschemas_1_1MenuItemBase}{MenuItemBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00338}00338\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ món\ ăn\ kèm\ danh\ sách\ đánh\ giá\ và\ điểm\ trung\ bình."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00339}00339\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00340}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews_a9a09719874b56b85ee008705b7794fae}{00340}}\ \ \ \ \ restaurant\_name:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00341}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews_a0e73d321b1471c3e2756564feb5e3def}{00341}}\ \ \ \ \ reviews:\ List[\textcolor{stringliteral}{"{}ReviewResponse"{}}]\ =\ []}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00342}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews_af7022b2d1b89e600c272b758752ec642}{00342}}\ \ \ \ \ avg\_rating:\ float\ =\ 0.0}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00343}\doxymbox{\hyperlink{classschemas_1_1MenuItemWithReviews_a400056cb4fbacc9a8a26c83ce0425ca2}{00343}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00344}00344\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00345}00345\ \textcolor{comment}{\#\ ───\ Notification\ Schemas\ ────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00346}00346\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00347}\doxymbox{\hyperlink{classschemas_1_1NotificationBase}{00347}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1NotificationBase}{NotificationBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00348}00348\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ thông\ báo\ đẩy."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00349}00349\ \ \ \ \ title:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00350}00350\ \ \ \ \ type:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00351}00351\ \ \ \ \ content:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00352}\doxymbox{\hyperlink{classschemas_1_1NotificationBase_a01045c74301b7d2af3c14af8d85e97d7}{00352}}\ \ \ \ \ isread:\ bool\ =\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00353}00353\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00354}\doxymbox{\hyperlink{classschemas_1_1NotificationBase_aeb3ad107f2fd39e2609b5aac0de0575d}{00354}}\ \ \ \ \ orderid:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00355}\doxymbox{\hyperlink{classschemas_1_1NotificationBase_aaca22b7e9af985415c725f40f102c943}{00355}}\ \ \ \ \ sessionid:\ Optional[int]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00356}00356\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00357}\doxymbox{\hyperlink{classschemas_1_1NotificationCreate}{00357}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1NotificationCreate}{NotificationCreate}}(\doxymbox{\hyperlink{classschemas_1_1NotificationBase}{NotificationBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00358}00358\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00359}00359\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00360}\doxymbox{\hyperlink{classschemas_1_1Notification}{00360}}\ \textcolor{keyword}{class\ }Notification(NotificationBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00361}00361\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00362}00362\ \ \ \ \ createdat:\ datetime}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00363}\doxymbox{\hyperlink{classschemas_1_1Notification_a0431ef64fe06841b5fb1d6b6502417ca}{00363}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00364}00364\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00365}00365\ \textcolor{comment}{\#\ ───\ UsedPromotion\ Schemas\ ───────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00366}00366\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00367}\doxymbox{\hyperlink{classschemas_1_1UsedPromotionBase}{00367}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UsedPromotionBase}{UsedPromotionBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00368}00368\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ mã\ khuyến\ mãi\ đã\ sử\ dụng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00369}00369\ \ \ \ \ usedat:\ date}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00370}00370\ \ \ \ \ promotionid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00371}00371\ \ \ \ \ orderid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00372}00372\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00373}\doxymbox{\hyperlink{classschemas_1_1UsedPromotionCreate}{00373}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1UsedPromotionCreate}{UsedPromotionCreate}}(\doxymbox{\hyperlink{classschemas_1_1UsedPromotionBase}{UsedPromotionBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00374}00374\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00375}00375\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00376}\doxymbox{\hyperlink{classschemas_1_1UsedPromotion}{00376}}\ \textcolor{keyword}{class\ }UsedPromotion(UsedPromotionBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00377}00377\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00378}\doxymbox{\hyperlink{classschemas_1_1UsedPromotion_a66aff506fc83ef1e6fa9e33f3287c171}{00378}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00379}00379\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00380}00380\ \textcolor{comment}{\#\ ───\ LoyaltyPoint\ Schemas\ ────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00382}\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointBase}{00382}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointBase}{LoyaltyPointBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00383}00383\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ điểm\ tích\ lũy\ thành\ viên."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00384}\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointBase_afa42609ac5c9b36f2dd99e29967f7040}{00384}}\ \ \ \ \ points:\ int\ =\ 0}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00385}00385\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00386}00386\ \ \ \ \ menuitemid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00387}00387\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00388}\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointCreate}{00388}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointCreate}{LoyaltyPointCreate}}(\doxymbox{\hyperlink{classschemas_1_1LoyaltyPointBase}{LoyaltyPointBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00389}00389\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00390}00390\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00391}\doxymbox{\hyperlink{classschemas_1_1LoyaltyPoint}{00391}}\ \textcolor{keyword}{class\ }LoyaltyPoint(LoyaltyPointBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00392}00392\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00393}00393\ \ \ \ \ updatedat:\ date}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00394}\doxymbox{\hyperlink{classschemas_1_1LoyaltyPoint_a74315f4b99d62dce91fd896ec103930c}{00394}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00395}00395\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00396}00396\ \textcolor{comment}{\#\ ───\ SocialShare\ Schemas\ ─────────────────────────────────────────────────────}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00397}00397\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00398}\doxymbox{\hyperlink{classschemas_1_1SocialShareBase}{00398}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1SocialShareBase}{SocialShareBase}}(BaseModel):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00399}00399\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Schema\ cơ\ sở\ cho\ lượt\ chia\ sẻ\ mạng\ xã\ hội."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00400}00400\ \ \ \ \ sharetype:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00401}00401\ \ \ \ \ platform:\ str}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00402}\doxymbox{\hyperlink{classschemas_1_1SocialShareBase_a68c62acc6013314299b631c1f1f2253d}{00402}}\ \ \ \ \ context:\ Optional[str]\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00403}00403\ \ \ \ \ userid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00404}00404\ \ \ \ \ restaurantid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00405}00405\ \ \ \ \ menuitemid:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00406}00406\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00407}\doxymbox{\hyperlink{classschemas_1_1SocialShareCreate}{00407}}\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{classschemas_1_1SocialShareCreate}{SocialShareCreate}}(\doxymbox{\hyperlink{classschemas_1_1SocialShareBase}{SocialShareBase}}):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00408}00408\ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00410}\doxymbox{\hyperlink{classschemas_1_1SocialShare}{00410}}\ \textcolor{keyword}{class\ }SocialShare(SocialShareBase):}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00411}00411\ \ \ \ \ id:\ int}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00412}00412\ \ \ \ \ createdat:\ date}
+\DoxyCodeLine{\Hypertarget{schemas_8py_source_l00413}\doxymbox{\hyperlink{classschemas_1_1SocialShare_a5298633f1ea1e0a196da7ff278487af4}{00413}}\ \ \ \ \ model\_config\ =\ ConfigDict(from\_attributes=\textcolor{keyword}{True})}
+
+\end{DoxyCode}

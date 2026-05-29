@@ -1,0 +1,189 @@
+\doxysection{home.\+kt}
+\hypertarget{home_8kt_source}{}\label{home_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/home.kt@{app/app/src/main/java/com/example/myapp/screens/home.kt}}
+\doxymbox{\hyperlink{home_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00014}00014\ import\ android.os.Handler}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00015}00015\ import\ android.os.Looper}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00016}00016\ import\ android.text.Editable}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00017}00017\ import\ android.text.TextWatcher}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00018}00018\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00019}00019\ import\ android.view.inputmethod.InputMethodManager}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00020}00020\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00021}00021\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00022}00022\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00023}00023\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00024}00024\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00025}00025\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00026}00026\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00027}00027\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00028}00028\ import\ com.example.myapp.adapters.MenuItemAdapter}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00029}00029\ import\ com.example.myapp.screens.api.MenuItem}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00030}00030\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00031}00031\ import\ com.example.myapp.screens.profile}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00032}00032\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00033}00033\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00034}00034\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00044}00044\ class\ home\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00046}\doxymbox{\hyperlink{namespaceAppCompatActivity_acccf900fef582675e61a084aa47e0f41}{00046}}\ \ \ \ \ private\ var\ menuItems:\ List<MenuItem>\ =\ emptyList()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00048}00048\ \ \ \ \ private\ lateinit\ var\ rvMenuItems:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00050}00050\ \ \ \ \ private\ lateinit\ var\ menuItemAdapter:\ MenuItemAdapter}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00052}00052\ \ \ \ \ private\ lateinit\ var\ edtSearch:\ EditText}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00054}00054\ \ \ \ \ private\ var\ searchJob:\ Call<List<MenuItem>>?\ =\ null}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00056}00056\ \ \ \ \ private\ val\ searchHandler\ =\ Handler(Looper.getMainLooper())}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00058}00058\ \ \ \ \ private\ var\ searchRunnable:\ Runnable?\ =\ null}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00060}00060\ \ \ \ \ private\ val\ SEARCH\_DELAY\ =\ 500L\ \textcolor{comment}{//\ 500ms\ delay\ for\ debouncing}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00071}00071\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ setContentView(R.layout.home)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00075}00075\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnProfile}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ val\ btnProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ btnProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00082}00082\ \textcolor{comment}{//\ \ \ \ \ \ click\ textDanhSachNhaHang}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ val\ tvDanhSachNhaHang:\ TextView\ =\ findViewById(R.id.tvDanhSachNhaHang)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ tvDanhSachNhaHang.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ list\_restaurant::class.java)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00088}00088\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00089}00089\ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnNotification}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ val\ btnNotification:\ ImageView\ =\ findViewById(R.id.imgNotification)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ btnNotification.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ notification::class.java)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ rvMenuItems\ =\ findViewById(R.id.rvMenuItems)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ rvMenuItems.layoutManager\ =\ LinearLayoutManager(this,\ LinearLayoutManager.HORIZONTAL,\ false)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00105}00105\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ Search\ -\/\ search\ as\ user\ types\ with\ debouncing}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ edtSearch\ =\ findViewById(R.id.edtSearch)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ edtSearch.addTextChangedListener(object\ :\ TextWatcher\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ beforeTextChanged(s:\ CharSequence?,\ start:\ Int,\ count:\ Int,\ after:\ Int)\ \{\}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onTextChanged(s:\ CharSequence?,\ start:\ Int,\ before:\ Int,\ count:\ Int)\ \{\}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00112}00112\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ afterTextChanged(s:\ Editable?)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ pending\ search}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRunnable?.let\ \{\ searchHandler.removeCallbacks(it)\ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ new\ search\ runnable\ with\ delay}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchRunnable\ =\ Runnable\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ query\ =\ s?.toString()?.trim()\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (query.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fetchMenuItems()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchMenuItems(query)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Post\ the\ search\ with\ delay}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchHandler.postDelayed(searchRunnable!!,\ SEARCH\_DELAY)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Fetch\ menu\ items\ from\ API}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ fetchMenuItems()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00143}00143\ \ \ \ \ private\ fun\ fetchMenuItems()\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ ongoing\ search}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ searchJob?.cancel()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getAllMenuItems().enqueue(object\ :\ Callback<List<MenuItem>>\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<MenuItem>>,\ response:\ Response<List<MenuItem>>)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ menuItems\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ displayMenuItems()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ khi\ tải\ danh\ sách\ món\ ăn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<MenuItem>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00158}00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!call.isCanceled)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00163}00163\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00164}00164\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00173}\doxymbox{\hyperlink{namespaceAppCompatActivity_a17670502629959597849bb074e1e0354}{00173}}\ \ \ \ \ private\ fun\ searchMenuItems(query:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cancel\ any\ ongoing\ search}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ searchJob?.cancel()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ First\ search\ by\ name}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00178}00178\ \ \ \ \ \ \ \ \ searchJob\ =\ RetrofitClient.apiService.searchMenuItemsByName(query)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ searchJob?.enqueue(object\ :\ Callback<List<MenuItem>>\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<MenuItem>>,\ response:\ Response<List<MenuItem>>)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ results\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (results.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ menuItems\ =\ results}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ displayMenuItems()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ no\ results\ by\ name,\ search\ by\ category}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00188}00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ searchByCategory(query)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ khi\ tìm\ kiếm"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00192}00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00194}00194\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00195}00195\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<MenuItem>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00196}00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!call.isCanceled)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00197}00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00198}00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00199}00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00201}00201\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00202}00202\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00211}\doxymbox{\hyperlink{namespaceAppCompatActivity_a9bdaa4670ab076ea84a44545de72397f}{00211}}\ \ \ \ \ private\ fun\ searchByCategory(query:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00212}00212\ \ \ \ \ \ \ \ \ searchJob\ =\ RetrofitClient.apiService.searchMenuItemsByCategory(query)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00213}00213\ \ \ \ \ \ \ \ \ searchJob?.enqueue(object\ :\ Callback<List<MenuItem>>\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<MenuItem>>,\ response:\ Response<List<MenuItem>>)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ results\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00217}00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ menuItems\ =\ results}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ displayMenuItems()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (results.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Không\ tìm\ thấy\ món\ ăn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ khi\ tìm\ kiếm"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00225}00225\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00227}00227\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<MenuItem>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00228}00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!call.isCanceled)\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@home,\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00232}00232\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00233}00233\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00234}00234\ }
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00241}\doxymbox{\hyperlink{namespaceAppCompatActivity_af3d1801a8b69bd8543cb0da62f912f4f}{00241}}\ \ \ \ \ private\ fun\ displayMenuItems()\ \{}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00242}00242\ \ \ \ \ \ \ \ \ menuItemAdapter\ =\ MenuItemAdapter(this,\ menuItems)}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00243}00243\ \ \ \ \ \ \ \ \ rvMenuItems.adapter\ =\ menuItemAdapter}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00244}00244\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{home_8kt_source_l00245}00245\ \}}
+
+\end{DoxyCode}

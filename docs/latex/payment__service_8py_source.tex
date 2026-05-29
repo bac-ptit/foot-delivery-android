@@ -1,0 +1,66 @@
+\doxysection{payment\+\_\+service.\+py}
+\hypertarget{payment__service_8py_source}{}\label{payment__service_8py_source}\index{backend/payment\_service.py@{backend/payment\_service.py}}
+\doxymbox{\hyperlink{payment__service_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00001}\doxymbox{\hyperlink{namespacepayment__service}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ payment\_service.py}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00004}00004\ \textcolor{stringliteral}{Service\ tạo\ URL\ thanh\ toán\ VNPay\ (sandbox).}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00005}00005\ \textcolor{stringliteral}{Xây\ dựng\ payment\ URL\ với\ chữ\ ký\ HMAC-\/SHA512\ để\ xác\ thực\ giao\ dịch.}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00008}00008\ \textcolor{keyword}{import}\ hashlib}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00009}00009\ \textcolor{keyword}{import}\ hmac}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00010}00010\ \textcolor{keyword}{import}\ urllib.parse}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00011}00011\ \textcolor{keyword}{from}\ datetime\ \textcolor{keyword}{import}\ datetime}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00013}00013\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00014}00014\ \textcolor{comment}{\#\ Thông\ tin\ VNPay\ Sandbox}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00015}\doxymbox{\hyperlink{namespacepayment__service_a5215942aeb315bef1e27274f61341113}{00015}}\ VNP\_URL\ =\ \textcolor{stringliteral}{"{}https://sandbox.vnpayment.vn/paymentv2/vpcpay.html"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00016}\doxymbox{\hyperlink{namespacepayment__service_af990bc0a2df972c130c06c79fa3cb403}{00016}}\ VNP\_TMNCODE\ =\ \textcolor{stringliteral}{"{}2HON5OA2"{}}\ \ \ \ \ \ \ \textcolor{comment}{\#\ lấy\ từ\ VNPay\ Test\ Portal}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00017}\doxymbox{\hyperlink{namespacepayment__service_aa4e44821c2179b3ce26cb87233b1c400}{00017}}\ VNP\_HASH\_SECRET\ =\ \textcolor{stringliteral}{"{}UGDPB7W11M55W6UTQ0N69X36I2VIE0UL"{}}\ \ \ \textcolor{comment}{\#\ lấy\ từ\ VNPay\ Test\ Portal}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00018}\doxymbox{\hyperlink{namespacepayment__service_a2e4602144362030a6f236232bcdb7f8a}{00018}}\ VNP\_RETURN\_URL\ =\ \textcolor{stringliteral}{"{}http://localhost:8000/vnpay\_return"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00022}00022\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00023}\doxymbox{\hyperlink{namespacepayment__service_add633697ecadff68d58395fcbe5389c3}{00023}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacepayment__service_add633697ecadff68d58395fcbe5389c3}{generate\_vnpay\_url}}(order\_id:\ str,\ amount:\ int,\ ip\_address:\ str):}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00024}00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ URL\ thanh\ toán\ VNPay\ với\ chữ\ ký\ HMAC-\/SHA512\ cho\ đơn\ hàng."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00026}00026\ \ \ \ \ params\ =\ \{}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00027}00027\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Version"{}}:\ \textcolor{stringliteral}{"{}2.1.0"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00028}00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Command"{}}:\ \textcolor{stringliteral}{"{}pay"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_TmnCode"{}}:\ VNP\_TMNCODE,}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Amount"{}}:\ int(amount)\ *\ 100,}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_CurrCode"{}}:\ \textcolor{stringliteral}{"{}VND"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_TxnRef"{}}:\ order\_id,}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_OrderInfo"{}}:\ f\textcolor{stringliteral}{"{}Thanh\ toan\ don\ hang\ \{order\_id\}"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00034}00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_OrderType"{}}:\ \textcolor{stringliteral}{"{}other"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Locale"{}}:\ \textcolor{stringliteral}{"{}vn"{}},}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_ReturnUrl"{}}:\ VNP\_RETURN\_URL,}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00037}00037\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_IpAddr"{}}:\ ip\_address,}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00038}00038\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_CreateDate"{}}:\ datetime.now().strftime(\textcolor{stringliteral}{"{}\%Y\%m\%d\%H\%M\%S"{}}),}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00039}00039\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00041}00041\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00042}00042\ \ \ \ \ \textcolor{comment}{\#\ sort\ params}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00043}00043\ \ \ \ \ sorted\_params\ =\ sorted(params.items())}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00046}00046\ \ \ \ \ query\_string\ =\ urllib.parse.urlencode(sorted\_params)}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00049}00049\ \ \ \ \ \textcolor{comment}{\#\ tạo\ hash}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00050}00050\ \ \ \ \ hash\_value\ =\ hmac.new(}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ VNP\_HASH\_SECRET.encode(),}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00052}00052\ \ \ \ \ \ \ \ \ query\_string.encode(),}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ hashlib.sha512}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00054}00054\ \ \ \ \ ).hexdigest()}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00057}00057\ \ \ \ \ payment\_url\ =\ f\textcolor{stringliteral}{"{}\{VNP\_URL\}?\{query\_string\}\&vnp\_SecureHash=\{hash\_value\}"{}}}
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{payment__service_8py_source_l00060}00060\ \ \ \ \ \textcolor{keywordflow}{return}\ payment\_url}
+
+\end{DoxyCode}

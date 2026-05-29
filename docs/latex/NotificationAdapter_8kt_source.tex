@@ -1,0 +1,71 @@
+\doxysection{Notification\+Adapter.\+kt}
+\hypertarget{NotificationAdapter_8kt_source}{}\label{NotificationAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/NotificationAdapter.kt@{app/app/src/main/java/com/example/myapp/adapters/NotificationAdapter.kt}}
+\doxymbox{\hyperlink{NotificationAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.adapters}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00008}00008\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00009}00009\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00010}00010\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00011}00011\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00012}00012\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00013}00013\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00014}00014\ import\ com.example.myapp.screens.api.Notification}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00023}00023\ class\ NotificationAdapter(}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00024}00024\ \ \ \ \ private\ val\ notifications:\ List<Notification>,}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00025}00025\ \ \ \ \ private\ val\ onItemClick:\ (Notification)\ -\/>\ Unit}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00026}\doxymbox{\hyperlink{namespaceNotificationAdapter}{00026}}\ )\ :\ RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00037}00037\ \ \ \ \ class\ NotificationViewHolder(itemView:\ View)\ :\ RecyclerView.ViewHolder(itemView)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ val\ tvTitle:\ TextView\ =\ itemView.findViewById(R.id.tvNotificationTitle)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ val\ tvContent:\ TextView\ =\ itemView.findViewById(R.id.tvNotificationContent)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ val\ tvTime:\ TextView\ =\ itemView.findViewById(R.id.tvNotificationTime)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ val\ unreadIndicator:\ View\ =\ itemView.findViewById(R.id.unreadIndicator)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ val\ container:\ View\ =\ itemView.findViewById(R.id.notificationContainer)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00043}00043\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00052}00052\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ NotificationViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ view\ =\ LayoutInflater.from(parent.context)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ .inflate(R.layout.item\_notification,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ return\ NotificationViewHolder(view)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00056}00056\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00065}00065\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ NotificationViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ val\ notification\ =\ notifications[position]}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ holder.tvTitle.text\ =\ notification.title}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ holder.tvContent.text\ =\ notification.content}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ holder.tvTime.text\ =\ formatTime(notification.createdat)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hiển\ thị\ indicator\ nếu\ chưa\ đọc}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ if\ (!notification.isread)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ holder.unreadIndicator.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ holder.container.setBackgroundColor(android.graphics.Color.parseColor("{}\#FFF5F5F5"{}))}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ holder.unreadIndicator.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ holder.container.setBackgroundColor(android.graphics.Color.WHITE)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ holder.itemView.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ onItemClick(notification)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00084}00084\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00085}00085\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00091}00091\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ notifications.size}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00100}00100\ \ \ \ \ private\ fun\ formatTime(dateTime:\ String):\ String\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chuyển\ đổi\ định\ dạng\ thời\ gian\ từ\ API\ sang\ định\ dạng\ hiển\ thị}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ return\ try\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ val\ inputFormat\ =\ java.text.SimpleDateFormat("{}yyyy-\/MM-\/dd'T'HH:mm:ss"{},\ java.util.Locale.getDefault())}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ val\ outputFormat\ =\ java.text.SimpleDateFormat("{}dd/MM/yyyy\ HH:mm"{},\ java.util.Locale.getDefault())}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ val\ date\ =\ inputFormat.parse(dateTime)}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ outputFormat.format(date\ ?:\ java.util.Date())}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ dateTime}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00110}00110\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{NotificationAdapter_8kt_source_l00111}00111\ \}}
+
+\end{DoxyCode}

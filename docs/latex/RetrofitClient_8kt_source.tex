@@ -1,0 +1,60 @@
+\doxysection{Retrofit\+Client.\+kt}
+\hypertarget{RetrofitClient_8kt_source}{}\label{RetrofitClient_8kt_source}\index{app/app/src/main/java/com/example/myapp/api/RetrofitClient.kt@{app/app/src/main/java/com/example/myapp/api/RetrofitClient.kt}}
+\doxymbox{\hyperlink{RetrofitClient_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens.api}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00009}00009\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00010}00010\ import\ okhttp3.Interceptor}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00011}00011\ import\ okhttp3.OkHttpClient}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00012}00012\ import\ retrofit2.Retrofit}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00013}00013\ import\ retrofit2.converter.gson.GsonConverterFactory}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00014}00014\ import\ java.util.concurrent.TimeUnit}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00017}\doxymbox{\hyperlink{namespaceRetrofitClient}{00017}}\ object\ RetrofitClient\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00019}00019\ \ \ \ \ \textcolor{comment}{//\ Sử\ dụng\ NetworkConfig\ để\ lấy\ BASE\_URL}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00020}00020\ \ \ \ \ \textcolor{comment}{//\ Thay\ đổi\ USE\_EMULATOR\ trong\ NetworkConfig.kt\ tùy\ theo\ môi\ trường}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00021}00021\ \ \ \ \ private\ val\ BASE\_URL\ =\ NetworkConfig.BASE\_URL}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00023}00023\ \ \ \ \ private\ var\ appContext:\ Context?\ =\ null}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00030}00030\ \ \ \ \ fun\ init(context:\ Context)\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ appContext\ =\ context.applicationContext}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00032}00032\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00035}00035\ \ \ \ \ private\ val\ authInterceptor\ =\ Interceptor\ \{\ chain\ -\/>}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ val\ request\ =\ chain.request()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ appContext?.getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ val\ token\ =\ sharedPref?.getString("{}access\_token"{},\ null)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00040}00040\ \ \ \ \ \ \ \ \ if\ (token\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \ \ \ \ val\ newRequest\ =\ request.newBuilder()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .header("{}Authorization"{},\ "{}Bearer\ \$token"{})}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ chain.proceed(newRequest)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \ \ \ \ chain.proceed(request)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00048}00048\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00051}00051\ \ \ \ \ private\ val\ okHttpClient\ =\ OkHttpClient.Builder()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ .addInterceptor(authInterceptor)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ .connectTimeout(30,\ TimeUnit.SECONDS)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ .readTimeout(60,\ TimeUnit.SECONDS)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ .writeTimeout(30,\ TimeUnit.SECONDS)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00059}00059\ \ \ \ \ private\ val\ retrofit:\ Retrofit\ by\ lazy\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ Retrofit.Builder()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ .baseUrl(BASE\_URL)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ .client(okHttpClient)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ .addConverterFactory(GsonConverterFactory.create())}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00065}00065\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00068}00068\ \ \ \ \ val\ apiService:\ ApiService\ by\ lazy\ \{}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ retrofit.create(ApiService::class.java)}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{RetrofitClient_8kt_source_l00071}00071\ \}}
+
+\end{DoxyCode}

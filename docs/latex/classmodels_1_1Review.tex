@@ -1,0 +1,190 @@
+\doxysection{models.\+Review Class Reference}
+\hypertarget{classmodels_1_1Review}{}\label{classmodels_1_1Review}\index{models.Review@{models.Review}}
+
+
+Inheritance diagram for models.\+Review:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classmodels_1_1Review__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Review:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=164pt]{classmodels_1_1Review__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a187d71ad5d4d620b4646744b2f61406e}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a4a4c46b534d5f75c69eddd914d5c9665}{rating}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_ae379206ba9c2f0448fa8426831ec4862}{comment}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a9771e728bea1b4b1ce32b33123ca6e19}{menuitemid}} = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_aa13e0a9505a75d0404cd4b11276a753f}{restaurantid}} = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_ac72530e342101bd9d4a3356209a83fa1}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a73a679e97970297f87deee2310ff1c0f}{orderid}} = Column(Integer, Foreign\+Key("{}orders.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a6709f892a959e4cfb747e8d24e9bbc68}{user}} = relationship("{}User"{}, back\+\_\+populates="{}reviews"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a4f1c2205857c3ff06e8c638822e6fd2e}{menu\+\_\+item}} = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}reviews"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a22370c5ff38b5b63fbf3f9119e860704}{restaurant}} = relationship("{}Restaurant"{}, back\+\_\+populates="{}reviews"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Review_a7a6f2407d3d0a96fe7b01e957ff23e7b}{order}} = relationship("{}Orders"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Review_abd41ddbd88c3a60510cebe250ae096fa}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}review"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng review, đánh giá của người dùng về món ăn và nhà hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00177}{177}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Review_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Review_abd41ddbd88c3a60510cebe250ae096fa}\index{models.Review@{models.Review}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_abd41ddbd88c3a60510cebe250ae096fa} 
+str models.\+Review.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}review"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00179}{179}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_ae379206ba9c2f0448fa8426831ec4862}\index{models.Review@{models.Review}!comment@{comment}}
+\index{comment@{comment}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{comment}{comment}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_ae379206ba9c2f0448fa8426831ec4862} 
+models.\+Review.\+comment = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00182}{182}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a187d71ad5d4d620b4646744b2f61406e}\index{models.Review@{models.Review}!id@{id}}
+\index{id@{id}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a187d71ad5d4d620b4646744b2f61406e} 
+models.\+Review.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00180}{180}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a4f1c2205857c3ff06e8c638822e6fd2e}\index{models.Review@{models.Review}!menu\_item@{menu\_item}}
+\index{menu\_item@{menu\_item}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{menu\_item}{menu\_item}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a4f1c2205857c3ff06e8c638822e6fd2e} 
+models.\+Review.\+menu\+\_\+item = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}reviews"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00189}{189}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a9771e728bea1b4b1ce32b33123ca6e19}\index{models.Review@{models.Review}!menuitemid@{menuitemid}}
+\index{menuitemid@{menuitemid}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{menuitemid}{menuitemid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a9771e728bea1b4b1ce32b33123ca6e19} 
+models.\+Review.\+menuitemid = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00183}{183}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a7a6f2407d3d0a96fe7b01e957ff23e7b}\index{models.Review@{models.Review}!order@{order}}
+\index{order@{order}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a7a6f2407d3d0a96fe7b01e957ff23e7b} 
+models.\+Review.\+order = relationship("{}Orders"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00191}{191}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a73a679e97970297f87deee2310ff1c0f}\index{models.Review@{models.Review}!orderid@{orderid}}
+\index{orderid@{orderid}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{orderid}{orderid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a73a679e97970297f87deee2310ff1c0f} 
+models.\+Review.\+orderid = Column(Integer, Foreign\+Key("{}orders.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00186}{186}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a4a4c46b534d5f75c69eddd914d5c9665}\index{models.Review@{models.Review}!rating@{rating}}
+\index{rating@{rating}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{rating}{rating}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a4a4c46b534d5f75c69eddd914d5c9665} 
+models.\+Review.\+rating = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00181}{181}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a22370c5ff38b5b63fbf3f9119e860704}\index{models.Review@{models.Review}!restaurant@{restaurant}}
+\index{restaurant@{restaurant}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{restaurant}{restaurant}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a22370c5ff38b5b63fbf3f9119e860704} 
+models.\+Review.\+restaurant = relationship("{}Restaurant"{}, back\+\_\+populates="{}reviews"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00190}{190}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_aa13e0a9505a75d0404cd4b11276a753f}\index{models.Review@{models.Review}!restaurantid@{restaurantid}}
+\index{restaurantid@{restaurantid}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{restaurantid}{restaurantid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_aa13e0a9505a75d0404cd4b11276a753f} 
+models.\+Review.\+restaurantid = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00184}{184}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_a6709f892a959e4cfb747e8d24e9bbc68}\index{models.Review@{models.Review}!user@{user}}
+\index{user@{user}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_a6709f892a959e4cfb747e8d24e9bbc68} 
+models.\+Review.\+user = relationship("{}User"{}, back\+\_\+populates="{}reviews"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00188}{188}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Review_ac72530e342101bd9d4a3356209a83fa1}\index{models.Review@{models.Review}!userid@{userid}}
+\index{userid@{userid}!models.Review@{models.Review}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Review_ac72530e342101bd9d4a3356209a83fa1} 
+models.\+Review.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00185}{185}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,272 @@
+\doxysection{chatbot\+\_\+service.\+Chat\+Bot\+Service Class Reference}
+\hypertarget{classchatbot__service_1_1ChatBotService}{}\label{classchatbot__service_1_1ChatBotService}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_a460a14a20477f25edfb6f1758058ead7}{\+\_\+\+\_\+init\+\_\+\+\_\+}} (self, Session \doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_a68d15c04c90996239a6bb1e2a36e171b}{db}}, int \doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_ac0871012e209c4b50a24b81dcc1a9a86}{user\+\_\+id}}=None)
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_af1679fb2e1b0ba407c2aa0fceda6684c}{get\+\_\+app\+\_\+context}} (self)
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_a10894ab19417d8055e374edd37f68e1d}{get\+\_\+response}} (self, str user\+\_\+message)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_a68d15c04c90996239a6bb1e2a36e171b}{db}} = db
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_ac0871012e209c4b50a24b81dcc1a9a86}{user\+\_\+id}} = user\+\_\+id
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_ac1d65d1b5cf74d96685b6891850b83c1}{client}} = genai.\+Client(api\+\_\+key=\doxymbox{\hyperlink{namespacechatbot__service_ac0588b4d3c21378d8440cee259c7de4c}{GEMINI\+\_\+\+API\+\_\+\+KEY}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_aaa8ff6e5544ac99127a79feedc3c726d}{\+\_\+call\+\_\+gemini\+\_\+sdk}} (self, str prompt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classchatbot__service_1_1ChatBotService_a05c348696ed220bc642d56ff6a88b923}{\+\_\+call\+\_\+gemini\+\_\+sdk}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Service xử lý chatbot AI, kết nối Google Gemini và truy vấn database.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00020}{20}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+
+\label{doc-constructors}
+\Hypertarget{classchatbot__service_1_1ChatBotService_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classchatbot__service_1_1ChatBotService_a460a14a20477f25edfb6f1758058ead7}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!\_\_init\_\_@{\_\_init\_\_}}
+\index{\_\_init\_\_@{\_\_init\_\_}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{\_\_init\_\_()}{\_\_init\_\_()}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_a460a14a20477f25edfb6f1758058ead7} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+\_\+\+\_\+init\+\_\+\+\_\+ (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{Session}]{db}{, }\item[{int }]{user\+\_\+id}{ = {\ttfamily None}}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00023}{23}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{def\ }\_\_init\_\_(self,\ db:\ Session,\ user\_id:\ int\ =\ \textcolor{keywordtype}{None}):}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ self.db\ =\ db}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ self.user\_id\ =\ user\_id}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Khởi\ tạo\ Client\ bằng\ SDK\ chính\ thức}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ GEMINI\_API\_KEY:}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ self.client\ =\ genai.Client(api\_key=GEMINI\_API\_KEY)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ self.client\ =\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{00031\ }
+
+\end{DoxyCode}
+
+
+\label{doc-func-members}
+\Hypertarget{classchatbot__service_1_1ChatBotService_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classchatbot__service_1_1ChatBotService_aaa8ff6e5544ac99127a79feedc3c726d}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!\_call\_gemini\_sdk@{\_call\_gemini\_sdk}}
+\index{\_call\_gemini\_sdk@{\_call\_gemini\_sdk}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{\_call\_gemini\_sdk()}{\_call\_gemini\_sdk()}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_aaa8ff6e5544ac99127a79feedc3c726d} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+\_\+call\+\_\+gemini\+\_\+sdk (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{prompt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Hàm đồng bộ gọi AI thông qua SDK.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00070}{70}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{def\ }\_call\_gemini\_sdk(self,\ prompt:\ str):}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Hàm\ đồng\ bộ\ gọi\ AI\ thông\ qua\ SDK."{}"{}"{}}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Nâng\ cấp\ lên\ model\ thế\ hệ\ 3\ mới\ nhất}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ response\ =\ self.client.models.generate\_content(}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ model=\textcolor{stringliteral}{'gemini-\/3-\/flash-\/preview'},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contents=prompt}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ response.text}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ genai\_errors.ClientError\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ error\_code\ =\ getattr(e,\ \textcolor{stringliteral}{'code'},\ \textcolor{keywordtype}{None})}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ error\_message\ =\ str(e)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Xử\ lý\ lỗi\ 429\ -\/\ Quota\ exceeded}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ error\_code\ ==\ 429\ \textcolor{keywordflow}{or}\ \textcolor{stringliteral}{'RESOURCE\_EXHAUSTED'}\ \textcolor{keywordflow}{in}\ error\_message:}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ 429\ -\/\ Quota\ exceeded"{}})}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ Exception(\textcolor{stringliteral}{"{}QUOTA\_EXCEEDED"{}})}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ SDK\ Gemini:\ \{e\}"{}})}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ e}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ SDK\ Gemini:\ \{e\}"{}})}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{raise}\ e}
+\DoxyCodeLine{00093\ }
+
+\end{DoxyCode}
+\Hypertarget{classchatbot__service_1_1ChatBotService_af1679fb2e1b0ba407c2aa0fceda6684c}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!get\_app\_context@{get\_app\_context}}
+\index{get\_app\_context@{get\_app\_context}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{get\_app\_context()}{get\_app\_context()}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_af1679fb2e1b0ba407c2aa0fceda6684c} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+get\+\_\+app\+\_\+context (\begin{DoxyParamCaption}\item[{}]{self}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Lấy dữ liệu từ DB để làm ngữ cảnh cho AI.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00032}{32}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{def\ }get\_app\_context(self):}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Lấy\ dữ\ liệu\ từ\ DB\ để\ làm\ ngữ\ cảnh\ cho\ AI."{}"{}"{}}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ restaurants\ =\ self.db.query(\doxymbox{\hyperlink{classmodels_1_1Restaurant}{models.Restaurant}}).all()}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ menu\_items\ =\ self.db.query(\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.MenuItem}}).all()}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Lấy\ đơn\ hàng\ theo\ user\_id\ nếu\ có,\ ngược\ lại\ lấy\ tất\ cả}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ self.user\_id:}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orders\ =\ self.db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).filter(models.Orders.userid\ ==\ self.user\_id).all()}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orders\ =\ self.db.query(\doxymbox{\hyperlink{classmodels_1_1Orders}{models.Orders}}).all()}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ context\ =\ \textcolor{stringliteral}{"{}Dưới\ đây\ là\ thông\ tin\ về\ ứng\ dụng\ Đặt\ Món:\(\backslash\)n\(\backslash\)n"{}}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ \textcolor{stringliteral}{"{}NHÀ\ HÀNG:\(\backslash\)n"{}}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ r\ \textcolor{keywordflow}{in}\ restaurants:}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ f\textcolor{stringliteral}{"{}-\/\ \{r.name\}:\ \{r.description\}\ (Địa\ chỉ:\ \{r.address\},\ Trạng\ thái:\ \{r.status\})\(\backslash\)n"{}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)nMÓN\ ĂN:\(\backslash\)n"{}}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ m\ \textcolor{keywordflow}{in}\ menu\_items:}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ res\_name\ =\ next((r.name\ \textcolor{keywordflow}{for}\ r\ \textcolor{keywordflow}{in}\ restaurants\ \textcolor{keywordflow}{if}\ r.id\ ==\ m.restaurantid),\ \textcolor{stringliteral}{"{}Không\ rõ"{}})}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ f\textcolor{stringliteral}{"{}-\/\ \{m.name\}:\ Giá\ \{m.price\}đ,\ Mô\ tả:\ \{m.description\}\ (Tại\ nhà\ hàng:\ \{res\_name\})\(\backslash\)n"{}}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)nĐƠN\ HÀNG:\(\backslash\)n"{}}}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ o\ \textcolor{keywordflow}{in}\ orders:}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_name\ =\ \textcolor{stringliteral}{"{}Không\ rõ"{}}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\ =\ self.db.query(\doxymbox{\hyperlink{classmodels_1_1User}{models.User}}).filter(models.User.id\ ==\ o.userid).first()}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ user:}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ user\_name\ =\ user.name}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}:}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{pass}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context\ +=\ f\textcolor{stringliteral}{"{}-\/\ Đơn\ hàng\ \#\{o.id\}:\ Trạng\ thái\ \{o.status\},\ Tổng\ tiền\ \{o.totalprice\}đ,\ Khách\ hàng:\ \{user\_name\}\(\backslash\)n"{}}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ context}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Lỗi\ lấy\ dữ\ liệu\ DB:\ \{e\}"{}})}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Hiện\ chưa\ có\ thông\ tin\ cụ\ thể."{}}}
+\DoxyCodeLine{00069\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classchatbot__service_1_1ChatBotService_af1679fb2e1b0ba407c2aa0fceda6684c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classchatbot__service_1_1ChatBotService_a10894ab19417d8055e374edd37f68e1d}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!get\_response@{get\_response}}
+\index{get\_response@{get\_response}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{get\_response()}{get\_response()}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_a10894ab19417d8055e374edd37f68e1d} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+get\+\_\+response (\begin{DoxyParamCaption}\item[{}]{self}{, }\item[{str}]{user\+\_\+message}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Nhận tin nhắn người dùng, xây dựng prompt và gọi Gemini AI trả lời.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00094}{94}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{async\ def\ }get\_response(self,\ user\_message:\ str):}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Nhận\ tin\ nhắn\ người\ dùng,\ xây\ dựng\ prompt\ và\ gọi\ Gemini\ AI\ trả\ lời."{}"{}"{}}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ self.client:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Xin\ lỗi,\ ChatBot\ chưa\ được\ cấu\ hình\ API\ Key\ trong\ file\ .env."{}}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ app\_context\ =\ self.get\_app\_context()}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ prompt\ =\ f\textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{00102\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Bạn\ là\ trợ\ lý\ ảo\ của\ ứng\ dụng\ 'Đặt\ Món'\ -\/\ Food\ Delivery\ Việt\ Nam.}}
+\DoxyCodeLine{00103\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00104\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ \{app\_context\}}}
+\DoxyCodeLine{00105\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00106\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ HƯỚNG\ DẪN:}}
+\DoxyCodeLine{00107\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 1.\ Trả\ lời\ dựa\ trên\ dữ\ liệu\ nhà\ hàng,\ món\ ăn\ và\ đơn\ hàng\ được\ cung\ cấp\ ở\ trên.}}
+\DoxyCodeLine{00108\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 2.\ Thân\ thiện,\ ngắn\ gọn,\ trả\ lời\ bằng\ tiếng\ Việt.}}
+\DoxyCodeLine{00109\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ 3.\ Nếu\ khách\ hàng\ hỏi\ về\ đơn\ hàng,\ hãy\ kiểm\ tra\ thông\ tin\ đơn\ hàng\ trong\ dữ\ liệu.}}
+\DoxyCodeLine{00110\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00111\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ Câu\ hỏi\ khách\ hàng:\ \{user\_message\}}}
+\DoxyCodeLine{00112\ \textcolor{stringliteral}{\ \ \ \ \ \ \ \ "{}"{}"{}}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{\#\ Chạy\ trong\ thread\ pool\ để\ đảm\ bảo\ non-\/blocking\ cho\ FastAPI}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ await\ anyio.to\_thread.run\_sync(self.\_call\_gemini\_sdk,\ prompt)}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ error\_message\ =\ str(e)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{stringliteral}{"{}QUOTA\_EXCEEDED"{}}\ \textcolor{keywordflow}{in}\ error\_message:}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}⚠️\ Xin\ lỗi,\ hệ\ thống\ AI\ tạm\ thời\ quá\ tải\ do\ đã\ đạt\ giới\ hạn\ sử\ dụng\ miễn\ phí.\ Vui\ lòng\ thử\ lại\ sau\ 1-\/2\ phút\ hoặc\ liên\ hệ\ admin\ để\ nâng\ cấp\ API."{}}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Rất\ tiếc,\ AI\ đang\ gặp\ một\ chút\ trục\ trặc.\ Bạn\ thử\ lại\ sau\ nhé!"{}}}
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classchatbot__service_1_1ChatBotService_a10894ab19417d8055e374edd37f68e1d_cgraph}
+\end{center}
+\end{figure}
+
+
+\label{doc-variable-members}
+\Hypertarget{classchatbot__service_1_1ChatBotService_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classchatbot__service_1_1ChatBotService_a05c348696ed220bc642d56ff6a88b923}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!\_call\_gemini\_sdk@{\_call\_gemini\_sdk}}
+\index{\_call\_gemini\_sdk@{\_call\_gemini\_sdk}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{\_call\_gemini\_sdk}{\_call\_gemini\_sdk}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_a05c348696ed220bc642d56ff6a88b923} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+\_\+call\+\_\+gemini\+\_\+sdk\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00116}{116}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+\Hypertarget{classchatbot__service_1_1ChatBotService_ac1d65d1b5cf74d96685b6891850b83c1}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!client@{client}}
+\index{client@{client}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{client}{client}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_ac1d65d1b5cf74d96685b6891850b83c1} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+client = genai.\+Client(api\+\_\+key=\doxymbox{\hyperlink{namespacechatbot__service_ac0588b4d3c21378d8440cee259c7de4c}{GEMINI\+\_\+\+API\+\_\+\+KEY}})}
+
+
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00028}{28}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+\Hypertarget{classchatbot__service_1_1ChatBotService_a68d15c04c90996239a6bb1e2a36e171b}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!db@{db}}
+\index{db@{db}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{db}{db}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_a68d15c04c90996239a6bb1e2a36e171b} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+db = db}
+
+
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00024}{24}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+\Hypertarget{classchatbot__service_1_1ChatBotService_ac0871012e209c4b50a24b81dcc1a9a86}\index{chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}!user\_id@{user\_id}}
+\index{user\_id@{user\_id}!chatbot\_service.ChatBotService@{chatbot\_service.ChatBotService}}
+\doxysubsubsection{\texorpdfstring{user\_id}{user\_id}}
+{\footnotesize\ttfamily \label{classchatbot__service_1_1ChatBotService_ac0871012e209c4b50a24b81dcc1a9a86} 
+chatbot\+\_\+service.\+Chat\+Bot\+Service.\+user\+\_\+id = user\+\_\+id}
+
+
+
+Definition at line \doxymbox{\hyperlink{chatbot__service_8py_source_l00025}{25}} of file \doxymbox{\hyperlink{chatbot__service_8py_source}{chatbot\+\_\+service.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{chatbot__service_8py}{chatbot\+\_\+service.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,48 @@
+\doxysection{FAQAdapter.\+kt}
+\hypertarget{FAQAdapter_8kt_source}{}\label{FAQAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/FAQAdapter.kt@{app/app/src/main/java/com/example/myapp/adapters/FAQAdapter.kt}}
+\doxymbox{\hyperlink{FAQAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens.adapters}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00008}00008\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00009}00009\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00010}00010\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00011}00011\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00012}00012\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00013}00013\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00014}00014\ import\ com.example.myapp.screens.api.FAQ}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00022}00022\ class\ FAQAdapter(private\ val\ faqs:\ List<FAQ>)\ :}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00023}\doxymbox{\hyperlink{namespaceFAQAdapter}{00023}}\ \ \ \ \ RecyclerView.Adapter<FAQAdapter.FAQViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00031}00031\ \ \ \ \ class\ FAQViewHolder(view:\ View)\ :\ RecyclerView.ViewHolder(view)\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ val\ tvQuestion:\ TextView\ =\ view.findViewById(R.id.tvQuestion)}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ val\ tvAnswer:\ TextView\ =\ view.findViewById(R.id.tvAnswer)}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00043}00043\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ FAQViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ val\ view\ =\ LayoutInflater.from(parent.context)}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ .inflate(R.layout.item\_faq,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ return\ FAQViewHolder(view)}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00056}00056\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ FAQViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ val\ faq\ =\ faqs[position]}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ holder.tvQuestion.text\ =\ faq.question}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ holder.tvAnswer.text\ =\ faq.answer}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Toggle\ answer\ visibility\ when\ clicking\ on\ question}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ holder.itemView.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (holder.tvAnswer.visibility\ ==\ View.VISIBLE)\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ holder.tvAnswer.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ holder.tvAnswer.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00069}00069\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00076}00076\ \ \ \ \ override\ fun\ getItemCount()\ =\ faqs.size}
+\DoxyCodeLine{\Hypertarget{FAQAdapter_8kt_source_l00077}00077\ \}}
+
+\end{DoxyCode}

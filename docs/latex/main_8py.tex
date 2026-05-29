@@ -1,0 +1,99 @@
+\doxysection{backend/\+main.py File Reference}
+\hypertarget{main_8py}{}\label{main_8py}\index{backend/main.py@{backend/main.py}}
+\doxysubsubsection*{Namespaces}
+\begin{DoxyCompactItemize}
+\item 
+namespace \doxymbox{\hyperlink{namespacemain}{main}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacemain_a82f50f8b598afeb472eaf2c23164bb43}{main.\+read\+\_\+root}} ()
+\item 
+\doxymbox{\hyperlink{namespacemain_a31cb91f294b74809e1f4860c9283014a}{main.\+login\+\_\+for\+\_\+access\+\_\+token}} (OAuth2\+Password\+Request\+Form form\+\_\+data=Depends(), Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a2c12d4f20a519da64739f45ba9858278}{main.\+create\+\_\+user}} (\doxymbox{\hyperlink{classschemas_1_1UserCreate}{schemas.\+User\+Create}} user, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a927e0e9f6209aae4b0c1992433a1c619}{main.\+read\+\_\+users\+\_\+me}} (\doxymbox{\hyperlink{classmodels_1_1User}{models.\+User}} current\+\_\+user=Depends(\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{auth.\+get\+\_\+current\+\_\+user}}))
+\item 
+\doxymbox{\hyperlink{namespacemain_a293327b9679288f5aa989fff7fb7201c}{main.\+update\+\_\+device\+\_\+token}} (str token=Form(...), str device\+\_\+type=Form("{}android"{}), \doxymbox{\hyperlink{classmodels_1_1User}{models.\+User}} current\+\_\+user=Depends(\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{auth.\+get\+\_\+current\+\_\+user}}), Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a5dbe0b39257ac06b0c96a48a53a6dc27}{main.\+read\+\_\+users}} (int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ab8336f1460e58b4f49bef85f6cadea35}{main.\+create\+\_\+address}} (\doxymbox{\hyperlink{classschemas_1_1AddressCreate}{schemas.\+Address\+Create}} address, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_abbdd77079941d52435c0570f9c8a20b5}{main.\+read\+\_\+user\+\_\+addresses}} (int user\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ad78896f14fdd7e3eb7a372d4552f71f4}{main.\+update\+\_\+address}} (int address\+\_\+id, \doxymbox{\hyperlink{classschemas_1_1AddressUpdate}{schemas.\+Address\+Update}} address, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ad8877311e2bcfe4bf4f83c2071a73fca}{main.\+read\+\_\+categories}} (Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a13ee4d49b7fef087f6d0daad5ef65021}{main.\+read\+\_\+promotions}} (bool active\+\_\+only=True, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a14bf6aad30096ea2acb38b59a384c892}{main.\+chat\+\_\+with\+\_\+bot}} (Gửi, tin, nhắn, đến, chatbot, AI, và, nhận, phản, hồi, \doxymbox{\hyperlink{classschemas_1_1ChatMessageCreate}{schemas.\+Chat\+Message\+Create}} chat\+\_\+input, Optional\+[int]\+ session\+\_\+id=None, \doxymbox{\hyperlink{classmodels_1_1User}{models.\+User}} current\+\_\+user=Depends(\doxymbox{\hyperlink{namespaceauth_a8230c2f6fada85f1a84f34b4ec662f32}{auth.\+get\+\_\+current\+\_\+user}}), Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a056bac3ae0b771154c21be61cdea6912}{main.\+create\+\_\+restaurant}} (Tạo, nhà, hàng, mới, với, ảnh, upload, lên, Firebase, Storage, str name=Form(...), Optional\+[str]\+ address=Form(None), str phone\+\_\+number=Form(...), str status=Form(...), Optional\+[str]\+ description=Form(None), Optional\+[Upload\+File]\+ image=File(None), Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a6d2abd708109dfadfaf941336acefdc9}{main.\+read\+\_\+restaurants}} (int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_aaaf6c3d8f5c3ca3ccdec1de4131be44d}{main.\+search\+\_\+restaurants\+\_\+by\+\_\+name}} (str name, int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a2965b84838fdf2bf4cc852bd1eb6ff32}{main.\+read\+\_\+restaurant}} (int restaurant\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a6a02bb59473147b6c9bbad83767e4ac1}{main.\+create\+\_\+menu\+\_\+item}} (Tạo, món, ăn, mới, với, ảnh, upload, lên, Firebase, Storage, str name=Form(...), Decimal price=Form(...), Optional\+[str]\+ description=Form(None), int restaurantid=Form(...), int categoryid=Form(...), Optional\+[Upload\+File]\+ image=File(None), Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a6cf1c9ef970859a6956baea1b2059048}{main.\+build\+\_\+menuitem\+\_\+with\+\_\+reviews}} (\doxymbox{\hyperlink{classmodels_1_1MenuItem}{models.\+Menu\+Item}} item, Session db)
+\item 
+\doxymbox{\hyperlink{namespacemain_acc8af54782c29b2ddf07839a610e1d88}{main.\+read\+\_\+all\+\_\+menu\+\_\+items}} (int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a5cbbe9967b64a9c9ac7947b8f8910791}{main.\+read\+\_\+restaurant\+\_\+menu}} (int restaurant\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a0be48579aa86eb7b0fa96ce9b096bf57}{main.\+search\+\_\+menu\+\_\+items\+\_\+by\+\_\+name}} (str name, int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a3266eba28f90daf8ebf7b423324df72c}{main.\+search\+\_\+menu\+\_\+items\+\_\+by\+\_\+category\+\_\+name}} (str category\+\_\+name, int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ace5b8f6be7d4c3e3a80d715f3302035e}{main.\+read\+\_\+menu\+\_\+item\+\_\+detail}} (int menu\+\_\+item\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_aa7b1857264f2dfb44209d06cf685d657}{main.\+vnpay\+\_\+return}} (Request request, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ae1d98f24e58fd2a8402e9ce407977dca}{main.\+create\+\_\+payment}} (Tạo, URL, thanh, toán, VNPay, cho, đơn, hàng, str order\+\_\+id, int amount, Request request)
+\item 
+\doxymbox{\hyperlink{namespacemain_a50afb6444c8640434e216f314a7fd65d}{main.\+create\+\_\+order}} (\doxymbox{\hyperlink{classschemas_1_1OrderCreate}{schemas.\+Order\+Create}} order, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ad9799e548b6b13e78c030458bd16b176}{main.\+read\+\_\+user\+\_\+orders}} (int user\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ae91d057d4a3671666b759f0a84f0ae3e}{main.\+read\+\_\+order\+\_\+detail}} (int order\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a36615c74c80aa16f8c2aa9198ce6be06}{main.\+update\+\_\+order\+\_\+status}} (int order\+\_\+id, \doxymbox{\hyperlink{classschemas_1_1OrderStatusUpdate}{schemas.\+Order\+Status\+Update}} payload, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a160fd3d94d73b59c4def332d05ce3016}{main.\+create\+\_\+review}} (\doxymbox{\hyperlink{classschemas_1_1ReviewCreate}{schemas.\+Review\+Create}} review, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ace8d2e8041648c1711e982efd9900791}{main.\+read\+\_\+user\+\_\+profile\+\_\+summary}} (int user\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ab7b4a0fd7bd711f597de2724e9d12411}{main.\+read\+\_\+faqs}} (int skip=0, int limit=100, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_a6f6a1b266d30959fa9a9bbe4b071d022}{main.\+read\+\_\+user\+\_\+notifications}} (int user\+\_\+id, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_aa99080a534ffe575d7f2313c41778fcc}{main.\+create\+\_\+notification}} (\doxymbox{\hyperlink{classschemas_1_1NotificationCreate}{schemas.\+Notification\+Create}} notification, Session db=Depends(get\+\_\+db))
+\item 
+\doxymbox{\hyperlink{namespacemain_ad7c2f881ac8ee3b0f029b5de0c453982}{main.\+mark\+\_\+notification\+\_\+as\+\_\+read}} (int notification\+\_\+id, Session db=Depends(get\+\_\+db))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacemain_a84490d23fa7a66ba4fbab70b4a53b6e5}{main.\+bind}}
+\item 
+\doxymbox{\hyperlink{namespacemain_a5fa94f0581009434c7a63791944d6ff4}{main.\+app}} = Fast\+API(title="{}Đặt Món Food Delivery API"{})
+\item 
+\doxymbox{\hyperlink{namespacemain_ab277227e15a80c8a674b8540cc01f33f}{main.\+allow\+\_\+origins}}
+\item 
+\doxymbox{\hyperlink{namespacemain_a723efd63c798243e87a130a80fcdafc0}{main.\+allow\+\_\+credentials}}
+\item 
+\doxymbox{\hyperlink{namespacemain_a1b7923d71410345d3dbff8017b7e6f0d}{main.\+allow\+\_\+methods}}
+\item 
+\doxymbox{\hyperlink{namespacemain_ab58bda9b3875379c76aa7d3bd977b5bd}{main.\+allow\+\_\+headers}}
+\item 
+\doxymbox{\hyperlink{namespacemain_a0cf58d9b4a444874a8cf80fdf162b0fb}{main.\+host}}
+\item 
+\doxymbox{\hyperlink{namespacemain_a12fac67ac230690557ab76d3faa71d8c}{main.\+port}}
+\end{DoxyCompactItemize}

@@ -1,0 +1,35 @@
+\doxysection{detail\+\_\+support.\+kt}
+\hypertarget{detail__support_8kt_source}{}\label{detail__support_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/detail\_support.kt@{app/app/src/main/java/com/example/myapp/screens/detail\_support.kt}}
+\doxymbox{\hyperlink{detail__support_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00014}00014\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00015}00015\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00016}00016\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00017}00017\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00025}00025\ class\ detail\_support\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00031}\doxymbox{\hyperlink{namespaceAppCompatActivity_ae9bfeed4a874021ba5221b9d183a2606}{00031}}\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00032}00032\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ setContentView(R.layout.detailsupport)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00038}00038\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước\ (start)}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btn\_chatbot}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00042}00042\ \ \ \ \ \ \ \ \ val\ btnchatbot:\ View\ =\ findViewById(R.id.btnChatbot)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ btnchatbot.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00044}00044\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ chatbot::class.java)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00047}00047\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{detail__support_8kt_source_l00048}00048\ \}}
+
+\end{DoxyCode}

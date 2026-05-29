@@ -1,0 +1,19 @@
+var searchData=
+[
+  ['name_0',['name',['../classmodels_1_1Category.html#a99fc6d240106fd264ddeff6dd1e24370',1,'models.Category.name'],['../classmodels_1_1User.html#a909a3d717846cab5cda482157711975f',1,'models.User.name'],['../classmodels_1_1Shipper.html#a6bef903983e00e269fe15269c0e3975e',1,'models.Shipper.name'],['../classmodels_1_1Restaurant.html#aa70124f8abbabc271deddb5472e626d8',1,'models.Restaurant.name'],['../classmodels_1_1MenuItem.html#a89f5ef216d9406bb34661f58d9bf02e1',1,'models.MenuItem.name']]],
+  ['nay_1',['nay',['../namespaceAppCompatActivity.html#a76c5e0cf5be49f9939b7fc01c2f44042',1,'AppCompatActivity']]],
+  ['networkconfig_2',['NetworkConfig',['../namespaceNetworkConfig.html',1,'']]],
+  ['networkconfig_2ekt_3',['NetworkConfig.kt',['../NetworkConfig_8kt.html',1,'']]],
+  ['notification_4',['Notification',['../classmodels_1_1Notification.html',1,'models.Notification'],['../classschemas_1_1Notification.html',1,'schemas.Notification']]],
+  ['notification_2ekt_5',['notification.kt',['../notification_8kt.html',1,'']]],
+  ['notification_5fservice_6',['notification_service',['../namespacenotification__service.html',1,'']]],
+  ['notification_5fservice_2epy_7',['notification_service.py',['../notification__service_8py.html',1,'']]],
+  ['notificationadapter_8',['NotificationAdapter',['../namespaceNotificationAdapter.html',1,'']]],
+  ['notificationadapter_2ekt_9',['NotificationAdapter.kt',['../NotificationAdapter_8kt.html',1,'']]],
+  ['notificationadapter_3a_3anotificationviewholder_10',['NotificationViewHolder',['../namespaceNotificationAdapter_1_1NotificationViewHolder.html',1,'NotificationAdapter']]],
+  ['notificationbase_11',['NotificationBase',['../classschemas_1_1NotificationBase.html',1,'schemas']]],
+  ['notificationcreate_12',['NotificationCreate',['../classschemas_1_1NotificationCreate.html',1,'schemas']]],
+  ['notifications_13',['notifications',['../classmodels_1_1User.html#a15e7c25f8c6e1b48f5f02ea2f5365c5d',1,'models.User.notifications'],['../classmodels_1_1Orders.html#a4d79b3fd28551dd7dac91e256f03e3cd',1,'models.Orders.notifications'],['../classmodels_1_1ChatSession.html#a6b089fb29b4f210f17d6a01a246dc229',1,'models.ChatSession.notifications']]],
+  ['notifs_14',['notifs',['../namespacecheck__db.html#a37f25b0e860b2c444cb73cab314b6bac',1,'check_db']]],
+  ['notify_5fuser_15',['notify_user',['../namespacenotification__service.html#acd13d6252bcf90c70d06efbe0ccfafeb',1,'notification_service']]]
+];

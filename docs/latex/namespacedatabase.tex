@@ -1,0 +1,98 @@
+\doxysection{database Namespace Reference}
+\hypertarget{namespacedatabase}{}\label{namespacedatabase}\index{database@{database}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{get\+\_\+db}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL}} = os.\+getenv("{}DATABASE\+\_\+\+URL"{}, "{}postgresql:\+/\+/\+postgres:\+password@localhost/\+food\+\_\+delivery"{})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{engine}} = create\+\_\+engine(\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL}})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a}{Session\+Local}} = sessionmaker(autocommit=False, autoflush=False, bind=\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{engine}})
+\item 
+\doxymbox{\hyperlink{namespacedatabase_a0a351bcdc86bdc97cd3c88759443bb4a}{Base}} = declarative\+\_\+base()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module: database.py
+
+Cấu hình kết nối SQLAlchemy và session cho cơ sở dữ liệu PostgreSQL.
+Cung cấp engine, SessionLocal và hàm get_db() dependency cho FastAPI.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacedatabase_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacedatabase_a3614943c2547003f324634c4d756538a}\index{database@{database}!get\_db@{get\_db}}
+\index{get\_db@{get\_db}!database@{database}}
+\doxysubsubsection{\texorpdfstring{get\_db()}{get\_db()}}
+{\footnotesize\ttfamily \label{namespacedatabase_a3614943c2547003f324634c4d756538a} 
+database.\+get\+\_\+db (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}FastAPI dependency: tạo session database cho mỗi request, tự động đóng sau khi hoàn tất.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{database_8py_source_l00027}{27}} of file \doxymbox{\hyperlink{database_8py_source}{database.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00027\ \textcolor{keyword}{def\ }get\_db():}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}FastAPI\ dependency:\ tạo\ session\ database\ cho\ mỗi\ request,\ tự\ động\ đóng\ sau\ khi\ hoàn\ tất."{}"{}"{}}}
+\DoxyCodeLine{00029\ \ \ \ \ db\ =\ SessionLocal()}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{yield}\ db}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ db.close()}
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{namespacedatabase_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacedatabase_a0a351bcdc86bdc97cd3c88759443bb4a}\index{database@{database}!Base@{Base}}
+\index{Base@{Base}!database@{database}}
+\doxysubsubsection{\texorpdfstring{Base}{Base}}
+{\footnotesize\ttfamily \label{namespacedatabase_a0a351bcdc86bdc97cd3c88759443bb4a} 
+database.\+Base = declarative\+\_\+base()}
+
+
+
+Definition at line \doxymbox{\hyperlink{database_8py_source_l00025}{25}} of file \doxymbox{\hyperlink{database_8py_source}{database.\+py}}.
+
+\Hypertarget{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}\index{database@{database}!engine@{engine}}
+\index{engine@{engine}!database@{database}}
+\doxysubsubsection{\texorpdfstring{engine}{engine}}
+{\footnotesize\ttfamily \label{namespacedatabase_a63bc446125e29d43241b8cf215258bcc} 
+database.\+engine = create\+\_\+engine(\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL}})}
+
+
+
+Definition at line \doxymbox{\hyperlink{database_8py_source_l00019}{19}} of file \doxymbox{\hyperlink{database_8py_source}{database.\+py}}.
+
+\Hypertarget{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a}\index{database@{database}!SessionLocal@{SessionLocal}}
+\index{SessionLocal@{SessionLocal}!database@{database}}
+\doxysubsubsection{\texorpdfstring{SessionLocal}{SessionLocal}}
+{\footnotesize\ttfamily \label{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a} 
+database.\+Session\+Local = sessionmaker(autocommit=False, autoflush=False, bind=\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{engine}})}
+
+
+
+Definition at line \doxymbox{\hyperlink{database_8py_source_l00022}{22}} of file \doxymbox{\hyperlink{database_8py_source}{database.\+py}}.
+
+\Hypertarget{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}\index{database@{database}!SQLALCHEMY\_DATABASE\_URL@{SQLALCHEMY\_DATABASE\_URL}}
+\index{SQLALCHEMY\_DATABASE\_URL@{SQLALCHEMY\_DATABASE\_URL}!database@{database}}
+\doxysubsubsection{\texorpdfstring{SQLALCHEMY\_DATABASE\_URL}{SQLALCHEMY\_DATABASE\_URL}}
+{\footnotesize\ttfamily \label{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74} 
+database.\+SQLALCHEMY\+\_\+\+DATABASE\+\_\+\+URL = os.\+getenv("{}DATABASE\+\_\+\+URL"{}, "{}postgresql:\+/\+/\+postgres:\+password@localhost/\+food\+\_\+delivery"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{database_8py_source_l00016}{16}} of file \doxymbox{\hyperlink{database_8py_source}{database.\+py}}.
+

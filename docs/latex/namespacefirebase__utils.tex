@@ -1,0 +1,154 @@
+\doxysection{firebase\+\_\+utils Namespace Reference}
+\hypertarget{namespacefirebase__utils}{}\label{namespacefirebase__utils}\index{firebase\_utils@{firebase\_utils}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0}{init\+\_\+firebase}} ()
+\item 
+\doxymbox{\hyperlink{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5}{\+\_\+upload\+\_\+image\+\_\+sync}} (file\+\_\+content, filename)
+\item 
+\doxymbox{\hyperlink{namespacefirebase__utils_a27f0e43e662958dd3304f4ca429a8a5f}{upload\+\_\+image}} (file\+\_\+content, filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacefirebase__utils_ad24b24b932e2e1a469ef52f24555e667}{FIREBASE\+\_\+\+CREDENTIALS\+\_\+\+PATH}} = os.\+getenv("{}FIREBASE\+\_\+\+CREDENTIALS\+\_\+\+PATH"{})
+\item 
+\doxymbox{\hyperlink{namespacefirebase__utils_a2d019c8c3b67d802528ffc19fdd84db4}{FIREBASE\+\_\+\+STORAGE\+\_\+\+BUCKET}} = os.\+getenv("{}FIREBASE\+\_\+\+STORAGE\+\_\+\+BUCKET"{})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module: firebase_utils.py
+
+Khởi tạo Firebase Admin SDK và upload ảnh lên Firebase Storage.
+Hỗ trợ upload bất đồng bộ qua anyio để không chặn event loop.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacefirebase__utils_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5}\index{firebase\_utils@{firebase\_utils}!\_upload\_image\_sync@{\_upload\_image\_sync}}
+\index{\_upload\_image\_sync@{\_upload\_image\_sync}!firebase\_utils@{firebase\_utils}}
+\doxysubsubsection{\texorpdfstring{\_upload\_image\_sync()}{\_upload\_image\_sync()}}
+{\footnotesize\ttfamily \label{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5} 
+firebase\+\_\+utils.\+\_\+upload\+\_\+image\+\_\+sync (\begin{DoxyParamCaption}\item[{}]{file\+\_\+content}{, }\item[{}]{filename}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyVerb}Upload ảnh đồng bộ lên Firebase Storage, trả về URL công khai.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{firebase__utils_8py_source_l00038}{38}} of file \doxymbox{\hyperlink{firebase__utils_8py_source}{firebase\+\_\+utils.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00038\ \textcolor{keyword}{def\ }\_upload\_image\_sync(file\_content,\ filename):}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Upload\ ảnh\ đồng\ bộ\ lên\ Firebase\ Storage,\ trả\ về\ URL\ công\ khai."{}"{}"{}}}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ firebase\_admin.\_apps:}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ init\_firebase():}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ bucket\ =\ storage.bucket()}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ext\ =\ filename.split(\textcolor{stringliteral}{'.'})[-\/1]}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ unique\_filename\ =\ f\textcolor{stringliteral}{"{}images/\{uuid.uuid4()\}.\{ext\}"{}}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ blob\ =\ bucket.blob(unique\_filename)}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ blob.upload\_from\_string(file\_content,\ content\_type=f\textcolor{stringliteral}{"{}image/\{ext\}"{}})}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ blob.make\_public()}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ blob.public\_url}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ uploading\ image:\ \{e\}"{}})}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{00055\ }
+
+\end{DoxyCode}
+Here is the call graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0}\index{firebase\_utils@{firebase\_utils}!init\_firebase@{init\_firebase}}
+\index{init\_firebase@{init\_firebase}!firebase\_utils@{firebase\_utils}}
+\doxysubsubsection{\texorpdfstring{init\_firebase()}{init\_firebase()}}
+{\footnotesize\ttfamily \label{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0} 
+firebase\+\_\+utils.\+init\+\_\+firebase (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Khởi tạo Firebase Admin SDK với credentials từ file service account.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{firebase__utils_8py_source_l00022}{22}} of file \doxymbox{\hyperlink{firebase__utils_8py_source}{firebase\+\_\+utils.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00022\ \textcolor{keyword}{def\ }init\_firebase():}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Khởi\ tạo\ Firebase\ Admin\ SDK\ với\ credentials\ từ\ file\ service\ account."{}"{}"{}}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ FIREBASE\_CREDENTIALS\_PATH\ \textcolor{keywordflow}{or}\ \textcolor{keywordflow}{not}\ os.path.exists(FIREBASE\_CREDENTIALS\_PATH):}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Warning:\ Firebase\ credentials\ not\ found\ at\ \{FIREBASE\_CREDENTIALS\_PATH\}.\ Image\ upload\ will\ fail."{}})}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ cred\ =\ credentials.Certificate(FIREBASE\_CREDENTIALS\_PATH)}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ firebase\_admin.initialize\_app(cred,\ \{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'storageBucket'}:\ FIREBASE\_STORAGE\_BUCKET}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ initializing\ Firebase:\ \{e\}"{}})}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{00037\ }
+
+\end{DoxyCode}
+Here is the caller graph for this function:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=316pt]{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{namespacefirebase__utils_a27f0e43e662958dd3304f4ca429a8a5f}\index{firebase\_utils@{firebase\_utils}!upload\_image@{upload\_image}}
+\index{upload\_image@{upload\_image}!firebase\_utils@{firebase\_utils}}
+\doxysubsubsection{\texorpdfstring{upload\_image()}{upload\_image()}}
+{\footnotesize\ttfamily \label{namespacefirebase__utils_a27f0e43e662958dd3304f4ca429a8a5f} 
+firebase\+\_\+utils.\+upload\+\_\+image (\begin{DoxyParamCaption}\item[{}]{file\+\_\+content}{, }\item[{}]{filename}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Bản async của hàm upload ảnh, không gây nghẽn event loop.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{firebase__utils_8py_source_l00056}{56}} of file \doxymbox{\hyperlink{firebase__utils_8py_source}{firebase\+\_\+utils.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00056\ \textcolor{keyword}{async\ def\ }upload\_image(file\_content,\ filename):}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Bản\ async\ của\ hàm\ upload\ ảnh,\ không\ gây\ nghẽn\ event\ loop."{}"{}"{}}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ await\ anyio.to\_thread.run\_sync(\_upload\_image\_sync,\ file\_content,\ filename)}
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{namespacefirebase__utils_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacefirebase__utils_ad24b24b932e2e1a469ef52f24555e667}\index{firebase\_utils@{firebase\_utils}!FIREBASE\_CREDENTIALS\_PATH@{FIREBASE\_CREDENTIALS\_PATH}}
+\index{FIREBASE\_CREDENTIALS\_PATH@{FIREBASE\_CREDENTIALS\_PATH}!firebase\_utils@{firebase\_utils}}
+\doxysubsubsection{\texorpdfstring{FIREBASE\_CREDENTIALS\_PATH}{FIREBASE\_CREDENTIALS\_PATH}}
+{\footnotesize\ttfamily \label{namespacefirebase__utils_ad24b24b932e2e1a469ef52f24555e667} 
+firebase\+\_\+utils.\+FIREBASE\+\_\+\+CREDENTIALS\+\_\+\+PATH = os.\+getenv("{}FIREBASE\+\_\+\+CREDENTIALS\+\_\+\+PATH"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{firebase__utils_8py_source_l00018}{18}} of file \doxymbox{\hyperlink{firebase__utils_8py_source}{firebase\+\_\+utils.\+py}}.
+
+\Hypertarget{namespacefirebase__utils_a2d019c8c3b67d802528ffc19fdd84db4}\index{firebase\_utils@{firebase\_utils}!FIREBASE\_STORAGE\_BUCKET@{FIREBASE\_STORAGE\_BUCKET}}
+\index{FIREBASE\_STORAGE\_BUCKET@{FIREBASE\_STORAGE\_BUCKET}!firebase\_utils@{firebase\_utils}}
+\doxysubsubsection{\texorpdfstring{FIREBASE\_STORAGE\_BUCKET}{FIREBASE\_STORAGE\_BUCKET}}
+{\footnotesize\ttfamily \label{namespacefirebase__utils_a2d019c8c3b67d802528ffc19fdd84db4} 
+firebase\+\_\+utils.\+FIREBASE\+\_\+\+STORAGE\+\_\+\+BUCKET = os.\+getenv("{}FIREBASE\+\_\+\+STORAGE\+\_\+\+BUCKET"{})}
+
+
+
+Definition at line \doxymbox{\hyperlink{firebase__utils_8py_source_l00020}{20}} of file \doxymbox{\hyperlink{firebase__utils_8py_source}{firebase\+\_\+utils.\+py}}.
+

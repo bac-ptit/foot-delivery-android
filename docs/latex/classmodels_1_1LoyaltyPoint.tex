@@ -1,0 +1,142 @@
+\doxysection{models.\+Loyalty\+Point Class Reference}
+\hypertarget{classmodels_1_1LoyaltyPoint}{}\label{classmodels_1_1LoyaltyPoint}\index{models.LoyaltyPoint@{models.LoyaltyPoint}}
+
+
+Inheritance diagram for models.\+Loyalty\+Point:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classmodels_1_1LoyaltyPoint__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Loyalty\+Point:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{classmodels_1_1LoyaltyPoint__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a39ec588d098afa1e8acc595387a3003f}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a8c14089c76c0bb9db5e144b7b6819f4d}{points}} = Column(Integer, default=0)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a9d913e3743657fe248d0911d6030aad8}{updatedat}} = Column(Date)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_af6378a278c74577738a3afc982f6e2c2}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a68abf502a00e7f464178f4fe8509f8f9}{menuitemid}} = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a561ca554c6319d2f00d11da32121644f}{user}} = relationship("{}User"{}, back\+\_\+populates="{}loyalty\+\_\+points"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_a488e32f9f3f1562b5aa4db6720e26b7a}{menu\+\_\+item}} = relationship("{}Menu\+Item"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1LoyaltyPoint_ae4db57ab80c8a6dd510641409f03d8f6}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}loyaltypoint"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng loaltypoint, điểm tích lũy thành viên.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00266}{266}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1LoyaltyPoint_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1LoyaltyPoint_ae4db57ab80c8a6dd510641409f03d8f6}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_ae4db57ab80c8a6dd510641409f03d8f6} 
+str models.\+Loyalty\+Point.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}loyaltypoint"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00268}{268}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a39ec588d098afa1e8acc595387a3003f}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!id@{id}}
+\index{id@{id}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a39ec588d098afa1e8acc595387a3003f} 
+models.\+Loyalty\+Point.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00269}{269}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a488e32f9f3f1562b5aa4db6720e26b7a}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!menu\_item@{menu\_item}}
+\index{menu\_item@{menu\_item}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{menu\_item}{menu\_item}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a488e32f9f3f1562b5aa4db6720e26b7a} 
+models.\+Loyalty\+Point.\+menu\+\_\+item = relationship("{}Menu\+Item"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00276}{276}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a68abf502a00e7f464178f4fe8509f8f9}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!menuitemid@{menuitemid}}
+\index{menuitemid@{menuitemid}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{menuitemid}{menuitemid}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a68abf502a00e7f464178f4fe8509f8f9} 
+models.\+Loyalty\+Point.\+menuitemid = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00273}{273}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a8c14089c76c0bb9db5e144b7b6819f4d}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!points@{points}}
+\index{points@{points}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{points}{points}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a8c14089c76c0bb9db5e144b7b6819f4d} 
+models.\+Loyalty\+Point.\+points = Column(Integer, default=0)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00270}{270}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a9d913e3743657fe248d0911d6030aad8}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!updatedat@{updatedat}}
+\index{updatedat@{updatedat}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{updatedat}{updatedat}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a9d913e3743657fe248d0911d6030aad8} 
+models.\+Loyalty\+Point.\+updatedat = Column(Date)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00271}{271}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_a561ca554c6319d2f00d11da32121644f}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!user@{user}}
+\index{user@{user}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_a561ca554c6319d2f00d11da32121644f} 
+models.\+Loyalty\+Point.\+user = relationship("{}User"{}, back\+\_\+populates="{}loyalty\+\_\+points"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00275}{275}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1LoyaltyPoint_af6378a278c74577738a3afc982f6e2c2}\index{models.LoyaltyPoint@{models.LoyaltyPoint}!userid@{userid}}
+\index{userid@{userid}!models.LoyaltyPoint@{models.LoyaltyPoint}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1LoyaltyPoint_af6378a278c74577738a3afc982f6e2c2} 
+models.\+Loyalty\+Point.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00272}{272}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

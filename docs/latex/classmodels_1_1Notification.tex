@@ -1,0 +1,202 @@
+\doxysection{models.\+Notification Class Reference}
+\hypertarget{classmodels_1_1Notification}{}\label{classmodels_1_1Notification}\index{models.Notification@{models.Notification}}
+
+
+Inheritance diagram for models.\+Notification:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classmodels_1_1Notification__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Notification:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=180pt]{classmodels_1_1Notification__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a4975ff791dfbfebc15868698deba2631}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a07814ea05ee2c7e115342011f9c0cb7d}{title}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_ab3d46d12c626065719f93e0461b1a911}{type}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_ae9e836a229eb234750ef321c03e1beb5}{content}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a48813318d611abde4ab9764340e854b8}{isread}} = Column(Boolean, default=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a7c89606f581f356fccc489eba4c3b759}{createdat}} = Column(Date\+Time, server\+\_\+default=func.\+now())
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_aacd27d38668ddb4cac349d883fa4db02}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_aa35ee37116a4693d150e76fde2b421e4}{orderid}} = Column(Integer, Foreign\+Key("{}orders.\+id"{}), nullable=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a26b124e12c5ff53df6aa582bc28fa0ce}{sessionid}} = Column(Integer, Foreign\+Key("{}chatsession.\+id"{}), nullable=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a000bf4544041444d84a7b9752703060a}{user}} = relationship("{}User"{}, back\+\_\+populates="{}notifications"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_af94400ad1c0c4be842560e36ebbbf597}{order}} = relationship("{}Orders"{}, back\+\_\+populates="{}notifications"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Notification_a5a88f78de222ab00a5b6d816d2cccb80}{session}} = relationship("{}Chat\+Session"{}, back\+\_\+populates="{}notifications"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Notification_a9bb2a1f3bfce19a106cca2d74f25b848}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}notification"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng notification, thông báo đẩy đến người dùng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00193}{193}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Notification_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Notification_a9bb2a1f3bfce19a106cca2d74f25b848}\index{models.Notification@{models.Notification}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a9bb2a1f3bfce19a106cca2d74f25b848} 
+str models.\+Notification.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}notification"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00195}{195}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_ae9e836a229eb234750ef321c03e1beb5}\index{models.Notification@{models.Notification}!content@{content}}
+\index{content@{content}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{content}{content}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_ae9e836a229eb234750ef321c03e1beb5} 
+models.\+Notification.\+content = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00199}{199}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a7c89606f581f356fccc489eba4c3b759}\index{models.Notification@{models.Notification}!createdat@{createdat}}
+\index{createdat@{createdat}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{createdat}{createdat}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a7c89606f581f356fccc489eba4c3b759} 
+models.\+Notification.\+createdat = Column(Date\+Time, server\+\_\+default=func.\+now())\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00201}{201}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a4975ff791dfbfebc15868698deba2631}\index{models.Notification@{models.Notification}!id@{id}}
+\index{id@{id}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a4975ff791dfbfebc15868698deba2631} 
+models.\+Notification.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00196}{196}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a48813318d611abde4ab9764340e854b8}\index{models.Notification@{models.Notification}!isread@{isread}}
+\index{isread@{isread}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{isread}{isread}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a48813318d611abde4ab9764340e854b8} 
+models.\+Notification.\+isread = Column(Boolean, default=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00200}{200}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_af94400ad1c0c4be842560e36ebbbf597}\index{models.Notification@{models.Notification}!order@{order}}
+\index{order@{order}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_af94400ad1c0c4be842560e36ebbbf597} 
+models.\+Notification.\+order = relationship("{}Orders"{}, back\+\_\+populates="{}notifications"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00207}{207}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_aa35ee37116a4693d150e76fde2b421e4}\index{models.Notification@{models.Notification}!orderid@{orderid}}
+\index{orderid@{orderid}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{orderid}{orderid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_aa35ee37116a4693d150e76fde2b421e4} 
+models.\+Notification.\+orderid = Column(Integer, Foreign\+Key("{}orders.\+id"{}), nullable=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00203}{203}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a5a88f78de222ab00a5b6d816d2cccb80}\index{models.Notification@{models.Notification}!session@{session}}
+\index{session@{session}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{session}{session}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a5a88f78de222ab00a5b6d816d2cccb80} 
+models.\+Notification.\+session = relationship("{}Chat\+Session"{}, back\+\_\+populates="{}notifications"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00208}{208}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a26b124e12c5ff53df6aa582bc28fa0ce}\index{models.Notification@{models.Notification}!sessionid@{sessionid}}
+\index{sessionid@{sessionid}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{sessionid}{sessionid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a26b124e12c5ff53df6aa582bc28fa0ce} 
+models.\+Notification.\+sessionid = Column(Integer, Foreign\+Key("{}chatsession.\+id"{}), nullable=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00204}{204}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a07814ea05ee2c7e115342011f9c0cb7d}\index{models.Notification@{models.Notification}!title@{title}}
+\index{title@{title}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a07814ea05ee2c7e115342011f9c0cb7d} 
+models.\+Notification.\+title = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00197}{197}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_ab3d46d12c626065719f93e0461b1a911}\index{models.Notification@{models.Notification}!type@{type}}
+\index{type@{type}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_ab3d46d12c626065719f93e0461b1a911} 
+models.\+Notification.\+type = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00198}{198}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_a000bf4544041444d84a7b9752703060a}\index{models.Notification@{models.Notification}!user@{user}}
+\index{user@{user}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_a000bf4544041444d84a7b9752703060a} 
+models.\+Notification.\+user = relationship("{}User"{}, back\+\_\+populates="{}notifications"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00206}{206}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Notification_aacd27d38668ddb4cac349d883fa4db02}\index{models.Notification@{models.Notification}!userid@{userid}}
+\index{userid@{userid}!models.Notification@{models.Notification}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Notification_aacd27d38668ddb4cac349d883fa4db02} 
+models.\+Notification.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00202}{202}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

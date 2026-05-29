@@ -1,0 +1,118 @@
+\doxysection{models.\+Category Class Reference}
+\hypertarget{classmodels_1_1Category}{}\label{classmodels_1_1Category}\index{models.Category@{models.Category}}
+
+
+Inheritance diagram for models.\+Category:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classmodels_1_1Category__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Category:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classmodels_1_1Category__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Category_a4b1a15ea5ee9d4bd1c449b2727f4b3dc}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Category_a99fc6d240106fd264ddeff6dd1e24370}{name}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Category_a3fc23742b34e067df3c4162ee8684c52}{type}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Category_a4a1f931f037bda5a355e0867158eaa9f}{description}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Category_aa95c0ab8349b8d66869821e849e5383c}{menu\+\_\+items}} = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}category"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Category_aaba669ff02c5c8cf1c78cc0e32c5078b}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}category"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng category, phân loại món ăn.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00012}{12}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Category_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Category_aaba669ff02c5c8cf1c78cc0e32c5078b}\index{models.Category@{models.Category}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_aaba669ff02c5c8cf1c78cc0e32c5078b} 
+str models.\+Category.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}category"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00014}{14}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Category_a4a1f931f037bda5a355e0867158eaa9f}\index{models.Category@{models.Category}!description@{description}}
+\index{description@{description}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_a4a1f931f037bda5a355e0867158eaa9f} 
+models.\+Category.\+description = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00018}{18}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Category_a4b1a15ea5ee9d4bd1c449b2727f4b3dc}\index{models.Category@{models.Category}!id@{id}}
+\index{id@{id}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_a4b1a15ea5ee9d4bd1c449b2727f4b3dc} 
+models.\+Category.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00015}{15}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Category_aa95c0ab8349b8d66869821e849e5383c}\index{models.Category@{models.Category}!menu\_items@{menu\_items}}
+\index{menu\_items@{menu\_items}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{menu\_items}{menu\_items}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_aa95c0ab8349b8d66869821e849e5383c} 
+models.\+Category.\+menu\+\_\+items = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}category"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00019}{19}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Category_a99fc6d240106fd264ddeff6dd1e24370}\index{models.Category@{models.Category}!name@{name}}
+\index{name@{name}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_a99fc6d240106fd264ddeff6dd1e24370} 
+models.\+Category.\+name = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00016}{16}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Category_a3fc23742b34e067df3c4162ee8684c52}\index{models.Category@{models.Category}!type@{type}}
+\index{type@{type}!models.Category@{models.Category}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily \label{classmodels_1_1Category_a3fc23742b34e067df3c4162ee8684c52} 
+models.\+Category.\+type = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00017}{17}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

@@ -1,0 +1,59 @@
+\doxysection{Cart\+Item\+Adapter.\+kt}
+\hypertarget{CartItemAdapter_8kt_source}{}\label{CartItemAdapter_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/CartItemAdapter.kt@{app/app/src/main/java/com/example/myapp/screens/CartItemAdapter.kt}}
+\doxymbox{\hyperlink{CartItemAdapter_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00001}\doxymbox{\hyperlink{namespaceCartItemAdapter_1_1CartItemViewHolder_a981e238e204f3499b6eaf3c72c48e8c1}{00001}}\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00010}00010\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00011}00011\ import\ android.view.ViewGroup}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00012}00012\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00013}00013\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00014}00014\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00015}00015\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00016}00016\ import\ com.squareup.picasso.Picasso}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00017}00017\ import\ java.text.NumberFormat}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00018}00018\ import\ java.util.Locale}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00028}\doxymbox{\hyperlink{namespaceCartItemAdapter}{00028}}\ class\ CartItemAdapter(private\ val\ items:\ List<CartItem>)\ :\ RecyclerView.Adapter<CartItemAdapter.CartItemViewHolder>()\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00029}00029\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00035}00035\ \ \ \ \ class\ CartItemViewHolder(itemView:\ android.view.View)\ :\ RecyclerView.ViewHolder(itemView)\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00037}00037\ \ \ \ \ \ \ \ \ private\ val\ imgCartItem:\ ImageView\ =\ itemView.findViewById(R.id.imgCartItem)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00039}00039\ \ \ \ \ \ \ \ \ private\ val\ tvCartItemName:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemName)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00041}00041\ \ \ \ \ \ \ \ \ private\ val\ tvCartItemQty:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemQty)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00043}00043\ \ \ \ \ \ \ \ \ private\ val\ tvCartItemPrice:\ TextView\ =\ itemView.findViewById(R.id.tvCartItemPrice)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00044}00044\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ fun\ bind(cartItem:\ CartItem)\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemName.text\ =\ cartItem.name}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemQty.text\ =\ "{}SL:\ \$\{cartItem.qty\}"{}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale("{}vi"{},\ "{}VN"{}))}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ val\ totalPrice\ =\ cartItem.qty\ *\ cartItem.price}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ tvCartItemPrice.text\ =\ "{}\$\{fmt.format(totalPrice)\}đ"{}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!cartItem.imageUrl.isNullOrEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Picasso.get()}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .load(cartItem.imageUrl)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .placeholder(R.drawable.placeholder\_loading)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .error(R.drawable.pngwing)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .into(imgCartItem)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ imgCartItem.setImageResource(R.drawable.pngwing)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00070}00070\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00079}00079\ \ \ \ \ override\ fun\ onCreateViewHolder(parent:\ ViewGroup,\ viewType:\ Int):\ CartItemViewHolder\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ val\ itemView\ =\ LayoutInflater.from(parent.context)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ .inflate(R.layout.order\_cart\_item,\ parent,\ false)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ return\ CartItemViewHolder(itemView)}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00083}00083\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00084}00084\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00091}00091\ \ \ \ \ override\ fun\ onBindViewHolder(holder:\ CartItemViewHolder,\ position:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ holder.bind(items[position])}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00093}00093\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00100}00100\ \ \ \ \ override\ fun\ getItemCount():\ Int\ =\ items.size}
+\DoxyCodeLine{\Hypertarget{CartItemAdapter_8kt_source_l00101}00101\ \}}
+
+\end{DoxyCode}

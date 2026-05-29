@@ -1,0 +1,118 @@
+\doxysection{models.\+Payment Class Reference}
+\hypertarget{classmodels_1_1Payment}{}\label{classmodels_1_1Payment}\index{models.Payment@{models.Payment}}
+
+
+Inheritance diagram for models.\+Payment:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classmodels_1_1Payment__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Payment:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=170pt]{classmodels_1_1Payment__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Payment_ac3df3d34473a2dd4b8a55fbd0d130e93}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Payment_ae1bcde5d6b916010895f4d900b3c71fd}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Payment_ac6a79e2c079e6f96df45f4ba8d86a296}{method}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Payment_a35a5bc950e1083ec21a61e166b93260e}{orderid}} = Column(Integer, Foreign\+Key("{}orders.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Payment_a73d603feb28fc36830d9f7edb675bdbb}{order}} = relationship("{}Orders"{}, back\+\_\+populates="{}payments"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Payment_a3f6b7e0cacd195e9f5323e2800d1864a}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}payment"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng payment, thông tin thanh toán đơn hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00156}{156}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Payment_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Payment_a3f6b7e0cacd195e9f5323e2800d1864a}\index{models.Payment@{models.Payment}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_a3f6b7e0cacd195e9f5323e2800d1864a} 
+str models.\+Payment.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}payment"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00158}{158}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Payment_ac3df3d34473a2dd4b8a55fbd0d130e93}\index{models.Payment@{models.Payment}!id@{id}}
+\index{id@{id}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_ac3df3d34473a2dd4b8a55fbd0d130e93} 
+models.\+Payment.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00159}{159}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Payment_ac6a79e2c079e6f96df45f4ba8d86a296}\index{models.Payment@{models.Payment}!method@{method}}
+\index{method@{method}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{method}{method}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_ac6a79e2c079e6f96df45f4ba8d86a296} 
+models.\+Payment.\+method = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00161}{161}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Payment_a73d603feb28fc36830d9f7edb675bdbb}\index{models.Payment@{models.Payment}!order@{order}}
+\index{order@{order}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_a73d603feb28fc36830d9f7edb675bdbb} 
+models.\+Payment.\+order = relationship("{}Orders"{}, back\+\_\+populates="{}payments"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00163}{163}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Payment_a35a5bc950e1083ec21a61e166b93260e}\index{models.Payment@{models.Payment}!orderid@{orderid}}
+\index{orderid@{orderid}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{orderid}{orderid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_a35a5bc950e1083ec21a61e166b93260e} 
+models.\+Payment.\+orderid = Column(Integer, Foreign\+Key("{}orders.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00162}{162}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Payment_ae1bcde5d6b916010895f4d900b3c71fd}\index{models.Payment@{models.Payment}!status@{status}}
+\index{status@{status}!models.Payment@{models.Payment}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1Payment_ae1bcde5d6b916010895f4d900b3c71fd} 
+models.\+Payment.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00160}{160}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

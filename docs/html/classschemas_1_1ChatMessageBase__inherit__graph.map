@@ -1,0 +1,9 @@
+<map id="schemas.ChatMessageBase" name="schemas.ChatMessageBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="92,80,281,107"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1ChatMessage.html" title=" " alt="" coords="5,155,165,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="159,116,104,156,101,152,154,117"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1ChatMessageCreate.html" title=" " alt="" coords="188,155,387,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="217,113,273,154,267,154,216,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="143,5,230,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,46,189,81,184,79,185,50"/>
+</map>

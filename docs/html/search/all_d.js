@@ -1,0 +1,27 @@
+var searchData=
+[
+  ['oauth2_5fscheme_0',['oauth2_scheme',['../namespaceauth.html#af3c79770bc28a778b1b63717c336cd9f',1,'auth']]],
+  ['oncreate_1',['onCreate',['../namespaceAppCompatActivity.html#ae9bfeed4a874021ba5221b9d183a2606',1,'AppCompatActivity']]],
+  ['onmessagereceived_2',['onMessageReceived',['../namespaceFirebaseMessagingService.html#ae0b8076f953cdefa854dbe18a6d31e0a',1,'FirebaseMessagingService']]],
+  ['open_5ftime_3',['open_time',['../classmodels_1_1Restaurant.html#ac7045f1dd6062e64951c0c87061bb4b6',1,'models.Restaurant.open_time'],['../classschemas_1_1RestaurantBase.html#aa986073e6a8b83633f22dbe4e50dc7b1',1,'schemas.RestaurantBase.open_time']]],
+  ['openorderdetail_4',['openOrderDetail',['../namespaceAppCompatActivity.html#a20562ab93ff9cc7f3289b2dba14efb6f',1,'AppCompatActivity']]],
+  ['order_5',['Order',['../classschemas_1_1Order.html',1,'schemas']]],
+  ['order_6',['order',['../classmodels_1_1OrderItem.html#a44cf8c71ea8b584b0c64d48a78060150',1,'models.OrderItem.order'],['../classmodels_1_1Payment.html#a73d603feb28fc36830d9f7edb675bdbb',1,'models.Payment.order'],['../classmodels_1_1Delivery.html#ae83f04875ddd0d077656e6490d184968',1,'models.Delivery.order'],['../classmodels_1_1Review.html#a7a6f2407d3d0a96fe7b01e957ff23e7b',1,'models.Review.order'],['../classmodels_1_1Notification.html#af94400ad1c0c4be842560e36ebbbf597',1,'models.Notification.order'],['../classmodels_1_1UsedPromotion.html#a9d32d80639f8a70d3a1cb193a8931c64',1,'models.UsedPromotion.order']]],
+  ['order_2ekt_7',['order.kt',['../order_8kt.html',1,'']]],
+  ['order_5fhistory_2ekt_8',['order_history.kt',['../order__history_8kt.html',1,'']]],
+  ['order_5fitems_9',['order_items',['../classmodels_1_1MenuItem.html#ae2fd1dddd64ffe1b69f3db5f1ee5d369',1,'models.MenuItem.order_items'],['../classmodels_1_1Orders.html#ad2ceadc907f8faec96d3a204ca600801',1,'models.Orders.order_items'],['../classschemas_1_1OrderCreate.html#a08d2c2998402bf5b62c26874d2f834bc',1,'schemas.OrderCreate.order_items'],['../classschemas_1_1Order.html#a30aa16efd2c9a9cec12c6ab3091d5297',1,'schemas.Order.order_items'],['../classschemas_1_1OrderDetail.html#aeec67fa4ee01d5d2d14afa02b28988f6',1,'schemas.OrderDetail.order_items']]],
+  ['orderbase_10',['OrderBase',['../classschemas_1_1OrderBase.html',1,'schemas']]],
+  ['ordercreate_11',['OrderCreate',['../classschemas_1_1OrderCreate.html',1,'schemas']]],
+  ['orderdetail_12',['OrderDetail',['../classschemas_1_1OrderDetail.html',1,'schemas']]],
+  ['orderid_13',['orderId',['../namespaceAppCompatActivity.html#ad566e2bd23e19c2c6594d5f0ef0eab58',1,'AppCompatActivity']]],
+  ['orderid_14',['orderid',['../classmodels_1_1OrderItem.html#afc119692710278fb19b95d67b1075ef9',1,'models.OrderItem.orderid'],['../classmodels_1_1Payment.html#a35a5bc950e1083ec21a61e166b93260e',1,'models.Payment.orderid'],['../classmodels_1_1Delivery.html#a445c066f3b9869c61ca7fd38283b1d41',1,'models.Delivery.orderid'],['../classmodels_1_1Review.html#a73a679e97970297f87deee2310ff1c0f',1,'models.Review.orderid'],['../classmodels_1_1Notification.html#aa35ee37116a4693d150e76fde2b421e4',1,'models.Notification.orderid'],['../classmodels_1_1UsedPromotion.html#a3ab777a0ec93d55f13e3b01515b48c11',1,'models.UsedPromotion.orderid'],['../classschemas_1_1NotificationBase.html#aeb3ad107f2fd39e2609b5aac0de0575d',1,'schemas.NotificationBase.orderid']]],
+  ['orderitem_15',['OrderItem',['../classmodels_1_1OrderItem.html',1,'models.OrderItem'],['../classschemas_1_1OrderItem.html',1,'schemas.OrderItem']]],
+  ['orderitembase_16',['OrderItemBase',['../classschemas_1_1OrderItemBase.html',1,'schemas']]],
+  ['orderitemcreate_17',['OrderItemCreate',['../classschemas_1_1OrderItemCreate.html',1,'schemas']]],
+  ['orderitemdetail_18',['OrderItemDetail',['../classschemas_1_1OrderItemDetail.html',1,'schemas']]],
+  ['orders_19',['Orders',['../classmodels_1_1Orders.html',1,'models']]],
+  ['orders_20',['orders',['../classmodels_1_1User.html#a5c26fb13c076f29013369c84c07ae212',1,'models.User.orders'],['../classmodels_1_1Restaurant.html#aa8a4a04970d3b66ac20c6e2f313dac46',1,'models.Restaurant.orders'],['../classmodels_1_1Address.html#a9e73d66c8a047c123de22fe8e15eb94a',1,'models.Address.orders']]],
+  ['orderstatusupdate_21',['OrderStatusUpdate',['../classschemas_1_1OrderStatusUpdate.html',1,'schemas']]],
+  ['ordertracking_2ekt_22',['OrderTracking.kt',['../OrderTracking_8kt.html',1,'']]],
+  ['ordertrackingdetail_2ekt_23',['OrderTrackingDetail.kt',['../OrderTrackingDetail_8kt.html',1,'']]]
+];

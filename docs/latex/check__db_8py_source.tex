@@ -1,0 +1,20 @@
+\doxysection{check\+\_\+db.\+py}
+\hypertarget{check__db_8py_source}{}\label{check__db_8py_source}\index{backend/check\_db.py@{backend/check\_db.py}}
+\doxymbox{\hyperlink{check__db_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00001}\doxymbox{\hyperlink{namespacecheck__db}{00001}}\ ﻿import\ sqlite3}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00002}\doxymbox{\hyperlink{namespacecheck__db_a3758e5422835cefd8a397d0912fec7e1}{00002}}\ conn\ =\ sqlite3.connect(\textcolor{stringliteral}{'test.db'})}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00003}\doxymbox{\hyperlink{namespacecheck__db_a216a7a90eac45c5736cc36c6e6db59f2}{00003}}\ cursor\ =\ conn.cursor()}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00004}00004\ cursor.execute(\textcolor{stringliteral}{'SELECT\ name\ FROM\ sqlite\_master\ WHERE\ type=\(\backslash\)}}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00005}00005\ \textcolor{stringliteral}{table\(\backslash\);'})}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00006}\doxymbox{\hyperlink{namespacecheck__db_abefe8ff6f65c9e27e48494c62c0e0776}{00006}}\ tables\ =\ cursor.fetchall()}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00007}00007\ print(\textcolor{stringliteral}{'Tables:'},\ tables)}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00008}00008\ cursor.execute(\textcolor{stringliteral}{'SELECT\ *\ FROM\ userdevice\ WHERE\ userid=1;'})}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00009}\doxymbox{\hyperlink{namespacecheck__db_a140aa425d58d90a376f18a1437249659}{00009}}\ fcm\ =\ cursor.fetchall()}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00010}00010\ print(\textcolor{stringliteral}{'FCM:'},\ fcm)}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00011}00011\ cursor.execute(\textcolor{stringliteral}{'SELECT\ *\ FROM\ notification;'})}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00012}\doxymbox{\hyperlink{namespacecheck__db_a37f25b0e860b2c444cb73cab314b6bac}{00012}}\ notifs\ =\ cursor.fetchall()}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00013}00013\ print(\textcolor{stringliteral}{'Notifs:'},\ notifs)}
+\DoxyCodeLine{\Hypertarget{check__db_8py_source_l00014}00014\ conn.close()}
+
+\end{DoxyCode}

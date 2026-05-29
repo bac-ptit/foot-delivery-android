@@ -1,0 +1,190 @@
+\doxysection{models.\+Social\+Share Class Reference}
+\hypertarget{classmodels_1_1SocialShare}{}\label{classmodels_1_1SocialShare}\index{models.SocialShare@{models.SocialShare}}
+
+
+Inheritance diagram for models.\+Social\+Share:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classmodels_1_1SocialShare__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Social\+Share:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=183pt]{classmodels_1_1SocialShare__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_a3b6948966b443a477fe7c224d3dbf44b}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_a3e5ce631c2c4eb25bb5a76477f6f64a5}{sharetype}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_aa294922ad4f9aa099b279cb7ede63aeb}{platform}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_a2772dbc2bfadf1a7d7ce68facce1c9c7}{context}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_aac7194f0f37064442848b0c818a6e28c}{createdat}} = Column(Date)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_ad0242453ca3e757c70d0c88c1d2676d4}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_a1ac27a87edbf24e63561fc4d7635bb75}{restaurantid}} = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_adfa78d735a2887737d0594907eef25e8}{menuitemid}} = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_ac411e13c7a94b82a05b5c2d421fa8961}{user}} = relationship("{}User"{}, back\+\_\+populates="{}social\+\_\+shares"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_a5af845781c5c9298b2520133025d53ad}{restaurant}} = relationship("{}Restaurant"{}, back\+\_\+populates="{}social\+\_\+shares"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1SocialShare_af1501dc42cd4dc749079db5173e7ece6}{menu\+\_\+item}} = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}social\+\_\+shares"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1SocialShare_a4fb3aa442dec39564adbaafd92cd7e88}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}socialshare"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng socialshare, lượt chia sẻ mạng xã hội.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00278}{278}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1SocialShare_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1SocialShare_a4fb3aa442dec39564adbaafd92cd7e88}\index{models.SocialShare@{models.SocialShare}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a4fb3aa442dec39564adbaafd92cd7e88} 
+str models.\+Social\+Share.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}socialshare"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00280}{280}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_a2772dbc2bfadf1a7d7ce68facce1c9c7}\index{models.SocialShare@{models.SocialShare}!context@{context}}
+\index{context@{context}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{context}{context}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a2772dbc2bfadf1a7d7ce68facce1c9c7} 
+models.\+Social\+Share.\+context = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00284}{284}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_aac7194f0f37064442848b0c818a6e28c}\index{models.SocialShare@{models.SocialShare}!createdat@{createdat}}
+\index{createdat@{createdat}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{createdat}{createdat}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_aac7194f0f37064442848b0c818a6e28c} 
+models.\+Social\+Share.\+createdat = Column(Date)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00285}{285}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_a3b6948966b443a477fe7c224d3dbf44b}\index{models.SocialShare@{models.SocialShare}!id@{id}}
+\index{id@{id}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a3b6948966b443a477fe7c224d3dbf44b} 
+models.\+Social\+Share.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00281}{281}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_af1501dc42cd4dc749079db5173e7ece6}\index{models.SocialShare@{models.SocialShare}!menu\_item@{menu\_item}}
+\index{menu\_item@{menu\_item}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{menu\_item}{menu\_item}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_af1501dc42cd4dc749079db5173e7ece6} 
+models.\+Social\+Share.\+menu\+\_\+item = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}social\+\_\+shares"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00292}{292}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_adfa78d735a2887737d0594907eef25e8}\index{models.SocialShare@{models.SocialShare}!menuitemid@{menuitemid}}
+\index{menuitemid@{menuitemid}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{menuitemid}{menuitemid}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_adfa78d735a2887737d0594907eef25e8} 
+models.\+Social\+Share.\+menuitemid = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00288}{288}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_aa294922ad4f9aa099b279cb7ede63aeb}\index{models.SocialShare@{models.SocialShare}!platform@{platform}}
+\index{platform@{platform}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{platform}{platform}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_aa294922ad4f9aa099b279cb7ede63aeb} 
+models.\+Social\+Share.\+platform = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00283}{283}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_a5af845781c5c9298b2520133025d53ad}\index{models.SocialShare@{models.SocialShare}!restaurant@{restaurant}}
+\index{restaurant@{restaurant}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{restaurant}{restaurant}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a5af845781c5c9298b2520133025d53ad} 
+models.\+Social\+Share.\+restaurant = relationship("{}Restaurant"{}, back\+\_\+populates="{}social\+\_\+shares"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00291}{291}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_a1ac27a87edbf24e63561fc4d7635bb75}\index{models.SocialShare@{models.SocialShare}!restaurantid@{restaurantid}}
+\index{restaurantid@{restaurantid}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{restaurantid}{restaurantid}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a1ac27a87edbf24e63561fc4d7635bb75} 
+models.\+Social\+Share.\+restaurantid = Column(Integer, Foreign\+Key("{}restaurant.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00287}{287}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_a3e5ce631c2c4eb25bb5a76477f6f64a5}\index{models.SocialShare@{models.SocialShare}!sharetype@{sharetype}}
+\index{sharetype@{sharetype}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{sharetype}{sharetype}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_a3e5ce631c2c4eb25bb5a76477f6f64a5} 
+models.\+Social\+Share.\+sharetype = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00282}{282}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_ac411e13c7a94b82a05b5c2d421fa8961}\index{models.SocialShare@{models.SocialShare}!user@{user}}
+\index{user@{user}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_ac411e13c7a94b82a05b5c2d421fa8961} 
+models.\+Social\+Share.\+user = relationship("{}User"{}, back\+\_\+populates="{}social\+\_\+shares"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00290}{290}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1SocialShare_ad0242453ca3e757c70d0c88c1d2676d4}\index{models.SocialShare@{models.SocialShare}!userid@{userid}}
+\index{userid@{userid}!models.SocialShare@{models.SocialShare}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1SocialShare_ad0242453ca3e757c70d0c88c1d2676d4} 
+models.\+Social\+Share.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00286}{286}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

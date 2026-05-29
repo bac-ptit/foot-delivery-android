@@ -1,0 +1,88 @@
+\doxysection{Package Firebase\+Messaging\+Service}
+\hypertarget{namespaceFirebaseMessagingService}{}\label{namespaceFirebaseMessagingService}\index{FirebaseMessagingService@{FirebaseMessagingService}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+override fun \doxymbox{\hyperlink{namespaceFirebaseMessagingService_ae0b8076f953cdefa854dbe18a6d31e0a}{on\+Message\+Received}} (remote\+Message:\+\+Remote\+Message)
+\item 
+fun \doxymbox{\hyperlink{namespaceFirebaseMessagingService_a39e03a4935b3f69b807f2e34194fa9b4}{show\+Notification}} (title:\+\+String, body:\+\+String)
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{namespaceFirebaseMessagingService_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespaceFirebaseMessagingService_ae0b8076f953cdefa854dbe18a6d31e0a}\index{FirebaseMessagingService@{FirebaseMessagingService}!onMessageReceived@{onMessageReceived}}
+\index{onMessageReceived@{onMessageReceived}!FirebaseMessagingService@{FirebaseMessagingService}}
+\doxysubsubsection{\texorpdfstring{onMessageReceived()}{onMessageReceived()}}
+{\footnotesize\ttfamily \label{namespaceFirebaseMessagingService_ae0b8076f953cdefa854dbe18a6d31e0a} 
+override fun Firebase\+Messaging\+Service.\+on\+Message\+Received (\begin{DoxyParamCaption}\item[{remote\+Message:\+\+Remote\+Message}]{}{}\end{DoxyParamCaption})}
+
+
+
+Definition at line \doxymbox{\hyperlink{MyFirebaseMessagingService_8kt_source_l00026}{26}} of file \doxymbox{\hyperlink{MyFirebaseMessagingService_8kt_source}{My\+Firebase\+Messaging\+Service.\+kt}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ RemoteMessage)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ super.onMessageReceived(remoteMessage)}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Lấy\ dữ\ liệu\ tiêu\ đề\ và\ nội\ dung}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ val\ title\ =\ remoteMessage.notification?.title\ ?:\ \textcolor{stringliteral}{"{}Thông\ báo\ từ\ Trung"{}}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ val\ body\ =\ remoteMessage.notification?.body\ ?:\ \textcolor{stringliteral}{"{}Nội\ dung\ trống"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{namespaceFirebaseMessagingService_a39e03a4935b3f69b807f2e34194fa9b4}{showNotification}}(title,\ body)}
+\DoxyCodeLine{00034\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{namespaceFirebaseMessagingService_a39e03a4935b3f69b807f2e34194fa9b4}\index{FirebaseMessagingService@{FirebaseMessagingService}!showNotification@{showNotification}}
+\index{showNotification@{showNotification}!FirebaseMessagingService@{FirebaseMessagingService}}
+\doxysubsubsection{\texorpdfstring{showNotification()}{showNotification()}}
+{\footnotesize\ttfamily \label{namespaceFirebaseMessagingService_a39e03a4935b3f69b807f2e34194fa9b4} 
+fun Firebase\+Messaging\+Service.\+show\+Notification (\begin{DoxyParamCaption}\item[{title:\+\+String}]{}{, }\item[{body:\+\+String}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Hiển thị thông báo trên thiết bị. Tạo Notification\+Channel cho Android 8.\+0+ và xây dựng notification với tiêu đề, nội dung và mức ưu tiên cao.
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Tiêu đề của thông báo. \\
+\hline
+{\em body} & Nội dung của thông báo. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line \doxymbox{\hyperlink{MyFirebaseMessagingService_8kt_source_l00044}{44}} of file \doxymbox{\hyperlink{MyFirebaseMessagingService_8kt_source}{My\+Firebase\+Messaging\+Service.\+kt}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ String,\ body:\ String)\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ val\ channelId\ =\ \textcolor{stringliteral}{"{}food\_delivery\_channel"{}}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ val\ notificationManager\ =\ getSystemService(Context.NOTIFICATION\_SERVICE)\ as\ NotificationManager}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Tạo\ Kênh\ (Channel)\ cho\ Android\ đời\ mới}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ if\ (Build.VERSION.SDK\_INT\ >=\ Build.VERSION\_CODES.O)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ val\ channel\ =\ NotificationChannel(}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channelId,}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Thông\ báo\ đơn\ hàng"{}},}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NotificationManager.IMPORTANCE\_HIGH}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ ).apply\ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description\ =\ \textcolor{stringliteral}{"{}Kênh\ nhận\ thông\ báo\ đặt\ đồ\ ăn"{}}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ notificationManager.createNotificationChannel(channel)}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Xây\ dựng\ giao\ diện\ thông\ báo}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ val\ notification\ =\ NotificationCompat.Builder(\textcolor{keyword}{this},\ channelId)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ .setSmallIcon(R.drawable.pngwing)\ \textcolor{comment}{//\ Dùng\ icon\ pngwing\ bạn\ đã\ có}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ .setContentTitle(title)}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ .setContentText(body)}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ .setPriority(NotificationCompat.PRIORITY\_HIGH)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ .setAutoCancel(\textcolor{keyword}{true})}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Hiển\ thị\ lên\ màn\ hình}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ notificationManager.notify(System.currentTimeMillis().toInt(),\ notification)}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+
+\end{DoxyCode}

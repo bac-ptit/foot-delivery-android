@@ -1,0 +1,102 @@
+\doxysection{Fcm\+Token\+Registrar.\+kt}
+\hypertarget{FcmTokenRegistrar_8kt_source}{}\label{FcmTokenRegistrar_8kt_source}\index{app/app/src/main/java/com/example/myapp/api/FcmTokenRegistrar.kt@{app/app/src/main/java/com/example/myapp/api/FcmTokenRegistrar.kt}}
+\doxymbox{\hyperlink{FcmTokenRegistrar_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens.api}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00008}00008\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00009}00009\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00010}00010\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00011}00011\ import\ com.google.firebase.messaging.FirebaseMessaging}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00012}00012\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00013}00013\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00014}00014\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00015}00015\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00017}\doxymbox{\hyperlink{namespaceFcmTokenRegistrar}{00017}}\ object\ FcmTokenRegistrar\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00019}00019\ \ \ \ \ private\ const\ val\ TAG\ =\ "{}FCM\_TOKEN"{}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00021}00021\ \ \ \ \ private\ const\ val\ PREF\_NAME\ =\ "{}user\_prefs"{}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00023}00023\ \ \ \ \ private\ const\ val\ KEY\_PENDING\_FCM\_TOKEN\ =\ "{}pending\_fcm\_token"{}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00025}00025\ \ \ \ \ private\ const\ val\ KEY\_SYNCED\_FCM\_TOKEN\ =\ "{}synced\_fcm\_token"{}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00032}00032\ \ \ \ \ fun\ cacheToken(context:\ Context,\ token:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ context.getSharedPreferences(PREF\_NAME,\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00034}00034\ \ \ \ \ \ \ \ \ \ \ \ \ .edit()}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00035}00035\ \ \ \ \ \ \ \ \ \ \ \ \ .putString(KEY\_PENDING\_FCM\_TOKEN,\ token)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00036}00036\ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00037}00037\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00045}00045\ \ \ \ \ fun\ syncCurrentToken(context:\ Context,\ source:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ context.getSharedPreferences(PREF\_NAME,\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ val\ accessToken\ =\ sharedPref.getString("{}access\_token"{},\ null)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ if\ (accessToken.isNullOrBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ FirebaseMessaging.getInstance().token}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .addOnSuccessListener\ \{\ token\ -\/>}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cacheToken(context,\ token)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d(TAG,\ "{}Cached\ FCM\ token\ from\ \$source\ while\ waiting\ for\ login"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .addOnFailureListener\ \{\ error\ -\/>}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.w(TAG,\ "{}Failed\ to\ get\ FCM\ token\ from\ \$source"{},\ error)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ syncPendingToken(context,\ source)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00062}00062\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00070}00070\ \ \ \ \ fun\ syncPendingToken(context:\ Context,\ source:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ context.getSharedPreferences(PREF\_NAME,\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ val\ accessToken\ =\ sharedPref.getString("{}access\_token"{},\ null)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00073}00073\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ if\ (accessToken.isNullOrBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d(TAG,\ "{}Skip\ syncing\ token\ from\ \$source\ because\ access\ token\ is\ missing"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ pendingToken\ =\ sharedPref.getString(KEY\_PENDING\_FCM\_TOKEN,\ null)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ if\ (pendingToken.isNullOrBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ FirebaseMessaging.getInstance().token}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .addOnSuccessListener\ \{\ token\ -\/>}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cacheToken(context,\ token)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pushToken(context,\ token,\ source)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .addOnFailureListener\ \{\ error\ -\/>}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.w(TAG,\ "{}Failed\ to\ get\ FCM\ token\ from\ \$source"{},\ error)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ if\ (pendingToken\ ==\ sharedPref.getString(KEY\_SYNCED\_FCM\_TOKEN,\ null))\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ Log.d(TAG,\ "{}FCM\ token\ already\ synced\ from\ \$source"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ pushToken(context,\ pendingToken,\ source)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00098}00098\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00099}00099\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00106}00106\ \ \ \ \ private\ fun\ pushToken(context:\ Context,\ token:\ String,\ source:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.updateDeviceToken(token,\ "{}android"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ .enqueue(object\ :\ Callback<DeviceTokenResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ call:\ Call<DeviceTokenResponse>,}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response:\ Response<DeviceTokenResponse>}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ )\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ context.getSharedPreferences(PREF\_NAME,\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .edit()}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .putString(KEY\_SYNCED\_FCM\_TOKEN,\ token)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .apply()}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.d(TAG,\ "{}Synced\ FCM\ token\ from\ \$source"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.w(TAG,\ "{}Failed\ to\ sync\ FCM\ token\ from\ \$source:\ \$\{response.code()\}\ \$\{response.message()\}"{})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00123}00123\ }
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<DeviceTokenResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Log.w(TAG,\ "{}Failed\ to\ sync\ FCM\ token\ from\ \$source"{},\ t)}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00128}00128\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{FcmTokenRegistrar_8kt_source_l00129}00129\ \}}
+
+\end{DoxyCode}

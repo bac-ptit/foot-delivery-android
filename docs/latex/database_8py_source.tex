@@ -1,0 +1,39 @@
+\doxysection{database.\+py}
+\hypertarget{database_8py_source}{}\label{database_8py_source}\index{backend/database.py@{backend/database.py}}
+\doxymbox{\hyperlink{database_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00001}\doxymbox{\hyperlink{namespacedatabase}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ database.py}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00004}00004\ \textcolor{stringliteral}{Cấu\ hình\ kết\ nối\ SQLAlchemy\ và\ session\ cho\ cơ\ sở\ dữ\ liệu\ PostgreSQL.}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00005}00005\ \textcolor{stringliteral}{Cung\ cấp\ engine,\ SessionLocal\ và\ hàm\ get\_db()\ dependency\ cho\ FastAPI.}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00008}00008\ \textcolor{keyword}{from}\ sqlalchemy\ \textcolor{keyword}{import}\ create\_engine}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00009}00009\ \textcolor{keyword}{from}\ sqlalchemy.orm\ \textcolor{keyword}{import}\ sessionmaker,\ declarative\_base}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00010}00010\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00011}00011\ \textcolor{keyword}{from}\ dotenv\ \textcolor{keyword}{import}\ load\_dotenv}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00013}00013\ load\_dotenv()}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00015}00015\ \textcolor{comment}{\#\ URL\ kết\ nối\ database,\ ưu\ tiên\ biến\ môi\ trường,\ mặc\ định\ là\ PostgreSQL\ local}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00016}\doxymbox{\hyperlink{namespacedatabase_a6cd45e95a1a5a7fe37d6020f74281d74}{00016}}\ SQLALCHEMY\_DATABASE\_URL\ =\ os.getenv(\textcolor{stringliteral}{"{}DATABASE\_URL"{}},\ \textcolor{stringliteral}{"{}postgresql://postgres:password@localhost/food\_delivery"{}})}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00017}00017\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00018}00018\ \textcolor{comment}{\#\ SQLAlchemy\ engine\ quản\ lý\ kết\ nối\ pool\ tới\ database}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00019}\doxymbox{\hyperlink{namespacedatabase_a63bc446125e29d43241b8cf215258bcc}{00019}}\ engine\ =\ create\_engine(SQLALCHEMY\_DATABASE\_URL)}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00020}00020\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00021}00021\ \textcolor{comment}{\#\ Session\ factory\ tạo\ các\ session\ kết\ nối\ database}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00022}\doxymbox{\hyperlink{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a}{00022}}\ SessionLocal\ =\ sessionmaker(autocommit=\textcolor{keyword}{False},\ autoflush=\textcolor{keyword}{False},\ bind=engine)}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00024}00024\ \textcolor{comment}{\#\ Base\ class\ để\ khai\ báo\ các\ ORM\ model\ kế\ thừa}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00025}\doxymbox{\hyperlink{namespacedatabase_a0a351bcdc86bdc97cd3c88759443bb4a}{00025}}\ Base\ =\ declarative\_base()}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00026}00026\ }
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00027}\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{00027}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacedatabase_a3614943c2547003f324634c4d756538a}{get\_db}}():}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00028}00028\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}FastAPI\ dependency:\ tạo\ session\ database\ cho\ mỗi\ request,\ tự\ động\ đóng\ sau\ khi\ hoàn\ tất."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00029}00029\ \ \ \ \ db\ =\ \doxymbox{\hyperlink{namespacedatabase_aa8b73386925fff9047c8961bb8d5de2a}{SessionLocal}}()}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00030}00030\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{yield}\ db}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00032}00032\ \ \ \ \ \textcolor{keywordflow}{finally}:}
+\DoxyCodeLine{\Hypertarget{database_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ db.close()}
+
+\end{DoxyCode}

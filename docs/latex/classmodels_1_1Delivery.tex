@@ -1,0 +1,142 @@
+\doxysection{models.\+Delivery Class Reference}
+\hypertarget{classmodels_1_1Delivery}{}\label{classmodels_1_1Delivery}\index{models.Delivery@{models.Delivery}}
+
+
+Inheritance diagram for models.\+Delivery:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classmodels_1_1Delivery__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Delivery:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classmodels_1_1Delivery__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_ae511ef4397602e2b3fbc40e178764f18}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_a8140110e7895dad07fe199c713f246c0}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_a8e23e7b445659ace291bbec56c751e07}{deliverytime}} = Column(Time)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_a445c066f3b9869c61ca7fd38283b1d41}{orderid}} = Column(Integer, Foreign\+Key("{}orders.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_ad427bc0f3a12ea8231ccf06a8ad0ae39}{shipperid}} = Column(Integer, Foreign\+Key("{}shipper.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_ae83f04875ddd0d077656e6490d184968}{order}} = relationship("{}Orders"{}, back\+\_\+populates="{}delivery"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Delivery_a2e4b84ab87e6b2e6ad5ad0cd1318f00e}{shipper}} = relationship("{}Shipper"{}, back\+\_\+populates="{}deliveries"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Delivery_a57e088093c3dc7a74d002f6ad8ac41e4}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}delivery"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng delivery, thông tin giao hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00165}{165}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Delivery_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Delivery_a57e088093c3dc7a74d002f6ad8ac41e4}\index{models.Delivery@{models.Delivery}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_a57e088093c3dc7a74d002f6ad8ac41e4} 
+str models.\+Delivery.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}delivery"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00167}{167}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_a8e23e7b445659ace291bbec56c751e07}\index{models.Delivery@{models.Delivery}!deliverytime@{deliverytime}}
+\index{deliverytime@{deliverytime}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{deliverytime}{deliverytime}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_a8e23e7b445659ace291bbec56c751e07} 
+models.\+Delivery.\+deliverytime = Column(Time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00170}{170}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_ae511ef4397602e2b3fbc40e178764f18}\index{models.Delivery@{models.Delivery}!id@{id}}
+\index{id@{id}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_ae511ef4397602e2b3fbc40e178764f18} 
+models.\+Delivery.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00168}{168}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_ae83f04875ddd0d077656e6490d184968}\index{models.Delivery@{models.Delivery}!order@{order}}
+\index{order@{order}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_ae83f04875ddd0d077656e6490d184968} 
+models.\+Delivery.\+order = relationship("{}Orders"{}, back\+\_\+populates="{}delivery"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00174}{174}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_a445c066f3b9869c61ca7fd38283b1d41}\index{models.Delivery@{models.Delivery}!orderid@{orderid}}
+\index{orderid@{orderid}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{orderid}{orderid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_a445c066f3b9869c61ca7fd38283b1d41} 
+models.\+Delivery.\+orderid = Column(Integer, Foreign\+Key("{}orders.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00171}{171}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_a2e4b84ab87e6b2e6ad5ad0cd1318f00e}\index{models.Delivery@{models.Delivery}!shipper@{shipper}}
+\index{shipper@{shipper}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{shipper}{shipper}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_a2e4b84ab87e6b2e6ad5ad0cd1318f00e} 
+models.\+Delivery.\+shipper = relationship("{}Shipper"{}, back\+\_\+populates="{}deliveries"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00175}{175}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_ad427bc0f3a12ea8231ccf06a8ad0ae39}\index{models.Delivery@{models.Delivery}!shipperid@{shipperid}}
+\index{shipperid@{shipperid}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{shipperid}{shipperid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_ad427bc0f3a12ea8231ccf06a8ad0ae39} 
+models.\+Delivery.\+shipperid = Column(Integer, Foreign\+Key("{}shipper.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00172}{172}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Delivery_a8140110e7895dad07fe199c713f246c0}\index{models.Delivery@{models.Delivery}!status@{status}}
+\index{status@{status}!models.Delivery@{models.Delivery}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1Delivery_a8140110e7895dad07fe199c713f246c0} 
+models.\+Delivery.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00169}{169}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

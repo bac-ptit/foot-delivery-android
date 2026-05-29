@@ -1,0 +1,64 @@
+\doxysection{firebase\+\_\+utils.\+py}
+\hypertarget{firebase__utils_8py_source}{}\label{firebase__utils_8py_source}\index{backend/firebase\_utils.py@{backend/firebase\_utils.py}}
+\doxymbox{\hyperlink{firebase__utils_8py}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00001}\doxymbox{\hyperlink{namespacefirebase__utils}{00001}}\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00002}00002\ \textcolor{stringliteral}{Module:\ firebase\_utils.py}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00003}00003\ \textcolor{stringliteral}{}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00004}00004\ \textcolor{stringliteral}{Khởi\ tạo\ Firebase\ Admin\ SDK\ và\ upload\ ảnh\ lên\ Firebase\ Storage.}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00005}00005\ \textcolor{stringliteral}{Hỗ\ trợ\ upload\ bất\ đồng\ bộ\ qua\ anyio\ để\ không\ chặn\ event\ loop.}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00006}00006\ \textcolor{stringliteral}{"{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00008}00008\ \textcolor{keyword}{import}\ firebase\_admin}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00009}00009\ \textcolor{keyword}{from}\ firebase\_admin\ \textcolor{keyword}{import}\ credentials,\ storage}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00010}00010\ \textcolor{keyword}{import}\ os}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00011}00011\ \textcolor{keyword}{from}\ dotenv\ \textcolor{keyword}{import}\ load\_dotenv}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00012}00012\ \textcolor{keyword}{import}\ uuid}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00013}00013\ \textcolor{keyword}{import}\ anyio}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00014}00014\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00015}00015\ load\_dotenv()}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00016}00016\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00017}00017\ \textcolor{comment}{\#\ Đường\ dẫn\ file\ credentials\ Firebase\ (JSON\ service\ account)}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00018}\doxymbox{\hyperlink{namespacefirebase__utils_ad24b24b932e2e1a469ef52f24555e667}{00018}}\ FIREBASE\_CREDENTIALS\_PATH\ =\ os.getenv(\textcolor{stringliteral}{"{}FIREBASE\_CREDENTIALS\_PATH"{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00019}00019\ \textcolor{comment}{\#\ Tên\ bucket\ Firebase\ Storage\ để\ upload\ ảnh}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00020}\doxymbox{\hyperlink{namespacefirebase__utils_a2d019c8c3b67d802528ffc19fdd84db4}{00020}}\ FIREBASE\_STORAGE\_BUCKET\ =\ os.getenv(\textcolor{stringliteral}{"{}FIREBASE\_STORAGE\_BUCKET"{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00021}00021\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00022}\doxymbox{\hyperlink{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0}{00022}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0}{init\_firebase}}():}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00023}00023\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Khởi\ tạo\ Firebase\ Admin\ SDK\ với\ credentials\ từ\ file\ service\ account."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00024}00024\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ FIREBASE\_CREDENTIALS\_PATH\ \textcolor{keywordflow}{or}\ \textcolor{keywordflow}{not}\ os.path.exists(FIREBASE\_CREDENTIALS\_PATH):}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00025}00025\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Warning:\ Firebase\ credentials\ not\ found\ at\ \{FIREBASE\_CREDENTIALS\_PATH\}.\ Image\ upload\ will\ fail."{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00026}00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00028}00028\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00029}00029\ \ \ \ \ \ \ \ \ cred\ =\ credentials.Certificate(FIREBASE\_CREDENTIALS\_PATH)}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00030}00030\ \ \ \ \ \ \ \ \ firebase\_admin.initialize\_app(cred,\ \{}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00031}00031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{'storageBucket'}:\ FIREBASE\_STORAGE\_BUCKET}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00032}00032\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00033}00033\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{True}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00034}00034\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00035}00035\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ initializing\ Firebase:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00036}00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{False}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00038}\doxymbox{\hyperlink{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5}{00038}}\ \textcolor{keyword}{def\ }\doxymbox{\hyperlink{namespacefirebase__utils_a3ef5b0e5041a2aed1c57809376cda1f5}{\_upload\_image\_sync}}(file\_content,\ filename):}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00039}00039\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Upload\ ảnh\ đồng\ bộ\ lên\ Firebase\ Storage,\ trả\ về\ URL\ công\ khai."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00040}00040\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ firebase\_admin.\_apps:}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00041}00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keywordflow}{not}\ \doxymbox{\hyperlink{namespacefirebase__utils_a07cf69903090a811c64210e8fe5e8ff0}{init\_firebase}}():}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00042}00042\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00044}00044\ \ \ \ \ \textcolor{keywordflow}{try}:}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00045}00045\ \ \ \ \ \ \ \ \ bucket\ =\ storage.bucket()}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00046}00046\ \ \ \ \ \ \ \ \ ext\ =\ filename.split(\textcolor{stringliteral}{'.'})[-\/1]}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00047}00047\ \ \ \ \ \ \ \ \ unique\_filename\ =\ f\textcolor{stringliteral}{"{}images/\{uuid.uuid4()\}.\{ext\}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00048}00048\ \ \ \ \ \ \ \ \ blob\ =\ bucket.blob(unique\_filename)}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00049}00049\ \ \ \ \ \ \ \ \ blob.upload\_from\_string(file\_content,\ content\_type=f\textcolor{stringliteral}{"{}image/\{ext\}"{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00050}00050\ \ \ \ \ \ \ \ \ blob.make\_public()}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ blob.public\_url}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00052}00052\ \ \ \ \ \textcolor{keywordflow}{except}\ Exception\ \textcolor{keyword}{as}\ e:}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00053}00053\ \ \ \ \ \ \ \ \ print(f\textcolor{stringliteral}{"{}Error\ uploading\ image:\ \{e\}"{}})}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00054}00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keywordtype}{None}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00056}\doxymbox{\hyperlink{namespacefirebase__utils_a27f0e43e662958dd3304f4ca429a8a5f}{00056}}\ \textcolor{keyword}{async\ def\ }\doxymbox{\hyperlink{namespacefirebase__utils_a27f0e43e662958dd3304f4ca429a8a5f}{upload\_image}}(file\_content,\ filename):}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00057}00057\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Bản\ async\ của\ hàm\ upload\ ảnh,\ không\ gây\ nghẽn\ event\ loop."{}"{}"{}}}
+\DoxyCodeLine{\Hypertarget{firebase__utils_8py_source_l00058}00058\ \ \ \ \ \textcolor{keywordflow}{return}\ await\ anyio.to\_thread.run\_sync(\_upload\_image\_sync,\ file\_content,\ filename)}
+
+\end{DoxyCode}

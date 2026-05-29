@@ -1,0 +1,69 @@
+\doxysection{My\+Firebase\+Messaging\+Service.\+kt}
+\hypertarget{MyFirebaseMessagingService_8kt_source}{}\label{MyFirebaseMessagingService_8kt_source}\index{app/app/src/main/java/com/example/myapp/adapters/MyFirebaseMessagingService.kt@{app/app/src/main/java/com/example/myapp/adapters/MyFirebaseMessagingService.kt}}
+\doxymbox{\hyperlink{MyFirebaseMessagingService_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00007}00007\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00008}00008\ import\ android.app.NotificationChannel}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00009}00009\ import\ android.app.NotificationManager}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00010}00010\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00011}00011\ import\ android.os.Build}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00012}00012\ import\ android.util.Log}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00013}00013\ import\ androidx.core.app.NotificationCompat}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00014}00014\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00015}00015\ import\ com.example.myapp.screens.api.FcmTokenRegistrar}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00016}00016\ import\ com.google.firebase.messaging.FirebaseMessagingService}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00017}00017\ import\ com.google.firebase.messaging.RemoteMessage}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00018}00018\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00023}\doxymbox{\hyperlink{namespaceFirebaseMessagingService}{00023}}\ class\ MyFirebaseMessagingService\ :\ FirebaseMessagingService()\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00025}00025\ \ \ \ \ \textcolor{comment}{//\ Hàm\ này\ chạy\ khi\ có\ thông\ báo\ bay\ tới}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00026}\doxymbox{\hyperlink{namespaceFirebaseMessagingService_ae0b8076f953cdefa854dbe18a6d31e0a}{00026}}\ \ \ \ \ override\ fun\ onMessageReceived(remoteMessage:\ RemoteMessage)\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00027}00027\ \ \ \ \ \ \ \ \ super.onMessageReceived(remoteMessage)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00028}00028\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00029}00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1.\ Lấy\ dữ\ liệu\ tiêu\ đề\ và\ nội\ dung}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00030}00030\ \ \ \ \ \ \ \ \ val\ title\ =\ remoteMessage.notification?.title\ ?:\ "{}Thông\ báo\ từ\ Trung"{}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00031}00031\ \ \ \ \ \ \ \ \ val\ body\ =\ remoteMessage.notification?.body\ ?:\ "{}Nội\ dung\ trống"{}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00033}00033\ \ \ \ \ \ \ \ \ showNotification(title,\ body)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00034}00034\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00035}00035\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00044}\doxymbox{\hyperlink{namespaceFirebaseMessagingService_a39e03a4935b3f69b807f2e34194fa9b4}{00044}}\ \ \ \ \ private\ fun\ showNotification(title:\ String,\ body:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ val\ channelId\ =\ "{}food\_delivery\_channel"{}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ val\ notificationManager\ =\ getSystemService(Context.NOTIFICATION\_SERVICE)\ as\ NotificationManager}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 2.\ Tạo\ Kênh\ (Channel)\ cho\ Android\ đời\ mới}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ if\ (Build.VERSION.SDK\_INT\ >=\ Build.VERSION\_CODES.O)\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ \ \ \ \ val\ channel\ =\ NotificationChannel(}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ channelId,}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Thông\ báo\ đơn\ hàng"{},}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ NotificationManager.IMPORTANCE\_HIGH}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ \ \ \ \ ).apply\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ description\ =\ "{}Kênh\ nhận\ thông\ báo\ đặt\ đồ\ ăn"{}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \ \ \ \ notificationManager.createNotificationChannel(channel)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 3.\ Xây\ dựng\ giao\ diện\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ val\ notification\ =\ NotificationCompat.Builder(this,\ channelId)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ .setSmallIcon(R.drawable.pngwing)\ \textcolor{comment}{//\ Dùng\ icon\ pngwing\ bạn\ đã\ có}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ .setContentTitle(title)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ .setContentText(body)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ .setPriority(NotificationCompat.PRIORITY\_HIGH)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ .setAutoCancel(true)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ .build()}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 4.\ Hiển\ thị\ lên\ màn\ hình}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ notificationManager.notify(System.currentTimeMillis().toInt(),\ notification)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00071}00071\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00073}00073\ \ \ \ \ \textcolor{comment}{//\ Hàm\ này\ chạy\ khi\ Firebase\ cấp\ Token\ mới\ (dùng\ để\ lưu\ vào\ Database)}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00074}00074\ \ \ \ \ override\ fun\ onNewToken(token:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ Log.d("{}FCM\_TOKEN"{},\ "{}Token\ mới\ nè:\ \$token"{})}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ FcmTokenRegistrar.cacheToken(this,\ token)}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ FcmTokenRegistrar.syncPendingToken(this,\ "{}onNewToken"{})}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{MyFirebaseMessagingService_8kt_source_l00079}00079\ \}}
+
+\end{DoxyCode}

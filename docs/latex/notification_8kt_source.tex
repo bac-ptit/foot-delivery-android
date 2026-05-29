@@ -1,0 +1,126 @@
+\doxysection{notification.\+kt}
+\hypertarget{notification_8kt_source}{}\label{notification_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/notification.kt@{app/app/src/main/java/com/example/myapp/screens/notification.kt}}
+\doxymbox{\hyperlink{notification_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00012}00012\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00014}00014\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00016}00016\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00018}00018\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00019}00019\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00020}00020\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00021}00021\ import\ com.example.myapp.adapters.NotificationAdapter}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.Notification}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00024}00024\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00025}00025\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00026}00026\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00037}00037\ class\ notification\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00038}00038\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00040}\doxymbox{\hyperlink{namespaceAppCompatActivity_aec643e7f8cbdb05a6d0037adfc234eff}{00040}}\ \ \ \ \ private\ lateinit\ var\ rvNotifications:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00042}00042\ \ \ \ \ private\ lateinit\ var\ tvEmpty:\ TextView}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00044}00044\ \ \ \ \ private\ lateinit\ var\ adapter:\ NotificationAdapter}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00046}00046\ \ \ \ \ private\ val\ notifications\ =\ mutableListOf<Notification>()}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00056}00056\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ setContentView(R.layout.notification)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Khởi\ tạo\ views}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ rvNotifications\ =\ findViewById(R.id.rvNotifications)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ tvEmpty\ =\ findViewById(R.id.tvEmpty)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ adapter\ =\ NotificationAdapter(notifications)\ \{\ notification\ -\/>}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Xử\ lý\ khi\ click\ vào\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ markAsRead(notification)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ rvNotifications.layoutManager\ =\ LinearLayoutManager(this)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ rvNotifications.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ loadNotifications()}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00080}00080\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00089}00089\ \ \ \ \ private\ fun\ loadNotifications()\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lấy\ userId\ từ\ SharedPreferences}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ val\ userId\ =\ sharedPref.getInt("{}user\_id"{},\ 1)\ \textcolor{comment}{//\ Mặc\ định\ là\ 1\ nếu\ không\ tìm\ thấy}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00093}00093\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ android.util.Log.d("{}Notification"{},\ "{}Loading\ notifications\ for\ userId:\ \$userId"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ android.util.Log.d("{}Notification"{},\ "{}Base\ URL:\ \$\{RetrofitClient.apiService.javaClass.name\}"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getUserNotifications(userId).enqueue(object\ :\ Callback<List<Notification>>\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<Notification>>,\ response:\ Response<List<Notification>>)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}Notification"{},\ "{}Response\ code:\ \$\{response.code()\}"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}Notification"{},\ "{}Response\ body:\ \$\{response.body()\}"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ notificationList\ =\ response.body()\ ?:\ emptyList()}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}Notification"{},\ "{}Notifications\ count:\ \$\{notificationList.size\}"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notifications.clear()}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notifications.addAll(notificationList)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyDataSetChanged()}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00109}00109\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Hiển\ thị\ thông\ báo\ trống\ nếu\ không\ có\ thông\ báo}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (notifications.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.text\ =\ "{}Không\ có\ thông\ báo"{}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rvNotifications.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rvNotifications.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.e("{}Notification"{},\ "{}Error:\ \$\{response.code()\}\ -\/\ \$\{response.message()\}"{})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.text\ =\ "{}Lỗi\ tải\ thông\ báo:\ \$\{response.code()\}"{}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rvNotifications.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00126}00126\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<Notification>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.e("{}Notification"{},\ "{}Failure:\ \$\{t.message\}"{},\ t)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.text\ =\ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvEmpty.visibility\ =\ View.VISIBLE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rvNotifications.visibility\ =\ View.GONE}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00134}00134\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00135}00135\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00145}00145\ \ \ \ \ private\ fun\ markAsRead(notification:\ Notification)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ if\ (!notification.isread)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.markNotificationAsRead(notification.id).enqueue(object\ :\ Callback<Void>\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<Void>,\ response:\ Response<Void>)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00150}00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Cập\ nhật\ trạng\ thái\ trong\ danh\ sách}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ index\ =\ notifications.indexOfFirst\ \{\ it.id\ ==\ notification.id\ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (index\ !=\ -\/1)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ notifications[index]\ =\ notification.copy(isread\ =\ true)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyItemChanged(index)}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00155}00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00156}00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00157}00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00158}00158\ }
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00159}00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<Void>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Xử\ lý\ lỗi\ nếu\ cần}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00164}00164\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{notification_8kt_source_l00165}00165\ \}}
+
+\end{DoxyCode}

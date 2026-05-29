@@ -1,0 +1,9 @@
+<map id="schemas.PaymentBase" name="schemas.PaymentBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="77,80,237,107"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1Payment.html" title=" " alt="" coords="5,155,136,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,116,87,156,84,152,128,117"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1PaymentCreate.html" title=" " alt="" coords="159,155,328,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="185,114,232,154,226,154,183,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="114,5,200,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,46,160,81,155,79,156,50"/>
+</map>

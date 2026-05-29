@@ -1,0 +1,226 @@
+\doxysection{models.\+Restaurant Class Reference}
+\hypertarget{classmodels_1_1Restaurant}{}\label{classmodels_1_1Restaurant}\index{models.Restaurant@{models.Restaurant}}
+
+
+Inheritance diagram for models.\+Restaurant:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classmodels_1_1Restaurant__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Restaurant:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{classmodels_1_1Restaurant__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_a2505a74e594aa9890781c6c55efce4a9}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_aa70124f8abbabc271deddb5472e626d8}{name}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_abf6ff0e47d95aef4c1c998603bf28db6}{image\+\_\+url}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_a0c2719ef11f8264bc230ae9bdac8959a}{address}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_a40dd449295bb60b47f0e35651e192211}{rating}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_ac7045f1dd6062e64951c0c87061bb4b6}{open\+\_\+time}} = Column(Time)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_acaebb6fe46b165efac6426de56267084}{close\+\_\+time}} = Column(Time)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_ac9e67b95eb0584786c5d239b317094e5}{phone\+\_\+number}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_a746ebee8af94d22c2b5c842923fc8dab}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_ab70e0a40de3621e27244d474d36ef401}{description}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_abbe418d04e9d83adcd6170538700651e}{menu\+\_\+items}} = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}restaurant"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_aa8a4a04970d3b66ac20c6e2f313dac46}{orders}} = relationship("{}Orders"{}, back\+\_\+populates="{}restaurant"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_ab2557db614a589693e337ea21818faa7}{reviews}} = relationship("{}Review"{}, back\+\_\+populates="{}restaurant"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Restaurant_a731cc6b8c2be30e3692f0e9c6c7a5e02}{social\+\_\+shares}} = relationship("{}Social\+Share"{}, back\+\_\+populates="{}restaurant"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Restaurant_aada82d8baf9547d2634864956ecc1f43}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}restaurant"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng restaurant, thông tin nhà hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00074}{74}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Restaurant_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Restaurant_aada82d8baf9547d2634864956ecc1f43}\index{models.Restaurant@{models.Restaurant}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_aada82d8baf9547d2634864956ecc1f43} 
+str models.\+Restaurant.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}restaurant"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00076}{76}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_a0c2719ef11f8264bc230ae9bdac8959a}\index{models.Restaurant@{models.Restaurant}!address@{address}}
+\index{address@{address}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{address}{address}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_a0c2719ef11f8264bc230ae9bdac8959a} 
+models.\+Restaurant.\+address = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00080}{80}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_acaebb6fe46b165efac6426de56267084}\index{models.Restaurant@{models.Restaurant}!close\_time@{close\_time}}
+\index{close\_time@{close\_time}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{close\_time}{close\_time}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_acaebb6fe46b165efac6426de56267084} 
+models.\+Restaurant.\+close\+\_\+time = Column(Time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00083}{83}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_ab70e0a40de3621e27244d474d36ef401}\index{models.Restaurant@{models.Restaurant}!description@{description}}
+\index{description@{description}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{description}{description}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_ab70e0a40de3621e27244d474d36ef401} 
+models.\+Restaurant.\+description = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00086}{86}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_a2505a74e594aa9890781c6c55efce4a9}\index{models.Restaurant@{models.Restaurant}!id@{id}}
+\index{id@{id}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_a2505a74e594aa9890781c6c55efce4a9} 
+models.\+Restaurant.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00077}{77}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_abf6ff0e47d95aef4c1c998603bf28db6}\index{models.Restaurant@{models.Restaurant}!image\_url@{image\_url}}
+\index{image\_url@{image\_url}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{image\_url}{image\_url}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_abf6ff0e47d95aef4c1c998603bf28db6} 
+models.\+Restaurant.\+image\+\_\+url = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00079}{79}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_abbe418d04e9d83adcd6170538700651e}\index{models.Restaurant@{models.Restaurant}!menu\_items@{menu\_items}}
+\index{menu\_items@{menu\_items}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{menu\_items}{menu\_items}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_abbe418d04e9d83adcd6170538700651e} 
+models.\+Restaurant.\+menu\+\_\+items = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}restaurant"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00088}{88}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_aa70124f8abbabc271deddb5472e626d8}\index{models.Restaurant@{models.Restaurant}!name@{name}}
+\index{name@{name}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_aa70124f8abbabc271deddb5472e626d8} 
+models.\+Restaurant.\+name = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00078}{78}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_ac7045f1dd6062e64951c0c87061bb4b6}\index{models.Restaurant@{models.Restaurant}!open\_time@{open\_time}}
+\index{open\_time@{open\_time}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{open\_time}{open\_time}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_ac7045f1dd6062e64951c0c87061bb4b6} 
+models.\+Restaurant.\+open\+\_\+time = Column(Time)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00082}{82}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_aa8a4a04970d3b66ac20c6e2f313dac46}\index{models.Restaurant@{models.Restaurant}!orders@{orders}}
+\index{orders@{orders}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{orders}{orders}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_aa8a4a04970d3b66ac20c6e2f313dac46} 
+models.\+Restaurant.\+orders = relationship("{}Orders"{}, back\+\_\+populates="{}restaurant"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00089}{89}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_ac9e67b95eb0584786c5d239b317094e5}\index{models.Restaurant@{models.Restaurant}!phone\_number@{phone\_number}}
+\index{phone\_number@{phone\_number}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{phone\_number}{phone\_number}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_ac9e67b95eb0584786c5d239b317094e5} 
+models.\+Restaurant.\+phone\+\_\+number = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00084}{84}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_a40dd449295bb60b47f0e35651e192211}\index{models.Restaurant@{models.Restaurant}!rating@{rating}}
+\index{rating@{rating}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{rating}{rating}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_a40dd449295bb60b47f0e35651e192211} 
+models.\+Restaurant.\+rating = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00081}{81}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_ab2557db614a589693e337ea21818faa7}\index{models.Restaurant@{models.Restaurant}!reviews@{reviews}}
+\index{reviews@{reviews}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{reviews}{reviews}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_ab2557db614a589693e337ea21818faa7} 
+models.\+Restaurant.\+reviews = relationship("{}Review"{}, back\+\_\+populates="{}restaurant"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00090}{90}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_a731cc6b8c2be30e3692f0e9c6c7a5e02}\index{models.Restaurant@{models.Restaurant}!social\_shares@{social\_shares}}
+\index{social\_shares@{social\_shares}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{social\_shares}{social\_shares}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_a731cc6b8c2be30e3692f0e9c6c7a5e02} 
+models.\+Restaurant.\+social\+\_\+shares = relationship("{}Social\+Share"{}, back\+\_\+populates="{}restaurant"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00091}{91}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Restaurant_a746ebee8af94d22c2b5c842923fc8dab}\index{models.Restaurant@{models.Restaurant}!status@{status}}
+\index{status@{status}!models.Restaurant@{models.Restaurant}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1Restaurant_a746ebee8af94d22c2b5c842923fc8dab} 
+models.\+Restaurant.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00085}{85}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

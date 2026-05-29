@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['read_5fall_5fmenu_5fitems_0',['read_all_menu_items',['../namespacemain.html#acc8af54782c29b2ddf07839a610e1d88',1,'main']]],
+  ['read_5fcategories_1',['read_categories',['../namespacemain.html#ad8877311e2bcfe4bf4f83c2071a73fca',1,'main']]],
+  ['read_5ffaqs_2',['read_faqs',['../namespacemain.html#ab7b4a0fd7bd711f597de2724e9d12411',1,'main']]],
+  ['read_5fmenu_5fitem_5fdetail_3',['read_menu_item_detail',['../namespacemain.html#ace5b8f6be7d4c3e3a80d715f3302035e',1,'main']]],
+  ['read_5forder_5fdetail_4',['read_order_detail',['../namespacemain.html#ae91d057d4a3671666b759f0a84f0ae3e',1,'main']]],
+  ['read_5fpromotions_5',['read_promotions',['../namespacemain.html#a13ee4d49b7fef087f6d0daad5ef65021',1,'main']]],
+  ['read_5frestaurant_6',['read_restaurant',['../namespacemain.html#a2965b84838fdf2bf4cc852bd1eb6ff32',1,'main']]],
+  ['read_5frestaurant_5fmenu_7',['read_restaurant_menu',['../namespacemain.html#a5cbbe9967b64a9c9ac7947b8f8910791',1,'main']]],
+  ['read_5frestaurants_8',['read_restaurants',['../namespacemain.html#a6d2abd708109dfadfaf941336acefdc9',1,'main']]],
+  ['read_5froot_9',['read_root',['../namespacemain.html#a82f50f8b598afeb472eaf2c23164bb43',1,'main']]],
+  ['read_5fuser_5faddresses_10',['read_user_addresses',['../namespacemain.html#abbdd77079941d52435c0570f9c8a20b5',1,'main']]],
+  ['read_5fuser_5fnotifications_11',['read_user_notifications',['../namespacemain.html#a6f6a1b266d30959fa9a9bbe4b071d022',1,'main']]],
+  ['read_5fuser_5forders_12',['read_user_orders',['../namespacemain.html#ad9799e548b6b13e78c030458bd16b176',1,'main']]],
+  ['read_5fuser_5fprofile_5fsummary_13',['read_user_profile_summary',['../namespacemain.html#ace8d2e8041648c1711e982efd9900791',1,'main']]],
+  ['read_5fusers_14',['read_users',['../namespacemain.html#a5dbe0b39257ac06b0c96a48a53a6dc27',1,'main']]],
+  ['read_5fusers_5fme_15',['read_users_me',['../namespacemain.html#a927e0e9f6209aae4b0c1992433a1c619',1,'main']]],
+  ['reordercurrentorder_16',['reorderCurrentOrder',['../namespaceAppCompatActivity.html#acf8e266f7c82fa2048510bd3389ca23f',1,'AppCompatActivity']]],
+  ['resolveuseridforpoints_17',['resolveUserIdForPoints',['../namespaceAppCompatActivity.html#a3419dd17710c31713071e47b803b612b',1,'AppCompatActivity']]]
+];

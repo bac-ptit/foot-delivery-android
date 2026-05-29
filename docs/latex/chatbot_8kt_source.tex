@@ -1,0 +1,108 @@
+\doxysection{chatbot.\+kt}
+\hypertarget{chatbot_8kt_source}{}\label{chatbot_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/chatbot.kt@{app/app/src/main/java/com/example/myapp/screens/chatbot.kt}}
+\doxymbox{\hyperlink{chatbot_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00014}00014\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00015}00015\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00016}00016\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00017}00017\ import\ android.widget.EditText}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00018}00018\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00019}00019\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00020}00020\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00021}00021\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00022}00022\ import\ com.example.myapp.screens.adapters.ChatMessage}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00023}00023\ import\ com.example.myapp.screens.adapters.ChatMessageAdapter}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00024}00024\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00025}00025\ import\ com.example.myapp.screens.api.ChatMessageRequest}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00026}00026\ import\ com.example.myapp.screens.api.ChatMessageResponse}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00027}00027\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00028}00028\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00029}00029\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00043}00043\ class\ chatbot\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00044}\doxymbox{\hyperlink{namespaceAppCompatActivity_a1cec13864cebb00d5ae8cbd1e66f4b15}{00044}}\ \ \ \ \ private\ lateinit\ var\ recyclerView:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00045}00045\ \ \ \ \ private\ lateinit\ var\ adapter:\ ChatMessageAdapter}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00046}00046\ \ \ \ \ private\ lateinit\ var\ edtMessage:\ EditText}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00047}00047\ \ \ \ \ private\ var\ sessionId:\ Int?\ =\ null}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00048}00048\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00056}00056\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ setContentView(R.layout.chatbot)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ btnBack}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước\ (start)}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ recyclerView\ =\ findViewById(R.id.chatRecyclerView)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ recyclerView.layoutManager\ =\ LinearLayoutManager(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ stackFromEnd\ =\ true\ \textcolor{comment}{//\ Tin\ nhắn\ mới\ hiện\ ở\ dưới}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Khởi\ tạo\ adapter\ với\ tin\ nhắn\ chào\ mừng}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ val\ initialMessages\ =\ mutableListOf<ChatMessage>(}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ ChatMessage(}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00075}\doxymbox{\hyperlink{namespaceAppCompatActivity_a76c5e0cf5be49f9939b7fc01c2f44042}{00075}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ message\ =\ "{}Chào\ bạn,\ mình\ là\ trợ\ lý\ ảo\ của\ ứng\ dụng\ đặt\ món.\ Mình\ có\ thể\ giúp\ gì\ cho\ đơn\ hàng\ của\ bạn\ hôm\ nay?"{},}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isUser\ =\ false}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ adapter\ =\ ChatMessageAdapter(initialMessages)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ recyclerView.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Setup\ input\ và\ send\ button}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ edtMessage\ =\ findViewById(R.id.edtMessage)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ val\ btnSend:\ ImageView\ =\ findViewById(R.id.btnSend)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ btnSend.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ sendMessage()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00088}00088\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00098}00098\ \ \ \ \ private\ fun\ sendMessage()\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ val\ messageText\ =\ edtMessage.text.toString().trim()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ if\ (messageText.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00103}00103\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thêm\ tin\ nhắn\ người\ dùng\ vào\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ adapter.addMessage(ChatMessage(message\ =\ messageText,\ isUser\ =\ true))}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ recyclerView.scrollToPosition(adapter.itemCount\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Xóa\ input}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ edtMessage.text.clear()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gọi\ API\ chat}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ val\ request\ =\ ChatMessageRequest(message\ =\ messageText)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.sendMessage(request,\ sessionId).enqueue(object\ :\ Callback<ChatMessageResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<ChatMessageResponse>,\ response:\ Response<ChatMessageResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ chatResponse\ =\ response.body()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chatResponse?.let\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lưu\ session\_id\ cho\ các\ tin\ nhắn\ tiếp\ theo}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (sessionId\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sessionId\ =\ it.sessionid}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00122}00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thêm\ tin\ nhắn\ bot\ vào\ RecyclerView}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter.addMessage(ChatMessage(message\ =\ it.message,\ isUser\ =\ false))}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ recyclerView.scrollToPosition(adapter.itemCount\ -\/\ 1)}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@chatbot,\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Lỗi:\ \$\{response.code()\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<ChatMessageResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@chatbot,\ }
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Lỗi\ kết\ nối:\ \$\{t.message\}"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00137}00137\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{chatbot_8kt_source_l00138}00138\ \}}
+
+\end{DoxyCode}

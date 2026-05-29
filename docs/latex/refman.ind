@@ -1,0 +1,1350 @@
+\begin{theindex}
+
+  \item {\_\_init\_\_}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{103}
+  \item {\_\_tablename\_\_}
+    \subitem {models.Address}, \hyperpage{90}
+    \subitem {models.Category}, \hyperpage{97}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+    \subitem {models.ChatSession}, \hyperpage{112}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {models.FAQ}, \hyperpage{123}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {models.MenuItem}, \hyperpage{135}
+    \subitem {models.Notification}, \hyperpage{146}
+    \subitem {models.OrderItem}, \hyperpage{159}
+    \subitem {models.Orders}, \hyperpage{166}
+    \subitem {models.Payment}, \hyperpage{171}
+    \subitem {models.Promotion}, \hyperpage{176}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.Shipper}, \hyperpage{198}
+    \subitem {models.SocialShare}, \hyperpage{204}
+    \subitem {models.UsedPromotion}, \hyperpage{213}
+    \subitem {models.User}, \hyperpage{219}
+    \subitem {models.UserDevice}, \hyperpage{226}
+    \subitem {models.UserFAQ}, \hyperpage{231}
+  \item {\_call\_gemini\_sdk}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{103}, 
+		\hyperpage{105}
+  \item {\_upload\_image\_sync}
+    \subitem {firebase\_utils}, \hyperpage{54}
+
+  \indexspace
+
+  \item {ACCESS\_TOKEN\_EXPIRE\_MINUTES}
+    \subitem {auth}, \hyperpage{48}
+  \item {address}
+    \subitem {models.Orders}, \hyperpage{166}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+  \item {address\_detail}
+    \subitem {schemas.OrderDetail}, \hyperpage{158}
+  \item {AddressAdapter}, \hyperpage{31}
+  \item {AddressAdapter.AddressViewHolder}, \hyperpage{31}
+  \item {addresses}
+    \subitem {models.User}, \hyperpage{219}
+  \item {addressid}
+    \subitem {models.Orders}, \hyperpage{166}
+  \item {ALGORITHM}
+    \subitem {auth}, \hyperpage{48}
+  \item {allow\_credentials}
+    \subitem {main}, \hyperpage{77}
+  \item {allow\_headers}
+    \subitem {main}, \hyperpage{77}
+  \item {allow\_methods}
+    \subitem {main}, \hyperpage{77}
+  \item {allow\_origins}
+    \subitem {main}, \hyperpage{77}
+  \item {answer}
+    \subitem {models.FAQ}, \hyperpage{123}
+  \item {ApiService}, \hyperpage{31}
+  \item {app}
+    \subitem {main}, \hyperpage{78}
+  \item {app Directory Reference}, \hyperpage{24}
+  \item {app/app Directory Reference}, \hyperpage{24}
+  \item {app/app/src Directory Reference}, \hyperpage{29}
+  \item {app/app/src/main Directory Reference}, \hyperpage{27}
+  \item {app/app/src/main/java Directory Reference}, \hyperpage{26}
+  \item {app/app/src/main/java/com Directory Reference}, \hyperpage{25}
+  \item {app/app/src/main/java/com/example Directory Reference}, 
+		\hyperpage{26}
+  \item {app/app/src/main/java/com/example/myapp Directory Reference}, 
+		\hyperpage{27}
+  \item {app/app/src/main/java/com/example/myapp/adapters Directory Reference}, 
+		\hyperpage{23}
+  \item {app/app/src/main/java/com/example/myapp/adapters/AddressAdapter.kt}, 
+		\hyperpage{237}
+  \item {app/app/src/main/java/com/example/myapp/adapters/ChatMessageAdapter.kt}, 
+		\hyperpage{238}
+  \item {app/app/src/main/java/com/example/myapp/adapters/FAQAdapter.kt}, 
+		\hyperpage{238, 239}
+  \item {app/app/src/main/java/com/example/myapp/adapters/MenuItemAdapter.kt}, 
+		\hyperpage{239}
+  \item {app/app/src/main/java/com/example/myapp/adapters/MenuItemAdapterSmall.kt}, 
+		\hyperpage{241}
+  \item {app/app/src/main/java/com/example/myapp/adapters/MyFirebaseMessagingService.kt}, 
+		\hyperpage{242}
+  \item {app/app/src/main/java/com/example/myapp/adapters/NotificationAdapter.kt}, 
+		\hyperpage{243}
+  \item {app/app/src/main/java/com/example/myapp/adapters/RestaurantAdapter.kt}, 
+		\hyperpage{244}
+  \item {app/app/src/main/java/com/example/myapp/api Directory Reference}, 
+		\hyperpage{24}
+  \item {app/app/src/main/java/com/example/myapp/api/ApiService.kt}, 
+		\hyperpage{245}
+  \item {app/app/src/main/java/com/example/myapp/api/FcmTokenRegistrar.kt}, 
+		\hyperpage{249}
+  \item {app/app/src/main/java/com/example/myapp/api/NetworkConfig.kt}, 
+		\hyperpage{251}
+  \item {app/app/src/main/java/com/example/myapp/api/RetrofitClient.kt}, 
+		\hyperpage{251, 252}
+  \item {app/app/src/main/java/com/example/myapp/screens Directory Reference}, 
+		\hyperpage{28}
+  \item {app/app/src/main/java/com/example/myapp/screens/activity\_cart.kt}, 
+		\hyperpage{252, 253}
+  \item {app/app/src/main/java/com/example/myapp/screens/add\_shipping\_address.kt}, 
+		\hyperpage{254}
+  \item {app/app/src/main/java/com/example/myapp/screens/cart.kt}, 
+		\hyperpage{255, 256}
+  \item {app/app/src/main/java/com/example/myapp/screens/CartItemAdapter.kt}, 
+		\hyperpage{257, 258}
+  \item {app/app/src/main/java/com/example/myapp/screens/chatbot.kt}, 
+		\hyperpage{258, 259}
+  \item {app/app/src/main/java/com/example/myapp/screens/customer\_support.kt}, 
+		\hyperpage{260}
+  \item {app/app/src/main/java/com/example/myapp/screens/delivered\_order\_details.kt}, 
+		\hyperpage{261}
+  \item {app/app/src/main/java/com/example/myapp/screens/detail\_support.kt}, 
+		\hyperpage{263}
+  \item {app/app/src/main/java/com/example/myapp/screens/discouts.kt}, 
+		\hyperpage{264}
+  \item {app/app/src/main/java/com/example/myapp/screens/edit\_shipping\_address.kt}, 
+		\hyperpage{265}
+  \item {app/app/src/main/java/com/example/myapp/screens/food\_detail.kt}, 
+		\hyperpage{267, 268}
+  \item {app/app/src/main/java/com/example/myapp/screens/home.kt}, 
+		\hyperpage{271}
+  \item {app/app/src/main/java/com/example/myapp/screens/list\_restaurant.kt}, 
+		\hyperpage{273, 274}
+  \item {app/app/src/main/java/com/example/myapp/screens/notification.kt}, 
+		\hyperpage{276}
+  \item {app/app/src/main/java/com/example/myapp/screens/order.kt}, 
+		\hyperpage{277, 278}
+  \item {app/app/src/main/java/com/example/myapp/screens/order\_history.kt}, 
+		\hyperpage{282, 283}
+  \item {app/app/src/main/java/com/example/myapp/screens/OrderTracking.kt}, 
+		\hyperpage{284}
+  \item {app/app/src/main/java/com/example/myapp/screens/OrderTrackingDetail.kt}, 
+		\hyperpage{289, 290}
+  \item {app/app/src/main/java/com/example/myapp/screens/payment\_methods.kt}, 
+		\hyperpage{294}
+  \item {app/app/src/main/java/com/example/myapp/screens/payment\_successful.kt}, 
+		\hyperpage{296}
+  \item {app/app/src/main/java/com/example/myapp/screens/PointsDetail.kt}, 
+		\hyperpage{297, 298}
+  \item {app/app/src/main/java/com/example/myapp/screens/pre\_order.kt}, 
+		\hyperpage{299, 300}
+  \item {app/app/src/main/java/com/example/myapp/screens/pre\_order\_cart.kt}, 
+		\hyperpage{302}
+  \item {app/app/src/main/java/com/example/myapp/screens/profile.kt}, 
+		\hyperpage{304, 305}
+  \item {app/app/src/main/java/com/example/myapp/screens/restaurant\_profile.kt}, 
+		\hyperpage{306}
+  \item {app/app/src/main/java/com/example/myapp/screens/savedeliveryaddress.kt}, 
+		\hyperpage{308}
+  \item {app/app/src/main/java/com/example/myapp/screens/share.kt}, 
+		\hyperpage{310}
+  \item {app/app/src/main/java/com/example/myapp/screens/share\_restaurant.kt}, 
+		\hyperpage{311}
+  \item {app/app/src/main/java/com/example/myapp/screens/shipping\_address\_added\_successfully.kt}, 
+		\hyperpage{312}
+  \item {app/app/src/main/java/com/example/myapp/screens/shipping\_address\_fixed\_successfully.kt}, 
+		\hyperpage{313}
+  \item {app/app/src/main/java/com/example/myapp/screens/signin.kt}, 
+		\hyperpage{314}
+  \item {app/app/src/main/java/com/example/myapp/screens/signup.kt}, 
+		\hyperpage{316}
+  \item {app/app/src/main/java/com/example/myapp/screens/start.kt}, 
+		\hyperpage{318}
+  \item {app/app/src/main/java/com/example/myapp/screens/VNPayActivity.kt}, 
+		\hyperpage{319}
+  \item {AppCompatActivity}, \hyperpage{31}
+    \subitem {bindOrder}, \hyperpage{32}
+    \subitem {bindOrderCard}, \hyperpage{33}
+    \subitem {bindTopTwoOrders}, \hyperpage{33}
+    \subitem {currentAddress}, \hyperpage{42}
+    \subitem {displayMenuItems}, \hyperpage{34}
+    \subitem {displayRestaurants}, \hyperpage{34}
+    \subitem {edtPhone}, \hyperpage{42}
+    \subitem {firstOrderId}, \hyperpage{42}
+    \subitem {foodId}, \hyperpage{42}
+    \subitem {icCart}, \hyperpage{43}
+    \subitem {icHeart}, \hyperpage{43}
+    \subitem {icHome}, \hyperpage{43}
+    \subitem {icProfile}, \hyperpage{43}
+    \subitem {if}, \hyperpage{34}
+    \subitem {isRequestingVnPay}, \hyperpage{43}
+    \subitem {loadOrders}, \hyperpage{35}
+    \subitem {menuItems}, \hyperpage{43}
+    \subitem {món}, \hyperpage{43}
+    \subitem {nay}, \hyperpage{44}
+    \subitem {onCreate}, \hyperpage{35}
+    \subitem {openOrderDetail}, \hyperpage{36}
+    \subitem {orderId}, \hyperpage{44}
+    \subitem {pointsCard2}, \hyperpage{44}
+    \subitem {pointsCard3}, \hyperpage{44}
+    \subitem {pointsCard4}, \hyperpage{44}
+    \subitem {recyclerView}, \hyperpage{44}
+    \subitem {reorderCurrentOrder}, \hyperpage{37}
+    \subitem {resolveUserIdForPoints}, \hyperpage{37}
+    \subitem {restaurant}, \hyperpage{44}
+    \subitem {restaurantId}, \hyperpage{45}
+    \subitem {restaurants}, \hyperpage{45}
+    \subitem {rvAddresses}, \hyperpage{45}
+    \subitem {rvCart}, \hyperpage{45}
+    \subitem {rvNotifications}, \hyperpage{45}
+    \subitem {rvPreOrderCart}, \hyperpage{45}
+    \subitem {searchByCategory}, \hyperpage{38}
+    \subitem {searchMenuItems}, \hyperpage{38}
+    \subitem {searchRestaurants}, \hyperpage{39}
+    \subitem {selectedPromotion}, \hyperpage{45}
+    \subitem {show}, \hyperpage{40}
+    \subitem {startActivity}, \hyperpage{40}
+    \subitem {updateAddress}, \hyperpage{41}
+    \subitem {updateOrderStatusToCODConfirmed}, \hyperpage{41}
+  \item {auth}, \hyperpage{46}
+    \subitem {ACCESS\_TOKEN\_EXPIRE\_MINUTES}, \hyperpage{48}
+    \subitem {ALGORITHM}, \hyperpage{48}
+    \subitem {create\_access\_token}, \hyperpage{46}
+    \subitem {get\_current\_user}, \hyperpage{47}
+    \subitem {get\_password\_hash}, \hyperpage{47}
+    \subitem {oauth2\_scheme}, \hyperpage{49}
+    \subitem {pwd\_context}, \hyperpage{49}
+    \subitem {SECRET\_KEY}, \hyperpage{49}
+    \subitem {verify\_password}, \hyperpage{48}
+  \item {avg\_rating}
+    \subitem {schemas.MenuItemWithReviews}, \hyperpage{144}
+
+  \indexspace
+
+  \item {backend Directory Reference}, \hyperpage{25}
+  \item {backend/auth.py}, \hyperpage{320}
+  \item {backend/chatbot\_service.py}, \hyperpage{321, 322}
+  \item {backend/check\_db.py}, \hyperpage{323}
+  \item {backend/database.py}, \hyperpage{324}
+  \item {backend/firebase\_utils.py}, \hyperpage{324, 325}
+  \item {backend/main.py}, \hyperpage{326, 327}
+  \item {backend/models.py}, \hyperpage{336, 337}
+  \item {backend/notification\_service.py}, \hyperpage{340}
+  \item {backend/payment\_service.py}, \hyperpage{341, 342}
+  \item {backend/schemas.py}, \hyperpage{342}, \hyperpage{344}
+  \item {backend/view\_data.py}, \hyperpage{349}
+  \item {Base}
+    \subitem {database}, \hyperpage{53}
+  \item {bind}
+    \subitem {main}, \hyperpage{78}
+  \item {bindOrder}
+    \subitem {AppCompatActivity}, \hyperpage{32}
+  \item {bindOrderCard}
+    \subitem {AppCompatActivity}, \hyperpage{33}
+  \item {bindTopTwoOrders}
+    \subitem {AppCompatActivity}, \hyperpage{33}
+  \item {build\_menuitem\_with\_reviews}
+    \subitem {main}, \hyperpage{58}
+
+  \indexspace
+
+  \item {CartItemAdapter}, \hyperpage{49}
+  \item {CartItemAdapter.CartItemViewHolder}, \hyperpage{49}
+    \subitem {CartItemViewHolder}, \hyperpage{50}
+  \item {CartItemViewHolder}
+    \subitem {CartItemAdapter.CartItemViewHolder}, \hyperpage{50}
+  \item {category}
+    \subitem {models.MenuItem}, \hyperpage{135}
+  \item {categoryid}
+    \subitem {models.MenuItem}, \hyperpage{135}
+  \item {chat\_sessions}
+    \subitem {models.User}, \hyperpage{219}
+  \item {chat\_with\_bot}
+    \subitem {main}, \hyperpage{59}
+  \item {chatbot\_service}, \hyperpage{50}
+    \subitem {GEMINI\_API\_KEY}, \hyperpage{51}
+  \item {chatbot\_service.ChatBotService}, \hyperpage{102}
+    \subitem {\_\_init\_\_}, \hyperpage{103}
+    \subitem {\_call\_gemini\_sdk}, \hyperpage{103}, \hyperpage{105}
+    \subitem {client}, \hyperpage{105}
+    \subitem {db}, \hyperpage{105}
+    \subitem {get\_app\_context}, \hyperpage{103}
+    \subitem {get\_response}, \hyperpage{104}
+    \subitem {user\_id}, \hyperpage{105}
+  \item {ChatMessageAdapter}, \hyperpage{51}
+  \item {ChatMessageAdapter.MessageViewHolder}, \hyperpage{51}
+  \item {check\_db}, \hyperpage{51}
+    \subitem {conn}, \hyperpage{51}
+    \subitem {cursor}, \hyperpage{51}
+    \subitem {fcm}, \hyperpage{51}
+    \subitem {notifs}, \hyperpage{52}
+    \subitem {tables}, \hyperpage{52}
+  \item {client}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{105}
+  \item {close\_time}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+  \item {code}
+    \subitem {models.Promotion}, \hyperpage{176}
+  \item {comment}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {schemas.ReviewBase}, \hyperpage{194}
+    \subitem {schemas.ReviewResponse}, \hyperpage{197}
+  \item {conn}
+    \subitem {check\_db}, \hyperpage{51}
+  \item {content}
+    \subitem {models.Notification}, \hyperpage{146}
+  \item {context}
+    \subitem {models.SocialShare}, \hyperpage{204}
+    \subitem {schemas.SocialShareBase}, \hyperpage{209}
+  \item {create\_access\_token}
+    \subitem {auth}, \hyperpage{46}
+  \item {create\_address}
+    \subitem {main}, \hyperpage{60}
+  \item {create\_menu\_item}
+    \subitem {main}, \hyperpage{60}
+  \item {create\_notification}
+    \subitem {main}, \hyperpage{61}
+  \item {create\_order}
+    \subitem {main}, \hyperpage{62}
+  \item {create\_payment}
+    \subitem {main}, \hyperpage{62}
+  \item {create\_restaurant}
+    \subitem {main}, \hyperpage{63}
+  \item {create\_review}
+    \subitem {main}, \hyperpage{64}
+  \item {create\_user}
+    \subitem {main}, \hyperpage{64}
+  \item {createdat}
+    \subitem {models.ChatSession}, \hyperpage{112}
+    \subitem {models.Notification}, \hyperpage{146}
+    \subitem {models.Orders}, \hyperpage{166}
+    \subitem {models.SocialShare}, \hyperpage{205}
+  \item {currentAddress}
+    \subitem {AppCompatActivity}, \hyperpage{42}
+  \item {cursor}
+    \subitem {check\_db}, \hyperpage{51}
+
+  \indexspace
+
+  \item {database}, \hyperpage{52}
+    \subitem {Base}, \hyperpage{53}
+    \subitem {engine}, \hyperpage{53}
+    \subitem {get\_db}, \hyperpage{52}
+    \subitem {SessionLocal}, \hyperpage{53}
+    \subitem {SQLALCHEMY\_DATABASE\_URL}, \hyperpage{53}
+  \item {db}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{105}
+  \item {deliveries}
+    \subitem {models.Shipper}, \hyperpage{198}
+  \item {delivery}
+    \subitem {models.Orders}, \hyperpage{167}
+  \item {deliverytime}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {schemas.DeliveryBase}, \hyperpage{120}
+  \item {description}
+    \subitem {models.Category}, \hyperpage{97}
+    \subitem {models.MenuItem}, \hyperpage{135}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {models.Shipper}, \hyperpage{198}
+    \subitem {schemas.CategoryBase}, \hyperpage{101}
+    \subitem {schemas.MenuItemBase}, \hyperpage{139}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+    \subitem {schemas.ShipperBase}, \hyperpage{202}
+  \item {detail}
+    \subitem {models.Address}, \hyperpage{90}
+    \subitem {schemas.AddressUpdate}, \hyperpage{96}
+  \item {device\_token}
+    \subitem {models.UserDevice}, \hyperpage{226}
+  \item {device\_type}
+    \subitem {models.UserDevice}, \hyperpage{226}
+    \subitem {schemas.UserDeviceBase}, \hyperpage{229}
+  \item {discounttype}
+    \subitem {models.Promotion}, \hyperpage{176}
+  \item {discountvalue}
+    \subitem {models.Promotion}, \hyperpage{176}
+  \item {displayMenuItems}
+    \subitem {AppCompatActivity}, \hyperpage{34}
+  \item {displayRestaurants}
+    \subitem {AppCompatActivity}, \hyperpage{34}
+
+  \indexspace
+
+  \item {edtPhone}
+    \subitem {AppCompatActivity}, \hyperpage{42}
+  \item {email}
+    \subitem {models.User}, \hyperpage{219}
+    \subitem {schemas.TokenData}, \hyperpage{212}
+  \item {engine}
+    \subitem {database}, \hyperpage{53}
+  \item {expiredate}
+    \subitem {models.Promotion}, \hyperpage{176}
+
+  \indexspace
+
+  \item {faq}
+    \subitem {models.UserFAQ}, \hyperpage{231}
+  \item {FAQAdapter}, \hyperpage{53}
+  \item {FAQAdapter.FAQViewHolder}, \hyperpage{53}
+  \item {faqid}
+    \subitem {models.UserFAQ}, \hyperpage{231}
+  \item {fcm}
+    \subitem {check\_db}, \hyperpage{51}
+  \item {FcmTokenRegistrar}, \hyperpage{53}
+  \item {FIREBASE\_CREDENTIALS\_PATH}
+    \subitem {firebase\_utils}, \hyperpage{55}
+  \item {FIREBASE\_STORAGE\_BUCKET}
+    \subitem {firebase\_utils}, \hyperpage{55}
+  \item {firebase\_utils}, \hyperpage{53}
+    \subitem {\_upload\_image\_sync}, \hyperpage{54}
+    \subitem {FIREBASE\_CREDENTIALS\_PATH}, \hyperpage{55}
+    \subitem {FIREBASE\_STORAGE\_BUCKET}, \hyperpage{55}
+    \subitem {init\_firebase}, \hyperpage{54}
+    \subitem {upload\_image}, \hyperpage{55}
+  \item {FirebaseMessagingService}, \hyperpage{56}
+    \subitem {onMessageReceived}, \hyperpage{56}
+    \subitem {showNotification}, \hyperpage{56}
+  \item {firstOrderId}
+    \subitem {AppCompatActivity}, \hyperpage{42}
+  \item {foodId}
+    \subitem {AppCompatActivity}, \hyperpage{42}
+
+  \indexspace
+
+  \item {GEMINI\_API\_KEY}
+    \subitem {chatbot\_service}, \hyperpage{51}
+  \item {generate\_vnpay\_url}
+    \subitem {payment\_service}, \hyperpage{82}
+  \item {get\_all\_tables}
+    \subitem {view\_data}, \hyperpage{85}
+  \item {get\_app\_context}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{103}
+  \item {get\_current\_user}
+    \subitem {auth}, \hyperpage{47}
+  \item {get\_db}
+    \subitem {database}, \hyperpage{52}
+  \item {get\_password\_hash}
+    \subitem {auth}, \hyperpage{47}
+  \item {get\_response}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{104}
+
+  \indexspace
+
+  \item {host}
+    \subitem {main}, \hyperpage{78}
+
+  \indexspace
+
+  \item {icCart}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+  \item {icHeart}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+  \item {icHome}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+  \item {icProfile}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+  \item {id}
+    \subitem {models.Address}, \hyperpage{90}
+    \subitem {models.Category}, \hyperpage{97}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+    \subitem {models.ChatSession}, \hyperpage{112}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {models.FAQ}, \hyperpage{123}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Notification}, \hyperpage{146}
+    \subitem {models.OrderItem}, \hyperpage{159}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {models.Payment}, \hyperpage{171}
+    \subitem {models.Promotion}, \hyperpage{176}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.Shipper}, \hyperpage{199}
+    \subitem {models.SocialShare}, \hyperpage{205}
+    \subitem {models.UsedPromotion}, \hyperpage{213}
+    \subitem {models.User}, \hyperpage{219}
+    \subitem {models.UserDevice}, \hyperpage{226}
+    \subitem {models.UserFAQ}, \hyperpage{232}
+  \item {if}
+    \subitem {AppCompatActivity}, \hyperpage{34}
+  \item {image\_url}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {schemas.MenuItemBase}, \hyperpage{139}
+    \subitem {schemas.OrderItemDetail}, \hyperpage{165}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+  \item {init\_firebase}
+    \subitem {firebase\_utils}, \hyperpage{54}
+  \item {is\_available}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {schemas.MenuItemBase}, \hyperpage{140}
+  \item {isactive}
+    \subitem {models.FAQ}, \hyperpage{123}
+    \subitem {schemas.FAQBase}, \hyperpage{126}
+  \item {isread}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {schemas.NotificationBase}, \hyperpage{151}
+  \item {isRequestingVnPay}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+
+  \indexspace
+
+  \item {last\_active}
+    \subitem {models.UserDevice}, \hyperpage{226}
+  \item {limit}
+    \subitem {view\_data}, \hyperpage{88}
+  \item {loadOrders}
+    \subitem {AppCompatActivity}, \hyperpage{35}
+  \item {login\_for\_access\_token}
+    \subitem {main}, \hyperpage{65}
+  \item {loyalty\_points}
+    \subitem {models.User}, \hyperpage{219}
+
+  \indexspace
+
+  \item {main}, \hyperpage{57}
+    \subitem {allow\_credentials}, \hyperpage{77}
+    \subitem {allow\_headers}, \hyperpage{77}
+    \subitem {allow\_methods}, \hyperpage{77}
+    \subitem {allow\_origins}, \hyperpage{77}
+    \subitem {app}, \hyperpage{78}
+    \subitem {bind}, \hyperpage{78}
+    \subitem {build\_menuitem\_with\_reviews}, \hyperpage{58}
+    \subitem {chat\_with\_bot}, \hyperpage{59}
+    \subitem {create\_address}, \hyperpage{60}
+    \subitem {create\_menu\_item}, \hyperpage{60}
+    \subitem {create\_notification}, \hyperpage{61}
+    \subitem {create\_order}, \hyperpage{62}
+    \subitem {create\_payment}, \hyperpage{62}
+    \subitem {create\_restaurant}, \hyperpage{63}
+    \subitem {create\_review}, \hyperpage{64}
+    \subitem {create\_user}, \hyperpage{64}
+    \subitem {host}, \hyperpage{78}
+    \subitem {login\_for\_access\_token}, \hyperpage{65}
+    \subitem {mark\_notification\_as\_read}, \hyperpage{66}
+    \subitem {port}, \hyperpage{78}
+    \subitem {read\_all\_menu\_items}, \hyperpage{66}
+    \subitem {read\_categories}, \hyperpage{67}
+    \subitem {read\_faqs}, \hyperpage{67}
+    \subitem {read\_menu\_item\_detail}, \hyperpage{67}
+    \subitem {read\_order\_detail}, \hyperpage{68}
+    \subitem {read\_promotions}, \hyperpage{69}
+    \subitem {read\_restaurant}, \hyperpage{69}
+    \subitem {read\_restaurant\_menu}, \hyperpage{69}
+    \subitem {read\_restaurants}, \hyperpage{70}
+    \subitem {read\_root}, \hyperpage{70}
+    \subitem {read\_user\_addresses}, \hyperpage{70}
+    \subitem {read\_user\_notifications}, \hyperpage{71}
+    \subitem {read\_user\_orders}, \hyperpage{71}
+    \subitem {read\_user\_profile\_summary}, \hyperpage{71}
+    \subitem {read\_users}, \hyperpage{72}
+    \subitem {read\_users\_me}, \hyperpage{72}
+    \subitem {search\_menu\_items\_by\_category\_name}, \hyperpage{72}
+    \subitem {search\_menu\_items\_by\_name}, \hyperpage{73}
+    \subitem {search\_restaurants\_by\_name}, \hyperpage{74}
+    \subitem {update\_address}, \hyperpage{74}
+    \subitem {update\_device\_token}, \hyperpage{75}
+    \subitem {update\_order\_status}, \hyperpage{75}
+    \subitem {vnpay\_return}, \hyperpage{76}
+  \item {mark\_notification\_as\_read}
+    \subitem {main}, \hyperpage{66}
+  \item {menu\_item}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {models.OrderItem}, \hyperpage{159}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.SocialShare}, \hyperpage{205}
+  \item {menu\_items}
+    \subitem {models.Category}, \hyperpage{98}
+    \subitem {models.Restaurant}, \hyperpage{182}
+    \subitem {schemas.Restaurant}, \hyperpage{185}
+  \item {menuitem\_name}
+    \subitem {schemas.OrderItemDetail}, \hyperpage{165}
+  \item {MenuItemAdapter}, \hyperpage{78}
+  \item {MenuItemAdapter.MenuItemViewHolder}, \hyperpage{78}
+  \item {MenuItemAdapterSmall}, \hyperpage{78}
+  \item {MenuItemAdapterSmall.MenuItemViewHolder}, \hyperpage{79}
+  \item {menuitemid}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {models.OrderItem}, \hyperpage{160}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.SocialShare}, \hyperpage{205}
+    \subitem {schemas.ReviewBase}, \hyperpage{194}
+  \item {menuItems}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+  \item {message}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+  \item {messages}
+    \subitem {models.ChatSession}, \hyperpage{113}
+    \subitem {schemas.ChatSession}, \hyperpage{114}
+  \item {method}
+    \subitem {models.Payment}, \hyperpage{171}
+  \item {minordervalue}
+    \subitem {models.Promotion}, \hyperpage{176}
+  \item {model\_config}
+    \subitem {schemas.Address}, \hyperpage{92}
+    \subitem {schemas.Category}, \hyperpage{99}
+    \subitem {schemas.ChatMessage}, \hyperpage{109}
+    \subitem {schemas.ChatSession}, \hyperpage{114}
+    \subitem {schemas.Delivery}, \hyperpage{119}
+    \subitem {schemas.FAQ}, \hyperpage{125}
+    \subitem {schemas.LoyaltyPoint}, \hyperpage{131}
+    \subitem {schemas.MenuItem}, \hyperpage{138}
+    \subitem {schemas.MenuItemWithRestaurant}, \hyperpage{143}
+    \subitem {schemas.MenuItemWithReviews}, \hyperpage{144}
+    \subitem {schemas.Notification}, \hyperpage{149}
+    \subitem {schemas.Order}, \hyperpage{154}
+    \subitem {schemas.OrderItem}, \hyperpage{162}
+    \subitem {schemas.Payment}, \hyperpage{173}
+    \subitem {schemas.Promotion}, \hyperpage{178}
+    \subitem {schemas.Restaurant}, \hyperpage{185}
+    \subitem {schemas.Review}, \hyperpage{193}
+    \subitem {schemas.ReviewResponse}, \hyperpage{197}
+    \subitem {schemas.Shipper}, \hyperpage{201}
+    \subitem {schemas.SocialShare}, \hyperpage{207}
+    \subitem {schemas.UsedPromotion}, \hyperpage{215}
+    \subitem {schemas.User}, \hyperpage{222}
+    \subitem {schemas.UserDevice}, \hyperpage{228}
+    \subitem {schemas.UserFAQ}, \hyperpage{234}
+  \item {models}, \hyperpage{79}
+  \item {models.Address}, \hyperpage{89}
+    \subitem {\_\_tablename\_\_}, \hyperpage{90}
+    \subitem {detail}, \hyperpage{90}
+    \subitem {id}, \hyperpage{90}
+    \subitem {orders}, \hyperpage{90}
+    \subitem {phone}, \hyperpage{90}
+    \subitem {user}, \hyperpage{91}
+    \subitem {userid}, \hyperpage{91}
+  \item {models.Category}, \hyperpage{96}
+    \subitem {\_\_tablename\_\_}, \hyperpage{97}
+    \subitem {description}, \hyperpage{97}
+    \subitem {id}, \hyperpage{97}
+    \subitem {menu\_items}, \hyperpage{98}
+    \subitem {name}, \hyperpage{98}
+    \subitem {type}, \hyperpage{98}
+  \item {models.ChatMessage}, \hyperpage{106}
+    \subitem {\_\_tablename\_\_}, \hyperpage{107}
+    \subitem {id}, \hyperpage{107}
+    \subitem {message}, \hyperpage{107}
+    \subitem {senderrole}, \hyperpage{107}
+    \subitem {sentat}, \hyperpage{107}
+    \subitem {session}, \hyperpage{107}
+    \subitem {sessionid}, \hyperpage{107}
+  \item {models.ChatSession}, \hyperpage{111}
+    \subitem {\_\_tablename\_\_}, \hyperpage{112}
+    \subitem {createdat}, \hyperpage{112}
+    \subitem {id}, \hyperpage{112}
+    \subitem {messages}, \hyperpage{113}
+    \subitem {notifications}, \hyperpage{113}
+    \subitem {status}, \hyperpage{113}
+    \subitem {user}, \hyperpage{113}
+    \subitem {userid}, \hyperpage{113}
+  \item {models.Delivery}, \hyperpage{116}
+    \subitem {\_\_tablename\_\_}, \hyperpage{117}
+    \subitem {deliverytime}, \hyperpage{117}
+    \subitem {id}, \hyperpage{117}
+    \subitem {order}, \hyperpage{117}
+    \subitem {orderid}, \hyperpage{117}
+    \subitem {shipper}, \hyperpage{117}
+    \subitem {shipperid}, \hyperpage{117}
+    \subitem {status}, \hyperpage{117}
+  \item {models.FAQ}, \hyperpage{122}
+    \subitem {\_\_tablename\_\_}, \hyperpage{123}
+    \subitem {answer}, \hyperpage{123}
+    \subitem {id}, \hyperpage{123}
+    \subitem {isactive}, \hyperpage{123}
+    \subitem {question}, \hyperpage{123}
+    \subitem {user\_faqs}, \hyperpage{123}
+  \item {models.LoyaltyPoint}, \hyperpage{128}
+    \subitem {\_\_tablename\_\_}, \hyperpage{129}
+    \subitem {id}, \hyperpage{129}
+    \subitem {menu\_item}, \hyperpage{129}
+    \subitem {menuitemid}, \hyperpage{129}
+    \subitem {points}, \hyperpage{129}
+    \subitem {updatedat}, \hyperpage{129}
+    \subitem {user}, \hyperpage{129}
+    \subitem {userid}, \hyperpage{130}
+  \item {models.MenuItem}, \hyperpage{134}
+    \subitem {\_\_tablename\_\_}, \hyperpage{135}
+    \subitem {category}, \hyperpage{135}
+    \subitem {categoryid}, \hyperpage{135}
+    \subitem {description}, \hyperpage{135}
+    \subitem {id}, \hyperpage{136}
+    \subitem {image\_url}, \hyperpage{136}
+    \subitem {is\_available}, \hyperpage{136}
+    \subitem {name}, \hyperpage{136}
+    \subitem {order\_items}, \hyperpage{136}
+    \subitem {price}, \hyperpage{136}
+    \subitem {restaurant}, \hyperpage{136}
+    \subitem {restaurantid}, \hyperpage{136}
+    \subitem {reviews}, \hyperpage{137}
+    \subitem {social\_shares}, \hyperpage{137}
+  \item {models.Notification}, \hyperpage{145}
+    \subitem {\_\_tablename\_\_}, \hyperpage{146}
+    \subitem {content}, \hyperpage{146}
+    \subitem {createdat}, \hyperpage{146}
+    \subitem {id}, \hyperpage{146}
+    \subitem {isread}, \hyperpage{147}
+    \subitem {order}, \hyperpage{147}
+    \subitem {orderid}, \hyperpage{147}
+    \subitem {session}, \hyperpage{147}
+    \subitem {sessionid}, \hyperpage{147}
+    \subitem {title}, \hyperpage{147}
+    \subitem {type}, \hyperpage{147}
+    \subitem {user}, \hyperpage{147}
+    \subitem {userid}, \hyperpage{148}
+  \item {models.OrderItem}, \hyperpage{158}
+    \subitem {\_\_tablename\_\_}, \hyperpage{159}
+    \subitem {id}, \hyperpage{159}
+    \subitem {menu\_item}, \hyperpage{159}
+    \subitem {menuitemid}, \hyperpage{160}
+    \subitem {order}, \hyperpage{160}
+    \subitem {orderid}, \hyperpage{160}
+    \subitem {price}, \hyperpage{160}
+    \subitem {quantity}, \hyperpage{160}
+  \item {models.Orders}, \hyperpage{165}
+    \subitem {\_\_tablename\_\_}, \hyperpage{166}
+    \subitem {address}, \hyperpage{166}
+    \subitem {addressid}, \hyperpage{166}
+    \subitem {createdat}, \hyperpage{166}
+    \subitem {delivery}, \hyperpage{167}
+    \subitem {id}, \hyperpage{167}
+    \subitem {notifications}, \hyperpage{167}
+    \subitem {order\_items}, \hyperpage{167}
+    \subitem {payments}, \hyperpage{167}
+    \subitem {preorderdate}, \hyperpage{167}
+    \subitem {preordertime}, \hyperpage{167}
+    \subitem {restaurant}, \hyperpage{167}
+    \subitem {restaurantid}, \hyperpage{168}
+    \subitem {status}, \hyperpage{168}
+    \subitem {totalprice}, \hyperpage{168}
+    \subitem {used\_promotions}, \hyperpage{168}
+    \subitem {user}, \hyperpage{168}
+    \subitem {userid}, \hyperpage{168}
+  \item {models.Payment}, \hyperpage{170}
+    \subitem {\_\_tablename\_\_}, \hyperpage{171}
+    \subitem {id}, \hyperpage{171}
+    \subitem {method}, \hyperpage{171}
+    \subitem {order}, \hyperpage{171}
+    \subitem {orderid}, \hyperpage{171}
+    \subitem {status}, \hyperpage{171}
+  \item {models.Promotion}, \hyperpage{175}
+    \subitem {\_\_tablename\_\_}, \hyperpage{176}
+    \subitem {code}, \hyperpage{176}
+    \subitem {discounttype}, \hyperpage{176}
+    \subitem {discountvalue}, \hyperpage{176}
+    \subitem {expiredate}, \hyperpage{176}
+    \subitem {id}, \hyperpage{176}
+    \subitem {minordervalue}, \hyperpage{176}
+    \subitem {status}, \hyperpage{177}
+    \subitem {used\_promotions}, \hyperpage{177}
+  \item {models.Restaurant}, \hyperpage{181}
+    \subitem {\_\_tablename\_\_}, \hyperpage{182}
+    \subitem {address}, \hyperpage{182}
+    \subitem {close\_time}, \hyperpage{182}
+    \subitem {description}, \hyperpage{182}
+    \subitem {id}, \hyperpage{182}
+    \subitem {image\_url}, \hyperpage{182}
+    \subitem {menu\_items}, \hyperpage{182}
+    \subitem {name}, \hyperpage{183}
+    \subitem {open\_time}, \hyperpage{183}
+    \subitem {orders}, \hyperpage{183}
+    \subitem {phone\_number}, \hyperpage{183}
+    \subitem {rating}, \hyperpage{183}
+    \subitem {reviews}, \hyperpage{183}
+    \subitem {social\_shares}, \hyperpage{183}
+    \subitem {status}, \hyperpage{183}
+  \item {models.Review}, \hyperpage{189}
+    \subitem {\_\_tablename\_\_}, \hyperpage{190}
+    \subitem {comment}, \hyperpage{190}
+    \subitem {id}, \hyperpage{190}
+    \subitem {menu\_item}, \hyperpage{190}
+    \subitem {menuitemid}, \hyperpage{190}
+    \subitem {order}, \hyperpage{190}
+    \subitem {orderid}, \hyperpage{190}
+    \subitem {rating}, \hyperpage{191}
+    \subitem {restaurant}, \hyperpage{191}
+    \subitem {restaurantid}, \hyperpage{191}
+    \subitem {user}, \hyperpage{191}
+    \subitem {userid}, \hyperpage{191}
+  \item {models.Shipper}, \hyperpage{197}
+    \subitem {\_\_tablename\_\_}, \hyperpage{198}
+    \subitem {deliveries}, \hyperpage{198}
+    \subitem {description}, \hyperpage{198}
+    \subitem {id}, \hyperpage{199}
+    \subitem {name}, \hyperpage{199}
+    \subitem {phone}, \hyperpage{199}
+    \subitem {rating}, \hyperpage{199}
+    \subitem {status}, \hyperpage{199}
+  \item {models.SocialShare}, \hyperpage{203}
+    \subitem {\_\_tablename\_\_}, \hyperpage{204}
+    \subitem {context}, \hyperpage{204}
+    \subitem {createdat}, \hyperpage{205}
+    \subitem {id}, \hyperpage{205}
+    \subitem {menu\_item}, \hyperpage{205}
+    \subitem {menuitemid}, \hyperpage{205}
+    \subitem {platform}, \hyperpage{205}
+    \subitem {restaurant}, \hyperpage{205}
+    \subitem {restaurantid}, \hyperpage{205}
+    \subitem {sharetype}, \hyperpage{205}
+    \subitem {user}, \hyperpage{206}
+    \subitem {userid}, \hyperpage{206}
+  \item {models.UsedPromotion}, \hyperpage{212}
+    \subitem {\_\_tablename\_\_}, \hyperpage{213}
+    \subitem {id}, \hyperpage{213}
+    \subitem {order}, \hyperpage{213}
+    \subitem {orderid}, \hyperpage{213}
+    \subitem {promotion}, \hyperpage{213}
+    \subitem {promotionid}, \hyperpage{214}
+    \subitem {usedat}, \hyperpage{214}
+  \item {models.User}, \hyperpage{218}
+    \subitem {\_\_tablename\_\_}, \hyperpage{219}
+    \subitem {addresses}, \hyperpage{219}
+    \subitem {chat\_sessions}, \hyperpage{219}
+    \subitem {email}, \hyperpage{219}
+    \subitem {id}, \hyperpage{219}
+    \subitem {loyalty\_points}, \hyperpage{219}
+    \subitem {name}, \hyperpage{219}
+    \subitem {notifications}, \hyperpage{220}
+    \subitem {orders}, \hyperpage{220}
+    \subitem {password}, \hyperpage{220}
+    \subitem {phone}, \hyperpage{220}
+    \subitem {reviews}, \hyperpage{220}
+    \subitem {role}, \hyperpage{220}
+    \subitem {social\_shares}, \hyperpage{220}
+    \subitem {user\_devices}, \hyperpage{220}
+    \subitem {user\_faqs}, \hyperpage{221}
+    \subitem {username}, \hyperpage{221}
+  \item {models.UserDevice}, \hyperpage{225}
+    \subitem {\_\_tablename\_\_}, \hyperpage{226}
+    \subitem {device\_token}, \hyperpage{226}
+    \subitem {device\_type}, \hyperpage{226}
+    \subitem {id}, \hyperpage{226}
+    \subitem {last\_active}, \hyperpage{226}
+    \subitem {user}, \hyperpage{226}
+    \subitem {userid}, \hyperpage{226}
+  \item {models.UserFAQ}, \hyperpage{230}
+    \subitem {\_\_tablename\_\_}, \hyperpage{231}
+    \subitem {faq}, \hyperpage{231}
+    \subitem {faqid}, \hyperpage{231}
+    \subitem {id}, \hyperpage{232}
+    \subitem {user}, \hyperpage{232}
+    \subitem {userid}, \hyperpage{232}
+    \subitem {viewedat}, \hyperpage{232}
+  \item {món}
+    \subitem {AppCompatActivity}, \hyperpage{43}
+
+  \indexspace
+
+  \item {name}
+    \subitem {models.Category}, \hyperpage{98}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.Shipper}, \hyperpage{199}
+    \subitem {models.User}, \hyperpage{219}
+  \item {nay}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {NetworkConfig}, \hyperpage{79}
+  \item {notification\_service}, \hyperpage{79}
+    \subitem {notify\_user}, \hyperpage{80}
+    \subitem {send\_fcm\_notification}, \hyperpage{80}
+  \item {NotificationAdapter}, \hyperpage{81}
+  \item {NotificationAdapter.NotificationViewHolder}, \hyperpage{81}
+  \item {notifications}
+    \subitem {models.ChatSession}, \hyperpage{113}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {models.User}, \hyperpage{220}
+  \item {notifs}
+    \subitem {check\_db}, \hyperpage{52}
+  \item {notify\_user}
+    \subitem {notification\_service}, \hyperpage{80}
+
+  \indexspace
+
+  \item {oauth2\_scheme}
+    \subitem {auth}, \hyperpage{49}
+  \item {onCreate}
+    \subitem {AppCompatActivity}, \hyperpage{35}
+  \item {onMessageReceived}
+    \subitem {FirebaseMessagingService}, \hyperpage{56}
+  \item {open\_time}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+  \item {openOrderDetail}
+    \subitem {AppCompatActivity}, \hyperpage{36}
+  \item {order}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {models.OrderItem}, \hyperpage{160}
+    \subitem {models.Payment}, \hyperpage{171}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.UsedPromotion}, \hyperpage{213}
+  \item {order\_items}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {schemas.Order}, \hyperpage{154}
+    \subitem {schemas.OrderCreate}, \hyperpage{156}
+    \subitem {schemas.OrderDetail}, \hyperpage{158}
+  \item {orderId}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {orderid}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {models.OrderItem}, \hyperpage{160}
+    \subitem {models.Payment}, \hyperpage{171}
+    \subitem {models.Review}, \hyperpage{190}
+    \subitem {models.UsedPromotion}, \hyperpage{213}
+    \subitem {schemas.NotificationBase}, \hyperpage{151}
+  \item {orders}
+    \subitem {models.Address}, \hyperpage{90}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.User}, \hyperpage{220}
+
+  \indexspace
+
+  \item {password}
+    \subitem {models.User}, \hyperpage{220}
+  \item {payment\_service}, \hyperpage{81}
+    \subitem {generate\_vnpay\_url}, \hyperpage{82}
+    \subitem {VNP\_HASH\_SECRET}, \hyperpage{82}
+    \subitem {VNP\_RETURN\_URL}, \hyperpage{82}
+    \subitem {VNP\_TMNCODE}, \hyperpage{83}
+    \subitem {VNP\_URL}, \hyperpage{83}
+  \item {payments}
+    \subitem {models.Orders}, \hyperpage{167}
+  \item {phone}
+    \subitem {models.Address}, \hyperpage{90}
+    \subitem {models.Shipper}, \hyperpage{199}
+    \subitem {models.User}, \hyperpage{220}
+    \subitem {schemas.AddressBase}, \hyperpage{94}
+    \subitem {schemas.AddressUpdate}, \hyperpage{96}
+  \item {phone\_number}
+    \subitem {models.Restaurant}, \hyperpage{183}
+  \item {platform}
+    \subitem {models.SocialShare}, \hyperpage{205}
+  \item {points}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {schemas.LoyaltyPointBase}, \hyperpage{133}
+  \item {pointsCard2}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {pointsCard3}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {pointsCard4}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {port}
+    \subitem {main}, \hyperpage{78}
+  \item {preorderdate}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {schemas.OrderBase}, \hyperpage{155}
+  \item {preordertime}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {schemas.OrderBase}, \hyperpage{155}
+  \item {price}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.OrderItem}, \hyperpage{160}
+  \item {promotion}
+    \subitem {models.UsedPromotion}, \hyperpage{213}
+  \item {promotionid}
+    \subitem {models.UsedPromotion}, \hyperpage{214}
+  \item {pwd\_context}
+    \subitem {auth}, \hyperpage{49}
+
+  \indexspace
+
+  \item {quantity}
+    \subitem {models.OrderItem}, \hyperpage{160}
+  \item {question}
+    \subitem {models.FAQ}, \hyperpage{123}
+
+  \indexspace
+
+  \item {rating}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.Review}, \hyperpage{191}
+    \subitem {models.Shipper}, \hyperpage{199}
+    \subitem {schemas.RestaurantBase}, \hyperpage{187}
+    \subitem {schemas.ShipperBase}, \hyperpage{202}
+  \item {read\_all\_menu\_items}
+    \subitem {main}, \hyperpage{66}
+  \item {read\_categories}
+    \subitem {main}, \hyperpage{67}
+  \item {read\_faqs}
+    \subitem {main}, \hyperpage{67}
+  \item {read\_menu\_item\_detail}
+    \subitem {main}, \hyperpage{67}
+  \item {read\_order\_detail}
+    \subitem {main}, \hyperpage{68}
+  \item {read\_promotions}
+    \subitem {main}, \hyperpage{69}
+  \item {read\_restaurant}
+    \subitem {main}, \hyperpage{69}
+  \item {read\_restaurant\_menu}
+    \subitem {main}, \hyperpage{69}
+  \item {read\_restaurants}
+    \subitem {main}, \hyperpage{70}
+  \item {read\_root}
+    \subitem {main}, \hyperpage{70}
+  \item {read\_user\_addresses}
+    \subitem {main}, \hyperpage{70}
+  \item {read\_user\_notifications}
+    \subitem {main}, \hyperpage{71}
+  \item {read\_user\_orders}
+    \subitem {main}, \hyperpage{71}
+  \item {read\_user\_profile\_summary}
+    \subitem {main}, \hyperpage{71}
+  \item {read\_users}
+    \subitem {main}, \hyperpage{72}
+  \item {read\_users\_me}
+    \subitem {main}, \hyperpage{72}
+  \item {recyclerView}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+  \item {reorderCurrentOrder}
+    \subitem {AppCompatActivity}, \hyperpage{37}
+  \item {resolveUserIdForPoints}
+    \subitem {AppCompatActivity}, \hyperpage{37}
+  \item {restaurant}
+    \subitem {AppCompatActivity}, \hyperpage{44}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Orders}, \hyperpage{167}
+    \subitem {models.Review}, \hyperpage{191}
+    \subitem {models.SocialShare}, \hyperpage{205}
+  \item {restaurant\_name}
+    \subitem {schemas.MenuItemWithRestaurant}, \hyperpage{143}
+    \subitem {schemas.MenuItemWithReviews}, \hyperpage{145}
+    \subitem {schemas.OrderDetail}, \hyperpage{158}
+  \item {RestaurantAdapter}, \hyperpage{83}
+  \item {RestaurantAdapter.RestaurantViewHolder}, \hyperpage{83}
+  \item {restaurantId}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {restaurantid}
+    \subitem {models.MenuItem}, \hyperpage{136}
+    \subitem {models.Orders}, \hyperpage{168}
+    \subitem {models.Review}, \hyperpage{191}
+    \subitem {models.SocialShare}, \hyperpage{205}
+    \subitem {schemas.ReviewBase}, \hyperpage{194}
+  \item {restaurants}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {RetrofitClient}, \hyperpage{83}
+  \item {reviews}
+    \subitem {models.MenuItem}, \hyperpage{137}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.User}, \hyperpage{220}
+    \subitem {schemas.MenuItemWithReviews}, \hyperpage{145}
+  \item {role}
+    \subitem {models.User}, \hyperpage{220}
+  \item {rvAddresses}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {rvCart}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {rvNotifications}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {rvPreOrderCart}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+
+  \indexspace
+
+  \item {schemas}, \hyperpage{83}
+  \item {schemas.Address}, \hyperpage{91}
+    \subitem {model\_config}, \hyperpage{92}
+  \item {schemas.AddressBase}, \hyperpage{93}
+    \subitem {phone}, \hyperpage{94}
+  \item {schemas.AddressCreate}, \hyperpage{94}
+  \item {schemas.AddressUpdate}, \hyperpage{95}
+    \subitem {detail}, \hyperpage{96}
+    \subitem {phone}, \hyperpage{96}
+  \item {schemas.Category}, \hyperpage{98}
+    \subitem {model\_config}, \hyperpage{99}
+  \item {schemas.CategoryBase}, \hyperpage{100}
+    \subitem {description}, \hyperpage{101}
+    \subitem {type}, \hyperpage{101}
+  \item {schemas.CategoryCreate}, \hyperpage{101}
+  \item {schemas.ChatMessage}, \hyperpage{108}
+    \subitem {model\_config}, \hyperpage{109}
+  \item {schemas.ChatMessageBase}, \hyperpage{109}
+  \item {schemas.ChatMessageCreate}, \hyperpage{110}
+  \item {schemas.ChatSession}, \hyperpage{114}
+    \subitem {messages}, \hyperpage{114}
+    \subitem {model\_config}, \hyperpage{114}
+  \item {schemas.ChatSessionCreate}, \hyperpage{115}
+  \item {schemas.Delivery}, \hyperpage{118}
+    \subitem {model\_config}, \hyperpage{119}
+  \item {schemas.DeliveryBase}, \hyperpage{119}
+    \subitem {deliverytime}, \hyperpage{120}
+  \item {schemas.DeliveryCreate}, \hyperpage{121}
+  \item {schemas.FAQ}, \hyperpage{124}
+    \subitem {model\_config}, \hyperpage{125}
+  \item {schemas.FAQBase}, \hyperpage{125}
+    \subitem {isactive}, \hyperpage{126}
+  \item {schemas.FAQCreate}, \hyperpage{127}
+  \item {schemas.LoyaltyPoint}, \hyperpage{130}
+    \subitem {model\_config}, \hyperpage{131}
+  \item {schemas.LoyaltyPointBase}, \hyperpage{132}
+    \subitem {points}, \hyperpage{133}
+  \item {schemas.LoyaltyPointCreate}, \hyperpage{133}
+  \item {schemas.MenuItem}, \hyperpage{137}
+    \subitem {model\_config}, \hyperpage{138}
+  \item {schemas.MenuItemBase}, \hyperpage{139}
+    \subitem {description}, \hyperpage{139}
+    \subitem {image\_url}, \hyperpage{139}
+    \subitem {is\_available}, \hyperpage{140}
+  \item {schemas.MenuItemCreate}, \hyperpage{140}
+  \item {schemas.MenuItemWithRestaurant}, \hyperpage{142}
+    \subitem {model\_config}, \hyperpage{143}
+    \subitem {restaurant\_name}, \hyperpage{143}
+  \item {schemas.MenuItemWithReviews}, \hyperpage{143}
+    \subitem {avg\_rating}, \hyperpage{144}
+    \subitem {model\_config}, \hyperpage{144}
+    \subitem {restaurant\_name}, \hyperpage{145}
+    \subitem {reviews}, \hyperpage{145}
+  \item {schemas.Notification}, \hyperpage{148}
+    \subitem {model\_config}, \hyperpage{149}
+  \item {schemas.NotificationBase}, \hyperpage{150}
+    \subitem {isread}, \hyperpage{151}
+    \subitem {orderid}, \hyperpage{151}
+    \subitem {sessionid}, \hyperpage{151}
+  \item {schemas.NotificationCreate}, \hyperpage{151}
+  \item {schemas.Order}, \hyperpage{153}
+    \subitem {model\_config}, \hyperpage{154}
+    \subitem {order\_items}, \hyperpage{154}
+  \item {schemas.OrderBase}, \hyperpage{154}
+    \subitem {preorderdate}, \hyperpage{155}
+    \subitem {preordertime}, \hyperpage{155}
+  \item {schemas.OrderCreate}, \hyperpage{155}
+    \subitem {order\_items}, \hyperpage{156}
+  \item {schemas.OrderDetail}, \hyperpage{157}
+    \subitem {address\_detail}, \hyperpage{158}
+    \subitem {order\_items}, \hyperpage{158}
+    \subitem {restaurant\_name}, \hyperpage{158}
+  \item {schemas.OrderItem}, \hyperpage{161}
+    \subitem {model\_config}, \hyperpage{162}
+  \item {schemas.OrderItemBase}, \hyperpage{162}
+  \item {schemas.OrderItemCreate}, \hyperpage{163}
+  \item {schemas.OrderItemDetail}, \hyperpage{164}
+    \subitem {image\_url}, \hyperpage{165}
+    \subitem {menuitem\_name}, \hyperpage{165}
+  \item {schemas.OrderStatusUpdate}, \hyperpage{169}
+  \item {schemas.Payment}, \hyperpage{172}
+    \subitem {model\_config}, \hyperpage{173}
+  \item {schemas.PaymentBase}, \hyperpage{173}
+  \item {schemas.PaymentCreate}, \hyperpage{174}
+  \item {schemas.Promotion}, \hyperpage{177}
+    \subitem {model\_config}, \hyperpage{178}
+  \item {schemas.PromotionBase}, \hyperpage{179}
+  \item {schemas.PromotionCreate}, \hyperpage{180}
+  \item {schemas.Restaurant}, \hyperpage{184}
+    \subitem {menu\_items}, \hyperpage{185}
+    \subitem {model\_config}, \hyperpage{185}
+  \item {schemas.RestaurantBase}, \hyperpage{186}
+    \subitem {address}, \hyperpage{187}
+    \subitem {close\_time}, \hyperpage{187}
+    \subitem {description}, \hyperpage{187}
+    \subitem {image\_url}, \hyperpage{187}
+    \subitem {open\_time}, \hyperpage{187}
+    \subitem {rating}, \hyperpage{187}
+  \item {schemas.RestaurantCreate}, \hyperpage{188}
+  \item {schemas.Review}, \hyperpage{192}
+    \subitem {model\_config}, \hyperpage{193}
+  \item {schemas.ReviewBase}, \hyperpage{193}
+    \subitem {comment}, \hyperpage{194}
+    \subitem {menuitemid}, \hyperpage{194}
+    \subitem {restaurantid}, \hyperpage{194}
+  \item {schemas.ReviewCreate}, \hyperpage{195}
+  \item {schemas.ReviewResponse}, \hyperpage{196}
+    \subitem {comment}, \hyperpage{197}
+    \subitem {model\_config}, \hyperpage{197}
+    \subitem {user\_name}, \hyperpage{197}
+  \item {schemas.Shipper}, \hyperpage{200}
+    \subitem {model\_config}, \hyperpage{201}
+  \item {schemas.ShipperBase}, \hyperpage{201}
+    \subitem {description}, \hyperpage{202}
+    \subitem {rating}, \hyperpage{202}
+  \item {schemas.ShipperCreate}, \hyperpage{202}
+  \item {schemas.SocialShare}, \hyperpage{206}
+    \subitem {model\_config}, \hyperpage{207}
+  \item {schemas.SocialShareBase}, \hyperpage{208}
+    \subitem {context}, \hyperpage{209}
+  \item {schemas.SocialShareCreate}, \hyperpage{209}
+  \item {schemas.Token}, \hyperpage{210}
+  \item {schemas.TokenData}, \hyperpage{211}
+    \subitem {email}, \hyperpage{212}
+  \item {schemas.UsedPromotion}, \hyperpage{214}
+    \subitem {model\_config}, \hyperpage{215}
+  \item {schemas.UsedPromotionBase}, \hyperpage{216}
+  \item {schemas.UsedPromotionCreate}, \hyperpage{217}
+  \item {schemas.User}, \hyperpage{221}
+    \subitem {model\_config}, \hyperpage{222}
+  \item {schemas.UserBase}, \hyperpage{223}
+  \item {schemas.UserCreate}, \hyperpage{224}
+  \item {schemas.UserDevice}, \hyperpage{227}
+    \subitem {model\_config}, \hyperpage{228}
+  \item {schemas.UserDeviceBase}, \hyperpage{228}
+    \subitem {device\_type}, \hyperpage{229}
+  \item {schemas.UserDeviceCreate}, \hyperpage{229}
+  \item {schemas.UserFAQ}, \hyperpage{233}
+    \subitem {model\_config}, \hyperpage{234}
+  \item {schemas.UserFAQBase}, \hyperpage{234}
+  \item {schemas.UserFAQCreate}, \hyperpage{235}
+  \item {schemas.UserProfileSummary}, \hyperpage{236}
+  \item {search\_menu\_items\_by\_category\_name}
+    \subitem {main}, \hyperpage{72}
+  \item {search\_menu\_items\_by\_name}
+    \subitem {main}, \hyperpage{73}
+  \item {search\_restaurants\_by\_name}
+    \subitem {main}, \hyperpage{74}
+  \item {searchByCategory}
+    \subitem {AppCompatActivity}, \hyperpage{38}
+  \item {searchMenuItems}
+    \subitem {AppCompatActivity}, \hyperpage{38}
+  \item {searchRestaurants}
+    \subitem {AppCompatActivity}, \hyperpage{39}
+  \item {SECRET\_KEY}
+    \subitem {auth}, \hyperpage{49}
+  \item {selectedPromotion}
+    \subitem {AppCompatActivity}, \hyperpage{45}
+  \item {send\_fcm\_notification}
+    \subitem {notification\_service}, \hyperpage{80}
+  \item {senderrole}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+  \item {sentat}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+  \item {session}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+    \subitem {models.Notification}, \hyperpage{147}
+  \item {sessionid}
+    \subitem {models.ChatMessage}, \hyperpage{107}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {schemas.NotificationBase}, \hyperpage{151}
+  \item {SessionLocal}
+    \subitem {database}, \hyperpage{53}
+  \item {sharetype}
+    \subitem {models.SocialShare}, \hyperpage{205}
+  \item {shipper}
+    \subitem {models.Delivery}, \hyperpage{117}
+  \item {shipperid}
+    \subitem {models.Delivery}, \hyperpage{117}
+  \item {show}
+    \subitem {AppCompatActivity}, \hyperpage{40}
+  \item {showNotification}
+    \subitem {FirebaseMessagingService}, \hyperpage{56}
+  \item {social\_shares}
+    \subitem {models.MenuItem}, \hyperpage{137}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.User}, \hyperpage{220}
+  \item {SQLALCHEMY\_DATABASE\_URL}
+    \subitem {database}, \hyperpage{53}
+  \item {startActivity}
+    \subitem {AppCompatActivity}, \hyperpage{40}
+  \item {status}
+    \subitem {models.ChatSession}, \hyperpage{113}
+    \subitem {models.Delivery}, \hyperpage{117}
+    \subitem {models.Orders}, \hyperpage{168}
+    \subitem {models.Payment}, \hyperpage{171}
+    \subitem {models.Promotion}, \hyperpage{177}
+    \subitem {models.Restaurant}, \hyperpage{183}
+    \subitem {models.Shipper}, \hyperpage{199}
+
+  \indexspace
+
+  \item {table\_name}
+    \subitem {view\_data}, \hyperpage{88}
+  \item {tables}
+    \subitem {check\_db}, \hyperpage{52}
+  \item {title}
+    \subitem {models.Notification}, \hyperpage{147}
+  \item {totalprice}
+    \subitem {models.Orders}, \hyperpage{168}
+  \item {type}
+    \subitem {models.Category}, \hyperpage{98}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {schemas.CategoryBase}, \hyperpage{101}
+
+  \indexspace
+
+  \item {update\_address}
+    \subitem {main}, \hyperpage{74}
+  \item {update\_device\_token}
+    \subitem {main}, \hyperpage{75}
+  \item {update\_order\_status}
+    \subitem {main}, \hyperpage{75}
+  \item {updateAddress}
+    \subitem {AppCompatActivity}, \hyperpage{41}
+  \item {updatedat}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+  \item {updateOrderStatusToCODConfirmed}
+    \subitem {AppCompatActivity}, \hyperpage{41}
+  \item {upload\_image}
+    \subitem {firebase\_utils}, \hyperpage{55}
+  \item {used\_promotions}
+    \subitem {models.Orders}, \hyperpage{168}
+    \subitem {models.Promotion}, \hyperpage{177}
+  \item {usedat}
+    \subitem {models.UsedPromotion}, \hyperpage{214}
+  \item {user}
+    \subitem {models.Address}, \hyperpage{91}
+    \subitem {models.ChatSession}, \hyperpage{113}
+    \subitem {models.LoyaltyPoint}, \hyperpage{129}
+    \subitem {models.Notification}, \hyperpage{147}
+    \subitem {models.Orders}, \hyperpage{168}
+    \subitem {models.Review}, \hyperpage{191}
+    \subitem {models.SocialShare}, \hyperpage{206}
+    \subitem {models.UserDevice}, \hyperpage{226}
+    \subitem {models.UserFAQ}, \hyperpage{232}
+  \item {user\_devices}
+    \subitem {models.User}, \hyperpage{220}
+  \item {user\_faqs}
+    \subitem {models.FAQ}, \hyperpage{123}
+    \subitem {models.User}, \hyperpage{221}
+  \item {user\_id}
+    \subitem {chatbot\_service.ChatBotService}, \hyperpage{105}
+  \item {user\_name}
+    \subitem {schemas.ReviewResponse}, \hyperpage{197}
+  \item {userid}
+    \subitem {models.Address}, \hyperpage{91}
+    \subitem {models.ChatSession}, \hyperpage{113}
+    \subitem {models.LoyaltyPoint}, \hyperpage{130}
+    \subitem {models.Notification}, \hyperpage{148}
+    \subitem {models.Orders}, \hyperpage{168}
+    \subitem {models.Review}, \hyperpage{191}
+    \subitem {models.SocialShare}, \hyperpage{206}
+    \subitem {models.UserDevice}, \hyperpage{226}
+    \subitem {models.UserFAQ}, \hyperpage{232}
+  \item {username}
+    \subitem {models.User}, \hyperpage{221}
+
+  \indexspace
+
+  \item {verify\_password}
+    \subitem {auth}, \hyperpage{48}
+  \item {view\_all\_data}
+    \subitem {view\_data}, \hyperpage{85}
+  \item {view\_data}, \hyperpage{85}
+    \subitem {get\_all\_tables}, \hyperpage{85}
+    \subitem {limit}, \hyperpage{88}
+    \subitem {table\_name}, \hyperpage{88}
+    \subitem {view\_all\_data}, \hyperpage{85}
+    \subitem {view\_specific\_table}, \hyperpage{86}
+    \subitem {view\_table\_data}, \hyperpage{87}
+  \item {view\_specific\_table}
+    \subitem {view\_data}, \hyperpage{86}
+  \item {view\_table\_data}
+    \subitem {view\_data}, \hyperpage{87}
+  \item {viewedat}
+    \subitem {models.UserFAQ}, \hyperpage{232}
+  \item {VNP\_HASH\_SECRET}
+    \subitem {payment\_service}, \hyperpage{82}
+  \item {VNP\_RETURN\_URL}
+    \subitem {payment\_service}, \hyperpage{82}
+  \item {VNP\_TMNCODE}
+    \subitem {payment\_service}, \hyperpage{83}
+  \item {VNP\_URL}
+    \subitem {payment\_service}, \hyperpage{83}
+  \item {vnpay\_return}
+    \subitem {main}, \hyperpage{76}
+
+\end{theindex}

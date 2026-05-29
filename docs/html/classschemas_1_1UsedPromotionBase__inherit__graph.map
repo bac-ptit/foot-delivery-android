@@ -1,0 +1,9 @@
+<map id="schemas.UsedPromotionBase" name="schemas.UsedPromotionBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="96,80,294,107"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1UsedPromotion.html" title=" " alt="" coords="5,155,174,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="167,115,109,156,107,152,162,116"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1UsedPromotionCreate.html" title=" " alt="" coords="198,155,405,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="227,113,285,154,280,154,225,118"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="152,5,238,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,46,197,81,192,78,193,50"/>
+</map>

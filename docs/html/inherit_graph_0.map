@@ -1,0 +1,45 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,512,57,539"/>
+<area shape="rect" id="Node000001" href="$classmodels_1_1Address.html" title=" " alt="" coords="126,5,241,32"/>
+<area shape="poly" id="edge1_Node000000_Node000001" title=" " alt="" coords="30,496,34,396,45,261,54,193,67,130,82,78,103,42,126,27,124,31,107,46,87,81,72,131,59,193,50,262,39,396,35,497"/>
+<area shape="rect" id="Node000002" href="$classmodels_1_1Category.html" title=" " alt="" coords="123,56,244,83"/>
+<area shape="poly" id="edge2_Node000000_Node000002" title=" " alt="" coords="31,497,36,406,48,286,69,170,84,125,103,93,124,79,122,83,107,96,89,127,75,172,53,287,41,406,36,497"/>
+<area shape="rect" id="Node000003" href="$classmodels_1_1ChatMessage.html" title=" " alt="" coords="109,107,258,133"/>
+<area shape="poly" id="edge3_Node000000_Node000003" title=" " alt="" coords="31,496,38,415,51,311,72,211,86,171,103,144,120,132,118,136,107,147,91,173,77,212,57,311,44,416,37,497"/>
+<area shape="rect" id="Node000004" href="$classmodels_1_1ChatSession.html" title=" " alt="" coords="112,157,254,184"/>
+<area shape="poly" id="edge4_Node000000_Node000004" title=" " alt="" coords="32,496,41,425,55,336,75,251,88,218,103,194,121,182,118,187,107,198,93,220,80,252,60,337,46,426,38,497"/>
+<area shape="rect" id="Node000005" href="$classmodels_1_1Delivery.html" title=" " alt="" coords="126,208,241,235"/>
+<area shape="poly" id="edge5_Node000000_Node000005" title=" " alt="" coords="29,496,31,444,40,377,50,341,63,307,80,274,103,245,127,230,124,235,107,249,85,277,68,309,55,343,46,378,36,444,34,497"/>
+<area shape="rect" id="Node000006" href="$classmodels_1_1FAQ.html" title=" " alt="" coords="136,259,230,285"/>
+<area shape="poly" id="edge6_Node000000_Node000006" title=" " alt="" coords="31,496,36,453,47,399,69,344,84,318,103,295,118,284,138,277,134,282,121,289,107,299,88,321,73,346,52,400,41,453,36,497"/>
+<area shape="rect" id="Node000007" href="$classmodels_1_1LoyaltyPoint.html" title=" " alt="" coords="114,309,253,336"/>
+<area shape="poly" id="edge7_Node000000_Node000007" title=" " alt="" coords="34,496,41,462,55,422,75,381,103,346,123,334,120,339,106,350,79,384,60,424,47,463,39,497"/>
+<area shape="rect" id="Node000008" href="$classmodels_1_1MenuItem.html" title=" " alt="" coords="121,360,246,387"/>
+<area shape="poly" id="edge8_Node000000_Node000008" title=" " alt="" coords="39,497,63,446,81,419,103,397,125,385,122,390,106,401,85,423,67,448,44,498"/>
+<area shape="rect" id="Node000009" href="$classmodels_1_1Notification.html" title=" " alt="" coords="117,411,250,437"/>
+<area shape="poly" id="edge9_Node000000_Node000009" title=" " alt="" coords="49,498,73,471,103,447,130,436,126,440,106,452,77,475,54,501"/>
+<area shape="rect" id="Node000010" href="$classmodels_1_1OrderItem.html" title=" " alt="" coords="121,461,246,488"/>
+<area shape="poly" id="edge10_Node000000_Node000010" title=" " alt="" coords="69,510,104,497,141,487,137,491,106,503,73,513"/>
+<area shape="rect" id="Node000011" href="$classmodels_1_1Orders.html" title=" " alt="" coords="130,512,236,539"/>
+<area shape="poly" id="edge11_Node000000_Node000011" title=" " alt="" coords="71,523,132,523,128,527,74,528"/>
+<area shape="rect" id="Node000012" href="$classmodels_1_1Payment.html" title=" " alt="" coords="124,563,243,589"/>
+<area shape="poly" id="edge12_Node000000_Node000012" title=" " alt="" coords="70,537,106,548,141,561,137,564,104,553,73,542"/>
+<area shape="rect" id="Node000013" href="$classmodels_1_1Promotion.html" title=" " alt="" coords="120,613,246,640"/>
+<area shape="poly" id="edge13_Node000000_Node000013" title=" " alt="" coords="51,549,77,576,106,599,130,612,126,614,103,604,73,579,52,554"/>
+<area shape="rect" id="Node000014" href="$classmodels_1_1Restaurant.html" title=" " alt="" coords="118,664,249,691"/>
+<area shape="poly" id="edge14_Node000000_Node000014" title=" " alt="" coords="41,550,67,602,85,628,106,650,126,662,121,664,103,654,81,631,63,605,42,556"/>
+<area shape="rect" id="Node000015" href="$classmodels_1_1Review.html" title=" " alt="" coords="128,715,239,741"/>
+<area shape="poly" id="edge15_Node000000_Node000015" title=" " alt="" coords="36,552,47,588,60,627,79,667,106,701,130,716,125,718,103,705,75,669,55,629,41,589,37,557"/>
+<area shape="rect" id="Node000016" href="$classmodels_1_1Shipper.html" title=" " alt="" coords="128,765,239,792"/>
+<area shape="poly" id="edge16_Node000000_Node000016" title=" " alt="" coords="33,551,41,597,52,650,73,704,88,729,106,751,130,767,125,769,103,755,84,732,69,707,47,652,36,598,33,557"/>
+<area shape="rect" id="Node000017" href="$classmodels_1_1SocialShare.html" title=" " alt="" coords="115,816,252,843"/>
+<area shape="poly" id="edge17_Node000000_Node000017" title=" " alt="" coords="31,551,36,606,46,673,55,708,68,742,85,774,107,802,122,815,117,816,103,806,80,777,63,744,50,709,40,674,31,607,31,557"/>
+<area shape="rect" id="Node000018" href="$classmodels_1_1UsedPromotion.html" title=" " alt="" coords="105,867,262,893"/>
+<area shape="poly" id="edge18_Node000000_Node000018" title=" " alt="" coords="35,551,46,625,60,714,80,798,93,831,107,853,122,865,117,867,103,856,88,833,75,800,55,715,41,625,35,557"/>
+<area shape="rect" id="Node000019" href="$classmodels_1_1User.html" title=" " alt="" coords="136,917,231,944"/>
+<area shape="poly" id="edge19_Node000000_Node000019" title=" " alt="" coords="34,551,44,635,57,739,77,839,91,877,107,904,120,914,138,923,133,925,117,919,103,907,86,880,72,840,51,740,38,635,34,557"/>
+<area shape="rect" id="Node000020" href="$classmodels_1_1UserDevice.html" title=" " alt="" coords="115,968,252,995"/>
+<area shape="poly" id="edge20_Node000000_Node000020" title=" " alt="" coords="33,551,41,644,53,764,75,879,89,924,107,954,121,967,116,968,103,958,84,926,69,880,48,765,36,645,33,557"/>
+<area shape="rect" id="Node000021" href="$classmodels_1_1UserFAQ.html" title=" " alt="" coords="122,1019,244,1045"/>
+<area shape="poly" id="edge21_Node000000_Node000021" title=" " alt="" coords="33,551,39,654,50,789,59,857,72,919,87,970,107,1005,124,1020,119,1020,103,1008,82,972,67,921,54,858,45,790,34,655,33,557"/>
+</map>

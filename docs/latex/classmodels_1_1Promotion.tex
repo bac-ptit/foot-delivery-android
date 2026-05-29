@@ -1,0 +1,154 @@
+\doxysection{models.\+Promotion Class Reference}
+\hypertarget{classmodels_1_1Promotion}{}\label{classmodels_1_1Promotion}\index{models.Promotion@{models.Promotion}}
+
+
+Inheritance diagram for models.\+Promotion:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classmodels_1_1Promotion__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Promotion:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classmodels_1_1Promotion__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_a12209546ea427d284b55026b5ea1d449}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_a4c4bb0f4a16877ef3f24f11f5b08568e}{code}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_ab64470b4e845d9986f5aff6c5655261f}{discounttype}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_af6c27af79182c59d2c039931b2964428}{discountvalue}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_a2c40e2be1a44b6fabeeb804f31bba21a}{expiredate}} = Column(Date)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_aa389a75d6218981b70264e05e21fe0c1}{minordervalue}} = Column(Integer)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_ab91f6f09f4a60be062fd04d6b7802d2c}{status}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Promotion_abad7d593a26472bbff00ca4567d93f9c}{used\+\_\+promotions}} = relationship("{}Used\+Promotion"{}, back\+\_\+populates="{}promotion"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Promotion_ae8e73c8618631fa939eee430fdffa6ce}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}promotion"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng promotion, mã khuyến mãi và giảm giá.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00062}{62}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Promotion_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Promotion_ae8e73c8618631fa939eee430fdffa6ce}\index{models.Promotion@{models.Promotion}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_ae8e73c8618631fa939eee430fdffa6ce} 
+str models.\+Promotion.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}promotion"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00064}{64}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_a4c4bb0f4a16877ef3f24f11f5b08568e}\index{models.Promotion@{models.Promotion}!code@{code}}
+\index{code@{code}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{code}{code}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_a4c4bb0f4a16877ef3f24f11f5b08568e} 
+models.\+Promotion.\+code = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00066}{66}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_ab64470b4e845d9986f5aff6c5655261f}\index{models.Promotion@{models.Promotion}!discounttype@{discounttype}}
+\index{discounttype@{discounttype}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{discounttype}{discounttype}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_ab64470b4e845d9986f5aff6c5655261f} 
+models.\+Promotion.\+discounttype = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00067}{67}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_af6c27af79182c59d2c039931b2964428}\index{models.Promotion@{models.Promotion}!discountvalue@{discountvalue}}
+\index{discountvalue@{discountvalue}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{discountvalue}{discountvalue}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_af6c27af79182c59d2c039931b2964428} 
+models.\+Promotion.\+discountvalue = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00068}{68}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_a2c40e2be1a44b6fabeeb804f31bba21a}\index{models.Promotion@{models.Promotion}!expiredate@{expiredate}}
+\index{expiredate@{expiredate}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{expiredate}{expiredate}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_a2c40e2be1a44b6fabeeb804f31bba21a} 
+models.\+Promotion.\+expiredate = Column(Date)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00069}{69}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_a12209546ea427d284b55026b5ea1d449}\index{models.Promotion@{models.Promotion}!id@{id}}
+\index{id@{id}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_a12209546ea427d284b55026b5ea1d449} 
+models.\+Promotion.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00065}{65}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_aa389a75d6218981b70264e05e21fe0c1}\index{models.Promotion@{models.Promotion}!minordervalue@{minordervalue}}
+\index{minordervalue@{minordervalue}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{minordervalue}{minordervalue}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_aa389a75d6218981b70264e05e21fe0c1} 
+models.\+Promotion.\+minordervalue = Column(Integer)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00070}{70}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_ab91f6f09f4a60be062fd04d6b7802d2c}\index{models.Promotion@{models.Promotion}!status@{status}}
+\index{status@{status}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{status}{status}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_ab91f6f09f4a60be062fd04d6b7802d2c} 
+models.\+Promotion.\+status = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00071}{71}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Promotion_abad7d593a26472bbff00ca4567d93f9c}\index{models.Promotion@{models.Promotion}!used\_promotions@{used\_promotions}}
+\index{used\_promotions@{used\_promotions}!models.Promotion@{models.Promotion}}
+\doxysubsubsection{\texorpdfstring{used\_promotions}{used\_promotions}}
+{\footnotesize\ttfamily \label{classmodels_1_1Promotion_abad7d593a26472bbff00ca4567d93f9c} 
+models.\+Promotion.\+used\+\_\+promotions = relationship("{}Used\+Promotion"{}, back\+\_\+populates="{}promotion"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00072}{72}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

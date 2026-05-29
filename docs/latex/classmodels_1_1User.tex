@@ -1,0 +1,250 @@
+\doxysection{models.\+User Class Reference}
+\hypertarget{classmodels_1_1User}{}\label{classmodels_1_1User}\index{models.User@{models.User}}
+
+
+Inheritance diagram for models.\+User:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classmodels_1_1User__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+User:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=152pt]{classmodels_1_1User__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a9a9aa1a53e9b8722a5f98595ceb52ae7}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a909a3d717846cab5cda482157711975f}{name}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_af91e045e43995203fdf1d5c8367bd612}{username}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_aaa88e21675421b6cebbef6eb5597046b}{email}} = Column(String(255), nullable=False, unique=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a8adb818833979fd1f6a642a8ef50bce7}{password}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a74a1f1a33615a35b9bc226f649982e87}{phone}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a88f3d4745f3ad2acaaf65a459bb647db}{role}} = Column(String(255), nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a890612e3342d517d829ff1be838d2a5b}{addresses}} = relationship("{}Address"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a5c26fb13c076f29013369c84c07ae212}{orders}} = relationship("{}Orders"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a995229be0deafc143677ed2946650b08}{reviews}} = relationship("{}Review"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a697ab62fdb92ebf9d98889de77c29d20}{user\+\_\+devices}} = relationship("{}User\+Device"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_af550f8f94f2e3513851402426276cfe1}{user\+\_\+faqs}} = relationship("{}User\+FAQ"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a82c1ee3cce81edc4874dd9f57e56ba63}{chat\+\_\+sessions}} = relationship("{}Chat\+Session"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a15e7c25f8c6e1b48f5f02ea2f5365c5d}{notifications}} = relationship("{}Notification"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_ac21badddeaf3d1f8e6c93c6ad0faf4d9}{loyalty\+\_\+points}} = relationship("{}Loyalty\+Point"{}, back\+\_\+populates="{}user"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1User_a0df68ea3b11f8aeec3279acdaa0980b1}{social\+\_\+shares}} = relationship("{}Social\+Share"{}, back\+\_\+populates="{}user"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1User_aeaeaf5673e6fcacd3090eb9e170685a7}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}User"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng User, lưu trữ thông tin tài khoản người dùng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00030}{30}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1User_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1User_aeaeaf5673e6fcacd3090eb9e170685a7}\index{models.User@{models.User}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_aeaeaf5673e6fcacd3090eb9e170685a7} 
+str models.\+User.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}User"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00032}{32}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a890612e3342d517d829ff1be838d2a5b}\index{models.User@{models.User}!addresses@{addresses}}
+\index{addresses@{addresses}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{addresses}{addresses}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a890612e3342d517d829ff1be838d2a5b} 
+models.\+User.\+addresses = relationship("{}Address"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00041}{41}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a82c1ee3cce81edc4874dd9f57e56ba63}\index{models.User@{models.User}!chat\_sessions@{chat\_sessions}}
+\index{chat\_sessions@{chat\_sessions}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{chat\_sessions}{chat\_sessions}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a82c1ee3cce81edc4874dd9f57e56ba63} 
+models.\+User.\+chat\+\_\+sessions = relationship("{}Chat\+Session"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00046}{46}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_aaa88e21675421b6cebbef6eb5597046b}\index{models.User@{models.User}!email@{email}}
+\index{email@{email}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{email}{email}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_aaa88e21675421b6cebbef6eb5597046b} 
+models.\+User.\+email = Column(String(255), nullable=False, unique=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00036}{36}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a9a9aa1a53e9b8722a5f98595ceb52ae7}\index{models.User@{models.User}!id@{id}}
+\index{id@{id}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a9a9aa1a53e9b8722a5f98595ceb52ae7} 
+models.\+User.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00033}{33}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_ac21badddeaf3d1f8e6c93c6ad0faf4d9}\index{models.User@{models.User}!loyalty\_points@{loyalty\_points}}
+\index{loyalty\_points@{loyalty\_points}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{loyalty\_points}{loyalty\_points}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_ac21badddeaf3d1f8e6c93c6ad0faf4d9} 
+models.\+User.\+loyalty\+\_\+points = relationship("{}Loyalty\+Point"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00048}{48}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a909a3d717846cab5cda482157711975f}\index{models.User@{models.User}!name@{name}}
+\index{name@{name}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a909a3d717846cab5cda482157711975f} 
+models.\+User.\+name = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00034}{34}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a15e7c25f8c6e1b48f5f02ea2f5365c5d}\index{models.User@{models.User}!notifications@{notifications}}
+\index{notifications@{notifications}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{notifications}{notifications}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a15e7c25f8c6e1b48f5f02ea2f5365c5d} 
+models.\+User.\+notifications = relationship("{}Notification"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00047}{47}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a5c26fb13c076f29013369c84c07ae212}\index{models.User@{models.User}!orders@{orders}}
+\index{orders@{orders}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{orders}{orders}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a5c26fb13c076f29013369c84c07ae212} 
+models.\+User.\+orders = relationship("{}Orders"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00042}{42}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a8adb818833979fd1f6a642a8ef50bce7}\index{models.User@{models.User}!password@{password}}
+\index{password@{password}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{password}{password}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a8adb818833979fd1f6a642a8ef50bce7} 
+models.\+User.\+password = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00037}{37}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a74a1f1a33615a35b9bc226f649982e87}\index{models.User@{models.User}!phone@{phone}}
+\index{phone@{phone}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{phone}{phone}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a74a1f1a33615a35b9bc226f649982e87} 
+models.\+User.\+phone = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00038}{38}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a995229be0deafc143677ed2946650b08}\index{models.User@{models.User}!reviews@{reviews}}
+\index{reviews@{reviews}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{reviews}{reviews}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a995229be0deafc143677ed2946650b08} 
+models.\+User.\+reviews = relationship("{}Review"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00043}{43}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a88f3d4745f3ad2acaaf65a459bb647db}\index{models.User@{models.User}!role@{role}}
+\index{role@{role}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{role}{role}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a88f3d4745f3ad2acaaf65a459bb647db} 
+models.\+User.\+role = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00039}{39}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a0df68ea3b11f8aeec3279acdaa0980b1}\index{models.User@{models.User}!social\_shares@{social\_shares}}
+\index{social\_shares@{social\_shares}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{social\_shares}{social\_shares}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a0df68ea3b11f8aeec3279acdaa0980b1} 
+models.\+User.\+social\+\_\+shares = relationship("{}Social\+Share"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00049}{49}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_a697ab62fdb92ebf9d98889de77c29d20}\index{models.User@{models.User}!user\_devices@{user\_devices}}
+\index{user\_devices@{user\_devices}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{user\_devices}{user\_devices}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_a697ab62fdb92ebf9d98889de77c29d20} 
+models.\+User.\+user\+\_\+devices = relationship("{}User\+Device"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00044}{44}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_af550f8f94f2e3513851402426276cfe1}\index{models.User@{models.User}!user\_faqs@{user\_faqs}}
+\index{user\_faqs@{user\_faqs}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{user\_faqs}{user\_faqs}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_af550f8f94f2e3513851402426276cfe1} 
+models.\+User.\+user\+\_\+faqs = relationship("{}User\+FAQ"{}, back\+\_\+populates="{}user"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00045}{45}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1User_af91e045e43995203fdf1d5c8367bd612}\index{models.User@{models.User}!username@{username}}
+\index{username@{username}!models.User@{models.User}}
+\doxysubsubsection{\texorpdfstring{username}{username}}
+{\footnotesize\ttfamily \label{classmodels_1_1User_af91e045e43995203fdf1d5c8367bd612} 
+models.\+User.\+username = Column(String(255), nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00035}{35}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

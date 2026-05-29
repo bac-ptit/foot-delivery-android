@@ -1,0 +1,84 @@
+\doxysection{share\+\_\+restaurant.\+kt}
+\hypertarget{share__restaurant_8kt_source}{}\label{share__restaurant_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/share\_restaurant.kt@{app/app/src/main/java/com/example/myapp/screens/share\_restaurant.kt}}
+\doxymbox{\hyperlink{share__restaurant_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00010}00010\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00011}00011\ import\ android.net.Uri}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00012}00012\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00013}00013\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00014}00014\ import\ android.widget.LinearLayout}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00015}00015\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00016}00016\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00017}00017\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00018}00018\ import\ com.squareup.picasso.Picasso}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00019}00019\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00027}00027\ class\ share\_restaurant\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00029}\doxymbox{\hyperlink{namespaceAppCompatActivity_a026e92ada47ccea740af06db7481ec90}{00029}}\ \ \ \ \ private\ var\ restaurantId:\ Int\ =\ -\/1}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00031}00031\ \ \ \ \ private\ var\ restaurantName:\ String\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00033}00033\ \ \ \ \ private\ var\ restaurantAddress:\ String\ =\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00044}00044\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00045}00045\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00046}00046\ \ \ \ \ \ \ \ \ setContentView(R.layout.activity\_share\_restaurant)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ restaurantId\ =\ intent.getIntExtra("{}RESTAURANT\_ID"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ restaurantName\ =\ intent.getStringExtra("{}restaurant\_name"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ restaurantAddress\ =\ intent.getStringExtra("{}restaurant\_address"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ val\ rating\ =\ intent.getIntExtra("{}restaurant\_rating"{},\ 0)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ imageUrl\ =\ intent.getStringExtra("{}restaurant\_image\_url"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ openTime\ =\ intent.getStringExtra("{}restaurant\_open\_time"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ closeTime\ =\ intent.getStringExtra("{}restaurant\_close\_time"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00055}00055\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ val\ tvRestName:\ TextView\ =\ findViewById(R.id.tvRestName)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ val\ tvRating:\ TextView\ =\ findViewById(R.id.tvRating)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ val\ tvAddress:\ TextView\ =\ findViewById(R.id.tvAddress)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ val\ tvOpenTime:\ TextView\ =\ findViewById(R.id.tvOpenTime)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ val\ imgRestaurant:\ ImageView\ =\ findViewById(R.id.imgRestaurant)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00061}00061\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ tvRestName.text\ =\ restaurantName}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ tvRating.text\ =\ "{}\$rating\ ★"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ tvAddress.text\ =\ restaurantAddress}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ tvOpenTime.text\ =\ "{}Mở\ cửa:\ \$openTime\ -\/\ \$closeTime"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00066}00066\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ if\ (imageUrl.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ Picasso.get()}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .load(imageUrl)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .placeholder(R.drawable.placeholder\_loading)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .error(R.drawable.pngwing)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .into(imgRestaurant)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnFacebook).setOnClickListener\ \{\ shareToApp("{}com.facebook.katana"{})\ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnZalo).setOnClickListener\ \{\ shareToApp("{}com.zing.zalo"{})\ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnTwitter).setOnClickListener\ \{\ shareToApp("{}com.twitter.android"{})\ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnMessenger).setOnClickListener\ \{\ shareToApp("{}com.facebook.orca"{})\ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ findViewById<ImageView>(R.id.btnBack).setOnClickListener\ \{\ finish()\ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00081}00081\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00092}00092\ \ \ \ \ private\ fun\ shareToApp(packageName:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ val\ shareLink\ =\ "{}https:\textcolor{comment}{//yourapp.com/restaurant?id=\$restaurantId"{}}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ val\ shareText\ =\ "{}Khám\ phá\ ngay\ nhà\ hàng\ \$restaurantName\ tại\ MyApp!\(\backslash\)nĐịa\ chỉ:\ \$restaurantAddress\(\backslash\)nXem\ thêm\ tại:\ \$shareLink"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(Intent.ACTION\_SEND).apply\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ "{}text/plain"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ putExtra(Intent.EXTRA\_TEXT,\ shareText)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ setPackage(packageName)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ try\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ val\ chooser\ =\ Intent.createChooser(Intent(Intent.ACTION\_SEND).apply\ \{}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ "{}text/plain"{}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ putExtra(Intent.EXTRA\_TEXT,\ shareText)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \},\ "{}Chia\ sẻ\ qua"{})}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(chooser)}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00111}00111\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{share__restaurant_8kt_source_l00112}00112\ \}}
+
+\end{DoxyCode}

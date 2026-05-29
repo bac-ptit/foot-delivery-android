@@ -1,0 +1,130 @@
+\doxysection{models.\+Address Class Reference}
+\hypertarget{classmodels_1_1Address}{}\label{classmodels_1_1Address}\index{models.Address@{models.Address}}
+
+
+Inheritance diagram for models.\+Address:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classmodels_1_1Address__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Address:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=167pt]{classmodels_1_1Address__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_a8bd7707b7b12b7c580b4294e886667ec}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_a56fb23d2c71d1dce947b2d766268b9af}{detail}} = Column(Text)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_a25672bd3449e2b193bbdf9831aff795f}{phone}} = Column(String(255))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_aa7f636df0609a3facac5f6f5d5646460}{userid}} = Column(Integer, Foreign\+Key("{}User.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_a600665360e84cdfd4a11aa0cbdb6a8d4}{user}} = relationship("{}User"{}, back\+\_\+populates="{}addresses"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1Address_a9e73d66c8a047c123de22fe8e15eb94a}{orders}} = relationship("{}Orders"{}, back\+\_\+populates="{}address"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1Address_a84515ed98d47f0a14b19f33e2812d3d3}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}address"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng address, địa chỉ giao hàng của người dùng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00111}{111}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1Address_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1Address_a84515ed98d47f0a14b19f33e2812d3d3}\index{models.Address@{models.Address}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a84515ed98d47f0a14b19f33e2812d3d3} 
+str models.\+Address.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}address"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00113}{113}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_a56fb23d2c71d1dce947b2d766268b9af}\index{models.Address@{models.Address}!detail@{detail}}
+\index{detail@{detail}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{detail}{detail}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a56fb23d2c71d1dce947b2d766268b9af} 
+models.\+Address.\+detail = Column(Text)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00115}{115}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_a8bd7707b7b12b7c580b4294e886667ec}\index{models.Address@{models.Address}!id@{id}}
+\index{id@{id}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a8bd7707b7b12b7c580b4294e886667ec} 
+models.\+Address.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00114}{114}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_a9e73d66c8a047c123de22fe8e15eb94a}\index{models.Address@{models.Address}!orders@{orders}}
+\index{orders@{orders}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{orders}{orders}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a9e73d66c8a047c123de22fe8e15eb94a} 
+models.\+Address.\+orders = relationship("{}Orders"{}, back\+\_\+populates="{}address"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00120}{120}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_a25672bd3449e2b193bbdf9831aff795f}\index{models.Address@{models.Address}!phone@{phone}}
+\index{phone@{phone}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{phone}{phone}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a25672bd3449e2b193bbdf9831aff795f} 
+models.\+Address.\+phone = Column(String(255))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00116}{116}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_a600665360e84cdfd4a11aa0cbdb6a8d4}\index{models.Address@{models.Address}!user@{user}}
+\index{user@{user}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{user}{user}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_a600665360e84cdfd4a11aa0cbdb6a8d4} 
+models.\+Address.\+user = relationship("{}User"{}, back\+\_\+populates="{}addresses"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00119}{119}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1Address_aa7f636df0609a3facac5f6f5d5646460}\index{models.Address@{models.Address}!userid@{userid}}
+\index{userid@{userid}!models.Address@{models.Address}}
+\doxysubsubsection{\texorpdfstring{userid}{userid}}
+{\footnotesize\ttfamily \label{classmodels_1_1Address_aa7f636df0609a3facac5f6f5d5646460} 
+models.\+Address.\+userid = Column(Integer, Foreign\+Key("{}User.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00117}{117}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

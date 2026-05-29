@@ -1,0 +1,87 @@
+\doxysection{discouts.\+kt}
+\hypertarget{discouts_8kt_source}{}\label{discouts_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/discouts.kt@{app/app/src/main/java/com/example/myapp/screens/discouts.kt}}
+\doxymbox{\hyperlink{discouts_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00012}00012\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00016}00016\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00017}00017\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00018}00018\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00019}00019\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.PromotionResponse}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00022}00022\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00023}00023\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00024}00024\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00025}00025\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00038}00038\ class\ discouts\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00039}\doxymbox{\hyperlink{namespaceAppCompatActivity_ad8e26f6feeb328d6e3f817fc29aebfe3}{00039}}\ \ \ \ \ private\ var\ selectedPromotion:\ PromotionResponse?\ =\ null}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00048}00048\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00049}00049\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ setContentView(R.layout.discouts)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00051}00051\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ icBack\ =\ findViewById<ImageView>(R.id.icBack)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ val\ icHome\ =\ findViewById<ImageView>(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ icProfile\ =\ findViewById<ImageView>(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ val\ icCart\ =\ findViewById<ImageView>(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ val\ tvVoucherDesc1\ =\ findViewById<TextView>(R.id.tvVoucherDesc1)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ val\ tvSelect1\ =\ findViewById<TextView>(R.id.tvSelect1)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00058}00058\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ icBack.setOnClickListener\ \{\ finish()\ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{\ startActivity(Intent(this,\ home::class.java))\ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{\ startActivity(Intent(this,\ profile::class.java))\ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ icCart.setOnClickListener\ \{\ startActivity(Intent(this,\ cart::class.java))\ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ tvVoucherDesc1.text\ =\ "{}Đang\ tải\ voucher..."{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ tvSelect1.isEnabled\ =\ false}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ loadPromotions(tvVoucherDesc1,\ tvSelect1)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00067}00067\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ tvSelect1.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ val\ promotion\ =\ selectedPromotion\ ?:\ return@setOnClickListener}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ val\ resultIntent\ =\ Intent()}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}promotion\_id"{},\ promotion.id)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}promotion\_code"{},\ promotion.code)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}discount\_type"{},\ promotion.discounttype)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ resultIntent.putExtra("{}discount\_value"{},\ promotion.discountvalue)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ setResult(RESULT\_OK,\ resultIntent)}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00078}00078\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00079}00079\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00090}00090\ \ \ \ \ private\ fun\ loadPromotions(tvVoucherDesc1:\ TextView,\ tvSelect1:\ TextView)\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getPromotions().enqueue(object\ :\ Callback<List<PromotionResponse>>\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<PromotionResponse>>,\ response:\ Response<List<PromotionResponse>>)\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful\ ||\ response.body().isNullOrEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvVoucherDesc1.text\ =\ "{}Hiện\ chưa\ có\ voucher\ khả\ dụng"{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelect1.isEnabled\ =\ false}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ promotions\ =\ response.body()!!}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ selectedPromotion\ =\ promotions.firstOrNull\ \{\ it.status.equals("{}active"{},\ ignoreCase\ =\ true)\ \}\ ?:\ promotions.first()}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ promotion\ =\ selectedPromotion!!}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ discountText\ =\ if\ (promotion.discounttype.equals("{}percent"{},\ ignoreCase\ =\ true))\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\$\{promotion.discountvalue\}\%"{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00104}00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\$\{promotion.discountvalue\}đ"{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00107}00107\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvVoucherDesc1.text\ =\ "{}\$\{promotion.code\}:\ Giảm\ \$discountText\ -\/\ ĐH\ tối\ thiểu\ \$\{promotion.minordervalue\}đ"{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelect1.isEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00111}00111\ }
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<PromotionResponse>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvVoucherDesc1.text\ =\ "{}Không\ tải\ được\ voucher"{}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvSelect1.isEnabled\ =\ false}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@discouts,\ "{}Lỗi\ kết\ nối\ khi\ tải\ voucher"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{discouts_8kt_source_l00119}00119\ \}}
+
+\end{DoxyCode}

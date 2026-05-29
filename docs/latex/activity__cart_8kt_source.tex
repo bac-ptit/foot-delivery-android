@@ -1,0 +1,89 @@
+\doxysection{activity\+\_\+cart.\+kt}
+\hypertarget{activity__cart_8kt_source}{}\label{activity__cart_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/activity\_cart.kt@{app/app/src/main/java/com/example/myapp/screens/activity\_cart.kt}}
+\doxymbox{\hyperlink{activity__cart_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00014}00014\ import\ android.widget.CheckBox}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00016}00016\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00017}00017\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00018}00018\ import\ androidx.appcompat.widget.AppCompatButton}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00019}00019\ import\ androidx.recyclerview.widget.LinearLayoutManager}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00020}00020\ import\ androidx.recyclerview.widget.RecyclerView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00021}00021\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00022}00022\ import\ java.text.NumberFormat}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00023}00023\ import\ java.util.Locale}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00034}\doxymbox{\hyperlink{namespaceAppCompatActivity}{00034}}\ class\ activity\_cart\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00036}\doxymbox{\hyperlink{namespaceAppCompatActivity_afacde656eb4f0a0d782221bca16abd33}{00036}}\ \ \ \ \ private\ lateinit\ var\ rvCart:\ RecyclerView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00038}00038\ \ \ \ \ private\ lateinit\ var\ tvTotalItems:\ TextView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00040}00040\ \ \ \ \ private\ lateinit\ var\ tvTotalPrice:\ TextView}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00042}00042\ \ \ \ \ private\ lateinit\ var\ cbSelectAll:\ CheckBox}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00044}00044\ \ \ \ \ private\ lateinit\ var\ btnCheckout:\ AppCompatButton}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00046}00046\ \ \ \ \ private\ lateinit\ var\ adapter:\ CartAdapter}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00057}00057\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ setContentView(R.layout.activity\_cart)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00060}00060\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Ánh\ xạ\ View}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ rvCart\ =\ findViewById(R.id.rvCart)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ tvTotalItems\ =\ findViewById(R.id.tvTotalItems)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ tvTotalPrice\ =\ findViewById(R.id.tvTotalPrice)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ cbSelectAll\ =\ findViewById(R.id.cbSelectAll)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ btnCheckout\ =\ findViewById(R.id.btnCheckout)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btnBack)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nút\ quay\ lại}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{\ finish()\ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CHUYỂN\ SANG\ MÀN\ HÌNH\ ORDER}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ btnCheckout.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ order::class.java)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00077}00077\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thiết\ lập\ Adapter\ sử\ dụng\ dữ\ liệu\ từ\ class\ cart}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ adapter\ =\ CartAdapter(}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ cart.cartList,}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ onUpdate\ =\ \{\ updateSummary()\ \},}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \ \ \ \ onDelete\ =\ \{\ position\ -\/>}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cart.cartList.removeAt(position)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyItemRemoved(position)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyItemRangeChanged(position,\ cart.cartList.size)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateSummary()}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ rvCart.layoutManager\ =\ LinearLayoutManager(this)}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ rvCart.adapter\ =\ adapter}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00091}00091\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Chọn\ tất\ cả}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ cbSelectAll.setOnCheckedChangeListener\ \{\ \_,\ isChecked\ -\/>}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ cart.cartList.forEach\ \{\ it.isSelected\ =\ isChecked\ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ adapter.notifyDataSetChanged()}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ updateSummary()}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ updateSummary()}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00100}00100\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00101}00101\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00109}00109\ \ \ \ \ private\ fun\ updateSummary()\ \{}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ val\ selectedItems\ =\ cart.cartList.filter\ \{\ it.isSelected\ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ val\ totalQty\ =\ selectedItems.sumOf\ \{\ it.qty\ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ val\ totalPrice\ =\ selectedItems.sumOf\ \{\ it.qty\ *\ it.price\ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale("{}vi"{},\ "{}VN"{}))}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ tvTotalItems.text\ =\ totalQty.toString()}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ tvTotalPrice.text\ =\ fmt.format(totalPrice)\ +\ "{}đ"{}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ LUÔN\ BẬT\ NÚT\ ĐỂ\ TEST}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ btnCheckout.isEnabled\ =\ true}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ btnCheckout.alpha\ =\ 1.0f}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00121}00121\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{activity__cart_8kt_source_l00122}00122\ \}}
+
+\end{DoxyCode}

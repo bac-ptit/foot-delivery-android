@@ -1,0 +1,142 @@
+\doxysection{models.\+Order\+Item Class Reference}
+\hypertarget{classmodels_1_1OrderItem}{}\label{classmodels_1_1OrderItem}\index{models.OrderItem@{models.OrderItem}}
+
+
+Inheritance diagram for models.\+Order\+Item:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classmodels_1_1OrderItem__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for models.\+Order\+Item:\+
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=174pt]{classmodels_1_1OrderItem__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a4b9ce09c4d5ade2d0da0792ed92b4cf6}{id}} = Column(Integer, primary\+\_\+key=True, index=True)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a403aa6f02bcd89a0608949055bd06a95}{quantity}} = Column(Integer, nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a9c41d8460296839f2ef3e9c60aebb503}{price}} = Column(Integer, nullable=False)
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a3c0f099830c5174485ddd825419bf5ed}{menuitemid}} = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_afc119692710278fb19b95d67b1075ef9}{orderid}} = Column(Integer, Foreign\+Key("{}orders.\+id"{}))
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a44cf8c71ea8b584b0c64d48a78060150}{order}} = relationship("{}Orders"{}, back\+\_\+populates="{}order\+\_\+items"{})
+\item 
+\doxymbox{\hyperlink{classmodels_1_1OrderItem_a4dff4ff353069139225b77024bb1093c}{menu\+\_\+item}} = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}order\+\_\+items"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{classmodels_1_1OrderItem_a51f3be33790a198ee53c2f8d44cc1810}{\+\_\+\+\_\+tablename\+\_\+\+\_\+}} = "{}orderitem"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}ORM model cho bảng orderitem, chi tiết từng món trong đơn hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00144}{144}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+\label{doc-variable-members}
+\Hypertarget{classmodels_1_1OrderItem_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classmodels_1_1OrderItem_a51f3be33790a198ee53c2f8d44cc1810}\index{models.OrderItem@{models.OrderItem}!\_\_tablename\_\_@{\_\_tablename\_\_}}
+\index{\_\_tablename\_\_@{\_\_tablename\_\_}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{\_\_tablename\_\_}{\_\_tablename\_\_}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a51f3be33790a198ee53c2f8d44cc1810} 
+str models.\+Order\+Item.\+\_\+\+\_\+tablename\+\_\+\+\_\+ = "{}orderitem"{}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00146}{146}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a4b9ce09c4d5ade2d0da0792ed92b4cf6}\index{models.OrderItem@{models.OrderItem}!id@{id}}
+\index{id@{id}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a4b9ce09c4d5ade2d0da0792ed92b4cf6} 
+models.\+Order\+Item.\+id = Column(Integer, primary\+\_\+key=True, index=True)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00147}{147}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a4dff4ff353069139225b77024bb1093c}\index{models.OrderItem@{models.OrderItem}!menu\_item@{menu\_item}}
+\index{menu\_item@{menu\_item}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{menu\_item}{menu\_item}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a4dff4ff353069139225b77024bb1093c} 
+models.\+Order\+Item.\+menu\+\_\+item = relationship("{}Menu\+Item"{}, back\+\_\+populates="{}order\+\_\+items"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00154}{154}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a3c0f099830c5174485ddd825419bf5ed}\index{models.OrderItem@{models.OrderItem}!menuitemid@{menuitemid}}
+\index{menuitemid@{menuitemid}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{menuitemid}{menuitemid}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a3c0f099830c5174485ddd825419bf5ed} 
+models.\+Order\+Item.\+menuitemid = Column(Integer, Foreign\+Key("{}menuitem.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00150}{150}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a44cf8c71ea8b584b0c64d48a78060150}\index{models.OrderItem@{models.OrderItem}!order@{order}}
+\index{order@{order}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{order}{order}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a44cf8c71ea8b584b0c64d48a78060150} 
+models.\+Order\+Item.\+order = relationship("{}Orders"{}, back\+\_\+populates="{}order\+\_\+items"{})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00153}{153}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_afc119692710278fb19b95d67b1075ef9}\index{models.OrderItem@{models.OrderItem}!orderid@{orderid}}
+\index{orderid@{orderid}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{orderid}{orderid}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_afc119692710278fb19b95d67b1075ef9} 
+models.\+Order\+Item.\+orderid = Column(Integer, Foreign\+Key("{}orders.\+id"{}))\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00151}{151}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a9c41d8460296839f2ef3e9c60aebb503}\index{models.OrderItem@{models.OrderItem}!price@{price}}
+\index{price@{price}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{price}{price}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a9c41d8460296839f2ef3e9c60aebb503} 
+models.\+Order\+Item.\+price = Column(Integer, nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00149}{149}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+\Hypertarget{classmodels_1_1OrderItem_a403aa6f02bcd89a0608949055bd06a95}\index{models.OrderItem@{models.OrderItem}!quantity@{quantity}}
+\index{quantity@{quantity}!models.OrderItem@{models.OrderItem}}
+\doxysubsubsection{\texorpdfstring{quantity}{quantity}}
+{\footnotesize\ttfamily \label{classmodels_1_1OrderItem_a403aa6f02bcd89a0608949055bd06a95} 
+models.\+Order\+Item.\+quantity = Column(Integer, nullable=False)\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Definition at line \doxymbox{\hyperlink{models_8py_source_l00148}{148}} of file \doxymbox{\hyperlink{models_8py_source}{models.\+py}}.
+
+
+
+The documentation for this class was generated from the following file:\+\begin{DoxyCompactItemize}
+\item 
+backend/\+\doxymbox{\hyperlink{models_8py}{models.\+py}}\end{DoxyCompactItemize}

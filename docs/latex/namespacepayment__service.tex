@@ -1,0 +1,129 @@
+\doxysection{payment\+\_\+service Namespace Reference}
+\hypertarget{namespacepayment__service}{}\label{namespacepayment__service}\index{payment\_service@{payment\_service}}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{namespacepayment__service_add633697ecadff68d58395fcbe5389c3}{generate\+\_\+vnpay\+\_\+url}} (str order\+\_\+id, int amount, str ip\+\_\+address)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+str \doxymbox{\hyperlink{namespacepayment__service_a5215942aeb315bef1e27274f61341113}{VNP\+\_\+\+URL}} = "{}https:\+/\+/\+sandbox.\+vnpayment.\+vn/\+paymentv2/\+vpcpay.\+html"{}
+\item 
+str \doxymbox{\hyperlink{namespacepayment__service_af990bc0a2df972c130c06c79fa3cb403}{VNP\+\_\+\+TMNCODE}} = "{}2HON5\+OA2"{}
+\item 
+str \doxymbox{\hyperlink{namespacepayment__service_aa4e44821c2179b3ce26cb87233b1c400}{VNP\+\_\+\+HASH\+\_\+\+SECRET}} = "{}UGDPB7\+W11\+M55\+W6\+UTQ0\+N69\+X36\+I2\+VIE0\+UL"{}
+\item 
+str \doxymbox{\hyperlink{namespacepayment__service_a2e4602144362030a6f236232bcdb7f8a}{VNP\+\_\+\+RETURN\+\_\+\+URL}} = "{}http:\+/\+/\+localhost:\+8000/\+vnpay\+\_\+return"{}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\begin{DoxyVerb}Module: payment_service.py
+
+Service tạo URL thanh toán VNPay (sandbox).
+Xây dựng payment URL với chữ ký HMAC-SHA512 để xác thực giao dịch.
+\end{DoxyVerb}
+ 
+
+\label{doc-func-members}
+\Hypertarget{namespacepayment__service_doc-func-members}
+\doxysubsection{Function Documentation}
+\Hypertarget{namespacepayment__service_add633697ecadff68d58395fcbe5389c3}\index{payment\_service@{payment\_service}!generate\_vnpay\_url@{generate\_vnpay\_url}}
+\index{generate\_vnpay\_url@{generate\_vnpay\_url}!payment\_service@{payment\_service}}
+\doxysubsubsection{\texorpdfstring{generate\_vnpay\_url()}{generate\_vnpay\_url()}}
+{\footnotesize\ttfamily \label{namespacepayment__service_add633697ecadff68d58395fcbe5389c3} 
+payment\+\_\+service.\+generate\+\_\+vnpay\+\_\+url (\begin{DoxyParamCaption}\item[{str}]{order\+\_\+id}{, }\item[{int}]{amount}{, }\item[{str}]{ip\+\_\+address}{}\end{DoxyParamCaption})}
+
+\begin{DoxyVerb}Tạo URL thanh toán VNPay với chữ ký HMAC-SHA512 cho đơn hàng.\end{DoxyVerb}
+ 
+
+Definition at line \doxymbox{\hyperlink{payment__service_8py_source_l00023}{23}} of file \doxymbox{\hyperlink{payment__service_8py_source}{payment\+\_\+service.\+py}}.
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00023\ \textcolor{keyword}{def\ }generate\_vnpay\_url(order\_id:\ str,\ amount:\ int,\ ip\_address:\ str): }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{stringliteral}{"{}"{}"{}Tạo\ URL\ thanh\ toán\ VNPay\ với\ chữ\ ký\ HMAC-\/SHA512\ cho\ đơn\ hàng."{}"{}"{}} }
+\DoxyCodeLine{00025\  }
+\DoxyCodeLine{00026\ \ \ \ \ params\ =\ \{ }
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Version"{}}:\ \textcolor{stringliteral}{"{}2.1.0"{}}, }
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Command"{}}:\ \textcolor{stringliteral}{"{}pay"{}}, }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_TmnCode"{}}:\ VNP\_TMNCODE, }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Amount"{}}:\ int(amount)\ *\ 100, }
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_CurrCode"{}}:\ \textcolor{stringliteral}{"{}VND"{}}, }
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_TxnRef"{}}:\ order\_id, }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_OrderInfo"{}}:\ f\textcolor{stringliteral}{"{}Thanh\ toan\ don\ hang\ \{order\_id\}"{}}, }
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_OrderType"{}}:\ \textcolor{stringliteral}{"{}other"{}}, }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_Locale"{}}:\ \textcolor{stringliteral}{"{}vn"{}}, }
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_ReturnUrl"{}}:\ VNP\_RETURN\_URL, }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_IpAddr"{}}:\ ip\_address, }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}vnp\_CreateDate"{}}:\ datetime.now().strftime(\textcolor{stringliteral}{"{}\%Y\%m\%d\%H\%M\%S"{}}), }
+\DoxyCodeLine{00039\ \ \ \ \ \} }
+\DoxyCodeLine{00040\  }
+\DoxyCodeLine{00041\  }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{\#\ sort\ params }}
+\DoxyCodeLine{00043\ \ \ \ \ sorted\_params\ =\ sorted(params.items()) }
+\DoxyCodeLine{00044\  }
+\DoxyCodeLine{00045\  }
+\DoxyCodeLine{00046\ \ \ \ \ query\_string\ =\ urllib.parse.urlencode(sorted\_params) }
+\DoxyCodeLine{00047\  }
+\DoxyCodeLine{00048\  }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{\#\ tạo\ hash }}
+\DoxyCodeLine{00050\ \ \ \ \ hash\_value\ =\ hmac.new( }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ VNP\_HASH\_SECRET.encode(), }
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ query\_string.encode(), }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ hashlib.sha512 }
+\DoxyCodeLine{00054\ \ \ \ \ ).hexdigest() }
+\DoxyCodeLine{00055\  }
+\DoxyCodeLine{00056\  }
+\DoxyCodeLine{00057\ \ \ \ \ payment\_url\ =\ f\textcolor{stringliteral}{"{}\{VNP\_URL\}?\{query\_string\}\&vnp\_SecureHash=\{hash\_value\}"{}} }
+\DoxyCodeLine{00058\  }
+\DoxyCodeLine{00059\  }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ payment\_url }
+
+\end{DoxyCode}
+
+
+\label{doc-var-members}
+\Hypertarget{namespacepayment__service_doc-var-members}
+\doxysubsection{Variable Documentation}
+\Hypertarget{namespacepayment__service_aa4e44821c2179b3ce26cb87233b1c400}\index{payment\_service@{payment\_service}!VNP\_HASH\_SECRET@{VNP\_HASH\_SECRET}}
+\index{VNP\_HASH\_SECRET@{VNP\_HASH\_SECRET}!payment\_service@{payment\_service}}
+\doxysubsubsection{\texorpdfstring{VNP\_HASH\_SECRET}{VNP\_HASH\_SECRET}}
+{\footnotesize\ttfamily \label{namespacepayment__service_aa4e44821c2179b3ce26cb87233b1c400} 
+str payment\+\_\+service.\+VNP\+\_\+\+HASH\+\_\+\+SECRET = "{}UGDPB7\+W11\+M55\+W6\+UTQ0\+N69\+X36\+I2\+VIE0\+UL"{}}
+
+
+
+Definition at line \doxymbox{\hyperlink{payment__service_8py_source_l00017}{17}} of file \doxymbox{\hyperlink{payment__service_8py_source}{payment\+\_\+service.\+py}}.
+
+\Hypertarget{namespacepayment__service_a2e4602144362030a6f236232bcdb7f8a}\index{payment\_service@{payment\_service}!VNP\_RETURN\_URL@{VNP\_RETURN\_URL}}
+\index{VNP\_RETURN\_URL@{VNP\_RETURN\_URL}!payment\_service@{payment\_service}}
+\doxysubsubsection{\texorpdfstring{VNP\_RETURN\_URL}{VNP\_RETURN\_URL}}
+{\footnotesize\ttfamily \label{namespacepayment__service_a2e4602144362030a6f236232bcdb7f8a} 
+str payment\+\_\+service.\+VNP\+\_\+\+RETURN\+\_\+\+URL = "{}http:\+/\+/\+localhost:\+8000/\+vnpay\+\_\+return"{}}
+
+
+
+Definition at line \doxymbox{\hyperlink{payment__service_8py_source_l00018}{18}} of file \doxymbox{\hyperlink{payment__service_8py_source}{payment\+\_\+service.\+py}}.
+
+\Hypertarget{namespacepayment__service_af990bc0a2df972c130c06c79fa3cb403}\index{payment\_service@{payment\_service}!VNP\_TMNCODE@{VNP\_TMNCODE}}
+\index{VNP\_TMNCODE@{VNP\_TMNCODE}!payment\_service@{payment\_service}}
+\doxysubsubsection{\texorpdfstring{VNP\_TMNCODE}{VNP\_TMNCODE}}
+{\footnotesize\ttfamily \label{namespacepayment__service_af990bc0a2df972c130c06c79fa3cb403} 
+str payment\+\_\+service.\+VNP\+\_\+\+TMNCODE = "{}2HON5\+OA2"{}}
+
+
+
+Definition at line \doxymbox{\hyperlink{payment__service_8py_source_l00016}{16}} of file \doxymbox{\hyperlink{payment__service_8py_source}{payment\+\_\+service.\+py}}.
+
+\Hypertarget{namespacepayment__service_a5215942aeb315bef1e27274f61341113}\index{payment\_service@{payment\_service}!VNP\_URL@{VNP\_URL}}
+\index{VNP\_URL@{VNP\_URL}!payment\_service@{payment\_service}}
+\doxysubsubsection{\texorpdfstring{VNP\_URL}{VNP\_URL}}
+{\footnotesize\ttfamily \label{namespacepayment__service_a5215942aeb315bef1e27274f61341113} 
+str payment\+\_\+service.\+VNP\+\_\+\+URL = "{}https:\+/\+/\+sandbox.\+vnpayment.\+vn/\+paymentv2/\+vpcpay.\+html"{}}
+
+
+
+Definition at line \doxymbox{\hyperlink{payment__service_8py_source_l00015}{15}} of file \doxymbox{\hyperlink{payment__service_8py_source}{payment\+\_\+service.\+py}}.
+

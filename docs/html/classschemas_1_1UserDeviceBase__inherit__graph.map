@@ -1,0 +1,9 @@
+<map id="schemas.UserDeviceBase" name="schemas.UserDeviceBase">
+<area shape="rect" id="Node000001" title=" " alt="" coords="85,80,262,107"/>
+<area shape="rect" id="Node000003" href="$classschemas_1_1UserDevice.html" title=" " alt="" coords="5,155,153,181"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="148,116,97,157,94,152,142,117"/>
+<area shape="rect" id="Node000004" href="$classschemas_1_1UserDeviceCreate.html" title=" " alt="" coords="176,155,363,181"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="203,114,256,154,250,154,201,119"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="130,5,217,32"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="175,46,176,81,171,79,172,50"/>
+</map>

@@ -1,0 +1,432 @@
+\doxysection{Order\+Tracking.\+kt}
+\hypertarget{OrderTracking_8kt_source}{}\label{OrderTracking_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/OrderTracking.kt@{app/app/src/main/java/com/example/myapp/screens/OrderTracking.kt}}
+\doxymbox{\hyperlink{OrderTracking_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00012}00012\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00015}00015\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00016}00016\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00017}00017\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00018}00018\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00019}00019\ import\ android.view.LayoutInflater}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00020}00020\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.OrderDetailResponse}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00024}00024\ import\ com.example.myapp.screens.api.UserProfileSummary}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00025}00025\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00026}00026\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00027}00027\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00028}00028\ import\ java.text.NumberFormat}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00029}00029\ import\ java.util.Locale}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00030}00030\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00042}00042\ class\ OrderTracking\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00044}00044\ \ \ \ \ private\ var\ allPendingOrders\ =\ listOf<OrderDetailResponse>()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00046}00046\ \ \ \ \ private\ var\ allCompletedOrders\ =\ listOf<OrderDetailResponse>()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00048}00048\ \ \ \ \ private\ var\ displayedPendingCount\ =\ 0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00050}00050\ \ \ \ \ private\ var\ displayedCompletedCount\ =\ 0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00052}00052\ \ \ \ \ private\ val\ itemsPerPage\ =\ 5}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00055}00055\ \ \ \ \ private\ lateinit\ var\ ordersContainer:\ android.widget.LinearLayout}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00057}00057\ \ \ \ \ private\ lateinit\ var\ btnLoadMore:\ android.widget.Button}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00059}00059\ \ \ \ \ private\ lateinit\ var\ scrollViewOrders:\ android.widget.ScrollView}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00061}00061\ \ \ \ \ private\ var\ isAutoLoading\ =\ false}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00071}00071\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ setContentView(R.layout.order\_tracking)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ ordersContainer\ =\ findViewById(R.id.ordersContainer)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ btnLoadMore\ =\ findViewById(R.id.btnLoadMore)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ scrollViewOrders\ =\ findViewById(R.id.scrollViewOrders)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00078}00078\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ loadPointsSummary()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ loadAllOrders()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00081}00081\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Auto-\/load\ more\ orders\ when\ scrolling\ to\ the\ bottom}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ scrollViewOrders.setOnScrollChangeListener\ \{\ v,\ \_,\ scrollY,\ \_,\ \_\ -\/>}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \ \ \ \ val\ scrollView\ =\ v\ as\ android.widget.ScrollView}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ val\ child\ =\ scrollView.getChildAt(0)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (child\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Check\ if\ we\ reached\ the\ bottom\ (with\ 200px\ buffer)}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (scrollY\ +\ scrollView.height\ >=\ child.height\ -\/\ 200)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!isAutoLoading)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isAutoLoading\ =\ true}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadMoreOrders()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ flag\ after\ a\ delay\ to\ prevent\ multiple\ triggers}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scrollView.postDelayed(\{\ isAutoLoading\ =\ false\ \},\ 1000)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00096}00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00098}00098\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Back\ Button\ -\/\ Return\ to\ previous\ screen}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Home}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ home::class.java))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Wishlist}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ val\ icHeart:\ ImageView\ =\ findViewById(R.id.icHeart)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ icHeart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}OrderTracking"{},\ "{}Wishlist\ clicked"{})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00116}00116\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Cart}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00118}00118\ \ \ \ \ \ \ \ \ val\ icCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00119}00119\ \ \ \ \ \ \ \ \ icCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00120}00120\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ activity\_cart::class.java))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00121}00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00122}00122\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Profile}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ profile::class.java))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00128}00128\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ More\ Button}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ btnLoadMore.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ loadMoreOrders()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00133}00133\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00141}00141\ \ \ \ \ private\ fun\ loadPointsSummary()\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ val\ userId\ =\ resolveUserIdForTracking()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ val\ pointsView\ =\ findViewById<TextView>(R.id.tvPointsSummary)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getProfileSummary(userId).enqueue(object\ :\ Callback<UserProfileSummary>\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<UserProfileSummary>,\ response:\ Response<UserProfileSummary>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointsView.text\ =\ "{}Điểm\ tích\ lũy:\ \$\{response.body()?.points\ ?:\ 0\}"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00150}00150\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00151}00151\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<UserProfileSummary>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00152}00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pointsView.text\ =\ "{}Điểm\ tích\ lũy:\ 0"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00153}00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00154}00154\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00155}00155\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00156}00156\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00163}00163\ \ \ \ \ private\ fun\ loadAllOrders()\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00164}00164\ \ \ \ \ \ \ \ \ val\ userId\ =\ resolveUserIdForTracking()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getUserOrders(userId).enqueue(object\ :\ Callback<List<OrderResponse>>\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00166}00166\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<OrderResponse>>,\ response:\ Response<List<OrderResponse>>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful\ ||\ response.body().isNullOrEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@OrderTracking,\ "{}Không\ có\ đơn\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ btnLoadMore.visibility\ =\ android.view.View.GONE}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ allOrders\ =\ response.body()!!.sortedByDescending\ \{\ it.createdat\ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00175}00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tách\ riêng\ pending\ và\ completed}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00176}00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ pendingOrderIds\ =\ allOrders.filter\ \{\ !isCompletedStatus(it.status)\ \}.map\ \{\ it.id\ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00177}00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ completedOrderIds\ =\ allOrders.filter\ \{\ isCompletedStatus(it.status)\ \}.map\ \{\ it.id\ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00178}00178\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00179}00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ chi\ tiết\ từng\ order}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadOrdersDetail(pendingOrderIds,\ completedOrderIds)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00182}00182\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<OrderResponse>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@OrderTracking,\ "{}Không\ tải\ được\ đơn\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ btnLoadMore.visibility\ =\ android.view.View.GONE}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00188}00188\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00189}00189\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00199}00199\ \ \ \ \ private\ fun\ loadOrdersDetail(pendingOrderIds:\ List<Int>,\ completedOrderIds:\ List<Int>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00200}00200\ \ \ \ \ \ \ \ \ val\ pending\ =\ mutableListOf<OrderDetailResponse>()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00201}00201\ \ \ \ \ \ \ \ \ val\ completed\ =\ mutableListOf<OrderDetailResponse>()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00202}00202\ \ \ \ \ \ \ \ \ var\ completed\_count\ =\ 0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00203}00203\ \ \ \ \ \ \ \ \ val\ total\_count\ =\ pendingOrderIds.size\ +\ completedOrderIds.size}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00204}00204\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00205}00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ pending\ orders}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00206}00206\ \ \ \ \ \ \ \ \ for\ (orderId\ in\ pendingOrderIds)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object\ :\ Callback<OrderDetailResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderDetailResponse>,\ response:\ Response<OrderDetailResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00209}00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful\ \&\&\ response.body()\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00210}00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pending.add(response.body()!!)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00211}00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00212}00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed\_count++}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00213}00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (completed\_count\ ==\ total\_count)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00214}00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindAllOrders(pending,\ completed)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00215}00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00216}00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00217}00217\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00218}00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderDetailResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00219}00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed\_count++}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00220}00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (completed\_count\ ==\ total\_count)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00221}00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindAllOrders(pending,\ completed)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00222}00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00223}00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00224}00224\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00225}00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00226}00226\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00227}00227\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ completed\ orders}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00228}00228\ \ \ \ \ \ \ \ \ for\ (orderId\ in\ completedOrderIds)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00229}00229\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object\ :\ Callback<OrderDetailResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00230}00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderDetailResponse>,\ response:\ Response<OrderDetailResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00231}00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful\ \&\&\ response.body()\ !=\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00232}00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed.add(response.body()!!)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00233}00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00234}00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed\_count++}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00235}00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (completed\_count\ ==\ total\_count)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00236}00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindAllOrders(pending,\ completed)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00237}00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00238}00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00239}00239\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00240}00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderDetailResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00241}00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ completed\_count++}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00242}00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (completed\_count\ ==\ total\_count)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00243}00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindAllOrders(pending,\ completed)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00244}00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00245}00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00246}00246\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00247}00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00248}00248\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00249}00249\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Handle\ empty\ case}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00250}00250\ \ \ \ \ \ \ \ \ if\ (total\_count\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00251}00251\ \ \ \ \ \ \ \ \ \ \ \ \ bindAllOrders(emptyList(),\ emptyList())}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00252}00252\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00253}00253\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00254}00254\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00261}00261\ \ \ \ \ private\ fun\ bindAllOrders(pending:\ List<OrderDetailResponse>,\ completed:\ List<OrderDetailResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00262}00262\ \ \ \ \ \ \ \ \ allPendingOrders\ =\ pending}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00263}00263\ \ \ \ \ \ \ \ \ allCompletedOrders\ =\ completed}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00264}00264\ \ \ \ \ \ \ \ \ displayedPendingCount\ =\ 0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00265}00265\ \ \ \ \ \ \ \ \ displayedCompletedCount\ =\ 0}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00266}00266\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00267}00267\ \ \ \ \ \ \ \ \ ordersContainer.removeAllViews()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00268}00268\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00269}00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Display\ initial\ orders}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00270}00270\ \ \ \ \ \ \ \ \ displayNextOrders()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00271}00271\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00272}00272\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00280}00280\ \ \ \ \ private\ fun\ displayNextOrders()\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00281}00281\ \ \ \ \ \ \ \ \ val\ inflater\ =\ LayoutInflater.from(this)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00282}00282\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00283}00283\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pending\ orders\ section}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00284}00284\ \ \ \ \ \ \ \ \ val\ pendingToDisplay\ =\ allPendingOrders.drop(displayedPendingCount).take(itemsPerPage)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00285}00285\ \ \ \ \ \ \ \ \ if\ (pendingToDisplay.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00286}00286\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (displayedPendingCount\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00287}00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ labelView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00288}00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ "{}Chưa\ giao"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00289}00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.parseColor("{}\#d32f2f"{}))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00290}00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00291}00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00292}00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPadding(10,\ 20,\ 0,\ 16)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00293}00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00294}00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordersContainer.addView(labelView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00295}00295\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00296}00296\ \ \ \ \ \ \ \ \ \ \ \ \ pendingToDisplay.forEach\ \{\ order\ -\/>}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00297}00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addOrderCard(ordersContainer,\ order,\ order.status,\ inflater)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00298}00298\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00299}00299\ \ \ \ \ \ \ \ \ \ \ \ \ displayedPendingCount\ +=\ pendingToDisplay.size}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00300}00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00301}00301\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00302}00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Completed\ orders\ section}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00303}00303\ \ \ \ \ \ \ \ \ val\ completedToDisplay\ =\ allCompletedOrders.drop(displayedCompletedCount).take(itemsPerPage)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00304}00304\ \ \ \ \ \ \ \ \ if\ (completedToDisplay.isNotEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00305}00305\ \ \ \ \ \ \ \ \ \ \ \ \ if\ (displayedCompletedCount\ ==\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00306}00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ labelView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00307}00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ "{}Đã\ giao"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00308}00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.parseColor("{}\#34a853"{}))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00309}00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00310}00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00311}00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPadding(10,\ 40,\ 0,\ 16)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00312}00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00313}00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ordersContainer.addView(labelView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00314}00314\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00315}00315\ \ \ \ \ \ \ \ \ \ \ \ \ completedToDisplay.forEach\ \{\ order\ -\/>}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00316}00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addOrderCard(ordersContainer,\ order,\ order.status,\ inflater)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00317}00317\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00318}00318\ \ \ \ \ \ \ \ \ \ \ \ \ displayedCompletedCount\ +=\ completedToDisplay.size}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00319}00319\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00320}00320\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00321}00321\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ Load\ More\ button\ visibility}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00322}00322\ \ \ \ \ \ \ \ \ val\ hasMore\ =\ displayedPendingCount\ <\ allPendingOrders.size\ ||\ displayedCompletedCount\ <\ allCompletedOrders.size}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00323}00323\ \ \ \ \ \ \ \ \ btnLoadMore.visibility\ =\ if\ (hasMore)\ android.view.View.VISIBLE\ else\ android.view.View.GONE}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00324}00324\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00325}00325\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00329}00329\ \ \ \ \ private\ fun\ loadMoreOrders()\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00330}00330\ \ \ \ \ \ \ \ \ displayNextOrders()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00331}00331\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00332}00332\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00344}00344\ \ \ \ \ private\ fun\ addOrderCard(container:\ android.widget.LinearLayout,\ order:\ OrderDetailResponse,\ status:\ String,\ inflater:\ LayoutInflater)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00345}00345\ \ \ \ \ \ \ \ \ val\ isCompleted\ =\ isCompletedStatus(status)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00346}00346\ \ \ \ \ \ \ \ \ val\ statusColor\ =\ if\ (isCompleted)\ android.graphics.Color.parseColor("{}\#34a853"{})\ else\ android.graphics.Color.parseColor("{}\#d32f2f"{})}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00347}00347\ \ \ \ \ \ \ \ \ val\ statusText\ =\ if\ (isCompleted)\ "{}Đã\ giao\ ✓"{}\ else\ "{}Chưa\ giao"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00348}00348\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00349}00349\ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale("{}vi"{},\ "{}VN"{}))}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00350}00350\ \ \ \ \ \ \ \ \ val\ cardView\ =\ androidx.cardview.widget.CardView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00351}00351\ \ \ \ \ \ \ \ \ \ \ \ \ layoutParams\ =\ android.widget.LinearLayout.LayoutParams(}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00352}00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.MATCH\_PARENT,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00353}00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.WRAP\_CONTENT}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00354}00354\ \ \ \ \ \ \ \ \ \ \ \ \ ).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00355}00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bottomMargin\ =\ 16}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00356}00356\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00357}00357\ \ \ \ \ \ \ \ \ \ \ \ \ radius\ =\ 30f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00358}00358\ \ \ \ \ \ \ \ \ \ \ \ \ cardElevation\ =\ 4f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00359}00359\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00360}00360\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00361}00361\ \ \ \ \ \ \ \ \ val\ mainLayout\ =\ android.widget.LinearLayout(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00362}00362\ \ \ \ \ \ \ \ \ \ \ \ \ layoutParams\ =\ android.view.ViewGroup.LayoutParams(}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00363}00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.view.ViewGroup.LayoutParams.MATCH\_PARENT,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00364}00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.view.ViewGroup.LayoutParams.WRAP\_CONTENT}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00365}00365\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00366}00366\ \ \ \ \ \ \ \ \ \ \ \ \ orientation\ =\ android.widget.LinearLayout.VERTICAL}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00367}00367\ \ \ \ \ \ \ \ \ \ \ \ \ setBackgroundColor(android.graphics.Color.WHITE)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00368}00368\ \ \ \ \ \ \ \ \ \ \ \ \ setPadding(20,\ 20,\ 20,\ 20)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00369}00369\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00370}00370\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00371}00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Details\ section}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00372}00372\ \ \ \ \ \ \ \ \ val\ detailsLayout\ =\ android.widget.LinearLayout(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00373}00373\ \ \ \ \ \ \ \ \ \ \ \ \ layoutParams\ =\ android.widget.LinearLayout.LayoutParams(}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00374}00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.MATCH\_PARENT,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00375}00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.WRAP\_CONTENT}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00376}00376\ \ \ \ \ \ \ \ \ \ \ \ \ ).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00377}00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bottomMargin\ =\ 12}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00378}00378\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00379}00379\ \ \ \ \ \ \ \ \ \ \ \ \ orientation\ =\ android.widget.LinearLayout.VERTICAL}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00380}00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00381}00381\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00382}00382\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Dish\ names}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00383}00383\ \ \ \ \ \ \ \ \ val\ totalQty\ =\ order.order\_items.sumOf\ \{\ it.quantity\ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00384}00384\ \ \ \ \ \ \ \ \ val\ itemSummary\ =\ if\ (order.order\_items.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00385}00385\ \ \ \ \ \ \ \ \ \ \ \ \ "{}Đơn\ hàng\ \#\$\{order.id\}"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00386}00386\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00387}00387\ \ \ \ \ \ \ \ \ \ \ \ \ order.order\_items.joinToString("{}\(\backslash\)n"{})\ \{\ item\ -\/>}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00388}00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}•\ \$\{item.menuitem\_name\ ?:\ "{}Món\ \#\$\{item.menuitemid\}"{}\}\ x\$\{item.quantity\}"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00389}00389\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00390}00390\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00391}00391\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00392}00392\ \ \ \ \ \ \ \ \ val\ dishNameView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00393}00393\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ itemSummary}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00394}00394\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.BLACK)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00395}00395\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00396}00396\ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00397}00397\ \ \ \ \ \ \ \ \ \ \ \ \ setPadding(0,\ 0,\ 0,\ 8)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00398}00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00399}00399\ \ \ \ \ \ \ \ \ detailsLayout.addView(dishNameView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00400}00400\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00401}00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Quantity}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00402}00402\ \ \ \ \ \ \ \ \ val\ qtyView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00403}00403\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ "{}SL:\ \$totalQty"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00404}00404\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.BLACK)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00405}00405\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00406}00406\ \ \ \ \ \ \ \ \ \ \ \ \ setPadding(0,\ 0,\ 0,\ 8)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00407}00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00408}00408\ \ \ \ \ \ \ \ \ detailsLayout.addView(qtyView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00409}00409\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00410}00410\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Restaurant}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00411}00411\ \ \ \ \ \ \ \ \ val\ restaurantView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00412}00412\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ order.restaurant\_name\ ?:\ "{}Nhà\ hàng\ \#\$\{order.restaurantid\}"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00413}00413\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.BLACK)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00414}00414\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00415}00415\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00416}00416\ \ \ \ \ \ \ \ \ detailsLayout.addView(restaurantView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00417}00417\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00418}00418\ \ \ \ \ \ \ \ \ mainLayout.addView(detailsLayout)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00419}00419\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00420}00420\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Status\ and\ Price\ Row}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00421}00421\ \ \ \ \ \ \ \ \ val\ statusRow\ =\ android.widget.LinearLayout(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00422}00422\ \ \ \ \ \ \ \ \ \ \ \ \ layoutParams\ =\ android.widget.LinearLayout.LayoutParams(}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00423}00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.MATCH\_PARENT,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00424}00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.WRAP\_CONTENT}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00425}00425\ \ \ \ \ \ \ \ \ \ \ \ \ ).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00426}00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bottomMargin\ =\ 12}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00427}00427\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00428}00428\ \ \ \ \ \ \ \ \ \ \ \ \ orientation\ =\ android.widget.LinearLayout.HORIZONTAL}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00429}00429\ \ \ \ \ \ \ \ \ \ \ \ \ gravity\ =\ android.view.Gravity.CENTER\_VERTICAL}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00430}00430\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00431}00431\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00432}00432\ \ \ \ \ \ \ \ \ val\ statusView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00433}00433\ \ \ \ \ \ \ \ \ \ \ \ \ layoutParams\ =\ android.widget.LinearLayout.LayoutParams(}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00434}00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00435}00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ android.widget.LinearLayout.LayoutParams.WRAP\_CONTENT,}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00436}00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00437}00437\ \ \ \ \ \ \ \ \ \ \ \ \ )}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00438}00438\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ statusText}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00439}00439\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(statusColor)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00440}00440\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00441}00441\ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00442}00442\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00443}00443\ \ \ \ \ \ \ \ \ statusRow.addView(statusView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00444}00444\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00445}00445\ \ \ \ \ \ \ \ \ val\ priceView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00446}00446\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ "{}\$\{fmt.format(order.totalprice)\}đ"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00447}00447\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.BLACK)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00448}00448\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 16f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00449}00449\ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00450}00450\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00451}00451\ \ \ \ \ \ \ \ \ statusRow.addView(priceView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00452}00452\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00453}00453\ \ \ \ \ \ \ \ \ mainLayout.addView(statusRow)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00454}00454\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00455}00455\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Detail\ button}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00456}00456\ \ \ \ \ \ \ \ \ val\ detailView\ =\ android.widget.TextView(this).apply\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00457}00457\ \ \ \ \ \ \ \ \ \ \ \ \ text\ =\ "{}Chi\ tiết"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00458}00458\ \ \ \ \ \ \ \ \ \ \ \ \ setTextColor(android.graphics.Color.BLACK)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00459}00459\ \ \ \ \ \ \ \ \ \ \ \ \ textSize\ =\ 14f}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00460}00460\ \ \ \ \ \ \ \ \ \ \ \ \ setTypeface(null,\ android.graphics.Typeface.BOLD)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00461}00461\ \ \ \ \ \ \ \ \ \ \ \ \ isClickable\ =\ true}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00462}00462\ \ \ \ \ \ \ \ \ \ \ \ \ isFocusable\ =\ true}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00463}00463\ \ \ \ \ \ \ \ \ \ \ \ \ setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00464}00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ openOrderDetail(order.id,\ status,\ order.restaurant\_name)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00465}00465\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00466}00466\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00467}00467\ \ \ \ \ \ \ \ \ mainLayout.addView(detailView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00468}00468\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00469}00469\ \ \ \ \ \ \ \ \ cardView.addView(mainLayout)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00470}00470\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00471}00471\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Also\ add\ click\ listener\ to\ card}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00472}00472\ \ \ \ \ \ \ \ \ cardView.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00473}00473\ \ \ \ \ \ \ \ \ \ \ \ \ openOrderDetail(order.id,\ status,\ order.restaurant\_name)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00474}00474\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00475}00475\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00476}00476\ \ \ \ \ \ \ \ \ container.addView(cardView)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00477}00477\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00478}00478\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00487}00487\ \ \ \ \ private\ fun\ resolveUserIdForTracking():\ Int\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00488}00488\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00489}00489\ \ \ \ \ \ \ \ \ val\ userId\ =\ sharedPref.getInt("{}user\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00490}00490\ \ \ \ \ \ \ \ \ if\ (userId\ >\ 0)\ return\ userId}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00491}00491\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00492}00492\ \ \ \ \ \ \ \ \ val\ userName\ =\ sharedPref.getString("{}user\_name"{},\ "{}"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00493}00493\ \ \ \ \ \ \ \ \ if\ (userName.contains("{}Trung"{},\ ignoreCase\ =\ true)\ ||\ userName.isBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00494}00494\ \ \ \ \ \ \ \ \ \ \ \ \ return\ 1}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00495}00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00496}00496\ \ \ \ \ \ \ \ \ return\ 1}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00497}00497\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00498}00498\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00505}00505\ \ \ \ \ private\ fun\ isCompletedStatus(status:\ String?):\ Boolean\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00506}00506\ \ \ \ \ \ \ \ \ val\ normalized\ =\ (status\ ?:\ "{}"{}).lowercase(Locale.ROOT)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00507}00507\ \ \ \ \ \ \ \ \ return\ normalized\ ==\ "{}completed"{}\ ||\ normalized\ ==\ "{}delivered"{}\ ||\ normalized\ ==\ "{}done"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00508}00508\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00509}00509\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00519}00519\ \ \ \ \ private\ fun\ openOrderDetail(orderId:\ Int?,\ status:\ String,\ restaurantName:\ String?)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00520}00520\ \ \ \ \ \ \ \ \ if\ (orderId\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00521}00521\ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Không\ có\ đơn\ để\ xem"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00522}00522\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00523}00523\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00524}00524\ }
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00525}00525\ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ OrderTrackingDetail::class.java)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00526}00526\ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_id"{},\ orderId)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00527}00527\ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_status"{},\ status)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00528}00528\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Nếu\ không\ có\ tên\ quán,\ lấy\ tên\ tạm\ từ\ UI\ title\ (nếu\ có)\ hoặc\ dùng\ Mã\ đơn}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00529}00529\ \ \ \ \ \ \ \ \ val\ titleText\ =\ restaurantName\ ?:\ "{}Đơn\ hàng\ \#\$orderId"{}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00530}00530\ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_name"{},\ titleText)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00531}00531\ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00532}00532\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{OrderTracking_8kt_source_l00533}00533\ \}}
+
+\end{DoxyCode}

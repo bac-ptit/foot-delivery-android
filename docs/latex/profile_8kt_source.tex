@@ -1,0 +1,94 @@
+\doxysection{profile.\+kt}
+\hypertarget{profile_8kt_source}{}\label{profile_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/profile.kt@{app/app/src/main/java/com/example/myapp/screens/profile.kt}}
+\doxymbox{\hyperlink{profile_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00012}00012\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00013}00013\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00014}00014\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00015}00015\ import\ android.view.View}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00016}00016\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00017}00017\ import\ android.widget.LinearLayout}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00018}00018\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00019}00019\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00020}00020\ import\ androidx.core.content.edit}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00021}00021\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.UserProfileSummary}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00024}00024\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00025}00025\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00026}00026\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00027}00027\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00037}00037\ class\ profile\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00046}00046\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00047}00047\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00048}00048\ \ \ \ \ \ \ \ \ setContentView(R.layout.profile)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00049}00049\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00050}00050\ \ \ \ \ \ \ \ \ val\ tvToi:\ TextView\ =\ findViewById(R.id.tvToi)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00051}00051\ \ \ \ \ \ \ \ \ val\ tvPoints:\ TextView\ =\ findViewById(R.id.tvPoints)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ val\ imgCoin:\ ImageView\ =\ findViewById(R.id.imgCoin)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00054}00054\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ val\ userName\ =\ sharedPref.getString("{}user\_name"{},\ "{}Tôi"{})}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ val\ userId\ =\ sharedPref.getInt("{}user\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ tvToi.text\ =\ userName}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ points\ from\ API}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ if\ (userId\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getProfileSummary(userId).enqueue(object\ :\ Callback<UserProfileSummary>\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<UserProfileSummary>,\ response:\ Response<UserProfileSummary>)\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (response.isSuccessful)\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ response.body()?.let\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvToi.text\ =\ it.user\_name}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tvPoints.text\ =\ it.points.toString()}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00071}00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<UserProfileSummary>,\ t:\ Throwable)\ \{\}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Click\ points\ or\ coin\ to\ open\ order\ tracking}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ val\ openTracking\ =\ View.OnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ OrderTracking::class.java)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ tvPoints.setOnClickListener(openTracking)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ imgCoin.setOnClickListener(openTracking)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00083}00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Navigation\ \&\ Other\ buttons}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnlogout).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ \ \ \ \ getSharedPreferences("{}user"{},\ Context.MODE\_PRIVATE).edit\ \{\ clear()\ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ signin::class.java).apply\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ flags\ =\ Intent.FLAG\_ACTIVITY\_NEW\_TASK\ or\ Intent.FLAG\_ACTIVITY\_CLEAR\_TASK}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00092}00092\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ findViewById<ImageView>(R.id.icHome).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ home::class.java))}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ findViewById<ImageView>(R.id.icCart).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00098}00098\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ cart::class.java))}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00100}00100\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ findViewById<View>(R.id.btnSupport).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00102}00102\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ customer\_support::class.java))}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00104}00104\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnAddress).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ savedeliveryaddress::class.java))}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ findViewById<LinearLayout>(R.id.btnHistory).setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ order\_history::class.java))}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00112}00112\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{profile_8kt_source_l00113}00113\ \}}
+
+\end{DoxyCode}

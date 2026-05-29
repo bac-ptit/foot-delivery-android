@@ -1,0 +1,13 @@
+var searchData=
+[
+  ['db_0',['db',['../classchatbot__service_1_1ChatBotService.html#a68d15c04c90996239a6bb1e2a36e171b',1,'chatbot_service::ChatBotService']]],
+  ['deliveries_1',['deliveries',['../classmodels_1_1Shipper.html#a8df65f477bf17245a5226f3931a65d49',1,'models::Shipper']]],
+  ['delivery_2',['delivery',['../classmodels_1_1Orders.html#aec0534ff73787d1d7c231325a188641f',1,'models::Orders']]],
+  ['deliverytime_3',['deliverytime',['../classmodels_1_1Delivery.html#a8e23e7b445659ace291bbec56c751e07',1,'models.Delivery.deliverytime'],['../classschemas_1_1DeliveryBase.html#a21e9acac25b0b6d7f9c8a8a672c93406',1,'schemas.DeliveryBase.deliverytime']]],
+  ['description_4',['description',['../classmodels_1_1Category.html#a4a1f931f037bda5a355e0867158eaa9f',1,'models.Category.description'],['../classmodels_1_1Shipper.html#abc88702c8846709488aff8b2e12ed383',1,'models.Shipper.description'],['../classmodels_1_1Restaurant.html#ab70e0a40de3621e27244d474d36ef401',1,'models.Restaurant.description'],['../classmodels_1_1MenuItem.html#a560f59dc05e33cb494a68f752ff6c30e',1,'models.MenuItem.description'],['../classschemas_1_1CategoryBase.html#a64a417e4d5d48fd2910a46d84b5d2107',1,'schemas.CategoryBase.description'],['../classschemas_1_1MenuItemBase.html#a6f6d72296294672466ad5bf4d966b885',1,'schemas.MenuItemBase.description'],['../classschemas_1_1RestaurantBase.html#adb5ae709d81f8f4bfcf1e08fb8af1149',1,'schemas.RestaurantBase.description'],['../classschemas_1_1ShipperBase.html#aab3b1cd514b1060efb971607e4cb1be4',1,'schemas.ShipperBase.description']]],
+  ['detail_5',['detail',['../classmodels_1_1Address.html#a56fb23d2c71d1dce947b2d766268b9af',1,'models.Address.detail'],['../classschemas_1_1AddressUpdate.html#ae20f8e23eb1dac63e4b32daabff1cd1e',1,'schemas.AddressUpdate.detail']]],
+  ['device_5ftoken_6',['device_token',['../classmodels_1_1UserDevice.html#a8de1152001a2a4af660e0921437458c3',1,'models::UserDevice']]],
+  ['device_5ftype_7',['device_type',['../classmodels_1_1UserDevice.html#a7043121db8138084baf9690bde011532',1,'models.UserDevice.device_type'],['../classschemas_1_1UserDeviceBase.html#aa44a8302956ae94198199f7b3530ae6d',1,'schemas.UserDeviceBase.device_type']]],
+  ['discounttype_8',['discounttype',['../classmodels_1_1Promotion.html#ab64470b4e845d9986f5aff6c5655261f',1,'models::Promotion']]],
+  ['discountvalue_9',['discountvalue',['../classmodels_1_1Promotion.html#af6c27af79182c59d2c039931b2964428',1,'models::Promotion']]]
+];

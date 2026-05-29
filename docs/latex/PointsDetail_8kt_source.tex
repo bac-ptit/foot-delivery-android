@@ -1,0 +1,162 @@
+\doxysection{Points\+Detail.\+kt}
+\hypertarget{PointsDetail_8kt_source}{}\label{PointsDetail_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/PointsDetail.kt@{app/app/src/main/java/com/example/myapp/screens/PointsDetail.kt}}
+\doxymbox{\hyperlink{PointsDetail_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00009}00009\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00010}00010\ import\ android.content.Context}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00011}00011\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00012}00012\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00013}00013\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00014}00014\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00015}00015\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00016}00016\ import\ androidx.cardview.widget.CardView}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00017}00017\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00018}00018\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00019}00019\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00021}00021\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00022}00022\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00023}00023\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00024}00024\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00033}00033\ class\ PointsDetail\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00035}00035\ \ \ \ \ private\ var\ firstOrderId:\ Int?\ =\ null}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00037}00037\ \ \ \ \ private\ var\ secondOrderId:\ Int?\ =\ null}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00039}00039\ \ \ \ \ private\ var\ thirdOrderId:\ Int?\ =\ null}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00041}00041\ \ \ \ \ private\ var\ fourthOrderId:\ Int?\ =\ null}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00042}00042\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00051}00051\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00052}00052\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00053}00053\ \ \ \ \ \ \ \ \ setContentView(R.layout.points\_detail)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ loadOrders()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00056}00056\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00057}00057\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Back\ Button\ -\/\ Return\ to\ previous\ screen}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00059}00059\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ finish()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00063}00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Points\ Card\ 1\ -\/\ Click\ to\ view\ order\ detail}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ val\ pointsCard1:\ CardView\ =\ findViewById(R.id.pointsCard1)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ val\ tvDishName1:\ TextView\ =\ findViewById(R.id.tvDishName1)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ pointsCard1.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \ \ \ \ navigateToOrderDetail(tvDishName1.text.toString(),\ firstOrderId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00070}00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Points\ Card\ 2\ -\/\ Click\ to\ view\ order\ detail}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00071}\doxymbox{\hyperlink{namespaceAppCompatActivity_a784149a991c3880c748a5a3ba7351a17}{00071}}\ \ \ \ \ \ \ \ \ val\ pointsCard2:\ CardView\ =\ findViewById(R.id.pointsCard2)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ val\ tvDishName2:\ TextView\ =\ findViewById(R.id.tvDishName2)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ pointsCard2.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ navigateToOrderDetail(tvDishName2.text.toString(),\ secondOrderId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00076}00076\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Points\ Card\ 3\ -\/\ Click\ to\ view\ order\ detail}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00078}\doxymbox{\hyperlink{namespaceAppCompatActivity_af28448ab26487523a2b5b99699e8cee1}{00078}}\ \ \ \ \ \ \ \ \ val\ pointsCard3:\ CardView\ =\ findViewById(R.id.pointsCard3)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ val\ tvDishName3:\ TextView\ =\ findViewById(R.id.tvDishName3)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ pointsCard3.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \ \ \ \ navigateToOrderDetail(tvDishName3.text.toString(),\ thirdOrderId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00082}00082\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Points\ Card\ 4\ -\/\ Click\ to\ view\ order\ detail}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00085}\doxymbox{\hyperlink{namespaceAppCompatActivity_a1c23e084230a74616543c8fbb1a2a930}{00085}}\ \ \ \ \ \ \ \ \ val\ pointsCard4:\ CardView\ =\ findViewById(R.id.pointsCard4)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ val\ tvDishName4:\ TextView\ =\ findViewById(R.id.tvDishName4)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ pointsCard4.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \ \ \ \ navigateToOrderDetail(tvDishName4.text.toString(),\ fourthOrderId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00090}00090\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Home}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00092}\doxymbox{\hyperlink{namespaceAppCompatActivity_a9b3af10e1c22756fe13966467a633934}{00092}}\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00094}00094\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ home::class.java))}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00095}00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00096}00096\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00097}00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Wishlist}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00098}\doxymbox{\hyperlink{namespaceAppCompatActivity_ae6a8fd53551befa60faf6a47958ff224}{00098}}\ \ \ \ \ \ \ \ \ val\ icHeart:\ ImageView\ =\ findViewById(R.id.icHeart)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00099}00099\ \ \ \ \ \ \ \ \ icHeart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00100}00100\ \ \ \ \ \ \ \ \ \ \ \ \ android.util.Log.d("{}PointsDetail"{},\ "{}Wishlist\ clicked"{})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00101}00101\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00102}00102\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00103}00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Cart}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00104}\doxymbox{\hyperlink{namespaceAppCompatActivity_ae586d9e40b097900b6db3c77cbb2c76c}{00104}}\ \ \ \ \ \ \ \ \ val\ icCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ icCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ activity\_cart::class.java))}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00108}00108\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Bottom\ Navigation\ -\/\ Profile}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00110}\doxymbox{\hyperlink{namespaceAppCompatActivity_a3dce0c0c23c8a2e3fd692d3704dbe21d}{00110}}\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(Intent(this,\ profile::class.java))}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00113}00113\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00114}00114\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00115}00115\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00122}\doxymbox{\hyperlink{namespaceAppCompatActivity_af80c39591fa4ab9f96f5efb9e66404ae}{00122}}\ \ \ \ \ private\ fun\ loadOrders()\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00123}00123\ \ \ \ \ \ \ \ \ val\ userId\ =\ resolveUserIdForPoints()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00124}00124\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getUserOrders(userId).enqueue(object\ :\ Callback<List<OrderResponse>>\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00125}00125\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<List<OrderResponse>>,\ response:\ Response<List<OrderResponse>>)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00126}00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful\ ||\ response.body().isNullOrEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00127}00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@PointsDetail,\ "{}Không\ có\ đơn\ hàng\ để\ đánh\ giá"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00128}00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00130}00130\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ completedOrders\ =\ response.body()!!}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .filter\ \{\ it.status\ ==\ "{}completed"{}\ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00133}00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ .sortedByDescending\ \{\ it.createdat\ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00134}00134\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ firstOrderId\ =\ completedOrders.getOrNull(0)?.id}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ secondOrderId\ =\ completedOrders.getOrNull(1)?.id}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ thirdOrderId\ =\ completedOrders.getOrNull(2)?.id}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fourthOrderId\ =\ completedOrders.getOrNull(3)?.id}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00139}00139\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindOrderCard(R.id.tvDishName1,\ R.id.tvPoints1,\ completedOrders.getOrNull(0),\ "{}Đơn\ hàng\ \#"{})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindOrderCard(R.id.tvDishName2,\ R.id.tvPoints2,\ completedOrders.getOrNull(1),\ "{}Đơn\ hàng\ \#"{})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindOrderCard(R.id.tvDishName3,\ R.id.tvPoints3,\ completedOrders.getOrNull(2),\ "{}Đơn\ hàng\ \#"{})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindOrderCard(R.id.tvDishName4,\ R.id.tvPoints4,\ completedOrders.getOrNull(3),\ "{}Đơn\ hàng\ \#"{})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00145}00145\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<List<OrderResponse>>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00147}00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@PointsDetail,\ "{}Không\ tải\ được\ đơn\ hàng"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00163}\doxymbox{\hyperlink{namespaceAppCompatActivity_a87afe3d4037bc2e024dac81f47dd10d9}{00163}}\ \ \ \ \ private\ fun\ bindOrderCard(titleId:\ Int,\ pointsId:\ Int,\ order:\ OrderResponse?,\ fallbackTitlePrefix:\ String)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00164}00164\ \ \ \ \ \ \ \ \ val\ titleView:\ TextView\ =\ findViewById(titleId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00165}00165\ \ \ \ \ \ \ \ \ val\ pointsView:\ TextView\ =\ findViewById(pointsId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00166}00166\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ if\ (order\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00168}00168\ \ \ \ \ \ \ \ \ \ \ \ \ titleView.text\ =\ "{}Chưa\ có\ đơn\ hàng"{}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ \ \ \ \ pointsView.text\ =\ "{}0"{}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00170}00170\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00171}00171\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00173}00173\ \ \ \ \ \ \ \ \ titleView.text\ =\ "{}\$fallbackTitlePrefix\$\{order.id\}"{}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00174}00174\ \ \ \ \ \ \ \ \ pointsView.text\ =\ (order.totalprice\ /\ 1000).toString()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00175}00175\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00176}00176\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00184}\doxymbox{\hyperlink{namespaceAppCompatActivity_a3419dd17710c31713071e47b803b612b}{00184}}\ \ \ \ \ private\ fun\ resolveUserIdForPoints():\ Int\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ val\ sharedPref\ =\ getSharedPreferences("{}user\_prefs"{},\ Context.MODE\_PRIVATE)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ val\ userId\ =\ sharedPref.getInt("{}user\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00187}00187\ \ \ \ \ \ \ \ \ if\ (userId\ >\ 0)\ return\ userId}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00188}00188\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00189}00189\ \ \ \ \ \ \ \ \ val\ userName\ =\ sharedPref.getString("{}user\_name"{},\ "{}"{})\ ?:\ "{}"{}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00190}00190\ \ \ \ \ \ \ \ \ if\ (userName.contains("{}Trung"{},\ ignoreCase\ =\ true)\ ||\ userName.isBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00191}00191\ \ \ \ \ \ \ \ \ \ \ \ \ return\ 1}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00192}00192\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00193}00193\ \ \ \ \ \ \ \ \ return\ 1}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00194}00194\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00195}00195\ }
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00205}00205\ \ \ \ \ private\ fun\ navigateToOrderDetail(dishName:\ String,\ orderId:\ Int?)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00206}00206\ \ \ \ \ \ \ \ \ if\ (orderId\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00207}00207\ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Thiếu\ mã\ đơn\ hàng\ để\ đánh\ giá"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00208}00208\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00209}00209\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00210}00210\ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ OrderTrackingDetail::class.java)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00211}00211\ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_name"{},\ dishName)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00212}00212\ \ \ \ \ \ \ \ \ intent.putExtra("{}order\_id"{},\ orderId)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00213}00213\ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00214}00214\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{PointsDetail_8kt_source_l00215}00215\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,142 @@
+\doxysection{delivered\+\_\+order\+\_\+details.\+kt}
+\hypertarget{delivered__order__details_8kt_source}{}\label{delivered__order__details_8kt_source}\index{app/app/src/main/java/com/example/myapp/screens/delivered\_order\_details.kt@{app/app/src/main/java/com/example/myapp/screens/delivered\_order\_details.kt}}
+\doxymbox{\hyperlink{delivered__order__details_8kt}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00001}00001\ \textcolor{keyword}{package\ }com.example.myapp.screens}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00002}00002\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00011}00011\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00012}00012\ import\ android.content.Intent}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00013}00013\ import\ android.os.Bundle}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00014}00014\ import\ android.widget.Button}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00015}00015\ import\ android.widget.ImageView}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00016}00016\ import\ android.widget.TextView}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00017}00017\ import\ android.widget.Toast}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00018}00018\ import\ androidx.appcompat.app.AppCompatActivity}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00019}00019\ import\ com.example.myapp.R}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00020}00020\ import\ com.example.myapp.screens.api.OrderDetailResponse}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00021}00021\ import\ com.example.myapp.screens.api.OrderCreateRequest}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00022}00022\ import\ com.example.myapp.screens.api.OrderItemRequest}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00023}00023\ import\ com.example.myapp.screens.api.OrderResponse}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00024}00024\ import\ com.example.myapp.screens.api.RetrofitClient}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00025}00025\ import\ retrofit2.Call}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00026}00026\ import\ retrofit2.Callback}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00027}00027\ import\ retrofit2.Response}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00028}00028\ import\ java.text.NumberFormat}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00029}00029\ import\ java.text.SimpleDateFormat}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00030}00030\ import\ java.util.Date}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00031}00031\ import\ java.util.Locale}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00033}00033\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00044}00044\ class\ delivered\_order\_details\ :\ AppCompatActivity()\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00045}\doxymbox{\hyperlink{namespaceAppCompatActivity_ad566e2bd23e19c2c6594d5f0ef0eab58}{00045}}\ \ \ \ \ private\ var\ orderId:\ Int\ =\ -\/1}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00046}00046\ \ \ \ \ private\ var\ loadedOrderDetail:\ OrderDetailResponse?\ =\ null}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00047}00047\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00054}00054\ \ \ \ \ override\ fun\ onCreate(savedInstanceState:\ Bundle?)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00055}00055\ \ \ \ \ \ \ \ \ super.onCreate(savedInstanceState)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00056}00056\ \ \ \ \ \ \ \ \ setContentView(R.layout.delivered\_order\_details)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00058}00058\ \ \ \ \ \ \ \ \ orderId\ =\ intent.getIntExtra("{}order\_id"{},\ -\/1)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00059}\doxymbox{\hyperlink{namespaceAppCompatActivity_ac4f32d2121dfcb444d460da1cda6907e}{00059}}\ \ \ \ \ \ \ \ \ if\ (orderId\ >\ 0)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ loadOrderDetail(orderId)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00061}00061\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00062}00062\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00064}00064\ \ \ \ \ \ \ \ \ val\ btnBack:\ ImageView\ =\ findViewById(R.id.btn\_back)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00065}00065\ \ \ \ \ \ \ \ \ btnBack.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00066}00066\ \ \ \ \ \ \ \ \ \ \ \ \ finish()\ \textcolor{comment}{//\ quay\ lại\ màn\ hình\ trước}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00067}00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00068}00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tìm\ nút\ "{}Đặt\ lại"{}\ theo\ ID\ trong\ XML}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00069}00069\ \ \ \ \ \ \ \ \ val\ btnReorder:\ Button\ =\ findViewById(R.id.btnReorder)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00070}00070\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00071}00071\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00072}00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thiết\ lập\ sự\ kiện\ click}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00073}00073\ \ \ \ \ \ \ \ \ btnReorder.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00074}00074\ \ \ \ \ \ \ \ \ \ \ \ \ reorderCurrentOrder()}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00075}00075\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00076}00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ click\ icProfile}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00077}00077\ \ \ \ \ \ \ \ \ val\ icProfile:\ ImageView\ =\ findViewById(R.id.icProfile)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00078}00078\ \ \ \ \ \ \ \ \ icProfile.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00079}00079\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ profile::class.java)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00080}00080\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00081}00081\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00082}00082\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00084}00084\ \ \ \ \ \ \ \ \ val\ icHome:\ ImageView\ =\ findViewById(R.id.icHome)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00085}00085\ \ \ \ \ \ \ \ \ icHome.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00086}00086\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ home::class.java)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00087}00087\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00088}00088\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00089}00089\ \ \ \ \ \ \ \ \ val\ btnCart:\ ImageView\ =\ findViewById(R.id.icCart)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00090}00090\ \ \ \ \ \ \ \ \ btnCart.setOnClickListener\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00091}00091\ \ \ \ \ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ cart::class.java)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00092}00092\ \ \ \ \ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00093}00093\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00095}00095\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00104}00104\ \ \ \ \ private\ fun\ loadOrderDetail(orderId:\ Int)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00105}00105\ \ \ \ \ \ \ \ \ RetrofitClient.apiService.getOrderDetail(orderId).enqueue(object\ :\ Callback<OrderDetailResponse>\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00106}00106\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onResponse(call:\ Call<OrderDetailResponse>,\ response:\ Response<OrderDetailResponse>)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00107}00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (!response.isSuccessful\ ||\ response.body()\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00108}00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@delivered\_order\_details,\ "{}Không\ tải\ được\ chi\ tiết\ đơn"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00109}00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00110}00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00111}00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bindOrder(response.body()!!)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00112}00112\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00113}00113\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00114}00114\ \ \ \ \ \ \ \ \ \ \ \ \ override\ fun\ onFailure(call:\ Call<OrderDetailResponse>,\ t:\ Throwable)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00115}00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this@delivered\_order\_details,\ "{}Lỗi\ kết\ nối"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00116}00116\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00117}00117\ \ \ \ \ \ \ \ \ \})}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00118}00118\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00119}00119\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00128}\doxymbox{\hyperlink{namespaceAppCompatActivity_add67e07fa0372d47036eeca0d1bd3464}{00128}}\ \ \ \ \ private\ fun\ bindOrder(order:\ OrderDetailResponse)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00129}00129\ \ \ \ \ \ \ \ \ loadedOrderDetail\ =\ order}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00130}00130\ \ \ \ \ \ \ \ \ val\ fmt\ =\ NumberFormat.getNumberInstance(Locale("{}vi"{},\ "{}VN"{}))}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00131}00131\ \ \ \ \ \ \ \ \ val\ title\ =\ findViewById<TextView>(R.id.tvTitle)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00132}00132\ \ \ \ \ \ \ \ \ val\ content\ =\ findViewById<TextView>(R.id.tvOrderContent)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00133}00133\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00134}00134\ \ \ \ \ \ \ \ \ val\ totalQuantity\ =\ order.order\_items.sumOf\ \{\ it.quantity\ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00135}00135\ \ \ \ \ \ \ \ \ val\ itemSummary\ =\ if\ (order.order\_items.isEmpty())\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00136}00136\ \ \ \ \ \ \ \ \ \ \ \ \ "{}(Không\ có\ chi\ tiết\ món)"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00137}00137\ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00138}00138\ \ \ \ \ \ \ \ \ \ \ \ \ order.order\_items.joinToString("{}\(\backslash\)n"{})\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00139}00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ val\ itemName\ =\ it.menuitem\_name\ ?:\ "{}Món\ \#\$\{it.menuitemid\}"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00140}00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if\ (it.image\_url.isNullOrBlank())\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00141}00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}-\/\ \$itemName\ x\$\{it.quantity\}"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00142}00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ else\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00143}00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}-\/\ \$itemName\ x\$\{it.quantity\}"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00144}00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00145}00145\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00146}00146\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00147}00147\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00148}00148\ \ \ \ \ \ \ \ \ title.text\ =\ "{}Chi\ tiết\ đơn\ hàng\ \#\$\{order.id\}\ ngày\ \$\{formatDate(order.createdat)\}"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00149}00149\ \ \ \ \ \ \ \ \ content.text\ =\ "{}\$\{itemSummary\}\(\backslash\)nTổng\ số\ món:\ \$totalQuantity\(\backslash\)nĐịa\ chỉ:\ \$\{order.address\_detail\ ?:\ "{}N/A"{}\}\(\backslash\)nPhương\ thức\ thanh\ toán:\ Thanh\ toán\ online/cash\(\backslash\)nVoucher:\ Không\ có\(\backslash\)nThành\ tiền:\ \$\{fmt.format(order.totalprice)\}đ"{}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00150}00150\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00151}00151\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00159}\doxymbox{\hyperlink{namespaceAppCompatActivity_acf8e266f7c82fa2048510bd3389ca23f}{00159}}\ \ \ \ \ private\ fun\ reorderCurrentOrder()\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00160}00160\ \ \ \ \ \ \ \ \ val\ sourceOrder\ =\ loadedOrderDetail}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00161}00161\ \ \ \ \ \ \ \ \ if\ (sourceOrder\ ==\ null)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00162}00162\ \ \ \ \ \ \ \ \ \ \ \ \ Toast.makeText(this,\ "{}Đơn\ hàng\ chưa\ tải\ xong"{},\ Toast.LENGTH\_SHORT).show()}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00163}00163\ \ \ \ \ \ \ \ \ \ \ \ \ return}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00164}00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00165}00165\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00166}00166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Thay\ vì\ gọi\ API\ tạo\ đơn\ ngay,\ ta\ chuyển\ sang\ màn\ hình\ Thanh\ toán\ (Order)}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00167}00167\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Màn\ hình\ Order\ đã\ có\ sẵn\ logic\ nhận\ "{}reorder\_order\_id"{}\ để\ tự\ tải\ lại\ các\ món\ cũ}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00168}00168\ \ \ \ \ \ \ \ \ val\ intent\ =\ Intent(this,\ order::class.java)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00169}00169\ \ \ \ \ \ \ \ \ intent.putExtra("{}reorder\_order\_id"{},\ sourceOrder.id)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00170}00170\ \ \ \ \ \ \ \ \ startActivity(intent)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00171}00171\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00172}00172\ }
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00179}00179\ \ \ \ \ private\ fun\ formatDate(raw:\ String):\ String\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00180}00180\ \ \ \ \ \ \ \ \ return\ try\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00181}00181\ \ \ \ \ \ \ \ \ \ \ \ \ val\ parser\ =\ SimpleDateFormat("{}yyyy-\/MM-\/dd'T'HH:mm:ss"{},\ Locale.US)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00182}00182\ \ \ \ \ \ \ \ \ \ \ \ \ val\ parsed:\ Date\ =\ parser.parse(raw)\ ?:\ return\ raw}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00183}00183\ \ \ \ \ \ \ \ \ \ \ \ \ SimpleDateFormat("{}dd/MM/yyyy"{},\ Locale("{}vi"{},\ "{}VN"{})).format(parsed)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00184}00184\ \ \ \ \ \ \ \ \ \}\ catch\ (e:\ Exception)\ \{}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00185}00185\ \ \ \ \ \ \ \ \ \ \ \ \ raw.take(10)}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00186}00186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00187}00187\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00188}00188\ \}}
+\DoxyCodeLine{\Hypertarget{delivered__order__details_8kt_source_l00189}00189\ }
+
+\end{DoxyCode}
